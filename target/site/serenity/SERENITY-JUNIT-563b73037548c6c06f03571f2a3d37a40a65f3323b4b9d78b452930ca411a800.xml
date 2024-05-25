@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Agrupacion de casos de ecard" skipped="0" tests="1" time="117.41" timestamp="2024-03-15 08:35:43"><testcase name="CP0920M_SYS_Validar que no permita realizar la recarga cuando la tarjeta esta restringida"><failure message="&#10;Expected: (a string containing &quot;tarjeta con aviso de extravio&quot; or a string containing &quot;transaccion con problemas&quot;)&#10;     but: was &quot;Error time out env msg                00&quot;" type="java.lang.AssertionError">
+Expected: (a string containing "tarjeta con aviso de extravio" or a string containing "transaccion con problemas")
+     but: was "Error time out env msg                00"</failure><system-err>
+Expected: (a string containing "tarjeta con aviso de extravio" or a string containing "transaccion con problemas")
+     but: was "Error time out env msg                00"
+daviplata.nacional.iOS.pageObjects.EcardPageObject.validoRecargaRestringida(EcardPageObject.java:269)
+daviplata.nacional.iOS.steps.EcardSteps.validoRecargaRestringida(EcardSteps.java:134)
+daviplata.nacional.iOS.definitions.EcardDefinitions.validoRecargaNegada(EcardDefinitions.java:121)
+cucumber.runner.Runner.runPickle(Runner.java:80)
+daviplata.nacional.iOS.runners.RunnerPersonalizado.run(RunnerPersonalizado.java:63)
+org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:93)
+org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:40)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:529)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:756)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:452)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:210)
+</system-err></testcase></testsuite>

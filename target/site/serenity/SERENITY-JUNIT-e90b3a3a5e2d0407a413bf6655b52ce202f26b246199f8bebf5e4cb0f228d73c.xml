@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="Modulo Meter plata" skipped="0" tests="1" time="301.58" timestamp="2024-02-08 03:15:38"><testcase name="CP020004M_SYS_Validar el crédito con un DaviPlata que tenga el tope máximo y que ésta se rechace."/></testsuite>

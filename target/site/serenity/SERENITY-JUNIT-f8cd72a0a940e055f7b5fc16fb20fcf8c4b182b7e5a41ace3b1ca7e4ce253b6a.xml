@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="Modulo saldos" skipped="0" tests="1" time="90.67" timestamp="2024-05-10 01:24:13"><testcase name="CP0161M_SYS_Validar que en caso de que el cliente no tenga saldo, la pantalla de debe ver según la imagen 3, de la HU 4"/></testsuite>

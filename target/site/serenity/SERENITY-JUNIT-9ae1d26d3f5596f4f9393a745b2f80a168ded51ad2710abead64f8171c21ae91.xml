@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Agrupación casos de PasarPlata" skipped="0" tests="1" time="460.9" timestamp="2024-04-09 03:37:24"><testcase name="CP00228M_SYS_Validar proceso de pasar plata a otro daviplata no existente y registrarlo"><failure message="No se encontró botón 'Continuar' en registro de usuarios, debido a: Expected condition failed: waiting for element to be clickable: By.xpath: //XCUIElementTypeStaticText[contains(@name, 'ha sido creado')] (tried for 10 second(s) with 500 milliseconds interval)" type="java.lang.AssertionError">No se encontró botón 'Continuar' en registro de usuarios, debido a: Expected condition failed: waiting for element to be clickable: By.xpath: //XCUIElementTypeStaticText[contains(@name, 'ha sido creado')] (tried for 10 second(s) with 500 milliseconds interval)</failure><system-err>No se encontró botón 'Continuar' en registro de usuarios, debido a: Expected condition failed: waiting for element to be clickable: By.xpath: //XCUIElementTypeStaticText[contains(@name, 'ha sido creado')] (tried for 10 second(s) with 500 milliseconds interval)
+daviplata.nacional.iOS.pageObjects.RegistroPageObject.validarRegistro(RegistroPageObject.java:513)
+daviplata.nacional.iOS.pageObjects.RegistroPageObject.validarRegistro(RegistroPageObject.java:511)
+daviplata.nacional.iOS.pageObjects.RegistroPageObject.validarRegistro(RegistroPageObject.java:511)
+daviplata.nacional.iOS.pageObjects.RegistroPageObject.validarRegistro(RegistroPageObject.java:511)
+daviplata.nacional.iOS.pageObjects.RegistroPageObject.validarRegistro(RegistroPageObject.java:511)
+daviplata.nacional.iOS.steps.RegistroSteps.validarRegistro(RegistroSteps.java:124)
+daviplata.nacional.iOS.definitions.RegistroDefinitions.validarRegistroCompleto(RegistroDefinitions.java:89)
+✽.validar registro completo(src/test/resources/features/pasar_plata.feature:577)
+</system-err></testcase></testsuite>

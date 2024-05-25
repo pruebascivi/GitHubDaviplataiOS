@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="1" failures="0" name="Pruebas del modulo look and feel" skipped="0" tests="1" time="18.44" timestamp="2024-05-23 11:32:40"><testcase name="CP1281M_SYS_Creación de negocio desde zona privada cliente antiguo sin negocio."><error type="java.lang.StackOverflowError"/><system-err>null
+org.slf4j.impl.SimpleLogger.write(SimpleLogger.java:381)
+org.slf4j.impl.SimpleLogger.log(SimpleLogger.java:376)
+org.slf4j.impl.SimpleLogger.formatAndLog(SimpleLogger.java:415)
+org.slf4j.impl.SimpleLogger.warn(SimpleLogger.java:596)
+✽.ingreso usuario y contrasena "CC" "17130497" "2580"(src/test/resources/features/LookAndFeel.feature:6)
+</system-err></testcase></testsuite>

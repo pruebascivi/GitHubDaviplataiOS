@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Modulo Meter plata" skipped="0" tests="1" time="52.52" timestamp="2024-03-18 05:08:10"><testcase name="CP0423M_SYS_Validar proceso de meter plata al daviplata a traves de PSE Subtipo BMO"><failure message="No se pudo consultar el subtipo del usuario debido a &#10;Expected: &quot;BMO&quot;&#10;     but: was &quot;M41&quot;" type="java.lang.AssertionError">No se pudo consultar el subtipo del usuario debido a 
+Expected: "BMO"
+     but: was "M41"</failure><system-err>No se pudo consultar el subtipo del usuario debido a 
+Expected: "BMO"
+     but: was "M41"
+daviplata.nacional.iOS.steps.WebRedebanSteps.consultasubtipoTopes(WebRedebanSteps.java:912)
+daviplata.nacional.iOS.definitions.PasarPlataDefinitions.validarEnRedebanSubtipo(PasarPlataDefinitions.java:655)
+cucumber.runner.Runner.runPickle(Runner.java:80)
+daviplata.nacional.iOS.runners.RunnerPersonalizado.run(RunnerPersonalizado.java:63)
+org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:93)
+org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:40)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:529)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:756)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:452)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:210)
+</system-err></testcase></testsuite>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="1" failures="0" name="Pruebas en la funcionalidad de perfil negocio de la app Daviplata." skipped="0" tests="1" time="12.52" timestamp="2024-05-23 02:08:38"><testcase name="CP02702M_SYS_Validar funcionalidad de pasar plata (a otro banco), desde botón de home desde perfil negocio."><error type="java.lang.StackOverflowError"/><system-err>null
+org.slf4j.impl.SimpleLogger.write(SimpleLogger.java:381)
+org.slf4j.impl.SimpleLogger.log(SimpleLogger.java:376)
+org.slf4j.impl.SimpleLogger.formatAndLog(SimpleLogger.java:415)
+org.slf4j.impl.SimpleLogger.warn(SimpleLogger.java:596)
+✽.obtener numero celular actual en redeban bolsillos "1020770004"(src/test/resources/features/negocio.feature:398)
+</system-err></testcase></testsuite>

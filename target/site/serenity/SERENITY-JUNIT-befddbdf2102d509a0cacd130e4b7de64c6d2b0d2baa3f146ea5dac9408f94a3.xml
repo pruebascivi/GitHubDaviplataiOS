@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="1" failures="0" name="Agrupación casos de PasarPlata" skipped="0" tests="1" time="0.26" timestamp="2024-02-08 08:49:11"><testcase name="CP02322M_SYS_Validar topes de pasar plata de monedero a monedero por subtipo D11 con destino en tope de creditos desde menú hamburguesa"><error message="Unsupported driver type: IOS" type="java.lang.IllegalArgumentException">Unsupported driver type: IOS</error><system-err>Unsupported driver type: IOS
+cucumber.runner.UnskipableStep.executeStep(UnskipableStep.java:22)
+cucumber.runner.Runner.runPickle(Runner.java:80)
+daviplata.nacional.iOS.runners.RunnerPersonalizado.run(RunnerPersonalizado.java:63)
+</system-err></testcase></testsuite>

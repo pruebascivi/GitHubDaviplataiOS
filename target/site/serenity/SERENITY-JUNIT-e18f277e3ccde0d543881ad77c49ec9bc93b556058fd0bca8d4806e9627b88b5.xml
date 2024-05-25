@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Pruebas modulo Bolsillos" skipped="0" tests="2" time="529.12" timestamp="2024-04-03 04:30:12"><testcase name="CP02030M_SYS_Validar la creación de bolsillo en cero pesos desde el home"/><testcase name="CP02040M_SYS_Validar la creación de bolsillo semanal con valor desde el home daviplata."><failure message="No pudo interactuar con el elemento del teclado de iOS, debido a: An element could not be located on the page using the given search parameters.&#10;For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html&#10;Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'&#10;System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:1424:933c:6be8:fa1c%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'&#10;Driver info: io.appium.java_client.AppiumDriver&#10;Capabilities {autoAcceptAlerts: true, automationName: XCUITest, browserName: , bundleId: com.daviplatavalid.lab, databaseEnabled: false, deviceName: iPhone 13, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: false, newCommandTimeout: 240, noReset: false, platform: MAC, platformName: MAC, platformVersion: 16.4, showXcodelog: true, skipUnlock: true, takesScreenshot: true, udid: 00008110-00116CC8148A201E, webStorageEnabled: false}&#10;Session ID: d79f333b-1bd2-4861-abb3-0224c8655abd&#10;*** Element info: {Using=xpath, value=//XCUIElementTypeKey[@name='l']}" type="java.lang.AssertionError">No pudo interactuar con el elemento del teclado de iOS, debido a: An element could not be located on the page using the given search parameters.
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
+System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:1424:933c:6be8:fa1c%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'
+Driver info: io.appium.java_client.AppiumDriver
+Capabilities {autoAcceptAlerts: true, automationName: XCUITest, browserName: , bundleId: com.daviplatavalid.lab, databaseEnabled: false, deviceName: iPhone 13, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: false, newCommandTimeout: 240, noReset: false, platform: MAC, platformName: MAC, platformVersion: 16.4, showXcodelog: true, skipUnlock: true, takesScreenshot: true, udid: 00008110-00116CC8148A201E, webStorageEnabled: false}
+Session ID: d79f333b-1bd2-4861-abb3-0224c8655abd
+*** Element info: {Using=xpath, value=//XCUIElementTypeKey[@name='l']}</failure><system-err>No pudo interactuar con el elemento del teclado de iOS, debido a: An element could not be located on the page using the given search parameters.
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
+System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:1424:933c:6be8:fa1c%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'
+Driver info: io.appium.java_client.AppiumDriver
+Capabilities {autoAcceptAlerts: true, automationName: XCUITest, browserName: , bundleId: com.daviplatavalid.lab, databaseEnabled: false, deviceName: iPhone 13, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: false, newCommandTimeout: 240, noReset: false, platform: MAC, platformName: MAC, platformVersion: 16.4, showXcodelog: true, skipUnlock: true, takesScreenshot: true, udid: 00008110-00116CC8148A201E, webStorageEnabled: false}
+Session ID: d79f333b-1bd2-4861-abb3-0224c8655abd
+*** Element info: {Using=xpath, value=//XCUIElementTypeKey[@name='l']}
+daviplata.nacional.iOS.utilidades.UtilidadesTCS.escribirPorTecladoIos(UtilidadesTCS.java:518)
+daviplata.nacional.iOS.steps.PasarPlataSteps.crearBolsilloPeriodo(PasarPlataSteps.java:1081)
+daviplata.nacional.iOS.definitions.BolsilloDefinitions.flujoDeCrearBolsilloPorPeriodo(BolsilloDefinitions.java:67)
+java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+cucumber.runner.Runner.runPickle(Runner.java:80)
+daviplata.nacional.iOS.runners.RunnerPersonalizado.run(RunnerPersonalizado.java:63)
+org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:93)
+org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:40)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:529)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:756)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:452)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:210)
+</system-err></testcase></testsuite>

@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="Grupo de casos pasar plata a cuenta" skipped="0" tests="1" time="341.79" timestamp="2024-03-18 11:32:31"><testcase name="CP02563M_SYS_Validar proceso de pasar plata a cuenta corriente desde el Home de daviplata cuando el origen tiene tope de creditos"/></testsuite>

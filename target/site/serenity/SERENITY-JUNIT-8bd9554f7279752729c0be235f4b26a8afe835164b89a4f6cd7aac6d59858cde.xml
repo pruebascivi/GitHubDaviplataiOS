@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Grupo de casos pasar plata a cuenta" skipped="0" tests="1" time="139.52" timestamp="2024-03-18 12:46:24"><testcase name="CP0210M_SYS_Validar la opción de pasar plata a Cuenta de Ahorros ingresando otro valor"><failure message="&#10;Expected: &lt;2658251&gt;&#10;     but: was &lt;2657499&gt;" type="java.lang.AssertionError">
+Expected: &lt;2658251&gt;
+     but: was &lt;2657499&gt;</failure><system-err>
+Expected: &lt;2658251&gt;
+     but: was &lt;2657499&gt;
+daviplata.nacional.iOS.pageObjects.PasarPlataPageObjects.validarIgualdadSaldosIniciales(PasarPlataPageObjects.java:3034)
+daviplata.nacional.iOS.steps.PasarPlataSteps.verificarSaldoInicialDaviplata(PasarPlataSteps.java:1496)
+daviplata.nacional.iOS.definitions.PasarPlataDefinitions.validarSaldosIniciales(PasarPlataDefinitions.java:824)
+cucumber.runner.Runner.runPickle(Runner.java:80)
+daviplata.nacional.iOS.runners.RunnerPersonalizado.run(RunnerPersonalizado.java:63)
+org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:93)
+org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:40)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:529)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:756)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:452)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:210)
+</system-err></testcase></testsuite>

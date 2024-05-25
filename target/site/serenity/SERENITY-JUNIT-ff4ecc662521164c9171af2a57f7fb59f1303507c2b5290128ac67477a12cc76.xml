@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="1" failures="0" name="Modulo Olvido Clave" skipped="0" tests="1" time="8.19" timestamp="2024-03-22 11:01:19"><testcase name="CP1321M_SYS_Validar proceso de olvido de clave para tipo documental CC ingresando clave temporal erronea"><error type="java.lang.NullPointerException"/><system-err>null
+daviplata.nacional.iOS.steps.OlvidoClaveSteps.ingresarOlvidoSuClave(OlvidoClaveSteps.java:32)
+daviplata.nacional.iOS.definitions.OlvidoClaveDefinitions.ingreseAlModuloOlvidoClave(OlvidoClaveDefinitions.java:156)
+✽.Ingresé al modulo olvido clave(src/test/resources/features/olvidoClave.feature:21)
+</system-err></testcase></testsuite>

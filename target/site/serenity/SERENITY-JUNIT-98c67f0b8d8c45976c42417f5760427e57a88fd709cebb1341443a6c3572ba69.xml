@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Movimientos Funcionales" skipped="0" tests="1" time="256.75" timestamp="2024-04-19 04:45:16"><testcase name="CP031100M_SYS_Validaciones del header"><failure message="No se encontró el elemento: //XCUIElementTypeStaticText[@name='Todos los movimientos'], debido a: Expected condition failed: waiting for visibility of element located by By.xpath: //XCUIElementTypeStaticText[@name='Todos los movimientos'] (tried for 5 second(s) with 500 milliseconds interval)" type="java.lang.AssertionError">No se encontró el elemento: //XCUIElementTypeStaticText[@name='Todos los movimientos'], debido a: Expected condition failed: waiting for visibility of element located by By.xpath: //XCUIElementTypeStaticText[@name='Todos los movimientos'] (tried for 5 second(s) with 500 milliseconds interval)</failure><system-err>No se encontró el elemento: //XCUIElementTypeStaticText[@name='Todos los movimientos'], debido a: Expected condition failed: waiting for visibility of element located by By.xpath: //XCUIElementTypeStaticText[@name='Todos los movimientos'] (tried for 5 second(s) with 500 milliseconds interval)
+daviplata.nacional.iOS.utilidades.UtilidadesTCS.esperarElementVisibility(UtilidadesTCS.java:294)
+daviplata.nacional.iOS.utilidades.UtilidadesTCS.esperarElementVisibility(UtilidadesTCS.java:292)
+daviplata.nacional.iOS.utilidades.UtilidadesTCS.esperarElementVisibility(UtilidadesTCS.java:292)
+daviplata.nacional.iOS.utilidades.UtilidadesTCS.esperarElementVisibility(UtilidadesTCS.java:292)
+daviplata.nacional.iOS.utilidades.UtilidadesTCS.esperarElementVisibility(UtilidadesTCS.java:292)
+daviplata.nacional.iOS.steps.MovimientoFuncionalSteps.validarBotonAtrasModuloMovimientos(MovimientoFuncionalSteps.java:71)
+daviplata.nacional.iOS.definitions.MovimientoFuncionalDefinitions.validoElBotonAtrasEnMovimientos(MovimientoFuncionalDefinitions.java:49)
+✽.Valido el boton atras en movimientos(src/test/resources/features/MovimientoFuncional.feature:11)
+</system-err></testcase></testsuite>

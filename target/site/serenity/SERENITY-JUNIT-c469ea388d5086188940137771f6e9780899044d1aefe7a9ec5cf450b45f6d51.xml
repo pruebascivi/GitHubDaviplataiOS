@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Modulo Meter plata" skipped="0" tests="1" time="217.1" timestamp="2024-05-03 11:15:32"><testcase name="CP020001M_SYS_Validar informacion y funcionalidades de la opcion meter plata en pse"><failure message="No se encontró el elemento: //XCUIElementTypeStaticText[contains(@value,'Complete la información')], debido a: Expected condition failed: waiting for visibility of element located by By.xpath: //XCUIElementTypeStaticText[contains(@value,'Complete la información')] (tried for 5 second(s) with 500 milliseconds interval)" type="java.lang.AssertionError">No se encontró el elemento: //XCUIElementTypeStaticText[contains(@value,'Complete la información')], debido a: Expected condition failed: waiting for visibility of element located by By.xpath: //XCUIElementTypeStaticText[contains(@value,'Complete la información')] (tried for 5 second(s) with 500 milliseconds interval)</failure><system-err>No se encontró el elemento: //XCUIElementTypeStaticText[contains(@value,'Complete la información')], debido a: Expected condition failed: waiting for visibility of element located by By.xpath: //XCUIElementTypeStaticText[contains(@value,'Complete la información')] (tried for 5 second(s) with 500 milliseconds interval)
+daviplata.nacional.iOS.utilidades.UtilidadesTCS.esperarElementVisibility(UtilidadesTCS.java:301)
+daviplata.nacional.iOS.utilidades.UtilidadesTCS.esperarElementVisibility(UtilidadesTCS.java:299)
+daviplata.nacional.iOS.utilidades.UtilidadesTCS.esperarElementVisibility(UtilidadesTCS.java:299)
+daviplata.nacional.iOS.utilidades.UtilidadesTCS.esperarElementVisibility(UtilidadesTCS.java:299)
+daviplata.nacional.iOS.utilidades.UtilidadesTCS.esperarElementVisibility(UtilidadesTCS.java:299)
+daviplata.nacional.iOS.steps.MeterPlataSteps.extraerCorreoPrecargadoYValidarlo(MeterPlataSteps.java:377)
+daviplata.nacional.iOS.definitions.MeterPlataDefinitions.validoQueElCorreoEnLaTransacciónEstePrecargado(MeterPlataDefinitions.java:269)
+✽.Valido que el correo en la transacción este precargado(src/test/resources/features/MeterPlata.feature:95)
+</system-err></testcase></testsuite>

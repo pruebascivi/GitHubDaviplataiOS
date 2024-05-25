@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Set De Casos Microseguros" skipped="0" tests="1" time="292.54" timestamp="2024-03-26 02:50:08"><testcase name="CP02191M_SYS_Validar proceso de compra microseguro de Bicicleta opción 2 con cliente GMF desde el Home"><failure message="No se pudo validar acumulado GMF del Daviplata, debido a: &#10;Expected: not &lt;0.0&gt;&#10;     but: was &lt;0.0&gt;" type="java.lang.AssertionError">No se pudo validar acumulado GMF del Daviplata, debido a: 
+Expected: not &lt;0.0&gt;
+     but: was &lt;0.0&gt;</failure><system-err>No se pudo validar acumulado GMF del Daviplata, debido a: 
+Expected: not &lt;0.0&gt;
+     but: was &lt;0.0&gt;
+daviplata.nacional.iOS.definitions.PasarPlataDefinitions.ExtraerCobroGmf(PasarPlataDefinitions.java:791)
+✽.Extraer cobro GMF(src/test/resources/features/MicroSeguro.feature:239)
+</system-err></testcase></testsuite>

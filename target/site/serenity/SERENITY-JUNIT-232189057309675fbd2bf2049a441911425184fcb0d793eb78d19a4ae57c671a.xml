@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Modulo PSE Avanza" skipped="0" tests="1" time="175.57" timestamp="2024-05-08 03:33:04"><testcase name="CP021003M_SYS_Validar meter plata exitoso desde banco &quot;BANCO UNION COLOMBIANO&quot; con destino a diferentes estados de usuario"><failure message="No se pudo interactuar con el elemento: (//*[@name='main'])[2]/XCUIElementTypeOther[2]/XCUIElementTypeTextField[1]" type="java.lang.AssertionError">No se pudo interactuar con el elemento: (//*[@name='main'])[2]/XCUIElementTypeOther[2]/XCUIElementTypeTextField[1]</failure><system-err>No se pudo interactuar con el elemento: (//*[@name='main'])[2]/XCUIElementTypeOther[2]/XCUIElementTypeTextField[1]
+daviplata.nacional.iOS.utilidades.UtilidadesTCS.writeElement(UtilidadesTCS.java:272)
+daviplata.nacional.iOS.steps.MeterPlataSteps.ingresarNumCel(MeterPlataSteps.java:180)
+daviplata.nacional.iOS.definitions.MeterPlataDefinitions.ingresoNumeroCelular(MeterPlataDefinitions.java:128)
+✽.Ingreso Numero celular "12230112"(src/test/resources/features/PseAvanza.feature:77)
+</system-err></testcase></testsuite>

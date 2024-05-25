@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="1" failures="0" name="Pruebas en la funcionalidad de perfil negocio de la app Daviplata." skipped="0" tests="1" time="33.47" timestamp="2024-03-21 06:47:27"><testcase name="CP02698M_SYS_Validar funcionalidad de sacar plata desde botón de home desde perfil negocio."><error type="java.lang.NullPointerException"/><system-err>null
+daviplata.nacional.iOS.pageObjects.WebRedebanPageObjects.cerrarWebRedeban(WebRedebanPageObjects.java:1686)
+daviplata.nacional.iOS.steps.WebRedebanSteps.loginWebRedeban(WebRedebanSteps.java:390)
+daviplata.nacional.iOS.steps.WebRedebanSteps.consultaNumeroCelular(WebRedebanSteps.java:311)
+daviplata.nacional.iOS.definitions.BolsilloDefinitions.obtenerNumeroCelularActualEnRedeban(BolsilloDefinitions.java:136)
+✽.obtener numero celular actual en redeban bolsillos "1020770002"(src/test/resources/features/negocio.feature:258)
+</system-err></testcase></testsuite>

@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="Grupo de casos pasar plata a cuenta" skipped="0" tests="1" time="296.72" timestamp="2024-03-18 11:40:32"><testcase name="CP03510M_SYS_Validar topes de pasar plata de monedero acuenta corriente por subtipo M35 con origenten en tope de debitos desde Home de daviplata"/></testsuite>

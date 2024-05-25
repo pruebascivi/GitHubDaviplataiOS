@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="Set De Pruebas de Login" skipped="0" tests="1" time="131.08" timestamp="2024-04-02 05:30:08"><testcase name="CP0013M_SYS_Validar proceso de logueo con CC  que no deje ingresar caracteres especiales en el campo de clave"/></testsuite>

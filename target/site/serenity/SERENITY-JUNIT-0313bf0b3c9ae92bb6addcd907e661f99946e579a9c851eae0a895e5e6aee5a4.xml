@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Modulo PSE Avanza" skipped="0" tests="1" time="32.43" timestamp="2024-05-10 01:21:49"><testcase name="CP021003M_SYS_Realizar tres recargas en la App con un usuario a un mismo DaviPlata pero con tres correos diferentes"><failure type="java.lang.AssertionError"/><system-err>null
+daviplata.nacional.iOS.definitions.WebRedebanDefinitions.obtenerNumeroCelularActualEnRedeban(WebRedebanDefinitions.java:228)
+✽.Obtuve el numero celular del usuario destino validando el estado "12230112""APR"(src/test/resources/features/PseAvanza.feature:69)
+</system-err></testcase></testsuite>

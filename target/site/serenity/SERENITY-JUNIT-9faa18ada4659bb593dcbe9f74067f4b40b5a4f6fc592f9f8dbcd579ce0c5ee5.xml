@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="1" failures="0" name="Casos de prueba para Otros Bancos" skipped="0" tests="1" time="483.33" timestamp="2024-04-23 02:34:58"><testcase name="CP00255M_SYS_Realizar un pasar plata a Otros Bancos exitoso añadiendo cuenta a favoritos"><error message="A session is either terminated or not started&#10;Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'&#10;System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:c96:b962:2096:20c0%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'&#10;Driver info: io.appium.java_client.AppiumDriver&#10;Capabilities {autoAcceptAlerts: true, automationName: XCUITest, browserName: , bundleId: com.daviplatavalid.lab, databaseEnabled: false, deviceName: iPhone 14, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: false, newCommandTimeout: 240, noReset: false, platform: MAC, platformName: MAC, platformVersion: 16.5, showXcodelog: true, skipUnlock: true, takesScreenshot: true, udid: 00008120-001A09993E60201E, webStorageEnabled: false}&#10;Session ID: 75ac8f8d-88cf-4cd9-9cd0-beb21dce07d6&#10;Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'&#10;System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:c96:b962:2096:20c0%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'&#10;Driver info: driver.version: AppiumDriver" type="org.openqa.selenium.NoSuchSessionException">A session is either terminated or not started
+Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
+System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:c96:b962:2096:20c0%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'
+Driver info: io.appium.java_client.AppiumDriver
+Capabilities {autoAcceptAlerts: true, automationName: XCUITest, browserName: , bundleId: com.daviplatavalid.lab, databaseEnabled: false, deviceName: iPhone 14, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: false, newCommandTimeout: 240, noReset: false, platform: MAC, platformName: MAC, platformVersion: 16.5, showXcodelog: true, skipUnlock: true, takesScreenshot: true, udid: 00008120-001A09993E60201E, webStorageEnabled: false}
+Session ID: 75ac8f8d-88cf-4cd9-9cd0-beb21dce07d6
+Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
+System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:c96:b962:2096:20c0%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'
+Driver info: driver.version: AppiumDriver</error><system-err>A session is either terminated or not started
+Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
+System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:c96:b962:2096:20c0%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'
+Driver info: io.appium.java_client.AppiumDriver
+Capabilities {autoAcceptAlerts: true, automationName: XCUITest, browserName: , bundleId: com.daviplatavalid.lab, databaseEnabled: false, deviceName: iPhone 14, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: false, newCommandTimeout: 240, noReset: false, platform: MAC, platformName: MAC, platformVersion: 16.5, showXcodelog: true, skipUnlock: true, takesScreenshot: true, udid: 00008120-001A09993E60201E, webStorageEnabled: false}
+Session ID: 75ac8f8d-88cf-4cd9-9cd0-beb21dce07d6
+Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
+System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:c96:b962:2096:20c0%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'
+Driver info: driver.version: AppiumDriver
+java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:64)
+java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:231)
+io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:46)
+io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+io.appium.java_client.InteractsWithApps.closeApp(InteractsWithApps.java:139)
+daviplata.nacional.iOS.definitions.Hooks.FinalizarTests(Hooks.java:92)
+java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+cucumber.runner.UnskipableStep.executeStep(UnskipableStep.java:22)
+cucumber.runner.Runner.runPickle(Runner.java:80)
+daviplata.nacional.iOS.runners.RunnerPersonalizado.run(RunnerPersonalizado.java:63)
+org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:93)
+org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:40)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:529)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:756)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:452)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:210)
+</system-err></testcase></testsuite>

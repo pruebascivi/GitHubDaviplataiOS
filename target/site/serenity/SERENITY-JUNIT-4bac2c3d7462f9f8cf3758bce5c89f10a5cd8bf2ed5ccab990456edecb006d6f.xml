@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="1" failures="0" name="Registro de Nuevos Usuarios en lista de Excepciones Redeban" skipped="0" tests="1" time="11.16" timestamp="2024-05-02 09:35:58"><testcase name="Registro Exitoso de Nuevos Usuarios Lista de Excepciones"><error message="The driver executable does not exist: /Users/usertcs/Documents/GitLabDaviplataiOS/auto-daviplata-ios/src/test/resources/drivers/chromedriver.exe" type="java.lang.IllegalStateException">The driver executable does not exist: /Users/usertcs/Documents/GitLabDaviplataiOS/auto-daviplata-ios/src/test/resources/drivers/chromedriver.exe</error><system-err>The driver executable does not exist: /Users/usertcs/Documents/GitLabDaviplataiOS/auto-daviplata-ios/src/test/resources/drivers/chromedriver.exe
+com.google.common.base.Preconditions.checkState(Preconditions.java:585)
+daviplata.nacional.iOS.pageObjects.ListaExcepcionesRdbnPageObjects.loginWebRedeban(ListaExcepcionesRdbnPageObjects.java:44)
+daviplata.nacional.iOS.steps.ListaExcepcionesRdbnSteps.ingresoAWebRedeban(ListaExcepcionesRdbnSteps.java:12)
+daviplata.nacional.iOS.definitions.ListaExcepcionesRdbnDefinitions.ingresoAWebRedeban(ListaExcepcionesRdbnDefinitions.java:16)
+✽.ingreso a web Redeban(src/test/resources/features/ListaExcepcionesRedeban.feature:6)
+</system-err></testcase></testsuite>

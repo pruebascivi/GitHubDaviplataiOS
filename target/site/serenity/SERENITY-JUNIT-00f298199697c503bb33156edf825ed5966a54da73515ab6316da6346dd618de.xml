@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Modulo Meter plata" skipped="0" tests="1" time="164.79" timestamp="2024-03-18 05:10:40"><testcase name="CP0423M_SYS_Validar proceso de meter plata al daviplata a traves de PSE Subtipo M35"><failure message="No pudo interactuar con el elemento: //XCUIElementTypeButton[@name='Meter Plata botón']" type="java.lang.AssertionError">No pudo interactuar con el elemento: //XCUIElementTypeButton[@name='Meter Plata botón']</failure><system-err>No pudo interactuar con el elemento: //XCUIElementTypeButton[@name='Meter Plata botón']
+daviplata.nacional.iOS.utilidades.UtilidadesTCS.clicElement(UtilidadesTCS.java:61)
+daviplata.nacional.iOS.steps.MeterPlataSteps.clicBotonMeterPlata(MeterPlataSteps.java:53)
+daviplata.nacional.iOS.definitions.MeterPlataDefinitions.ingresoALaOpciónMeterPlataDesdeElHomeDaviplata(MeterPlataDefinitions.java:58)
+✽.Ingreso a la opción meter plata desde el home daviplata(src/test/resources/features/MeterPlata.feature:72)
+</system-err></testcase></testsuite>

@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="Agrupación casos de PasarPlata" skipped="0" tests="1" time="277.58" timestamp="2024-03-12 10:45:46"><testcase name="CP02362M_SYS_Validar proceso de pasar plata a otro daviplata desde el Home de daviplata cuando el destino tiene tope de creditos"/></testsuite>

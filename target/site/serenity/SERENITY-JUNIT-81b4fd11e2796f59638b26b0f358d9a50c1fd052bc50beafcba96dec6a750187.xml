@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="1" failures="0" name="Agrupación casos de PasarPlata" skipped="0" tests="1" time="13.0" timestamp="2024-05-23 11:49:40"><testcase name="CP02341M_SYS_Validar proceso de pasar plata a otro daviplata por valor cero desde el Home de daviplata el sistema no deje"><error type="java.lang.StackOverflowError"/><system-err>null
+org.slf4j.impl.SimpleLogger.write(SimpleLogger.java:381)
+org.slf4j.impl.SimpleLogger.log(SimpleLogger.java:376)
+org.slf4j.impl.SimpleLogger.formatAndLog(SimpleLogger.java:415)
+org.slf4j.impl.SimpleLogger.warn(SimpleLogger.java:596)
+✽.ingreso usuario y contrasena "CC" "10050039" "2589"(src/test/resources/features/pasar_plata.feature:22)
+</system-err></testcase></testsuite>

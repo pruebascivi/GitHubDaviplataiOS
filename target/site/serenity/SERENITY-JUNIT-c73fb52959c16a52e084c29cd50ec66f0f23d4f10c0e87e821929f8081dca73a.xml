@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="Agrupación casos de PasarPlata" skipped="0" tests="1" time="250.69" timestamp="2024-03-11 05:14:45"><testcase name="CP02303M_SYS_Validar proceso de pasar plata a otro daviplata  con cliente CC sin GMF generando Excede cupo"/></testsuite>

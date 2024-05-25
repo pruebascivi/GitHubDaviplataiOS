@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="1" failures="0" name="Pruebas en la funcionalidad de perfil negocio de la app Daviplata." skipped="0" tests="1" time="13.62" timestamp="2024-05-23 11:19:24"><testcase name="CP02703M_SYS_Validar funcionalidad de pasar plata (a otro banco en línea), desde botón de home desde perfil negocio."><error type="java.lang.StackOverflowError"/><system-err>null
+✽.ingreso usuario y contrasena "CC" "1020770004" "1234"(src/test/resources/features/negocio.feature:422)
+</system-err></testcase></testsuite>

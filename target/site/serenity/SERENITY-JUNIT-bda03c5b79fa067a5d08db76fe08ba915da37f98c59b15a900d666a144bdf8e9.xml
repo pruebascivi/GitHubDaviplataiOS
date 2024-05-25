@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Pruebas modulo Bolsillos" skipped="0" tests="1" time="69.07" timestamp="2024-04-05 11:18:54"><testcase name="CP02040M_SYS_Validar la creación de bolsillo semanal con valor desde el home daviplata."><failure message="Se encuentra la biometria activa para el cambio de dispositivo" type="java.lang.AssertionError">Se encuentra la biometria activa para el cambio de dispositivo</failure><system-err>Se encuentra la biometria activa para el cambio de dispositivo
+daviplata.nacional.iOS.steps.LoginSteps.ingresarAApp(LoginSteps.java:104)
+daviplata.nacional.iOS.definitions.LoginDefinitions.ingresoUsuarioYContrasena(LoginDefinitions.java:47)
+✽.ingreso usuario y contrasena "CC" "1020770044" "1342"(src/test/resources/features/bolsillo.feature:28)
+</system-err></testcase></testsuite>

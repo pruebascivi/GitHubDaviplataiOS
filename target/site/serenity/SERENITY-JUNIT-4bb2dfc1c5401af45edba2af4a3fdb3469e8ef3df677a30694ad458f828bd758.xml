@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="Grupo de casos pasar plata a cuenta" skipped="0" tests="1" time="240.67" timestamp="2024-03-18 02:13:23"><testcase name="CP0270M_SYS_Validar que no permita pasar plata a cuenta AH o CC que no exista"/></testsuite>

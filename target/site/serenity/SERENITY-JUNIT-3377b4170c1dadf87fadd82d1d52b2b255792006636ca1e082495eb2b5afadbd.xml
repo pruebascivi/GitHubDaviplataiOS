@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="1" failures="0" name="Set De Casos Microseguros" skipped="0" tests="1" time="199.97" timestamp="2024-03-26 03:25:06"><testcase name="CP02200M_SYS_Validar proceso de compra microseguro de Bicicleta opción 1 generando mensaje de fondos insuficientes desde el Home"><error message="Cannot locate an element using By.xpath: //XCUIElementTypeStaticText[@name='Fondos insuficientes']&#10;For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html&#10;Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'&#10;System info: host: 'MacBook-Pro-de-User-3.local', ip: 'fe80:0:0:0:49:cda1:4b77:93b7%en0', os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '13.1', java.version: '1.8.0_401'&#10;Driver info: driver.version: unknown&#10;For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html&#10;Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'&#10;System info: host: 'MacBook-Pro-de-User-3.local', ip: 'fe80:0:0:0:49:cda1:4b77:93b7%en0', os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '13.1', java.version: '1.8.0_401'&#10;Driver info: driver.version: unknown" type="org.openqa.selenium.NoSuchElementException">Cannot locate an element using By.xpath: //XCUIElementTypeStaticText[@name='Fondos insuficientes']
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
+System info: host: 'MacBook-Pro-de-User-3.local', ip: 'fe80:0:0:0:49:cda1:4b77:93b7%en0', os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '13.1', java.version: '1.8.0_401'
+Driver info: driver.version: unknown
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
+System info: host: 'MacBook-Pro-de-User-3.local', ip: 'fe80:0:0:0:49:cda1:4b77:93b7%en0', os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '13.1', java.version: '1.8.0_401'
+Driver info: driver.version: unknown</error><system-err>Cannot locate an element using By.xpath: //XCUIElementTypeStaticText[@name='Fondos insuficientes']
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
+System info: host: 'MacBook-Pro-de-User-3.local', ip: 'fe80:0:0:0:49:cda1:4b77:93b7%en0', os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '13.1', java.version: '1.8.0_401'
+Driver info: driver.version: unknown
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
+System info: host: 'MacBook-Pro-de-User-3.local', ip: 'fe80:0:0:0:49:cda1:4b77:93b7%en0', os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '13.1', java.version: '1.8.0_401'
+Driver info: driver.version: unknown
+daviplata.nacional.iOS.pageObjects.MarketPlacePageObjects.validomensajedaviplatainvalido(MarketPlacePageObjects.java:344)
+daviplata.nacional.iOS.steps.MicroSegurosSteps.validomensajedaviplatainvalido(MicroSegurosSteps.java:56)
+daviplata.nacional.iOS.definitions.MicroSegurosDefinitions.validoMensajeFondosInsuficientes(MicroSegurosDefinitions.java:43)
+cucumber.runner.Runner.runPickle(Runner.java:80)
+daviplata.nacional.iOS.runners.RunnerPersonalizado.run(RunnerPersonalizado.java:63)
+org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:93)
+org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:40)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:529)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:756)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:452)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:210)
+</system-err></testcase></testsuite>

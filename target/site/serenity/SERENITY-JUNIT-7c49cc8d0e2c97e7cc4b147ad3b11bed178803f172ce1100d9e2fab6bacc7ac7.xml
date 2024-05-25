@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="Gruopo de casos comprobante QR" skipped="0" tests="1" time="93.31" timestamp="2024-04-24 11:46:00"><testcase name="CP01000M_SYS_Validar que se debe mostrar tanto en el login inicial como de datos recordados el botón “Código QR” en círculo blanco y color rojo"/></testsuite>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Modulo Olvido Clave" skipped="0" tests="1" time="175.03" timestamp="2024-05-20 05:55:58"><testcase name="CP1289M_SYS_Validar proceso de olvido de clave para tipo documental CC"><failure message="No se encontró input de ingreso otp en olvido clave, debido a: Expected condition failed: waiting for visibility of element located by By.xpath: (//XCUIElementTypeTextField)[1] (tried for 10 second(s) with 500 milliseconds interval)&#10;Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'&#10;System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:ca9:a895:6537:f147%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'&#10;Driver info: io.appium.java_client.AppiumDriver&#10;Capabilities {autoAcceptAlerts: true, automationName: XCUITest, browserName: , bundleId: com.daviplatavalid.lab, databaseEnabled: false, deviceName: iPhone 14, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: false, newCommandTimeout: 240, noReset: false, platform: MAC, platformName: MAC, platformVersion: 16.5, showXcodelog: true, skipUnlock: true, takesScreenshot: true, udid: 00008120-001A09993E60201E, webStorageEnabled: false}&#10;Session ID: de72d222-e682-4fe1-8222-5221f2833901" type="java.lang.AssertionError">No se encontró input de ingreso otp en olvido clave, debido a: Expected condition failed: waiting for visibility of element located by By.xpath: (//XCUIElementTypeTextField)[1] (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
+System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:ca9:a895:6537:f147%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'
+Driver info: io.appium.java_client.AppiumDriver
+Capabilities {autoAcceptAlerts: true, automationName: XCUITest, browserName: , bundleId: com.daviplatavalid.lab, databaseEnabled: false, deviceName: iPhone 14, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: false, newCommandTimeout: 240, noReset: false, platform: MAC, platformName: MAC, platformVersion: 16.5, showXcodelog: true, skipUnlock: true, takesScreenshot: true, udid: 00008120-001A09993E60201E, webStorageEnabled: false}
+Session ID: de72d222-e682-4fe1-8222-5221f2833901</failure><system-err>No se encontró input de ingreso otp en olvido clave, debido a: Expected condition failed: waiting for visibility of element located by By.xpath: (//XCUIElementTypeTextField)[1] (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
+System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:ca9:a895:6537:f147%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'
+Driver info: io.appium.java_client.AppiumDriver
+Capabilities {autoAcceptAlerts: true, automationName: XCUITest, browserName: , bundleId: com.daviplatavalid.lab, databaseEnabled: false, deviceName: iPhone 14, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: false, newCommandTimeout: 240, noReset: false, platform: MAC, platformName: MAC, platformVersion: 16.5, showXcodelog: true, skipUnlock: true, takesScreenshot: true, udid: 00008120-001A09993E60201E, webStorageEnabled: false}
+Session ID: de72d222-e682-4fe1-8222-5221f2833901
+daviplata.nacional.iOS.pageObjects.OlvidoClavePageObjects.ingresoOTP(OlvidoClavePageObjects.java:394)
+daviplata.nacional.iOS.pageObjects.OlvidoClavePageObjects.ingresoOTP(OlvidoClavePageObjects.java:392)
+daviplata.nacional.iOS.pageObjects.OlvidoClavePageObjects.ingresoOTP(OlvidoClavePageObjects.java:392)
+daviplata.nacional.iOS.pageObjects.OlvidoClavePageObjects.ingresoOTP(OlvidoClavePageObjects.java:392)
+daviplata.nacional.iOS.pageObjects.OlvidoClavePageObjects.ingresoOTP(OlvidoClavePageObjects.java:392)
+daviplata.nacional.iOS.pageObjects.OlvidoClavePageObjects.ingresarOtpDeLatinia(OlvidoClavePageObjects.java:277)
+daviplata.nacional.iOS.steps.OlvidoClaveSteps.ingresarOtpDeLatinia(OlvidoClaveSteps.java:192)
+daviplata.nacional.iOS.definitions.OlvidoClaveDefinitions.ingresoOtpEnCambioDeClave(OlvidoClaveDefinitions.java:180)
+java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+cucumber.runner.Runner.runPickle(Runner.java:80)
+daviplata.nacional.iOS.runners.RunnerPersonalizado.run(RunnerPersonalizado.java:63)
+org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:93)
+org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:40)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:529)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:756)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:452)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:210)
+</system-err></testcase></testsuite>

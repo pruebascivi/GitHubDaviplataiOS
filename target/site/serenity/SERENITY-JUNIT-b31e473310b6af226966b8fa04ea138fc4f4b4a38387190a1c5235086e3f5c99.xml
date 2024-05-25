@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="1" failures="0" name="casos de aumento de topes" skipped="0" tests="1" time="189.19" timestamp="2024-04-05 12:31:34"><testcase name="CP03200M_SYS_validar proceso de aumento de topes desde el home de daviplata"><error message="Cannot locate an element using By.id: com.davivienda.daviplataapp.lab:id/imgAbrirtopes&#10;For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html&#10;Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'&#10;System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:c17:a352:8bbb:b1fe%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'&#10;Driver info: driver.version: unknown&#10;For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html&#10;Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'&#10;System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:c17:a352:8bbb:b1fe%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'&#10;Driver info: driver.version: unknown" type="org.openqa.selenium.NoSuchElementException">Cannot locate an element using By.id: com.davivienda.daviplataapp.lab:id/imgAbrirtopes
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
+System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:c17:a352:8bbb:b1fe%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'
+Driver info: driver.version: unknown
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
+System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:c17:a352:8bbb:b1fe%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'
+Driver info: driver.version: unknown</error><system-err>Cannot locate an element using By.id: com.davivienda.daviplataapp.lab:id/imgAbrirtopes
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
+System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:c17:a352:8bbb:b1fe%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'
+Driver info: driver.version: unknown
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
+System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:c17:a352:8bbb:b1fe%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'
+Driver info: driver.version: unknown
+daviplata.nacional.iOS.pageObjects.AumentoDeTopesPageObjects.pulsarBotonTopes(AumentoDeTopesPageObjects.java:70)
+daviplata.nacional.iOS.steps.AumentoDeTopesSteps.ingresoALaOpcionTopes(AumentoDeTopesSteps.java:38)
+daviplata.nacional.iOS.definitions.AumentoDeTopesDefinitions.ingresarAOpcionTopes(AumentoDeTopesDefinitions.java:76)
+java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+cucumber.runner.Runner.runPickle(Runner.java:80)
+daviplata.nacional.iOS.runners.RunnerPersonalizado.run(RunnerPersonalizado.java:63)
+org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:93)
+org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:40)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:529)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:756)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:452)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:210)
+</system-err></testcase></testsuite>

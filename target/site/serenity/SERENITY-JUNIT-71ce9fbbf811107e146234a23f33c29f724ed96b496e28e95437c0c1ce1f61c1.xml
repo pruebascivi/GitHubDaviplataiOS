@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="Pruebas en la funcionalidad de perfil negocio de la app Daviplata." skipped="0" tests="1" time="255.19" timestamp="2024-05-15 02:43:34"><testcase name="CP02693M_SYS_Validar la creación de código QR con valor, con el tope minimo y maximo actual permitido en el mes."/></testsuite>

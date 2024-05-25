@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Set PruebasMarketplace" skipped="0" tests="1" time="182.5" timestamp="2024-04-22 05:54:34"><testcase name="CP1040M_SYS_Validar primer ingresó a tienda virtual que muestra pop up de TyC"><failure message="No se pudo encontrar botón más debido a: Expected condition failed: waiting for element to be clickable: By.xpath: //*[@name='Ver más botón'] (tried for 10 second(s) with 500 milliseconds interval)" type="java.lang.AssertionError">No se pudo encontrar botón más debido a: Expected condition failed: waiting for element to be clickable: By.xpath: //*[@name='Ver más botón'] (tried for 10 second(s) with 500 milliseconds interval)</failure><system-err>No se pudo encontrar botón más debido a: Expected condition failed: waiting for element to be clickable: By.xpath: //*[@name='Ver más botón'] (tried for 10 second(s) with 500 milliseconds interval)
+daviplata.nacional.iOS.pageObjects.MarketPlacePageObjects.clickBtnMas(MarketPlacePageObjects.java:390)
+daviplata.nacional.iOS.pageObjects.MarketPlacePageObjects.clickBtnMas(MarketPlacePageObjects.java:388)
+daviplata.nacional.iOS.pageObjects.MarketPlacePageObjects.clickBtnMas(MarketPlacePageObjects.java:388)
+daviplata.nacional.iOS.pageObjects.MarketPlacePageObjects.clickBtnMas(MarketPlacePageObjects.java:388)
+daviplata.nacional.iOS.pageObjects.MarketPlacePageObjects.clickBtnMas(MarketPlacePageObjects.java:388)
+daviplata.nacional.iOS.steps.MarketPlaceSteps.btnMarketPlace(MarketPlaceSteps.java:53)
+daviplata.nacional.iOS.definitions.MarketPlaceDefinitions.ingresoATiendaVirtual(MarketPlaceDefinitions.java:32)
+✽.ingreso a tienda virtual(src/test/resources/features/marketplace.feature:7)
+</system-err></testcase></testsuite>

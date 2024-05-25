@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Set De Casos Microseguros" skipped="0" tests="1" time="324.59" timestamp="2024-03-26 05:29:24"><testcase name="CP100065M_SYS_Validar proceso de compra microseguro de Mascotas opción 1 con cliente GMF desde el Home"><failure message="No se pudo dar click a btn finalizar compra, debido a: Expected condition failed: waiting for element to be clickable: By.xpath: //*[contains(@name,'Finalizar')] (tried for 10 second(s) with 500 milliseconds interval)" type="java.lang.AssertionError">No se pudo dar click a btn finalizar compra, debido a: Expected condition failed: waiting for element to be clickable: By.xpath: //*[contains(@name,'Finalizar')] (tried for 10 second(s) with 500 milliseconds interval)</failure><system-err>No se pudo dar click a btn finalizar compra, debido a: Expected condition failed: waiting for element to be clickable: By.xpath: //*[contains(@name,'Finalizar')] (tried for 10 second(s) with 500 milliseconds interval)
+daviplata.nacional.iOS.pageObjects.MarketPlacePageObjects.darClickBtnFinalizarCompra(MarketPlacePageObjects.java:1851)
+daviplata.nacional.iOS.pageObjects.MarketPlacePageObjects.darClickBtnFinalizarCompra(MarketPlacePageObjects.java:1849)
+daviplata.nacional.iOS.pageObjects.MarketPlacePageObjects.darClickBtnFinalizarCompra(MarketPlacePageObjects.java:1849)
+daviplata.nacional.iOS.pageObjects.MarketPlacePageObjects.darClickBtnFinalizarCompra(MarketPlacePageObjects.java:1849)
+daviplata.nacional.iOS.pageObjects.MarketPlacePageObjects.darClickBtnFinalizarCompra(MarketPlacePageObjects.java:1849)
+daviplata.nacional.iOS.steps.MarketPlaceSteps.btnValidar(MarketPlaceSteps.java:373)
+daviplata.nacional.iOS.definitions.MarketPlaceDefinitions.validarCompraDeSeguro(MarketPlaceDefinitions.java:108)
+✽.validar compra de seguro(src/test/resources/features/MicroSeguro.feature:320)
+</system-err></testcase></testsuite>

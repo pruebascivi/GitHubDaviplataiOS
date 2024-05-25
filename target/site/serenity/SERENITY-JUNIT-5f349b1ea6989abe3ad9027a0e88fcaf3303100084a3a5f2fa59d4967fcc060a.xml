@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Casos de registro" skipped="0" tests="1" time="119.15" timestamp="2024-04-29 08:10:39"><testcase name="CP1480M_SYS_Validar registro completo en la APP DaviPlata"><failure message="No se encontró botón 'Continuar' en registro de usuarios, debido a: Expected condition failed: waiting for element to be clickable: By.xpath: //XCUIElementTypeButton[@name='Continuar'] (tried for 10 second(s) with 500 milliseconds interval)" type="java.lang.AssertionError">No se encontró botón 'Continuar' en registro de usuarios, debido a: Expected condition failed: waiting for element to be clickable: By.xpath: //XCUIElementTypeButton[@name='Continuar'] (tried for 10 second(s) with 500 milliseconds interval)</failure><system-err>No se encontró botón 'Continuar' en registro de usuarios, debido a: Expected condition failed: waiting for element to be clickable: By.xpath: //XCUIElementTypeButton[@name='Continuar'] (tried for 10 second(s) with 500 milliseconds interval)
+daviplata.nacional.iOS.pageObjects.RegistroPageObject.clicBtnContinuar(RegistroPageObject.java:499)
+daviplata.nacional.iOS.pageObjects.RegistroPageObject.clicBtnContinuar(RegistroPageObject.java:497)
+daviplata.nacional.iOS.pageObjects.RegistroPageObject.clicBtnContinuar(RegistroPageObject.java:497)
+daviplata.nacional.iOS.pageObjects.RegistroPageObject.clicBtnContinuar(RegistroPageObject.java:497)
+daviplata.nacional.iOS.pageObjects.RegistroPageObject.clicBtnContinuar(RegistroPageObject.java:497)
+daviplata.nacional.iOS.steps.RegistroSteps.aceptoAutorizaciones(RegistroSteps.java:112)
+daviplata.nacional.iOS.definitions.RegistroDefinitions.aceptoAutorizacionesRegitro(RegistroDefinitions.java:72)
+✽.Acepte autorizaciones de regitro(src/test/resources/features/registro.feature:7)
+</system-err></testcase></testsuite>
