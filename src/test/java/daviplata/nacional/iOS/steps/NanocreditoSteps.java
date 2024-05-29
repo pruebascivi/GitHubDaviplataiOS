@@ -23,6 +23,7 @@ import daviplata.nacional.iOS.pageObjects.LoginRobustoPage;
 import daviplata.nacional.iOS.pageObjects.MenuHamburguesaPageObjects;
 import daviplata.nacional.iOS.pageObjects.NanocreditoPageObjects;
 import daviplata.nacional.iOS.pageObjects.RegistroMayoresPageObjects;
+import daviplata.nacional.iOS.pageObjects.RegistroPageObject;
 import daviplata.nacional.iOS.utilidades.Credenciales;
 import daviplata.nacional.iOS.utilidades.CustomAppiumDriver;
 import daviplata.nacional.iOS.utilidades.Evidencias;
@@ -43,6 +44,8 @@ public class NanocreditoSteps {
 	Utilidades utilidad;
 	UtilidadesTCS utilidadesTCS;
 	LoginSteps loginSteps;
+	RegistroPageObject registroObj = new RegistroPageObject();
+
 
 
 	public void ingresoAOpcionNanocredito() {
@@ -335,16 +338,22 @@ public class NanocreditoSteps {
 	
 	@Step
 	public void validarPopUpNanocredito() {
-		Utilidades.esperaMiliseg(1500);
-		utilidadesTCS.esperarElementVisibility("xpath", NanocreditoPageObjects.POP_UP_NANOCREDITO);
-        Utilidades.tomaEvidencia("Valio Pop Up campaña Nanocrédito");
+		boolean estadoVisible = utilidadesTCS.validateElementVisibilityCatch("xpath", NanocreditoPageObjects.POP_UP_NANOCREDITO);
+		if(estadoVisible == true) {
+			Utilidades.esperaMiliseg(1500);
+			utilidadesTCS.esperarElementVisibility("xpath", NanocreditoPageObjects.POP_UP_NANOCREDITO);
+	        Utilidades.tomaEvidencia("Valio Pop Up campaña Nanocrédito");
+		}
 	}
 	
 	@Step
 	public void validarOpcionNoMeInteresa() {
-		Utilidades.esperaMiliseg(1500);
-		utilidadesTCS.clicElement("xpath", NanocreditoPageObjects.BNT_NO_ME_INTERESA);
-		System.out.println("Di clic al botón no me interesa");
+		boolean estadoVisible = utilidadesTCS.validateElementVisibilityCatch("xpath", NanocreditoPageObjects.POP_UP_NANOCREDITO);
+		if(estadoVisible == true) {
+			Utilidades.esperaMiliseg(1500);
+			utilidadesTCS.clicElement("xpath", NanocreditoPageObjects.BNT_NO_ME_INTERESA);
+			System.out.println("Di clic al botón no me interesa");
+		}
 	}
 	
 	@Step
@@ -354,8 +363,42 @@ public class NanocreditoSteps {
 		utilidadesTCS.scrollBackground("xpath", NanocreditoPageObjects.BTN_CAJA_NANOCREDITO, -150, 0);
         Utilidades.tomaEvidencia("Valida caja de productos y cajón Nanocrédito");
 		Utilidades.esperaMiliseg(800);
+	}
+	
+	@Step
+    public void validarHomeGloboSaldoDaviplata() {
+		Utilidades.esperaMiliseg(1500);
+        Utilidades.tomaEvidencia("Validar home daviplata");
+    }
+	
+	@Step
+    public void ingresarANanocreditoHome() {
+		Utilidades.esperaMiliseg(1500);
 		utilidadesTCS.clicElement("xpath", NanocreditoPageObjects.BTN_CAJA_NANOCREDITO);
 		Utilidades.esperaMiliseg(2000);
-		Utilidades.tomaEvidencia("Pantalla solicitar nanocredito");
-	}
+		Utilidades.tomaEvidencia("Pantalla solicitar nanocredito");		boolean visibilidad = utilidadesTCS.validateElementVisibilityCatch("xpath", RegistroPageObject.CHECK_BOX_REGLAMENTO_USO);
+		if(visibilidad == true) {
+			Utilidades.esperaMiliseg(800);
+			registroObj.aceptoReglamentoUso();
+		}
+		
+		boolean visibilidad2 = utilidadesTCS.validateElementVisibilityCatch("xpath", RegistroPageObject.CHECK_BOX_DATOS_PERSONALES);
+		if(visibilidad2 == true) {
+			Utilidades.esperaMiliseg(800);
+			registroObj.aceptoReglamentoDatosPersonales();
+		}
+		
+		boolean visibilidad3 = utilidadesTCS.validateElementVisibilityCatch("xpath", RegistroPageObject.CHECK_BOX_REGLAMENTO_CONSULTA);
+		if(visibilidad3 == true) {
+			Utilidades.esperaMiliseg(800);
+			registroObj.aceptoReglamentoConsultaInformacion();
+		}
+		boolean visibilidad4 = utilidadesTCS.validateElementVisibilityCatch("xpath", RegistroPageObject.BTN_ACEPTAR);
+		if(visibilidad4 == true) {
+			Utilidades.esperaMiliseg(800);
+			registroObj.clicBtnContinuar();		
+		}			
+		Utilidades.esperaMiliseg(1500);
+        Utilidades.tomaEvidencia("Validar ingreso a Nanocredito home");
+    }
 }

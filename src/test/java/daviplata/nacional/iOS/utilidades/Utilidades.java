@@ -684,7 +684,7 @@ public class Utilidades {
 				.moveTo(PointOption.point(endX, endY)).release().perform();
 	}
 
-	public String numAleatorio(int limSuperior, int limInferior) {
+	public static String numAleatorio(int limSuperior, int limInferior) {
 
 		Random numAleatorio = new Random();
 		int n = (numAleatorio.nextInt(limSuperior - limInferior + 1) + limInferior);

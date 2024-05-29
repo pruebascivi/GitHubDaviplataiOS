@@ -1,7 +1,7 @@
 @MovimientoFuncional
 Feature: Movimientos Funcionales
 
-@CP031100M
+	@CP031100M @Passed
   Scenario Outline: CP031100M_SYS_Validaciones del header
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     When Ingreso al detalle del saldo en el home
@@ -43,3 +43,16 @@ Feature: Movimientos Funcionales
     Examples: 
       | tipoId | usuario    | contrasena  | cuentaNum    |
       | "CC"   | "10088833" | "2589"      | "3227680742" |
+      
+  @CP031102M
+  Scenario Outline: CP031102M_SYS_Validaciones cantidad movimientos
+    Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
+    When Entro al modulo de movimientos
+    Then Validar filtros de movimientos
+
+    Examples: 
+      | tipoId | usuario    | contrasena | montoATransar | cuentaNum    |
+      | "CC"   | "10050078" | "2580"     | "5000"        | "3227680742" |
+      
+   
+    

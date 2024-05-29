@@ -114,7 +114,23 @@ Feature: Agrupoación de casos de Nanocredito
     Then Validar PopUp nanocredito al ingresar al home daviplata
     When Seleccionar opcion no me interesa
     And Validar cajon nanocredito de la barra productos
+   	And Ingresar a nanocredito desde home opcion mas productos
 
     Examples: 
       | tipoId | usuario    | contrasena |
       | "CC"   | "80145621" | "1234"     |
+      
+  @CP0681M @Passed
+  Scenario Outline: CP0681M_SYS_Validar popup de Nanocredito
+    Given Ingreso usuario y contrasena en nanocredito <tipoId> <usuario> <contrasena>
+    Then Validar PopUp nanocredito al ingresar al home daviplata
+    When Seleccionar opcion no me interesa
+    Then Validar home daviplata
+    And Validar cajon nanocredito de la barra productos
+    And Ingresar a nanocredito desde home opcion mas productos
+    
+    Examples: 
+      | tipoId | usuario    | contrasena |
+      | "CC"   | "80145621" | "1234"     |
+      
+      

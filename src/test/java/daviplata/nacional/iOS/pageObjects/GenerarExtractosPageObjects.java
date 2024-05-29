@@ -12,13 +12,18 @@ public class GenerarExtractosPageObjects {
     public static final String BTN_COMPARTIR = "//XCUIElementTypeButton[contains(@label, 'Share')]";
     public static final String BTN_SAVE_TO_FILES = "//XCUIElementTypeCell[@name='Save to Files']/XCUIElementTypeOther[2]";
     public static final String BTN_GUARDAR = "//XCUIElementTypeButton[@name='Guardar']";
-	
+	public static final String BTN_NO_ME_INTERESA = "//XCUIElementTypeStaticText[@name='No me interesa']";
     public static final String BOTON_DISCO_PERIODO = "(//XCUIElementTypeOther)[9]";
     public static final String POPUP_NANOCREDITO = "//XCUIElementTypeStaticText[contains(@value, 'Conozca el Nanocrédito')] | //XCUIElementTypeStaticText[contains(@name, 'Conozca el Nanocrédito')]";
-    public static final String BOTON_NO_ME_INTERESA = "";
-    public static final String TEXTO_CUANTO_DEBO = "";
-    public static final String OPCION_CERTIFICACIONES_NANOCREDITO = "";
-    
+    public static final String OPCION_CERTIFICACIONES = "//XCUIElementTypeOther[@name='btn-0']";
+    public static final String TXT_TIPO_CERTIFICACION = "//XCUIElementTypeStaticText[@name='Seleccione tipo de certificación']";
+    public static final String OPCION_CERTIFICACIONES_TRIBUTARIAS = "//XCUIElementTypeStaticText[@name='Certificaciones tributarias'] | (//XCUIElementTypeImage[@name='ico_next_circle'])[1]";
+    public static final String OPCION_CERTIFICACIONES_NANOCREDITO = "(//XCUIElementTypeStaticText[contains(@name, 'Certificaciones Nanocrédito')])[2]/following-sibling::XCUIElementTypeButton | (//XCUIElementTypeImage[@name='ico_next_circle'])[4]";
+    public static final String OPCION_COSTOS = "//XCUIElementTypeStaticText[contains(@name, 'Costos')]";
+    public static final String CUANTO_DEBO = "//XCUIElementTypeStaticText[@name='¿Cuánto debo?']";
+    public static final String TXT_AÑO_INFORME_GENERAL = "//XCUIElementTypeStaticText[@name='Seleccione el año para su informe general']";
+    public static final String BTN_DESPRENDIBLE_ANIO_INFORME = "//XCUIElementTypeImage[@name='ico_select_piker']";
+    public static final String TXT_ERROR_EN_SISTEMA = "//XCUIElementTypeStaticText[contains(@name, 'Error en el sistema')]";
     
     
 	public static final String BOTON_ACEPTAR_OTP_SACAR_PLATA = "//XCUIElementTypeButton[@name='Aceptar boton']";

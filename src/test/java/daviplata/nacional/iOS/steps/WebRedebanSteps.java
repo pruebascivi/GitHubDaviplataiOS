@@ -1047,4 +1047,46 @@ public class WebRedebanSteps {
             fail("Se produjo un error no esperado: " + e.getMessage());
         }
     }
+	
+	@Step
+	public String consultaNumeroCelularConEstadoDiferente(String cliente, String estadoRedeban) {
+	        String numeroCelular = null;
+	        try {
+	            loginWebRedeban();
+	            webRedebanPageObjects.clicBtnDebitoPrepago();
+	            webRedebanPageObjects.clicBtnConsultaClientes();
+	            webRedebanPageObjects.clicChkNumeroID(2);
+	            webRedebanPageObjects.sendKeysInputNumeroID(cliente);
+	            webRedebanPageObjects.clicBtnEnviar();
+	            Utilidades.esperaMiliseg(1500);
+	            Utilidades.esperaMiliseg(6000);
+	            utilidad.tomaEvidenciaPantalla("Consulta Numero Tarjeta web Redeban");
+	            int row = webRedebanPageObjects.returnEstadoDiferente(estadoRedeban);
+	            System.out.println("row: " + row);
+	            String numeroBin = webRedebanPageObjects.returnNumeroBin(row);
+	            System.out.println("num: " + numeroBin);
+	            if (numeroBin.length() != 0) {
+	                numeroTarjeta = webRedebanPageObjects.returnNumeroTarjeta(row);
+	                Serenity.setSessionVariable("numeroTarjeta").to(numeroTarjeta);
+	                System.out.println("Numero Tarjeta: " + numeroTarjeta);
+	                numeroCelular = numeroTarjeta.split(numeroBin)[1];
+	            } else {
+	                logOut("//img[@src='/ASDebitMonWeb/images/pages/logout.gif']");
+	            }
+	            System.out.println("numero Celular: " + numeroCelular);
+	            Serenity.setSessionVariable("numeroCelularRedeban").to(numeroCelular);
+	            BaseUtil.numero = numeroCelular;
+	            return numeroCelular;
+	        } catch (TimeoutException e) {
+	            logOut("//img[contains(@src, 'logout.gif')]");
+	            fail("Tiempo de espera excedido: " + e.getMessage());
+	        } catch (WebDriverException e) {
+	            logOut("//img[contains(@src, 'logout.gif')]");
+	            fail("Error en WebDriver: " + e.getMessage());
+	        } catch (Exception e) {
+	            logOut("//img[contains(@src, 'logout.gif')]");
+	            fail("Se produjo un error no esperado: " + e.getMessage());
+	        }
+	        return numeroCelular;
+	    }
 }

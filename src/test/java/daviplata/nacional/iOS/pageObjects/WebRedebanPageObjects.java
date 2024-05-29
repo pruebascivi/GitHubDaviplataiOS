@@ -571,6 +571,60 @@ public class WebRedebanPageObjects {
 			contador = 0;
 		}
 	}
+	
+	public void clicChkNumeroID(int contar) {
+        try {
+            contador++;
+            for (int i = 0; i < contar; i++) {
+                WebElement element = wait
+                        .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(this.chkNumeroID)));
+                if (!(element.isSelected())) {
+                    element.click();
+                } else {
+                    System.out.println("El check de Numero ID ya esta checkeado");
+                }
+            }
+
+        } catch (Exception e) {
+            if (!(contador == 20)) {
+                Utilidades.esperaMiliseg(2000);
+                clicChkNumeroID(contar);
+            } else {
+                fail("No se pudo dar clic en el Check Número ID de redeban " + this.chkNumeroID + " debido a: "
+                        + e.getMessage());
+            }
+        } finally {
+            contador = 0;
+        }
+    }
+	
+	public int returnEstadoDiferente(String estadoRedeban) {
+        boolean flag = false;
+        WebElement element = null;
+        int conta = 3; // el xpath revisa desde el tr3 de la tabla en redeban
+        WebElement table = wait
+                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@class='table1']")));
+        List<WebElement> TotalRowsList = table.findElements(By.tagName("tr"));
+        for (int i = 1; i <= TotalRowsList.size() - 8; i++) {
+            element = BaseUtil.chromeDriver
+                    .findElement(By.xpath("//*[@id='generalForm']/table[2]/tbody/tr[" + conta + "]/td[11]"));
+            String estadoDaviplata = element.getText();
+            if (estadoDaviplata.equalsIgnoreCase(estadoRedeban.trim())) {
+                i = TotalRowsList.size();
+                flag = true;
+            } else {
+                conta++;
+                clicBtnSalir("//img[contains(@src, 'logout.gif')]");
+                cerrarWebRedeban();
+                System.out.println("Cerré Redeban Correctamente");
+                fail("El estado de la cuenta del Daviplata debe estar en estado 'NOR' y no en: " + estadoDaviplata);
+            }
+        }
+        if (flag)
+            return conta;
+        else
+            return 0;
+    }
 
 	public static void clicChkTarjetaID() {
 		try {

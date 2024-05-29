@@ -1231,7 +1231,7 @@ public class UtilidadesTCS extends PageObject {
      * @param yOffset Cantidad entera de scroll en Y
      */
     public void scrollBackground(String locatorType, String locator, int xOffset, int yOffset) {
-         base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+         BaseUtil.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
          boolean check = false;
          By by = null;
 
@@ -1560,4 +1560,56 @@ public class UtilidadesTCS extends PageObject {
         return check;
     }
     
+    /**
+     * Extrae la cantidad de elementos obtenidos desde un localizador padre
+     * @param locatorType - Tipo de localizador
+     * @param locator - Localizador
+     * @return Retorna la cantidad de elementos encontrados
+     */
+    public int extractQuantityOfElements(String locatorType, String locator) {
+        BaseUtil.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        By by = null;
+        
+        switch (locatorType) {
+            case "name":
+                by = By.name(locator);
+                break;
+            case "id":
+                by = By.id(locator);
+                break;
+            case "xpath":
+                by = By.xpath(locator);
+                break;
+            default:
+                throw new IllegalArgumentException("Tipo de localizador no válido: " + locatorType);
+        }
+
+        ArrayList<MobileElement> listaElementos = (ArrayList<MobileElement>) BaseUtil.driver.findElements(by);
+        
+        int cantidadElementos = listaElementos.size();
+        System.out.println("Cantidad de elementos encontrados: " + cantidadElementos);
+
+        return cantidadElementos;
+    }
+    
+    /**
+     * Compara una cantidad con una referencia según el operador proporcionado.
+     * @param operador - El operador de comparación ("mayor", "menor" o "igual").
+     * @param cantidad - La cantidad que se desea comparar.
+     * @param referencia - El valor de referencia para la comparación.
+     * @return true si la comparación es verdadera según el operador especificado, false de lo contrario.
+     */
+    public boolean comparadorCantidades(String operador, int cantidad, int referencia) {
+        switch (operador) {
+            case "mayor":
+                return cantidad > referencia;
+            case "menor":
+                return cantidad < referencia;
+            case "igual":
+                return cantidad == referencia;
+            default:
+                System.out.println("Operador no válido");
+                return false;
+        }
+    }
 }

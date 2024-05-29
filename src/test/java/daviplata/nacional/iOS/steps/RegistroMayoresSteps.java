@@ -465,6 +465,7 @@ public class RegistroMayoresSteps{
         utilidadesTcs.scrollToElements("xpath", RegistroMayoresPageObjects.DISPLAY, "//XCUIElementTypeStaticText[@value='"+diaFechaNacimiento.trim()+"']", 15, 0, -200);
         utilidadesTcs.clicElement("xpath", RegistroMayoresPageObjects.DESPLEGABLE_FECHA_MES);
         utilidadesTcs.scrollToElements("xpath", RegistroMayoresPageObjects.DISPLAY, "//XCUIElementTypeStaticText[@name='"+mesFechaNacimiento.trim()+"']",  15, 0, -200);
+        Utilidades.esperaMiliseg(3000);
         utilidadesTcs.clicElement("xpath", RegistroMayoresPageObjects.DESPLEGABLE_FECHA_ANIO);
         utilidadesTcs.scrollToElements("xpath", RegistroMayoresPageObjects.DISPLAY, "//XCUIElementTypeStaticText[@name='"+anioFechaNacimiento.trim()+"']",  15, 0, -250);
         

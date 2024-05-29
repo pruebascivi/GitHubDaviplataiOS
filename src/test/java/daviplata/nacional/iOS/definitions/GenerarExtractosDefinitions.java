@@ -31,5 +31,55 @@ public class GenerarExtractosDefinitions {
     public void validarGeneraciónDeExtracto() throws Exception {
     	generacionExtractosSteps.validarGeneracionExtracto();
     }
+    
+    @Then("^Ingreso a certificaciones$")
+    public void ingresoACertificaciones() throws Exception {
+    	generacionExtractosSteps.validarOpcionCertificaciones();
+    }
+    
+    @Then("^Ingreso tipo de Certificación$")
+    public void ingresoTipoDeCertificacion() throws Exception {
+    	generacionExtractosSteps.seleccionarTipoCertificacion();
+    }
+    
+    @Then("^Ingreso a certificacion nanocredito$")
+    public void ingresoACertificacionNanocredito() throws Exception {
+    	generacionExtractosSteps.seleccionarCertificacionNano();
+    }
+    
+    @Then("^Valido opcion cuánto debo$")
+    public void validoOpcioCuantoDebo() throws Exception {
+    	generacionExtractosSteps.validarModuloCuantoDebo();
+    }
+    
+    @Then("^Ingreso a consultar certificacion tributaria$")
+    public void ingresoAConsultarCertificacionTributaria() throws Exception {
+    	generacionExtractosSteps.seleccionarCertificacionTributaria();
+    }
+    
+    @Then("^Validar mensaje de certificacion tributaria$")
+    public void validarMensajeDeCertificacionTributaria() throws Exception {
+    	generacionExtractosSteps.validarInformeGeneral();
+    }
+    
+    @Then("^Genero certificación por año$")
+    public void generoCertificacionPorAnio() throws Exception {
+    	generacionExtractosSteps.validarInformeGeneralPorAnio();
+    }
+    
+    @Then("^Valido generacion de certificacion tributaria$")
+    public void validoGeneracionDeCertificacionTributaria() throws Exception {
+    	generacionExtractosSteps.validarGeneracionDeInforme();
+    }
+    
+    @Then("^Ingreso a consultar certificacion costos$")
+    public void ingresoAConsultarCertificacionCostos() throws Exception {
+    	generacionExtractosSteps.validarOpcionCertificarCostos();
+    }
+    
+    @Then("^Valido mensaje de certificacion de costos$")
+    public void validoMensajeDeCertificacionDeCostos() throws Exception {
+    	generacionExtractosSteps.validarMensajeCertificacionCostos();
+    }
 }
 

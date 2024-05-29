@@ -245,3 +245,6 @@ Feature: Modulo Olvido Clave
      Examples: 
       | tipoId | usuario       | claveNueva |
       | "CE"   | "90062810017" | "1342"     | 
+      
+      
+      

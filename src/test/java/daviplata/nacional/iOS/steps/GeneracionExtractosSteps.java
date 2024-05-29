@@ -1,19 +1,11 @@
 package daviplata.nacional.iOS.steps;
 
 import static org.junit.Assert.fail;
-import java.math.BigDecimal;
-import org.openqa.selenium.By;
 import daviplata.nacional.iOS.pageObjects.GenerarExtractosPageObjects;
-import daviplata.nacional.iOS.pageObjects.LoginPageObjects;
-import daviplata.nacional.iOS.pageObjects.LoginRobustoPage;
-import daviplata.nacional.iOS.pageObjects.MarketPlacePageObjects;
 import daviplata.nacional.iOS.pageObjects.MenuHamburguesaPageObjects;
-import daviplata.nacional.iOS.pageObjects.PasarPlataPageObjects;
-import daviplata.nacional.iOS.pageObjects.negocioPageObjects;
 import daviplata.nacional.iOS.utilidades.BaseUtil;
 import daviplata.nacional.iOS.utilidades.Utilidades;
 import daviplata.nacional.iOS.utilidades.UtilidadesTCS;
-import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Step;
 
 public class GeneracionExtractosSteps {
@@ -76,24 +68,12 @@ public class GeneracionExtractosSteps {
         Utilidades.tomaEvidencia("Cliqueo botón compartir y luego procedo a descargar");
         utilidadesTCS.clicElement("xpath", GenerarExtractosPageObjects.BTN_GUARDAR);
     }
-    
-	@Step
-    public void IngresoTipoDeCertificación() {
-        generarExtractosPageObjects.IngresoTipoDeCertificación();
-        Utilidades.tomaEvidencia("Validación de ¿Cuanto?");
-    }
-    
-	@Step
-    public void validarOpcionCuantoDebo() {
-		generarExtractosPageObjects.validarOpcionCuantoDebo();    
-		Utilidades.tomaEvidencia("Valido opción cuánto debo");
-    }
-    
+
 	@Step
     public void cerrePopupNanocredito() {
         boolean estado = utilidadesTCS.validateElementVisibilityCatch("xpath", GenerarExtractosPageObjects.POPUP_NANOCREDITO);
         if (estado == true) {
-            utilidadesTCS.clicElement("xpath", GenerarExtractosPageObjects.BOTON_NO_ME_INTERESA);
+            utilidadesTCS.clicElement("xpath", GenerarExtractosPageObjects.BTN_NO_ME_INTERESA);
         } else {
         	Utilidades.esperaMiliseg(3000);
             Utilidades.tomaEvidencia("Ingreso a home daviplata");
@@ -101,11 +81,114 @@ public class GeneracionExtractosSteps {
     }
     
 	@Step
-    public void ingresoACertificaciones() {
-        claveCorreoSteps.seleccionoHeaderHome();
-        excepcion4x1000Steps.pulsarDespegableSolicitudes();
-        certificacionSteps.ingresarACertificaciones();
-        Utilidades.tomaEvidencia("Ingresar a Certificaciones Nanocrédito");
+    public void validarOpcionCertificaciones() {
+        utilidadesTCS.clicElement("xpath", GenerarExtractosPageObjects.BTN_HEADER);
+    	Utilidades.esperaMiliseg(800);
+    	utilidadesTCS.esperarElementVisibility("xpath", GenerarExtractosPageObjects.BTN_SOLICITUDES);
+        Utilidades.tomaEvidencia("Valido la opción 'Solicitudes'");
+        utilidadesTCS.clicElement("xpath", GenerarExtractosPageObjects.BTN_SOLICITUDES);
+    	Utilidades.esperaMiliseg(800);
+    	utilidadesTCS.esperarElementVisibility("xpath", GenerarExtractosPageObjects.OPCION_CERTIFICACIONES);
+        Utilidades.tomaEvidencia("Valido la opción 'Certificaciones'");
+        utilidadesTCS.clicElement("xpath", GenerarExtractosPageObjects.OPCION_CERTIFICACIONES);
+    	Utilidades.esperaMiliseg(800);
     }
+	
+	@Step
+    public void seleccionarTipoCertificacion() {
+		utilidadesTCS.esperarElementVisibility("xpath", GenerarExtractosPageObjects.TXT_TIPO_CERTIFICACION);
+    	Utilidades.esperaMiliseg(800);
+        Utilidades.tomaEvidencia("Valido las opciones 'Tipo de Certificación'");
+	}
+	
+	@Step
+    public void seleccionarCertificacionNano() {
+    	Utilidades.esperaMiliseg(800);
+        utilidadesTCS.clicElement("xpath", GenerarExtractosPageObjects.OPCION_CERTIFICACIONES_NANOCREDITO);
+    	Utilidades.esperaMiliseg(800);
+	}
+	
+	@Step
+    public void validarModuloCuantoDebo() {
+        boolean estado = utilidadesTCS.validateElementVisibilityCatch("xpath", GenerarExtractosPageObjects.CUANTO_DEBO);
+        if (estado == true) {
+        	Utilidades.esperaMiliseg(800);
+        	utilidadesTCS.esperarElementVisibility("xpath", GenerarExtractosPageObjects.CUANTO_DEBO);
+        	Utilidades.esperaMiliseg(800);
+            Utilidades.tomaEvidencia("Valido módulo '¿Cuánto debo?' dentro de 'Certificaciones Nanocrédito'");
+        } else {
+            Utilidades.tomaEvidencia("Usuario no cuenta con crédito activo");
+        }
+	}
+	
+	@Step
+    public void seleccionarCertificacionTributaria() {
+    	Utilidades.esperaMiliseg(800);
+        utilidadesTCS.clicElement("xpath", GenerarExtractosPageObjects.OPCION_CERTIFICACIONES_TRIBUTARIAS);
+    	Utilidades.esperaMiliseg(800);
+	}
+	
+	@Step
+    public void validarInformeGeneral() {
+    	Utilidades.esperaMiliseg(800);
+    	utilidadesTCS.esperarElementVisibility("xpath", GenerarExtractosPageObjects.TXT_AÑO_INFORME_GENERAL);
+        utilidadesTCS.clicElement("xpath", GenerarExtractosPageObjects.BTN_DESPRENDIBLE_ANIO_INFORME);
+    	Utilidades.esperaMiliseg(800);
+        Utilidades.tomaEvidencia("Valido opcion para generar informe general");
+	}
+	
+	@Step
+    public void validarInformeGeneralPorAnio() {
+    	Utilidades.esperaMiliseg(800);
+    	utilidadesTCS.esperarElementVisibility("xpath", GenerarExtractosPageObjects.TXT_AÑO_INFORME_GENERAL);
+        utilidadesTCS.clicElement("xpath", GenerarExtractosPageObjects.BTN_DESPRENDIBLE_ANIO_INFORME);
+    	Utilidades.esperaMiliseg(800);
+        Utilidades.tomaEvidencia("Valido lista seleccionable de años para generar informe general");
+    	Utilidades.esperaMiliseg(800);
+	}
+	
+	@Step
+    public void validarGeneracionDeInforme() {
+        utilidadesTCS.clicElement("xpath", GenerarExtractosPageObjects.BTN_DESCARGAR);
+    	Utilidades.esperaMiliseg(800);
+        boolean estado = utilidadesTCS.validateElementVisibilityCatch("xpath", GenerarExtractosPageObjects.TXT_ERROR_EN_SISTEMA);
+        if (estado == true) {
+            Utilidades.tomaEvidencia("Se presenta un error a la hora de generar informe");
+            System.out.println("Se presenta un error a la hora de generar informe");
+			fail("Se presenta un error a la hora de generar informe");
+        }
+    	Utilidades.esperaMiliseg(800);
+        Utilidades.tomaEvidencia("Valido generación de informe general");
+	}
+	
+	@Step
+    public void validarOpcionCertificarCostos() {
+    	Utilidades.esperaMiliseg(800);
+        boolean estado = utilidadesTCS.validateElementVisibilityCatch("xpath", GenerarExtractosPageObjects.OPCION_COSTOS);
+        if (estado == true) {
+        	Utilidades.esperaMiliseg(800);
+            utilidadesTCS.clicElement("xpath", GenerarExtractosPageObjects.OPCION_COSTOS);
+        	Utilidades.esperaMiliseg(800);
+            Utilidades.tomaEvidencia("Ingreso a la opcion 'Certificacion de Costos'");
+        } else {
+            Utilidades.tomaEvidencia("Se presenta un error, la opción 'Certificacion de Costos' no se encuentra disponible");
+            System.out.println("Se presenta un error, la opción 'Certificacion de Costos' no se encuentra disponible");
+			fail("Se presenta un error, la opción 'Certificacion de Costos' no se encuentra disponible");
+        }
+	}
+	
+	@Step
+    public void validarMensajeCertificacionCostos() {
+        utilidadesTCS.clicElement("xpath", GenerarExtractosPageObjects.BTN_DESCARGAR);
+    	Utilidades.esperaMiliseg(800);
+        boolean estado = utilidadesTCS.validateElementVisibilityCatch("xpath", GenerarExtractosPageObjects.TXT_ERROR_EN_SISTEMA);
+        if (estado == true) {
+            Utilidades.tomaEvidencia("Se presenta un error a la hora de generar informe");
+            System.out.println("Se presenta un error a la hora de generar informe");
+			fail("Se presenta un error a la hora de generar informe");
+        }
+    	Utilidades.esperaMiliseg(800);
+        Utilidades.tomaEvidencia("Valido generación de informe general");
+	}
 }
 

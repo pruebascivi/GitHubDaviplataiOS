@@ -4,7 +4,7 @@ import net.serenitybdd.core.pages.PageObject;
 
 public class LoginRobustoPage extends PageObject {
 	
-	public static final String MENU_TRES_PUNTOS = "Menu de conocimiento";
+	public static final String MENU_TRES_PUNTOS = "//XCUIElementTypeButton[@name='Menu de conocimiento']";
 	public static final String ACERCA_DE_DAVIPLATA = "//XCUIElementTypeStaticText[@name='Acerca de DaviPlata'] | //XCUIElementTypeStaticText[@name='Acerca de Daviplata']";
 	public static final String CAMBIAR_MI_NUMERO_BTN = "//XCUIElementTypeStaticText[contains(@name, 'Cambiar mi número')] | //XCUIElementTypeStaticText[contains(@name, 'Cambiar mi numero')]";
 	public static final String CAMBIO_NUMERO_MODULO = "//XCUIElementTypeStaticText[@name='Cambio de número']";
@@ -50,7 +50,7 @@ public class LoginRobustoPage extends PageObject {
 	public static final String POPUP_CLAVE_INCORRECTA = "//XCUIElementTypeTextView[contains(@value, 'es incorrecta')]";
 	public static final String BOTON_ACEPTAR_TECLADO_IOS = "//XCUIElementTypeButton[contains(@name,'Aceptar')]";
 	public static final String POP_UP_INVITE_AMIGOS = "//XCUIElementTypeStaticText[contains(@name,'Invite a sus amigos')]";
-	public static final String BOTON_CLOSE = "//XCUIElementTypeButton[@name='Close'] | //XCUIElementTypeButton[@name='Aceptar']";
+	public static final String BOTON_CLOSE = "//XCUIElementTypeButton[@name='Close'] | //XCUIElementTypeButton[@name='Aceptar'] | //XCUIElementTypeButton[@name='Imagen cerrar']";
 	public static final String IN_PROGRESS_INDICATOR = "//XCUIElementTypeActivityIndicator[@name='In progress']";
 	public static final String POPUP_APROVECHA_BENEFICIOS = "//XCUIElementTypeStaticText[contains(@name, 'Aproveche los beneficios')] | //XCUIElementTypeStaticText[contains(@name, 'Compre por internet y en datáfonos')]";
 	public static final String BTN_LO_VERÉ_LUEGO_POPUP = "//XCUIElementTypeButton[@name='Lo veré luego']";

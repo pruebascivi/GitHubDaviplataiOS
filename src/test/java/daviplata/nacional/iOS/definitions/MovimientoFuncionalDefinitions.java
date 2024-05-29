@@ -1,5 +1,6 @@
 package daviplata.nacional.iOS.definitions;
 
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import daviplata.nacional.iOS.steps.MovimientoFuncionalSteps;
 import net.thucydides.core.annotations.Steps;
@@ -27,6 +28,14 @@ public class MovimientoFuncionalDefinitions {
     @When("^Entro al modulo de movimientos$")
     public void entroAlModuloDeMovimientos() throws Exception {
         movimientoFuncionalSteps.entrarAlModuloMovimientos();
+    }
+    
+    @Then("^Validar filtros de movimientos$")
+    public void filtroMovimientosPorPlataQueHaRecibido() throws Exception {
+        movimientoFuncionalSteps.validarMovimientosOpcionPlataQueHaRecibido();
+        movimientoFuncionalSteps.validarMovimientosOpcionPlataQueHaGastado();
+        movimientoFuncionalSteps.validarMovimientosOpcionServiciosQueHaPagado();
+        movimientoFuncionalSteps.validarMovimientosOpcionTodosLosMovimientos();
     }
     
     @When("^Ingreso al detalle del movimiento en el pasar plata$")

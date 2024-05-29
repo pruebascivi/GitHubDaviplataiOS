@@ -25,7 +25,7 @@ public class OlvidoClaveSteps {
 	@Step
 	public void ingresarOlvidoSuClave() {
 		System.out.println("Ingresando a la app");
-		validarVersionApp();// Version
+		loginSteps.verificarVersion();// Version
     	Utilidades.esperaMiliseg(800);
 		pageObjectOlvidoClave.pulsarBtnOlvidoClave();
 		Utilidades.tomaEvidencia("se ingreso a 'Olvidó su clave'");

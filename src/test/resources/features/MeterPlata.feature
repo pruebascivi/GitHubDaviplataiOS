@@ -87,7 +87,7 @@ Feature: Modulo Meter plata
       | tipoId | usuario    | contrasena |  monto  | subtipo |
       | "CC"   | "10050098" | "2589"     |  "6000" | "M35"   |
 	
-  @CP020001M @DEFECTO 
+  @CP020001M @Passed 
   Scenario Outline: CP020001M_SYS_Validar informacion y funcionalidades de la opcion meter plata en pse
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     When Ingreso a la opción meter plata desde el home daviplata

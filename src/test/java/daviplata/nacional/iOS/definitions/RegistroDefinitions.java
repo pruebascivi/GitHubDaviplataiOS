@@ -94,6 +94,11 @@ public class RegistroDefinitions {
 		stepsRegistro.aceptarAutorizacion();
 	}
 	
+    @Then("^Acepto autorizacion para el registro$")
+	public void aceptoAutorizacionParaElRegistro() throws Exception {
+		stepsRegistro.aceptarAutorizacionParaRegistro();
+	}
+    
 	@Then("^validar registro completo$")
 	public void validarRegistroCompleto() throws Exception {
 		stepsRegistro.validarRegistro();
@@ -124,7 +129,7 @@ public class RegistroDefinitions {
         registroMayoresSteps.validarPopUpFuncionalidadNegocioNoDisponible();
     }
 	
-	@Given("^ingreso tipo y numero de documento \"([^\"])\" \"([^\"])\"$")
+	@Given("^ingreso tipo y numero de documento \"([^\"]*)\" \"([^\"]*)\"$")
     public void ingresoTipoYNumeroDeDocumento(String tipoId, String usuario) throws Exception {
 		stepsLogin.verificarVersion();
         utilidadesTCS.seleccionarTipoDocumentoInputHomeDaviplata("xpath",tipoId);
@@ -182,5 +187,4 @@ public class RegistroDefinitions {
     public void finalizoProcesoDeCreacionDeNegocio() throws Exception {
         registroMayoresSteps.finalizarCreacionNegocio();
     }
-	
 }
