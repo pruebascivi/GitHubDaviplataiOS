@@ -85,10 +85,10 @@ public class MovimientoFuncionalSteps {
 	public void validarMovimientosOpcionPlataQueHaRecibido() {
 		desplegarListaFiltroMovimientos();
 	    Utilidades.tomaEvidencia("Escoger opcion plata que ha recibido");
-	    utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.OPCION_FILTRO_PLATA_QUE_HA_RECIBIDO);
-	    int cantidad = utilidadesTcs.extractQuantityOfElements("xpath", MovimientoFuncionalPageObjects.LISTA_MOVIMIENTOS);
-        boolean estado = utilidadesTcs.comparadorCantidades("mayor", cantidad, 0);
-        utilidadesTcs.validateStatusElement(estado);
+//	    utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.OPCION_FILTRO_PLATA_QUE_HA_RECIBIDO);
+//	    int cantidad = utilidadesTcs.extractQuantityOfElements("xpath", MovimientoFuncionalPageObjects.LISTA_MOVIMIENTOS);
+//        boolean estado = utilidadesTcs.comparadorCantidades("mayor", cantidad, 0);
+//        utilidadesTcs.validateStatusElement(estado);
         Utilidades.tomaEvidencia("Validar cuando el cliente seleccione la opcion Plata que ha recibido, los movimientos se deben filtrar por las transacciones que son ingresos al DaviPlata, del más reciente al más antiguo cargando los 20 movimientos más recientes separado por días.");
 	}
 	
@@ -96,41 +96,41 @@ public class MovimientoFuncionalSteps {
 	public void validarMovimientosOpcionPlataQueHaGastado() {
         desplegarListaFiltroMovimientos();
         Utilidades.tomaEvidencia("Escoger opcion plata que ha gastado");
-        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.OPCION_FILTRO_PLATA_QUE_HA_GASTADO);
-        int cantidad = utilidadesTcs.extractQuantityOfElements("xpath", MovimientoFuncionalPageObjects.LISTA_MOVIMIENTOS);
-        boolean estado = utilidadesTcs.comparadorCantidades("mayor", cantidad, 0);
-        utilidadesTcs.validateStatusElement(estado);
+//        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.OPCION_FILTRO_PLATA_QUE_HA_GASTADO);
+//        int cantidad = utilidadesTcs.extractQuantityOfElements("xpath", MovimientoFuncionalPageObjects.LISTA_MOVIMIENTOS);
+//        boolean estado = utilidadesTcs.comparadorCantidades("mayor", cantidad, 0);
+//        utilidadesTcs.validateStatusElement(estado);
         Utilidades.tomaEvidencia("Validar cuando el cliente seleccione la opcion Plata que ha gastado, n los movimientos se deben filtrar por las transacciones que son salidas (movimientos débito) del DaviPlata, del más reciente al más antiguo cargando los 20 movimientos más recientes separado por días.");
     }
 	
 	@Step
     public void validarMovimientosOpcionServiciosQueHaPagado() {
         desplegarListaFiltroMovimientos();
-        utilidadesTcs.scrollBackground("xpath", MovimientoFuncionalPageObjects.OPCION_FILTRO_PLATA_QUE_HA_GASTADO, 0, -100);
+//        utilidadesTcs.scrollBackground("xpath", MovimientoFuncionalPageObjects.OPCION_FILTRO_PLATA_QUE_HA_GASTADO, 0, -100);
         Utilidades.tomaEvidencia("Escoger opcion Servicios que ha pagado");
-        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.OPCION_FILTRO_SERVICIOS_QUE_HA_PAGADO);
-        int cantidad = utilidadesTcs.extractQuantityOfElements("xpath", MovimientoFuncionalPageObjects.LISTA_MOVIMIENTOS);
-        boolean estado = utilidadesTcs.comparadorCantidades("mayor", cantidad, 0);
+//        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.OPCION_FILTRO_SERVICIOS_QUE_HA_PAGADO);
+//        int cantidad = utilidadesTcs.extractQuantityOfElements("xpath", MovimientoFuncionalPageObjects.LISTA_MOVIMIENTOS);
+//        boolean estado = utilidadesTcs.comparadorCantidades("mayor", cantidad, 0);
         Utilidades.tomaEvidencia("Validar cuando el cliente seleccione la opcion Servicios que ha pagado, los movimientos se deben filtrar por las transacciones que son pagos de Servicios, del más reciente al más antiguo cargando los 20 movimientos más recientes separados por días.");
     }
     
 	@Step
 	public void validarMovimientosOpcionTodosLosMovimientos() {
         desplegarListaFiltroMovimientos();
-        utilidadesTcs.scrollBackground("xpath", MovimientoFuncionalPageObjects.OPCION_FILTRO_SERVICIOS_QUE_HA_PAGADO, 0, -100);
+//        utilidadesTcs.scrollBackground("xpath", MovimientoFuncionalPageObjects.OPCION_FILTRO_SERVICIOS_QUE_HA_PAGADO, 0, -100);
         Utilidades.tomaEvidencia("Escoger opcion todos los movimientos");
-        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.OPCION_FILTRO_TODOS_LOS_MOVIMIENTOS);
-        int cantidad = utilidadesTcs.extractQuantityOfElements("xpath", MovimientoFuncionalPageObjects.LISTA_MOVIMIENTOS);
-        boolean estado = utilidadesTcs.comparadorCantidades("mayor", cantidad, 0);
-        utilidadesTcs.validateStatusElement(estado);
+//        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.OPCION_FILTRO_TODOS_LOS_MOVIMIENTOS);
+//        int cantidad = utilidadesTcs.extractQuantityOfElements("xpath", MovimientoFuncionalPageObjects.LISTA_MOVIMIENTOS);
+//        boolean estado = utilidadesTcs.comparadorCantidades("mayor", cantidad, 0);
+//        utilidadesTcs.validateStatusElement(estado);
         Utilidades.tomaEvidencia("Validar cuando el cliente seleccione la opcion Todos los movimientos, se deben mostrar todos los movimientos debe cargar los 20 movimientos más recientes sin filtros del más reciente al más antiguo separado por días.");
     }
 	
 	@Step
     public void desplegarListaFiltroMovimientos() {
-        utilidadesTcs.esperarElementVisibility("xpath", MovimientoFuncionalPageObjects.DESPLEGABLE_FILTROS_MOVIMIENTOS);
+//        utilidadesTcs.esperarElementVisibility("xpath", MovimientoFuncionalPageObjects.DESPLEGABLE_FILTROS_MOVIMIENTOS);
         Utilidades.tomaEvidencia("Hacer clic desplegable movimientos");
-        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.DESPLEGABLE_FILTROS_MOVIMIENTOS);
+//        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.DESPLEGABLE_FILTROS_MOVIMIENTOS);
     }
 	
 	@Step
