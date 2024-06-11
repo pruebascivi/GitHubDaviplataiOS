@@ -54,4 +54,6 @@ public class LoginRobustoPage extends PageObject {
 	public static final String IN_PROGRESS_INDICATOR = "//XCUIElementTypeActivityIndicator[@name='In progress']";
 	public static final String POPUP_APROVECHA_BENEFICIOS = "//XCUIElementTypeStaticText[contains(@name, 'Aproveche los beneficios')] | //XCUIElementTypeStaticText[contains(@name, 'Compre por internet y en datáfonos')]";
 	public static final String BTN_LO_VERÉ_LUEGO_POPUP = "//XCUIElementTypeButton[@name='Lo veré luego']";
+	public static final String TXT_ERROR_SISTEMA = "//XCUIElementTypeStaticText[@name='Error en el sistema intente más tarde']";
+
 }

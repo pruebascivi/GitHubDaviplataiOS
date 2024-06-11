@@ -162,7 +162,7 @@ Feature: Pruebas en la funcionalidad de perfil negocio de la app Daviplata.
       | tipoId | usuario      | contrasena |
       | "CC"   | "1020770002" | "1234"     |
 
-  @CP02691M @defectoQr
+  @CP02691M @Passed @defectoQr
   Scenario Outline: CP02691M_SYS_Validar la creación de código QR sin valor
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     When Ingreso a perfil negocio
@@ -434,3 +434,71 @@ Feature: Pruebas en la funcionalidad de perfil negocio de la app Daviplata.
     Examples: 
       | tipoId | usuario      | contrasena | numCelular   | monto |
       | "CC"   | "1020770004" | "1234"     | "3227680700" | "100" |
+
+  #Diseños de nuevos casos
+  @CP02704M @Defecto
+  Scenario Outline: CP02704M_SYS_Validaciones puntos de ventas y vendedores
+    Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
+    When Ingreso a perfil negocio
+    And Ingresar a menu hamburguesa perfil negocio
+    And Ingreso a la opcion mas servicios
+    And Ingreso a la opcion de administrar mi negocio
+    And Creo punto de venta <nombrePuntoVenta><ciudad><primerNumeroDireccion><segundoNumeroDireccion><tercerNumeroDireccion>
+    Then Validar creacion punto de venta
+    And Creo vendedor <tipoId><nombreVendedor><numeroDocumento><numeroDeCelular>
+    Then Validar que permita actualizar los datos en punto venta y en vendedor <nombrePuntoVentaDos><numeroDeCelularDos>
+    Then Validar que permita eliminar punto venta y vendedores
+    
+    Examples: 
+      | tipoId | usuario    | contrasena | nombrePuntoVenta | ciudad                       | primerNumeroDireccion | segundoNumeroDireccion | tercerNumeroDireccion | nombreVendedor   | numeroDocumento | numeroDeCelular | nombrePuntoVentaDos | numeroDeCelularDos |
+      | "CC"   | "10050066" | "2589"     | "Motores"        | "Bogota D.C. - Bogotá, D.C." | "9"                   | "13"                   | "89"                  | "Paola Buitrago" | "10050064"      | "3221005047"    | "monty"             | "3202927338"       |
+
+  @CP02706M @passed
+  Scenario Outline: CP02706M_SYS_Validar que permita generar enlace PSE mis productos y otros
+    Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
+    When Ingreso a perfil negocio
+    And Selecciono el botón enlace de pago opcion dos
+    Then Realizo la creación del enlace de pago mis productos
+    And Selecciono la creación del enlace de pago Otros <descripcion> <valor>
+
+    Examples: 
+      | tipoId | usuario      | contrasena | descripcion | valor   |
+      | "CC"   | "10333040"   | "1234"     | "nuecesdos" | "10000" |
+
+  @CP02707M
+  Scenario Outline: CP02707M_SYS_Validar que permita compra en la tienda virtual mi negocio
+    Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
+    When Ingreso a perfil negocio
+    And Selecciono más ingresos para su negocio desde el home
+    Then Ingreso a tienda virtual y realizo una compra
+
+    Examples: 
+      | tipoId | usuario      | contrasena |
+      | "CC"   | "10050066"   | "2589"     |
+
+  @CP02708M
+  Scenario Outline: CP02708M_SYS_Validar que permita descargar el extracto de más ingresos para su negocio
+    Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
+    When Ingreso a perfil negocio
+    And Selecciono más ingresos para su negocio desde el home
+    And Ingreso a los movimientos desde la opcion más ingresos
+    And Ingreso y descargo el extracto de los movimientos
+
+    Examples: 
+      | tipoId | usuario      | contrasena |
+      | "CC"   | "10050066"   | "2589"     |
+
+  @CP02709M
+  Scenario Outline: CP02709M_SYS_Validar que en la pantalla de consulta se vean los datos correctos del movimiento teniendo en cuenta que el usuario realiza el pago
+    Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
+    When Ingreso a perfil negocio
+    And Validé saldos iniciales del daviplata
+    And Selecciono más ingresos para su negocio desde el home
+    Then Ingreso a tienda virtual y realizo una compra
+    And validar saldo final
+    And Selecciono más ingresos para su negocio desde el home
+    And Ingreso a los movimientos desde la opcion más ingresos
+
+    Examples: 
+      | tipoId | usuario      | contrasena |
+      | "CC"   | "10050066"   | "2589"     |

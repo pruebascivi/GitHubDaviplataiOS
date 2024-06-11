@@ -11,6 +11,7 @@ import java.util.Random;
 import daviplata.nacional.iOS.pageObjects.AumentoDeTopesPageObjects;
 import daviplata.nacional.iOS.pageObjects.LoginRobustoPage;
 import daviplata.nacional.iOS.pageObjects.MovimientoFuncionalPageObjects;
+import daviplata.nacional.iOS.pageObjects.PasarPlataPageObjects;
 import daviplata.nacional.iOS.utilidades.Utilidades;
 import daviplata.nacional.iOS.utilidades.UtilidadesTCS;
 import net.thucydides.core.annotations.Step;
@@ -68,10 +69,12 @@ public class MovimientoFuncionalSteps {
 		if(estadoVisible == true) {
 			utilidadesTcs.clicElement("xpath", LoginRobustoPage.BOTON_CLOSE);
 		}
-        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.VER_TODOS_MOV_BTN);
+        utilidadesTcs.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
 		Utilidades.esperaMiliseg(1500);
+        utilidadesTcs.esperarElementVisibility("xpath", MovimientoFuncionalPageObjects.VER_TODOS_MOV_BTN);
+        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.VER_TODOS_MOV_BTN);
+		Utilidades.esperaMiliseg(2000);
         Utilidades.tomaEvidencia("Ingreso al botón movimientos");
-        
 		boolean defectoVisible = utilidadesTcs.validateElementVisibilityCatch("xpath", MovimientoFuncionalPageObjects.POPUP_LO_SENTIMOS_DEFECTO);
 		if(defectoVisible == true) {
 			Utilidades.esperaMiliseg(800);
@@ -85,57 +88,65 @@ public class MovimientoFuncionalSteps {
 	public void validarMovimientosOpcionPlataQueHaRecibido() {
 		desplegarListaFiltroMovimientos();
 	    Utilidades.tomaEvidencia("Escoger opcion plata que ha recibido");
-//	    utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.OPCION_FILTRO_PLATA_QUE_HA_RECIBIDO);
-//	    int cantidad = utilidadesTcs.extractQuantityOfElements("xpath", MovimientoFuncionalPageObjects.LISTA_MOVIMIENTOS);
-//        boolean estado = utilidadesTcs.comparadorCantidades("mayor", cantidad, 0);
-//        utilidadesTcs.validateStatusElement(estado);
-        Utilidades.tomaEvidencia("Validar cuando el cliente seleccione la opcion Plata que ha recibido, los movimientos se deben filtrar por las transacciones que son ingresos al DaviPlata, del más reciente al más antiguo cargando los 20 movimientos más recientes separado por días.");
+	    utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.OPCION_FILTRO_PLATA_QUE_HA_RECIBIDO);
+		Utilidades.esperaMiliseg(1500);
+	    int cantidad = utilidadesTcs.extractQuantityOfElements("xpath", MovimientoFuncionalPageObjects.LISTA_MOVIMIENTOS);
+        boolean estado = utilidadesTcs.comparadorCantidades("mayor o igual", cantidad, 0);
+        utilidadesTcs.validateStatusElement(estado);
+        Utilidades.tomaEvidencia("Validar cuando el cliente seleccione la opcion Plata que ha recibido, "
+        		+ "los movimientos se deben filtrar por las transacciones que son ingresos al DaviPlata.");
 	}
 	
 	@Step
 	public void validarMovimientosOpcionPlataQueHaGastado() {
         desplegarListaFiltroMovimientos();
         Utilidades.tomaEvidencia("Escoger opcion plata que ha gastado");
-//        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.OPCION_FILTRO_PLATA_QUE_HA_GASTADO);
-//        int cantidad = utilidadesTcs.extractQuantityOfElements("xpath", MovimientoFuncionalPageObjects.LISTA_MOVIMIENTOS);
-//        boolean estado = utilidadesTcs.comparadorCantidades("mayor", cantidad, 0);
-//        utilidadesTcs.validateStatusElement(estado);
-        Utilidades.tomaEvidencia("Validar cuando el cliente seleccione la opcion Plata que ha gastado, n los movimientos se deben filtrar por las transacciones que son salidas (movimientos débito) del DaviPlata, del más reciente al más antiguo cargando los 20 movimientos más recientes separado por días.");
+		Utilidades.esperaMiliseg(1500);
+        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.OPCION_FILTRO_PLATA_QUE_HA_GASTADO);
+		Utilidades.esperaMiliseg(1500);
+        int cantidad = utilidadesTcs.extractQuantityOfElements("xpath", MovimientoFuncionalPageObjects.LISTA_MOVIMIENTOS);
+        boolean estado = utilidadesTcs.comparadorCantidades("mayor o igual", cantidad, 0);
+        utilidadesTcs.validateStatusElement(estado);
+        Utilidades.tomaEvidencia("Validar cuando el cliente seleccione la opcion Plata que ha gastado, "
+        		+ "los movimientos se deben filtrar por las transacciones que son salidas (movimientos débito) del DaviPlata.");
     }
 	
 	@Step
     public void validarMovimientosOpcionServiciosQueHaPagado() {
         desplegarListaFiltroMovimientos();
-//        utilidadesTcs.scrollBackground("xpath", MovimientoFuncionalPageObjects.OPCION_FILTRO_PLATA_QUE_HA_GASTADO, 0, -100);
+        //utilidadesTcs.scrollBackground("xpath", MovimientoFuncionalPageObjects.DESLIZABLE, 0, -10);
+        utilidadesTcs.clickCoordinates(400, 150);
         Utilidades.tomaEvidencia("Escoger opcion Servicios que ha pagado");
-//        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.OPCION_FILTRO_SERVICIOS_QUE_HA_PAGADO);
-//        int cantidad = utilidadesTcs.extractQuantityOfElements("xpath", MovimientoFuncionalPageObjects.LISTA_MOVIMIENTOS);
-//        boolean estado = utilidadesTcs.comparadorCantidades("mayor", cantidad, 0);
-        Utilidades.tomaEvidencia("Validar cuando el cliente seleccione la opcion Servicios que ha pagado, los movimientos se deben filtrar por las transacciones que son pagos de Servicios, del más reciente al más antiguo cargando los 20 movimientos más recientes separados por días.");
+        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.OPCION_FILTRO_SERVICIOS_QUE_HA_PAGADO);
+		Utilidades.esperaMiliseg(1500);
+        int cantidad = utilidadesTcs.extractQuantityOfElements("xpath", MovimientoFuncionalPageObjects.LISTA_MOVIMIENTOS);
+        boolean estado = utilidadesTcs.comparadorCantidades("mayor o igual", cantidad, 0);
+        utilidadesTcs.validateStatusElement(estado);
+        Utilidades.tomaEvidencia("Validar cuando el cliente seleccione la opcion Servicios que ha pagado, "
+        		+ "los movimientos se deben filtrar por las transacciones que son pagos de Servicios.");
     }
     
 	@Step
 	public void validarMovimientosOpcionTodosLosMovimientos() {
-        desplegarListaFiltroMovimientos();
-//        utilidadesTcs.scrollBackground("xpath", MovimientoFuncionalPageObjects.OPCION_FILTRO_SERVICIOS_QUE_HA_PAGADO, 0, -100);
-        Utilidades.tomaEvidencia("Escoger opcion todos los movimientos");
-//        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.OPCION_FILTRO_TODOS_LOS_MOVIMIENTOS);
-//        int cantidad = utilidadesTcs.extractQuantityOfElements("xpath", MovimientoFuncionalPageObjects.LISTA_MOVIMIENTOS);
-//        boolean estado = utilidadesTcs.comparadorCantidades("mayor", cantidad, 0);
-//        utilidadesTcs.validateStatusElement(estado);
+		Utilidades.esperaMiliseg(1500);
+        Utilidades.tomaEvidencia("Valido todos los movimientos");
+		Utilidades.esperaMiliseg(1500);
+        int cantidad = utilidadesTcs.extractQuantityOfElements("xpath", MovimientoFuncionalPageObjects.LISTA_MOVIMIENTOS);
+        boolean estado = utilidadesTcs.comparadorCantidades("mayor o igual", cantidad, 0);
+        utilidadesTcs.validateStatusElement(estado);
         Utilidades.tomaEvidencia("Validar cuando el cliente seleccione la opcion Todos los movimientos, se deben mostrar todos los movimientos debe cargar los 20 movimientos más recientes sin filtros del más reciente al más antiguo separado por días.");
     }
 	
 	@Step
     public void desplegarListaFiltroMovimientos() {
-//        utilidadesTcs.esperarElementVisibility("xpath", MovimientoFuncionalPageObjects.DESPLEGABLE_FILTROS_MOVIMIENTOS);
+		Utilidades.esperaMiliseg(1500);
+        utilidadesTcs.esperarElementVisibility("xpath", MovimientoFuncionalPageObjects.DESPLEGABLE_FILTROS_MOVIMIENTOS);
         Utilidades.tomaEvidencia("Hacer clic desplegable movimientos");
-//        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.DESPLEGABLE_FILTROS_MOVIMIENTOS);
+        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.DESPLEGABLE_FILTROS_MOVIMIENTOS);
     }
 	
 	@Step
     public void validarBotonAtrasModuloMovimientos() {
-		
 		try {
 			Utilidades.esperaMiliseg(800);
 	        utilidadesTcs.esperarElementVisibility("xpath", MovimientoFuncionalPageObjects.MODULO_MOVIMIENTOS_TXT);
@@ -174,7 +185,6 @@ public class MovimientoFuncionalSteps {
     
 	@Step
     public void validarHeaderSaldos() {
-		
 		try {
 	        boolean visibilidad = utilidadesTcs.validateElementVisibility("xpath", MovimientoFuncionalPageObjects.TEXTO_CUANTO_TENGO_DETALLE_SALDO);
 	        utilidadesTcs.validateStatusElement(visibilidad);
@@ -190,7 +200,6 @@ public class MovimientoFuncionalSteps {
     
     @Step
     public void validarTituloDelModuloMovimientos() {
-    	
     	try {
     		String texto = utilidadesTcs.obtenerTexto("xpath", MovimientoFuncionalPageObjects.TEXTO_MODULO_MOVIMIENTOS);
             utilidadesTcs.validateTextContainsString(texto, "Movimientos");
@@ -204,7 +213,6 @@ public class MovimientoFuncionalSteps {
     
     @Step
     public void validarEquisDeMovimientos() {
-    	
     	try {
     		boolean visibilidad = utilidadesTcs.validateElementVisibility("xpath", MovimientoFuncionalPageObjects.BOTON_EQUIS_MOVIMIENTOS);
     		utilidadesTcs.validateStatusElement(visibilidad);
@@ -274,4 +282,159 @@ public class MovimientoFuncionalSteps {
         utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.EQUIS_HEADER);
     }
     
+    @Step
+    public void clicOpcionBusquedaMovimientos() {
+        utilidadesTcs.esperarElementVisibility("xpath", MovimientoFuncionalPageObjects.BOTON_BUSCAR_MOVIMIENTOS);
+        Utilidades.tomaEvidencia("Hacer clic boton busqueda");
+        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.BOTON_BUSCAR_MOVIMIENTOS);
+    }
+    
+    @Step
+    public void hacerBusquedaMovientosPorNumeroCelular(String numCelular) {
+        utilidadesTcs.clicElementAction("xpath", MovimientoFuncionalPageObjects.CAMPO_BUSQUEDA_POR_NOMBRE_EN_CANGURO);
+        utilidadesTcs.writeElement("xpath", MovimientoFuncionalPageObjects.CAMPO_BUSQUEDA_POR_NOMBRE_EN_CANGURO,numCelular);
+        Utilidades.tomaEvidencia("Ingresé el número de celular");
+        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.BTN_DONE);
+        Utilidades.esperaMiliseg(1500);
+		utilidadesTcs.esperarElementVisibility("xpath", MovimientoFuncionalPageObjects.BOTON_BUSCAR);
+        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.BOTON_BUSCAR);
+        Utilidades.esperaMiliseg(3000);
+		boolean estadoVisible = utilidadesTcs.validateElementVisibilityCatch("xpath", MovimientoFuncionalPageObjects.POPUP_NO_SE_ENCONTRARON_MOV);
+		if(estadoVisible == true) {
+	        Utilidades.tomaEvidencia("No se encontraron movimientos con esta información, verifique e intente nuevamente.");
+	        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.BTN_ACEPTAR);
+	        Utilidades.esperaMiliseg(800);
+			utilidadesTcs.esperarElementVisibility("xpath", MovimientoFuncionalPageObjects.BTN_CERRAR_BUSQUEDAD_MOV);
+	        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.BTN_CERRAR_BUSQUEDAD_MOV);
+		} else {
+			utilidadesTcs.esperarElementVisibility("xpath", MovimientoFuncionalPageObjects.TXT_MOV_ENCONTRADOS);
+	        Utilidades.tomaEvidencia("Busqueda por número celular en el módulo movimientos");
+		}
+    }
+    
+	@Step
+	public void regresarAlHome() {
+		Utilidades.esperaMiliseg(2000);
+		boolean estadoVisible = utilidadesTcs.validateElementVisibilityCatch("xpath", MovimientoFuncionalPageObjects.TXT_MOV_ENCONTRADOS);
+		if(estadoVisible == true) {
+			reutilizableRegresoHome(2);
+		} else {
+			reutilizableRegresoHome(1);
+		}
+	}
+	
+	public void reutilizableRegresoHome(int contador) {
+		int count = 0;
+		do {
+			Utilidades.esperaMiliseg(2000);
+		    utilidadesTcs.esperarElementVisibility("xpath", PasarPlataPageObjects.BOTON_ATRAS_BOLSILLOS);
+		    utilidadesTcs.clicElementAction("xpath", PasarPlataPageObjects.BOTON_ATRAS_BOLSILLOS);
+			Utilidades.esperaMiliseg(1500);
+			boolean estadoVisibleAmigos = utilidadesTcs.validateElementVisibilityCatch("xpath", LoginRobustoPage.POP_UP_INVITE_AMIGOS);
+			if(estadoVisibleAmigos == true) {
+				utilidadesTcs.clicElement("xpath", LoginRobustoPage.BOTON_CLOSE);
+			}
+		    count++;
+		} while (count < contador);
+	}
+	
+	@Step
+    public void hacerBusquedaMovientosPorNombre(String nombreBusqueda) {
+        utilidadesTcs.esperarElementVisibility("xpath", MovimientoFuncionalPageObjects.TXT_BUSCAR_MOVIMIENTOS);
+        utilidadesTcs.clicElementAction("xpath", MovimientoFuncionalPageObjects.CAMPO_BUSQUEDA_POR_NOMBRE_EN_CANGURO);
+        utilidadesTcs.writeElement("xpath", MovimientoFuncionalPageObjects.CAMPO_BUSQUEDA_POR_NOMBRE_EN_CANGURO,nombreBusqueda);
+        Utilidades.tomaEvidencia("Ingresar nombre de la busqueda");
+        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.BTN_DONE);
+        Utilidades.esperaMiliseg(1500);
+		utilidadesTcs.esperarElementVisibility("xpath", MovimientoFuncionalPageObjects.BOTON_BUSCAR);
+        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.BOTON_BUSCAR);
+        Utilidades.esperaMiliseg(800);
+		boolean estadoVisible = utilidadesTcs.validateElementVisibilityCatch("xpath", MovimientoFuncionalPageObjects.POPUP_NO_SE_ENCONTRARON_MOV);
+		if(estadoVisible == true) {
+	        Utilidades.tomaEvidencia("No se encontraron movimientos con esta información, verifique e intente nuevamente.");
+	        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.BTN_ACEPTAR);
+	        Utilidades.esperaMiliseg(800);
+			utilidadesTcs.esperarElementVisibility("xpath", MovimientoFuncionalPageObjects.BTN_CERRAR_BUSQUEDAD_MOV);
+	        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.BTN_CERRAR_BUSQUEDAD_MOV);
+		} else {
+			Utilidades.esperaMiliseg(2000);
+	        Utilidades.tomaEvidencia("Busqueda por nombre en el modulo movimientos");
+		}
+    }
+	
+	@Step
+    public void hacerBusquedaMovientosSinCoincidencia(String nombreBusquedaSinCoincidencia) {
+        utilidadesTcs.esperarElementVisibility("xpath", MovimientoFuncionalPageObjects.TXT_BUSCAR_MOVIMIENTOS);
+        utilidadesTcs.clicElementAction("xpath", MovimientoFuncionalPageObjects.CAMPO_BUSQUEDA_POR_NOMBRE_EN_CANGURO);
+        utilidadesTcs.writeElement("xpath", MovimientoFuncionalPageObjects.CAMPO_BUSQUEDA_POR_NOMBRE_EN_CANGURO,nombreBusquedaSinCoincidencia);
+        Utilidades.tomaEvidencia("Ingresar nombre sin coincidencia");
+        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.BTN_DONE);
+        Utilidades.esperaMiliseg(1500);
+		utilidadesTcs.esperarElementVisibility("xpath", MovimientoFuncionalPageObjects.BOTON_BUSCAR);
+        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.BOTON_BUSCAR);
+        Utilidades.esperaMiliseg(800);
+		boolean estadoVisible = utilidadesTcs.validateElementVisibilityCatch("xpath", MovimientoFuncionalPageObjects.POPUP_NO_SE_ENCONTRARON_MOV);
+		if(estadoVisible == true) {
+	        Utilidades.tomaEvidencia("Validar que si no se encuentran movimientos de acuerdo a la consulta del cliente, le debe aparecer un pop up");
+	        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.BTN_ACEPTAR);
+	        Utilidades.esperaMiliseg(800);
+	        Utilidades.tomaEvidencia("Validar que al dar clic en el boton aceptar quede en el canguro de busqueda");
+			utilidadesTcs.esperarElementVisibility("xpath", MovimientoFuncionalPageObjects.BTN_CERRAR_BUSQUEDAD_MOV);
+	        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.BTN_CERRAR_BUSQUEDAD_MOV);
+		} else {
+			Utilidades.esperaMiliseg(2000);
+	        Utilidades.tomaEvidencia("Busqueda por nombre sin coincidencia en el modulo movimientos");
+		}
+    }
+	
+	@Step
+	public void darClicEnExtractos() {
+        Utilidades.tomaEvidencia("Clic en extractos");
+        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.BOTON_EXTRACTOS);
+    }
+	
+	@Step
+	public void validoListaDeExtractosDisponibles() {
+        Utilidades.tomaEvidencia("Doy clic en lista desplegable de extractos");
+        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.LISTA_DESPLEGABLE_EXTRACTOS);
+        Utilidades.tomaEvidencia("Validar que la pestaña Extractos, debe contener un campo de selección de fecha con el icono del XD (flecha en dirección abajo) qué contiene las fechas de los meses y año a solicitar el extracto. Se debe mostrar la cantidad de meses actuales en producción");
+    }
+	
+	@Step
+	public void ocultarListaDesplegableExtractosDisponibles() {
+        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.LISTA_DESPLEGABLE_EXTRACTOS);
+    }
+    
+	@Step
+    public void validarTextoDeExtractos() {
+        boolean textoExtractos = utilidadesTcs.validateElementVisibility("xpath", MovimientoFuncionalPageObjects.TEXTO_EXTRACTOS);
+        utilidadesTcs.validateStatusElement(textoExtractos);
+        utilidades.tomaEvidencia("Validar que en la pestaña Extractos aparezca un texto que diga 'Recuerde que sólo podrá descargar los extractos de los meses donde haya usado su DaviPlata'", "xpath", MovimientoFuncionalPageObjects.TEXTO_EXTRACTOS);
+    }
+    
+    @Step
+    public void validarBotonDescargasDeshabilitado() {
+        boolean estado = utilidadesTcs.validateElementEnabled("xpath", MovimientoFuncionalPageObjects.BOTON_DESCARGAS);
+        utilidadesTcs.validateStatusElementFalse(estado);
+        utilidades.tomaEvidencia("Validar que en la pantalla sobre puesta de Extractos, aparezca un boton (Descargar) y que se encuentre deshabilitado.", "xpath", MovimientoFuncionalPageObjects.BOTON_DESCARGAS);
+    }
+    
+    @Step
+    public void ValidoBotonDescargarHabilitadoAlEscogerExtracto() {
+        utilidades.tomaEvidencia("Doy clic en lista desplegable de extractos", "xpath", MovimientoFuncionalPageObjects.LISTA_DESPLEGABLE_EXTRACTOS);
+        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.LISTA_DESPLEGABLE_EXTRACTOS);
+        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.TEXTO_EXTRACTOS);
+        boolean estado = utilidadesTcs.validateElementEnabled("xpath", MovimientoFuncionalPageObjects.BOTON_DESCARGAS);
+        utilidadesTcs.validateStatusElement(estado);
+        utilidades.tomaEvidencia("Validar que en el momento en el que el cliente seleccione un mes, se le debe habilitar el boton 'Descargar'", "xpath", MovimientoFuncionalPageObjects.BOTON_DESCARGAS);
+        
+    }
+    
+    @Step
+    public void validarClicEquisEnMovimientos() {
+        utilidades.tomaEvidencia("Clic en el boton equis", "xpath", MovimientoFuncionalPageObjects.BOTON_EQUIS_EXTRACTOS);
+        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.BOTON_EQUIS_EXTRACTOS);
+        Utilidades.tomaEvidencia("Validar que en la pantalla sobre puesta, debe contener en la parte superior una 'X' qué cuando el cliente de click en esta debe devolverlo a la pantalla de los movimientos");
+    }
+	
 }

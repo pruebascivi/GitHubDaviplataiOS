@@ -193,6 +193,12 @@ public class RegistroMayoresSteps{
 	}
 	
 	@Step
+	public void hacerClicEnElBotonFinalizar() {
+		Utilidades.esperaMiliseg(1000);
+		utilidadesTcs.clicElement("xpath", RegistroMayoresPageObjects.BOTON_FINALIZAR);
+	}
+	
+	@Step
 	public void validarPopUpUsuarioExistente() {
 		utilidadesTcs.esperarElementVisibility("xpath", RegistroMayoresPageObjects.TEXTO_POP_UP_USUARIO_CON_CUENTA);
 		String texto = utilidadesTcs.obtenerTexto("xpath", RegistroMayoresPageObjects.TEXTO_POP_UP_USUARIO_CON_CUENTA);

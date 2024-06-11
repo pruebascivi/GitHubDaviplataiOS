@@ -69,6 +69,7 @@ public class LoginSteps {
 		Utilidades.esperaMiliseg(800);
 		Utilidades.tomaEvidencia("Selecciono tipo de usurio: " + tipoDocumento + " e ingreso usuario: " + usuario);
 		utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_INGRESAR);
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 120);
 		boolean estadoVisibilidadPopUP = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.POP_UP_CAMBIAR_DISPOSITIVO);
 		if (estadoVisibilidadPopUP == true) {
 			utilidadesTCS.clicElement("xpath", LoginRobustoPage.CONTINUAR_POP_UP_CAMBIAR_DISPOSITIVO);
@@ -139,6 +140,7 @@ public class LoginSteps {
 			pageLogin.darClicBotonIngresar();
 			Utilidades.esperaMiliseg(500);
 			pageLogin.darClicBotonIngresar();
+			utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 120);
 		}
 
 		boolean estadoVisible = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.POP_UP_INVITE_AMIGOS);
@@ -195,9 +197,10 @@ public class LoginSteps {
         pageLogin.ingresarContrasena(contrasena);
         Utilidades.tomaEvidencia("Diligencio usuario " + usuario + " contraseña " + contrasena);
         pageLogin.darClicBotonIngresar();
-        Utilidades.esperaMiliseg(5000);
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+        Utilidades.esperaMiliseg(1500);
         pageLogin.darClicBotonIngresar();
-        
+        Utilidades.esperaMiliseg(5000);
 		boolean estadoVisiblePopUpAmigos = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.POP_UP_INVITE_AMIGOS);
 		if(estadoVisiblePopUpAmigos == true) {
 			
@@ -211,7 +214,8 @@ public class LoginSteps {
 			utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_CLOSE);
 		}
 		Utilidades.esperaMiliseg(5000);
-//		pageLogin.cerrarMensajeTopes();
+		pageLogin.capturarSaldo();
+		//pageLogin.cerrarMensajeTopes();
 	}
 	
 	@Step
@@ -230,8 +234,8 @@ public class LoginSteps {
 		pageLogin.darClicBotonIngresar();
 		Utilidades.esperaMiliseg(500);
 		pageLogin.darClicBotonIngresar();
-		
 	}
+	
 	public void ingresarAAppNuevaContraseniaDespuesCambio(String tipoDocumento, String usuario, String claveNueva) {
 		System.out.println("Ingresando a la app");
 		Utilidades.esperaMiliseg(500);
@@ -856,9 +860,10 @@ public class LoginSteps {
         Utilidades.tomaEvidencia("Ingreso a Daviplata");
     }
 	
+	@Step
 	public void verificarVersion() {
-
 		try {
+			Utilidades.esperaMiliseg(1500);
 			utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.MENU_TRES_PUNTOS);
 			utilidadesTCS.clicElement("xpath", LoginRobustoPage.MENU_TRES_PUNTOS);
 			Utilidades.tomaEvidencia("Menu tres puntos");
