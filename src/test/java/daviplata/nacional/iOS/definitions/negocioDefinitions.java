@@ -429,5 +429,76 @@ public class negocioDefinitions {
     public void validoIngresoAlPerfilPersona() throws Exception {
         negocioStep.validarElPerfilPersona();
     }
+	
+	@When("^Ingreso a la opcion mas servicios$")
+    public void ingresoALaOpcionMasServicios() throws Exception {
+        negocioStep.ingresarALaOpcionMasServicios();
+    }
+    
+    @When("^Ingreso a la opcion de administrar mi negocio$")
+    public void ingresoALaOpcionDeAdministrarMiNegocio() throws Exception {
+        negocioStep.ingresoEnAdministrarMiNegocio();
+    }
+    
+    @When("^Creo punto de venta \"([^\"]*)\"\"([^\"]*)\"\"([^\"]*)\"\"([^\"]*)\"\"([^\"]*)\"$")
+    public void creoPuntoDeVenta(String nombrePuntoVenta, String ciudad, String primerNumeroDireccion, String segundoNumeroDireccion, String tercerNumeroDireccion) throws Exception {
+        negocioStep.crearFlujoDePuntoVenta(nombrePuntoVenta, ciudad, primerNumeroDireccion, segundoNumeroDireccion, tercerNumeroDireccion);
+    }
+    
+    @Then("^Validar creacion punto de venta$")
+    public void validarCreacionPuntoDeVenta() throws Exception {
+        negocioStep.validarCreacionPuntoVenta();
+    }
+    
+    @When("^Creo vendedor \"([^\"]*)\"\"([^\"]*)\"\"([^\"]*)\"\"([^\"]*)\"$")
+    public void creoVendedor(String tipoDocumento, String nombreVendedor, String numeroDocumento, String numeroDeCelular) throws Exception {
+        negocioStep.crearVendedor(tipoDocumento, nombreVendedor, numeroDocumento, numeroDeCelular);
+    }
+    
+    @Then("^Validar que permita actualizar los datos en punto venta y en vendedor \"([^\"]*)\"\"([^\"]*)\"$")
+    public void validarQuePermitaActualizarDatosVendedorYVenta(String nombrePuntoVentaDos, String numeroDeCelularDos) throws Exception {
+        negocioStep.validarQuePermitaActualizarDatosVendedorYVenta(nombrePuntoVentaDos,numeroDeCelularDos);
+    }
+    
+    @Then("^Validar que permita eliminar punto venta y vendedores$")
+    public void validarQuePermitaEliminarVendedorYVenta() throws Exception {
+        negocioStep.validarQuePermitaEliminarVendedorYVenta();
+    }
+    
+    @Then("^Selecciono el botón enlace de pago opcion dos$")
+    public void seleccionoElBotonEnlaceDePagoOpcionDos() throws Exception {
+        negocioStep.seleccionoElBotonEnlaceDePagoOpcionDos();
+    }
+    
+    @Then("^Realizo la creación del enlace de pago mis productos$")
+    public void RealizoLaCreacionDeLaVenta() throws Exception {
+        negocioStep.RealizoLaCreacionDeLaVenta();
+    }
+    
+    @Then("^Selecciono más ingresos para su negocio desde el home$")
+    public void seleccionoMasIngresosParaSuNegocioHome() throws Exception {
+        negocioStep.seleccionoMasIngresosParaSuNegocioHome();
+    }
+    
+    @Then("^Ingreso a tienda virtual y realizo una compra$")
+    public void ingresoATiendaVirtualYRealizoUnaCompra() throws Exception {
+        negocioStep.ingresarATiendaVirtualDesdeMasIngresos();
+    }
+    
+    @Then("^Ingreso y descargo el extracto de los movimientos$")
+    public void ingresoYDescargoElExtractoDeLosMovimientos() throws Exception {
+        negocioStep.descargarExtractosDesdeMovimientos();
+    }
+    
+    
+    @Then("^Ingreso a los movimientos desde la opcion más ingresos$")
+    public void ingresoALosMovimientosDesdeLaOpcionMasIngresos() throws Exception {
+        negocioStep.ingresarAMovimientosDesdeMasIngresos();
+    }
+    
+    @Then("^Selecciono la creación del enlace de pago Otros \"([^\"]*)\" \"([^\"]*)\"$")
+    public void SeleccionoLaCreacionDelEnlaceDePagoOtros(String descripcion, String valor) throws Exception {
+        negocioStep.SeleccionoLaCreacionDelEnlaceDePagoOtros(descripcion, valor);
+    }
 }
 

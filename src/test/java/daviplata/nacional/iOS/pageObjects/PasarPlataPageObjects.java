@@ -39,6 +39,7 @@ import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.pages.PageObject;
+import net.thucydides.core.annotations.Step;
 
 public class PasarPlataPageObjects extends PageObject {
 	
@@ -63,7 +64,7 @@ public class PasarPlataPageObjects extends PageObject {
 	//**********
 	private String labelSaldo = "(//XCUIElementTypeStaticText)[6]";
 	//private String btnPasarPlata = "com.davivienda.daviplataapp.lab:id/passarPlata";
-	private String btnPasarPlata = "(//XCUIElementTypeOther[contains(@label, 'Pasar plata botón')])[11] | //XCUIElementTypeOther[@name='btn-circle-button-2']";
+	private String btnPasarPlata = "//XCUIElementTypeOther[@name='btn-my-movements-1'] | //XCUIElementTypeOther[@name='Pasar Plata botón Pasar Plata'] | (//XCUIElementTypeOther[contains(@label, 'Pasar plata botón')])[11] | //XCUIElementTypeOther[@name='btn-circle-button-2']";
 	private String btnPasarPlata2 = "//XCUIElementTypeButton[@name='Pasar Plata']";
 	private String selectTipoCuenta = "com.davivienda.daviplataapp.lab:id/pasarplata_paso01_btnOp2";
 	private String selectNumCuenta = "com.davivienda.daviplataapp.lab:id/pasarplata_paso00_btnOp2";
@@ -213,6 +214,7 @@ public class PasarPlataPageObjects extends PageObject {
 	private String textoValorInferior="//*[@name='Valor inferior al permitido']";
 	private String btnVerMasHomeDaviplata = "//XCUIElementTypeOther[@name='btn-my-movements-3'] | (//XCUIElementTypeOther[contains(@label, 'Más botón')])[13]";
 	private String btnMarketPlace = "(//XCUIElementTypeOther[@name='Tienda Virtual'])[2]";
+	
 	public static final String CODIGO_AUTORIZACION = "(//XCUIElementTypeStaticText)[15]";
 	public static final String TXT_ANTES_FINALIZAR = "//XCUIElementTypeStaticText[@name='Antes de finalizar']";
 	public static final String CONTINUAR_POPUP_ANTES_FINALIZAR_BTN = "//XCUIElementTypeStaticText[@name='Continuar']";
@@ -230,7 +232,7 @@ public class PasarPlataPageObjects extends PageObject {
 	public static final String ACEPTAR_POPUP = "//XCUIElementTypeButton[@name='Continuar']";
 	public static final String CONTINUAR_DATOS_PASAR_PLATA_DAV = "//XCUIElementTypeButton[@name='Continuar']";
 	public static final String PASAR_PLATA_BTN_DAV = "//XCUIElementTypeButton[@name='Pasar Plata']";
-	public static final String BOTON_ATRAS_BOLSILLOS = "//XCUIElementTypeButton[contains(@name, 'Regresar')] | //XCUIElementTypeButton[contains(@label, 'Regresar')] | //XCUIElementTypeButton[contains(@name, 'Botón atrás')] | //XCUIElementTypeButton[contains(@name,'Botón atrás')] | //*[contains(@name,'ic arrow left')] | //*[contains(@name, 'Regresar')] | //XCUIElementTypeButton[contains(@name, 'icon back button')] | //XCUIElementTypeOther[@name='image-header-0']/XCUIElementTypeImage";
+	public static final String BOTON_ATRAS_BOLSILLOS = "//XCUIElementTypeButton[contains(@name, 'Regresar')] | //XCUIElementTypeButton[contains(@label, 'Regresar')] | //XCUIElementTypeButton[contains(@name, 'Botón atrás')] | //XCUIElementTypeButton[contains(@name,'Botón atrás')] | //*[contains(@name,'ic arrow left')] | //*[contains(@name, 'Regresar')] | //XCUIElementTypeButton[contains(@name, 'icon back button')] | //XCUIElementTypeOther[@name='image-header-0']/XCUIElementTypeImage | //XCUIElementTypeButton[@name='Atrás Botón'] | //XCUIElementTypeButton[@name='Atras'] | //XCUIElementTypeButton[@name='atrás Botón'] | //XCUIElementTypeButton[contains(@name, 'atrás')] | //XCUIElementTypeButton[contains(@name, 'Atrás')]";
 	public static final String TEXTO_POPUP_PEDIR_PLATA = "//XCUIElementTypeStaticText[contains(@value, 'Por esta opción puede pasar, recibir y pedir plata a cualquier persona, solo debe conocer el número de celular')]";
 	public static final String CLIC_TEXT = "//XCUIElementTypeStaticText[@name='Complete la información']";
 	public static final String TXT_COMPLETAR_DATOS = "//XCUIElementTypeStaticText[contains(@name, 'Por favor confirme los siguientes datos')] | //XCUIElementTypeStaticText[@name='Por favor confirme los siguientes datos:'] | //XCUIElementTypeStaticText[contains(@value, 'Por favor confirme los siguientes datos:')] | //XCUIElementTypeOther[@name='ACHenLinea']/XCUIElementTypeOther[1]";
@@ -255,7 +257,7 @@ public class PasarPlataPageObjects extends PageObject {
 	public static final String POPUP_SOLICITUD_PENDIENTE = "//XCUIElementTypeTextView[contains(@value , 'Recuerde que tiene hasta 12 horas')] | //XCUIElementTypeTextView | //XCUIElementTypeTextView[contains(@value, '12 horas')]";
 	public static final String POPUP_COBRO_RECHAZADO = "//XCUIElementTypeStaticText[@name='El cobro ha sido rechazado']";
 	public static final String BTN_ACEPTAR_COBRO = "//XCUIElementTypeButton[@name='Aceptar']";
-
+	public static final String CAMPO_MONTO = "//XCUIElementTypeTextField[contains(@name, 'Ingrese un valor')] | //XCUIElementTypeOther[contains(@name, 'Cuánta plata quiere pedir')]/following-sibling::XCUIElementTypeTextField";
 	
 	public void btnBolsillos() {
 		MobileElement element = (MobileElement) wait
@@ -2506,6 +2508,7 @@ public class PasarPlataPageObjects extends PageObject {
 		}finally {contador = 0;}
 	}
 	
+	@Step
 	public void validarTransaccion() {
 		try {
 			contador++;
@@ -2523,6 +2526,7 @@ public class PasarPlataPageObjects extends PageObject {
 
 	}
 	
+	@Step
 	public void validarTransaccionFallida() {
 		try {
 			contador++;
@@ -2540,6 +2544,7 @@ public class PasarPlataPageObjects extends PageObject {
 
 	}
 
+	@Step
 	public void txtAutorizadorOtrosBancos() {
 		try {
 			contador++;
@@ -2563,9 +2568,9 @@ public class PasarPlataPageObjects extends PageObject {
 				fail("No se pudo capturar autorizador de transacción debido a: " + e.getMessage());
 			}
 		}finally {contador=0;}
-
 	}
 
+	@Step
 	public void darClickEnFinalizarTransaccionOtrosBancos() {
 		try {
 			contador++;
@@ -2584,10 +2589,12 @@ public class PasarPlataPageObjects extends PageObject {
 
 	}
 	
+	@Step
 	public void scrollHastaBotonContinuar() {
 		Utilidades.scrollHastaElemento("Continuar");
 	}
 
+	@Step
 	public void btnContinue() {
 		try {
 			contador++;
@@ -2599,8 +2606,7 @@ public class PasarPlataPageObjects extends PageObject {
 		}finally {contador = 0;}
 	}
 	
-	
-	
+	@Step
 	public void darClickBtnSolicitudPendiente() {
 		try {
 			contador++;
@@ -2613,6 +2619,7 @@ public class PasarPlataPageObjects extends PageObject {
 		}finally {contador = 0;}
 	}
 	
+	@Step
 	public void validarMontoSolicitud(String monto) {
 		try {
 			contador++;
@@ -2627,6 +2634,7 @@ public class PasarPlataPageObjects extends PageObject {
 		}finally {contador = 0;}
 	}
 	
+	@Step
 	public void clickAceptarSolicitud() {
 		try {
 			contador++;
@@ -2639,7 +2647,7 @@ public class PasarPlataPageObjects extends PageObject {
 		}finally {contador = 0;}
 	}
 	
-	
+	@Step
 	public void clickRechazarSolicitud() {
 		try {
 			contador++;
@@ -2653,8 +2661,7 @@ public class PasarPlataPageObjects extends PageObject {
 		}finally {contador = 0;}
 	}
 	
-	
-	
+	@Step
 	public void clickConfirmarRechazarSolicitud() {
 		try {
 			contador++;
@@ -2667,6 +2674,7 @@ public class PasarPlataPageObjects extends PageObject {
 		}finally {contador = 0;}
 	}
 	
+	@Step
 	public void clickContinuarRechazarSolicitud() {
 		try {
 			contador++;
@@ -2679,7 +2687,7 @@ public class PasarPlataPageObjects extends PageObject {
 		}finally {contador = 0;}
 	}
 	
-	
+	@Step
 	public void validarClienteGMF(String estadoExenta) {
 		try {
 			contador++;
@@ -2691,6 +2699,7 @@ public class PasarPlataPageObjects extends PageObject {
 		}finally {contador = 0;}
 	}
 	
+	@Step
 	public void validarMontoEsMayorATopeCredito(String monto) {
 		try {
 			contador++;
@@ -2703,6 +2712,7 @@ public class PasarPlataPageObjects extends PageObject {
 		}finally {contador = 0;}
 	}
 	
+	@Step
 	public void validarMontoEsMayorATopeDebito(String monto) {
 		try {
 			contador++;
@@ -2715,6 +2725,7 @@ public class PasarPlataPageObjects extends PageObject {
 		}finally {contador = 0;}
 	}
 	
+	@Step
 	public void clicBtnContinuarPasarPlataLinea() {
 		try {
 			contador++;
@@ -2732,6 +2743,7 @@ public class PasarPlataPageObjects extends PageObject {
 					
 	}
 	
+	@Step
 	public void validarOpcionMeterPlataHomeDavi() {
 		try {
 			contador++;
@@ -2750,6 +2762,7 @@ public class PasarPlataPageObjects extends PageObject {
 					
 	}
 	
+	@Step
 	public void validarVisibilidadFormularioPse() {
 		try {
 			contador++;
@@ -2763,9 +2776,9 @@ public class PasarPlataPageObjects extends PageObject {
 				fail("No se encontró input 'Accounbt Agency' en el banco pse, debido a: " + e.getMessage());
 			}
 		}finally {contador=0;}
-					
 	}
 	
+	@Step
 	public void inputNumeroCuenta(String numeroCuenta) {
 		try {
 			contador++;
@@ -2783,6 +2796,7 @@ public class PasarPlataPageObjects extends PageObject {
 					
 	}
 	
+	@Step
 	public void inputPasswordCuenta(String password) {
 		try {
 			contador++;
@@ -2797,9 +2811,9 @@ public class PasarPlataPageObjects extends PageObject {
 				fail("No se encontró input 'Password' en el banco pse, debido a: " + e.getMessage());
 			}
 		}finally {contador=0;}
-					
 	}
 	
+	@Step
 	public void clicBtnPay() {
 		try {
 			contador++;
@@ -2814,9 +2828,9 @@ public class PasarPlataPageObjects extends PageObject {
 				fail("No se encontró botón 'Pay' en el banco pse, debido a: " + e.getMessage());
 			}
 		}finally {contador=0;}
-					
 	}
 	
+	@Step
 	public void validarTransaccionPseBanco() {
 		try {
 			contador++;
@@ -2831,9 +2845,9 @@ public class PasarPlataPageObjects extends PageObject {
 				fail("No se encontró mensaje de transacción de pse, debido a: " + e.getMessage());
 			}
 		}finally {contador=0;}
-					
 	}
 	
+	@Step
 	public void validarAparezcaTransaccionPseBanco() {
 		try {
 			contador++;
@@ -2849,6 +2863,8 @@ public class PasarPlataPageObjects extends PageObject {
 		}finally {contador=0;}
 					
 	}
+	
+	@Step
 	public void inputAgenciaCuentas(String agenciaCuentas) {
 		try {
 			contador++;
@@ -2866,6 +2882,7 @@ public class PasarPlataPageObjects extends PageObject {
 					
 	}
 
+	@Step
 	public void clicContinuar(int repeticion) {
 		try {
 			contador++;
@@ -2884,6 +2901,7 @@ public class PasarPlataPageObjects extends PageObject {
 		}
 	}
 	
+	@Step
 	public void validoLblBolsilloFondosInsuficientes() {
 		try {
 			contador++;
@@ -2903,6 +2921,8 @@ public class PasarPlataPageObjects extends PageObject {
 			}
 		}finally {contador=0;}
 	}
+	
+	@Step
 	public void capturarSaldoInicialDaviplata() {
 		try {
 			contador++;
@@ -2932,15 +2952,18 @@ public class PasarPlataPageObjects extends PageObject {
 		}
 	}
 	
+	@Step
 	public void validarIgualdadSaldosInicialesGmf() {
 		assertThat(Serenity.sessionVariableCalled("saldoInicial"), equalTo(Serenity.sessionVariableCalled("saldoRealGmf")));
 
 	}
 	
+	@Step
 	public void validarIgualdadSaldosIniciales() {
 		assertThat(Serenity.sessionVariableCalled("saldoInicial"), equalTo(Serenity.sessionVariableCalled("saldoReal")));
 	}
 	
+	@Step
 	public void  esperarVisibilidadMensajeTransaccion() {
 		try {
 			contador++;
@@ -2964,6 +2987,7 @@ public class PasarPlataPageObjects extends PageObject {
 		}
 	}
 	
+	@Step
 	public void ingresarMontoCuentaTopeDebitos() {
 		try {
 			contador++;
@@ -2985,6 +3009,7 @@ public class PasarPlataPageObjects extends PageObject {
 		}
 	}
 	
+	@Step
 	public void clicBotonContinuar() {
 		try {
 			contador++;
@@ -3002,6 +3027,7 @@ public class PasarPlataPageObjects extends PageObject {
 		}
 	}
 	
+	@Step
 	public void darClickBotonMasHome() {
 		try {
 			contador++;
@@ -3017,6 +3043,7 @@ public class PasarPlataPageObjects extends PageObject {
 		
 	}
 	
+	@Step
 	public void validarBotonContinuarPasarPlataInhabilitado() {
 		try {
 			contador++;
@@ -3034,6 +3061,7 @@ public class PasarPlataPageObjects extends PageObject {
 
 	}
 	
+	@Step
 	public void cerrarPasarPlataRedesSociales() {
 		try {
 			contador++;
@@ -3048,9 +3076,9 @@ public class PasarPlataPageObjects extends PageObject {
 				fail("No se encontró botón 'Cerrar' de redes sociales del home daviplata, debido a: " + e.getMessage());
 			}
 		}finally {contador=0;}
-		
 	}
 	
+	@Step
 	public void clicBotonFavoritosCuentaInscritas() {
 		try {
 			contador++;
@@ -3066,6 +3094,7 @@ public class PasarPlataPageObjects extends PageObject {
 		
 	}
 	
+	@Step
 	public void clicCuentaInscritas() {
 		try {
 			contador++;
@@ -3081,6 +3110,7 @@ public class PasarPlataPageObjects extends PageObject {
 		
 	}
 	
+	@Step
 	public void clicBotonCuentaFav() {
 		try {
 			contador++;
@@ -3095,6 +3125,7 @@ public class PasarPlataPageObjects extends PageObject {
 		} finally {contador=0;}
 	}
 
+	@Step
 	public void validarMensajeMontoSuperiorSaldoDisponible() {
 		try {
 			contador++;
@@ -3108,9 +3139,9 @@ public class PasarPlataPageObjects extends PageObject {
 				fail("No se encontró mensaje del monto ajustable al disponible en el monedero en pasar plata, debido a: " + e.getMessage());
 			}
 		}finally {contador=0;}
-		
 	}
 
+	@Step
 	public void validarTopesDebitoDestino(String topeDebitos) {
         String debitoMensual = BaseUtil.topeDebitos;
         BaseUtil.topeDebitosActual = topeDebitos;
@@ -3122,6 +3153,8 @@ public class PasarPlataPageObjects extends PageObject {
             System.out.println("***El tope debito del daviplata no se encuentra en el rango actual de topes***");
         }
     }
+	
+	@Step
 	public void ingresarMontoMayor() {
 		try {
 			contador++;
@@ -3143,6 +3176,7 @@ public class PasarPlataPageObjects extends PageObject {
 		}
 	}
 	
+	@Step
 	public void esperarVisibilidadPantallaTransfiYa() {
 		try {
 			contador++;
@@ -3159,6 +3193,7 @@ public class PasarPlataPageObjects extends PageObject {
 		}
 	}
 	
+	@Step
 	public void validarFondosInsuficientes() {
 		try {
 			contador++;
@@ -3177,6 +3212,7 @@ public class PasarPlataPageObjects extends PageObject {
 		}
 	}
 	
+	@Step
 	public void inputMontoFondosInsuficientes() {
 		BigDecimal saldoTotal = Serenity.sessionVariableCalled("saldoReal");
         int suma = saldoTotal.intValue() + 1000;
@@ -3186,9 +3222,9 @@ public class PasarPlataPageObjects extends PageObject {
 		driver.findElement(By.xpath(this.inputMontoPasarP)).sendKeys(valorSuperior);
 		BaseUtil.montoTransado = new BigDecimal(valorSuperior);
 		cerrarTeclado();
-		
 	}
 	
+	@Step
 	public void validarValorInferiorOtrosBancos() {
 		try {
 			contador++;
@@ -3206,13 +3242,4 @@ public class PasarPlataPageObjects extends PageObject {
 			contador = 0;
 		}
 	}
-
-
-
-
-
-
-public static final String NAME = "";
-
-	
 }

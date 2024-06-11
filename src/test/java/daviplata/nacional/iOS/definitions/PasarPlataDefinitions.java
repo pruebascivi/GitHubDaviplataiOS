@@ -35,7 +35,6 @@ public class PasarPlataDefinitions {
 	@Steps
 	BaseUtil base;
 	private AppiumDriver<MobileElement> driver = Hooks.getDriver();
-
 	ArrayList<Float> saldos = new ArrayList<Float>();
 	String numCelular = "";
 	private int contador = 0;
@@ -247,6 +246,11 @@ public class PasarPlataDefinitions {
 	public void validaoTransaccionExitosa() {
 		stepsPasarPlata.verificarSaldosDebitoDaviPlata();
 	}
+	
+	@Then("^Verifico la informacion y paso plata$")
+	public void verificoLaInformacionYPasoPlata() {
+		stepsPasarPlata.verificarInfoYPasarPlata();
+	}
 
 	@Then("^validar transaccion exitosa$")
 	public void validarTransaccionExitosa() {
@@ -259,7 +263,6 @@ public class PasarPlataDefinitions {
 		stepsPasarPlata.verificarTransaccionFallida();
 	}
 	
-
 	@Then("^validar transaccion exitosa otros bancos$")
 	public void validarTransaccionExitosaOtrosBancos() {
 		stepsPasarPlata.verificarTransaccionExitosaOtrosBancos();
@@ -288,6 +291,7 @@ public class PasarPlataDefinitions {
 	public void pasarPlataABolsillos(String valor) throws Exception {
 		stepsPasarPlata.pasarPlataBolsillos(valor);
 	}
+	
 	@When("^pasar plata a bolsillos desde menu hamburguresa \"([^\"]*)\"$")
 	public void pasarPlataABolsilloshamburguesa(String valor) throws Exception {
 		stepsPasarPlata.pasarPlataBolsillosHamburguesa(valor);
@@ -490,8 +494,13 @@ public class PasarPlataDefinitions {
 	}
 	
 	@Given("^realizo flujo pedir plata en linea \"([^\"]*)\" \"([^\"]*)\"$")
-	public void realizoFlujoPasarPlataEnLinea(String numCelular, String monto) throws Exception {
+	public void realizoFlujoPedirPlataEnLinea(String numCelular, String monto) throws Exception {
 		stepsPasarPlata.realizarFlujoPedirPlata(numCelular, monto);
+	}
+	
+	@Given("^realizo flujo pasar plata en linea \"([^\"]*)\" \"([^\"]*)\"$")
+	public void realizoFlujoPasarPlataEnLinea(String numCelular, String monto) throws Exception {
+		stepsPasarPlata.realizarFlujoPasarPlata(numCelular, monto);
 	}
 	
 	@Given("^Realizo flujo pasar plata transfiya \"([^\"]*)\" \"([^\"]*)\"$")
@@ -998,6 +1007,21 @@ public class PasarPlataDefinitions {
 	public void validarAunNoTieneMovimientosHome() {
 		stepsPasarPlata.validarNoMovimientos();
 	}
+	
+	@Given("^ir a la opcion más Home$")
+    public void irALaOpcionMasHome() throws Exception {
+        stepsPasarPlata.irALaOpcionMasHome();
+    }
+    
+    @Then("^Valido la opción recibir y pedir plata$")
+    public void irARecibirYPedirPlata() throws Exception {
+        stepsPasarPlata.irARecibirYPedirPlata();
+    }
+    
+    @Then("^Ingreso a las solicitudes de TransfiYa$")
+    public void validarSolicitudesTransfiya() throws Exception {
+        stepsPasarPlata.validarSolicitudesTransfiya();
+    }
 }
 			
 

@@ -48,7 +48,6 @@ public class MeterPlataDefinitions {
 	@When("^Regreso al home daviplata desde el menu hamburguesa$")
 	public void regresoAlHomeDaviplataDesdeElMenuHamburguesa() throws Exception {
 		meterPlataSteps.regresarAlHome();
-
 	}
 
 	@When("^Ingreso a la opción meter plata desde el home daviplata$")
@@ -75,11 +74,21 @@ public class MeterPlataDefinitions {
 	public void ingresoALaOpciónMeterPlataDesdeCualquierBanco() throws Exception {
 		meterPlataSteps.clicBotonMeterPlataDesdeCualquierBanco();
 	}
-
+	
 	@When("^Valido formulario de datos para Meter plata$")
 	public void validoFormularioDeDatosParaMeterPlata() throws Exception {
 		meterPlataSteps.validarFormDatosMeterPlata();
 	}
+	
+	@When("^Ingreso Numero celular destino$")
+    public void ingresoNumeroCelular() throws Exception {
+        meterPlataSteps.ingresarNumeroCelularDaviplataFormularioUsuarioDestino();
+    }
+	
+	@When("^Ingreso confirmacion de numero celular destino$")
+    public void ingresoConfirmacionDeNumeroCelulaDestino() throws Exception {
+        meterPlataSteps.ingresarConfirmacionNumeroCelularDestino();
+    }
 
 	@When("^Regreso a la opcion de donde quiero meter la plata$")
 	public void regresoALaOpcionDeDondeQuieroMeterlaPlata() throws Exception {
@@ -226,7 +235,6 @@ public class MeterPlataDefinitions {
 		meterPlataSteps.desplegarListaBancos();
 	}
 	
-	
 	@Given("Ingreso confirmacion de numero celular destino \"([^\"]*)\"$")
 	public void ingresoConfirmacionDeNumeroCelularDestino() throws Exception {
 		meterPlataSteps.confirmoNumeroCel();
@@ -337,6 +345,16 @@ public class MeterPlataDefinitions {
 		meterPlataSteps.clicContinuarFormularioOtrosBancos();
 	}
 	
+	@When("^Doy clic en el bonton continuar del formulario desde otros bancos sin flujo adicional$")
+	public void doyClicEnElBotonContinuarDelFormularioDesdeOtrosBancosSinFlujoAdicional() throws Exception {
+		meterPlataSteps.daRclicContinuarFormularioOtrosBancos();
+	}
+	
+	@When("^Valido rechazo de la transaccion$")
+	public void validoRechazoDeLaTransaccion() throws Exception {
+		meterPlataSteps.validarTransaccionRechazada();
+	}
+	
 	@When("^Valido transaccion exitosa$")
 	public void validoTransaccionExitosa() throws Exception {
 		meterPlataSteps.validarTransaccionExitosa();
@@ -345,9 +363,14 @@ public class MeterPlataDefinitions {
 	@Given("^Verifico que el costo de la transaccion sea cero$")
 	public void verificoQueElCostoDeLaTransaccionSeaCero() {
 		meterPlataSteps.validarCostoTransaccionCero();
-		meterPlataSteps.clicBotonMeterPlataDesdeVerifiqueInformacion();
+		//meterPlataSteps.clicBotonMeterPlataDesdeVerifiqueInformacion();
 	}
 
+	@Given("^Verifico que el costo de la transaccion sea cero al finalizar$")
+	public void verificoQueElCostoDeLaTransaccionSeaCeroAlFinalizar() {
+		meterPlataSteps.validarCostoTransaccionCero();
+	}
+	
 	@Given("^Lleno información del sample en pse$")
 	public void llenoInformaciónDelSampleEnPse() {
 		meterPlataSteps.aceptarTerminosYCondiciones();
@@ -373,6 +396,11 @@ public class MeterPlataDefinitions {
 	@Then("^Validar mensaje de transacción no exitosa$")
     public void validarMensajeDeTransaccionNoExitosa() throws Exception {
         meterPlataSteps.validarMensajeRecargaNoExitosa();
+    }
+	
+	@Then("^Validar mensaje de transacción exitosa$")
+    public void validarMensajeDeTransaccionExitosa() throws Exception {
+        meterPlataSteps.validarMensajeRecargaExitosa();
     }
 	
 	@Then("^Validar que permita pegar la información númerica$")

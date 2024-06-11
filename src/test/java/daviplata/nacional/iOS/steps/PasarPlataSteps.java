@@ -51,11 +51,13 @@ public class PasarPlataSteps {
 	UtilidadesTCS utilidadesTCS;
 	Faker objFaker = new Faker();
 
+	@Step
 	public void volver() {
 		System.out.println("di click en btn de volver");
 		pagePasarPlata.btnVolver();
 	}
 	
+	@Step
 	public void pasarPlataBolsillos(String valor) {
 		pagePasarPlata.btnBolsillos();
 		pagePasarPlata.btnMeterPlataBolsillo();
@@ -65,6 +67,7 @@ public class PasarPlataSteps {
 		pagePasarPlata.txtAutorizadorBolsillo();
 	}
 
+	@Step
 	public void pasarPlataBolsillosHamburguesa(String valor) {
 		pageLogin.capturarSaldo();
 		Utilidades.tomaEvidencia("Saldo inicial Daviplata " + BaseUtil.saldo);
@@ -79,29 +82,35 @@ public class PasarPlataSteps {
 		pagePasarPlata.txtAutorizadorBolsillo();
 	}
 
+	@Step
 	public void seleccionarPasarPlata(boolean verificador) {
 		Utilidades.esperaMiliseg(3000);
 		pagePasarPlata.capturarSaldoInicialDaviplata();
-		Utilidades.tomaEvidencia("Saldo inicial Daviplata ");
-		if (verificador) {
-			Utilidades.tomaEvidencia("Seleccionar opcion pasar Plata");
-		}
+		Utilidades.tomaEvidencia("Saldo inicial Daviplata");
+//		if (verificador) {
+//			Utilidades.tomaEvidencia("Seleccionar opcion pasar Plata");
+//		}
 		pagePasarPlata.darClickEnOpcionPasarPlata();
 	}
 
 	// Dar click en A Otro Banco en pasar plata
+	@Step
 	public void btnAOtroBanco() {
 		pagePasarPlata.btnAOtroBanco();
 	}
 
+	@Step
 	public void seleccionarOtrosBancos() {
 		pagePasarPlata.btnOtrosBancos();
 	}
+	
+	@Step
 	public void btnCuentasNoInscritas() {
 		pagePasarPlata.btnCuentasNoInscritas();
 	}
 
 	// Selecciono una cantidad
+	@Step
 	public void pasarPlataAOtroDaviplata(String numero) {
 		pagePasarPlata.pasarPlataAOtroDaviplata();
 		Utilidades.tomaEvidencia("Ingreso el numero de telefono " + numero);
@@ -170,6 +179,7 @@ public class PasarPlataSteps {
 		}
 	}
 	
+	@Step
 	public void pasarPlataAOtroDaviplataValor1(String numero) {
 		pagePasarPlata.pasarPlataAOtroDaviplata();
 		//pagePasarPlata.darClickEnBtnContinuar();
@@ -214,6 +224,7 @@ public class PasarPlataSteps {
 		}
 	}
 	
+	@Step
 	public void validarNumeroErrado(String numero) {
 		pagePasarPlata.pasarPlataAOtroDaviplata();
 		Utilidades.tomaEvidencia("Ingreso el numero de telefono " + numero);
@@ -223,6 +234,7 @@ public class PasarPlataSteps {
 	}
 
 	// Selecciono una cantidad
+	@Step
 	public void pasarPlataAOtroDaviplataVolverAtras(String numero) {
 		pagePasarPlata.pasarPlataAOtroDaviplata();
 		Utilidades.tomaEvidencia("Pasar plata a otro Daviplata");
@@ -231,12 +243,14 @@ public class PasarPlataSteps {
 	}
 
 	// Selecciono una cantidad
+	@Step
 	public void pasarPlataAOtroDaviplataFondosInsuficientes(String numero) {
 		pagePasarPlata.pasarPlataAOtroDaviplata();
 		Utilidades.tomaEvidencia("Ingreso el numero de telefono " + numero);
 		pagePasarPlata.pasarPlataAOtroDaviplataNumero(numero);
 	}
 
+	@Step
 	public void pasarPlataAOtroDaviplataMayorAlSaldo(String numero) {
 		pagePasarPlata.pasarPlataAOtroDaviplata();
 		Utilidades.tomaEvidencia("Ingreso el nuemero de telefono " + numero);
@@ -248,6 +262,7 @@ public class PasarPlataSteps {
 	}
 
 	// Escribo la cantidad
+	@Step
 	public void pasarPlataAOtroDaviplataValor(String numero,String monto) {
 		pagePasarPlata.pasarPlataAOtroDaviplata();
 		Utilidades.tomaEvidencia("Ingreso el nuemero de telefono " + numero);
@@ -259,6 +274,7 @@ public class PasarPlataSteps {
 		pagePasarPlata.txtAutorizador();
 	}
 	
+	@Step
 	public void pasarPlataAOtroDaviplataValorCero(String numero,String monto) {
 		pagePasarPlata.pasarPlataAOtroDaviplata();
 		Utilidades.tomaEvidencia("Ingreso el nuemero de telefono " + numero);
@@ -267,8 +283,10 @@ public class PasarPlataSteps {
 		TouchAction touchAction=new TouchAction(driver);
         touchAction.tap(new PointOption().withCoordinates(22, 339)).perform();
         Utilidades.tomaEvidencia("Monto a transferir");
+        utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BTN_CONTINUAR);
 	}
 
+	@Step
 	public void verificarTransaccionExitosaPasarPlataCuenta() {
 		Utilidades.esperaMiliseg(10000);
 		//pagePasarPlata.cerrarPopUpTransaccionExitosa();
@@ -282,15 +300,16 @@ public class PasarPlataSteps {
 	}
 
 	//Modulo pasar plata	
+	@Step
 	public void escogerOpcionCuentasDavivienda() {
 		Utilidades.esperar(8);
 		Utilidades.tomaEvidencia("Seleccionar cuentas Davivienda");
 		pagePasarPlata.seleccionarCuentasDavivienda();
 		Utilidades.esperar(4);
 		pagePasarPlata.seleccionarTipoCuentasDavivienda();
-		
 	}
 	
+	@Step
 	public void escogerOpcionAOtrosBancos() {
 		Utilidades.esperaMiliseg(1500);
 		utilidadesTCS.esperarElementVisibility("xpath", PasarPlataPageObjects.BTN_OPCION_AOTROS_BANCOS);
@@ -299,16 +318,19 @@ public class PasarPlataSteps {
 		pagePasarPlata.seleccionarAOtrosBancos();
 	}
 	
+	@Step
 	public void escogerOpcionTipoCuentaDavivienda(String tipoCuenta) {		
 		pagePasarPlata.seleccionarOpcionesCuentasDavivienda(tipoCuenta);
 		Utilidades.tomaEvidencia("Seleccion cuenta ahorros");		
 	}
 	
+	@Step
 	public void ingresarNumeroCuentaDavivienda(String numCuenta) {
 		pagePasarPlata.ingresarNumeroCuenta(numCuenta);
 		Utilidades.tomaEvidencia("Ingresar Numero Cuenta");	
 	}
 	
+	@Step
 	public void ingresarMontoCuentaDavivienda(String monto) {
 		pagePasarPlata.ingresarMontoCuenta(monto);
         utilidadesTCS.clickCoordinates(390, 150);
@@ -319,6 +341,7 @@ public class PasarPlataSteps {
 		utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.PASAR_PLATA_BTN_DAV);
 	}
 	
+	@Step
 	public void clicPasarPlataCuenta() {
 		Utilidades.tomaEvidencia("Datos pasar plata");
 		pagePasarPlata.clicPasarPlata();
@@ -374,6 +397,7 @@ public class PasarPlataSteps {
 		pagePasarPlata.btnPasarPlata();
 	}
 	
+	@Step
 	public void llenarFormularioPasarPlata(String numeroCuenta, String tipoId, String numId, String valorAPasar, String banco) {
 		Utilidades.esperaMiliseg(4000);
 		//INGRESAR NOMBRE DE CONTACTO
@@ -417,6 +441,7 @@ public class PasarPlataSteps {
 		pagePasarPlata.btnPasarPlata();
 	}
 	
+	@Step
 	public void llenarFormularioPasarPlataFondosInsuficientes(String numeroCuenta, String tipoId, String numId, String banco) {
 		Utilidades.esperaMiliseg(4000);
 		//INGRESAR NOMBRE DE CONTACTO
@@ -446,6 +471,7 @@ public class PasarPlataSteps {
 		System.out.println("Llené el formulario correctamente");
 	}
 	
+	@Step
 	public void llenarFormularioPasarPlataMenorDiezMil(String numeroCuenta, String tipoId, String numId, String valorAPasar, String banco) {
 		Utilidades.esperaMiliseg(4000);
 		//INGRESAR NOMBRE DE CONTACTO
@@ -477,7 +503,7 @@ public class PasarPlataSteps {
 		pagePasarPlata.btnContinue();
 	}
 	
-	
+	@Step
 	public void llenarPrimerFormularioPasarPlata(String numeroCuenta, String tipoId, String numId, String valorAPasar, String banco) {
 		Utilidades.esperar(4000);
 		pagePasarPlata.inputNombreContacto();
@@ -496,6 +522,7 @@ public class PasarPlataSteps {
 		System.out.println("Llené el formulario correctamente");
 	}
 	
+	@Step
 	public void llenarMonto(String valorAPasar) {
 		Utilidades.esperaMiliseg(4000);
 		Utilidades.tomaEvidencia("Dar en seleccionar cuenta inscrita");
@@ -521,6 +548,7 @@ public class PasarPlataSteps {
 		pagePasarPlata.btnPasarPlata();
 	}
 	
+	@Step
 	public void llenarFormularioPasarPlataAch(String numeroCuenta, String tipoId, String numId, String valorAPasar, String banco) {
 		Utilidades.esperaMiliseg(4000);
 		//INGRESAR NOMBRE DE CONTACTO
@@ -550,6 +578,7 @@ public class PasarPlataSteps {
 	}
 
 	// Selecciono la cantidad cuenta ahorros
+	@Step
 	public void seleccionarTipoCuentaDestino(String tipoCuenta, String cuentaNum) {
 		pagePasarPlata.seleccionarCuentasDavivienda();
 		pagePasarPlata.seleccionarTipoCuentasDavivienda();
@@ -562,6 +591,7 @@ public class PasarPlataSteps {
 	}
 
 	// Selecciono la cantidad cuenta corriente
+	@Step
 	public void seleccionarCuentaCorriente(String tipoCuenta, String numeroCuenta) {
 		pagePasarPlata.seleccionarCuentasDavivienda();
 		pagePasarPlata.seleccionarTipoCuentasDavivienda();
@@ -572,6 +602,7 @@ public class PasarPlataSteps {
 	}
 
 	// Selecciono la cantidad cuenta corriente mayor al saldo
+	@Step
 	public void seleccionarCuentaCorrienteMayorSaldoDaviplata(String cuentaNum) {
 		Utilidades.tomaEvidencia("Seleccion A cuenta corriente Davivienda");
 		Utilidades.tomaEvidencia("Cuenta de destino " + cuentaNum);
@@ -580,10 +611,12 @@ public class PasarPlataSteps {
 		pagePasarPlata.txtAutorizador();
 	}
 
+	@Step
 	public void validarMonto() {
 		pagePasarPlata.verificoMonto();
 	}
 
+	@Step
 	public void seleccionarTipoCuentaDestinoACH(String tipoCuenta, String cuentaNum, String monto) {
 		//seleccionarCuantaOtroBancoNoInscrita(tipoCuenta);
 		Utilidades.tomaEvidencia("Seleccion de tipo De Cuenta");
@@ -591,6 +624,7 @@ public class PasarPlataSteps {
 		// procesarTransaccionOtrosBancosFondosInsuficientes();
 	}
 
+	@Step
 	public void seleccionarTipoCuentaDestinoACH1(String tipoCuenta, String cuentaNum, String monto) {
 		//seleccionarCuantaOtroBancoNoInscrita(tipoCuenta);
 		Utilidades.tomaEvidencia("Seleccion de tipo De Cuenta");
@@ -598,6 +632,7 @@ public class PasarPlataSteps {
 		//procesarTransaccionOtrosBancosFondosInsuficientes();
 	}
 
+	@Step
 	public void seleccionarMonto() {
 		pagePasarPlata.pasarPlataAOtroDaviplataCantidad();
 		Utilidades.tomaEvidencia("Selecciono la cantidad");
@@ -605,6 +640,7 @@ public class PasarPlataSteps {
 		pagePasarPlata.txtAutorizador();
 	}
 
+	@Step
 	public void escribirValor(String monto) {
 		pagePasarPlata.pasarPlataAOtroDaviplataEscribirCantidad(monto);
 		Utilidades.tomaEvidencia("Dar en boton continuar");
@@ -613,6 +649,7 @@ public class PasarPlataSteps {
 		pagePasarPlata.clicPasarPlata();
 	}
 
+	@Step
 	public void escribirValorMenor() {
 		pagePasarPlata.pasarPlataAOtroDaviplataEscribirCantidadMenor();
 		Utilidades.tomaEvidencia("Selecciono la cantidad");
@@ -620,6 +657,7 @@ public class PasarPlataSteps {
 		pagePasarPlata.txtAutorizador();
 	}
 
+	@Step
 	public void seleccionarOtroValor() {
 		pagePasarPlata.seleccionarOpcionCuantoQuierePagar();
 		pagePasarPlata.ingresarOtroMonto();
@@ -627,6 +665,7 @@ public class PasarPlataSteps {
 		pagePasarPlata.darClickEnBtnAceptar();
 	}
 
+	@Step
 	public void transaccionConvalorMayorAlSaldo() {
 		pagePasarPlata.seleccionarOpcionCuantoQuierePagar();
 		pagePasarPlata.ingresarMontoMayorSaldo();
@@ -634,11 +673,13 @@ public class PasarPlataSteps {
 		pagePasarPlata.darClickEnBtnAceptar();
 	}
 
+	@Step
 	public void transaccionFondosInsuficientes(String monto) {
 		pagePasarPlata.ingresarMonto(monto);
 		Utilidades.tomaEvidencia("Monto a Transferir");
 	}
 
+	@Step
 	public void validoFondosInsuficientes() {
 		pagePasarPlata.validoLblFondosInsuficientes();
 		pagePasarPlata.validoBtnContinuarDeshabilitado();
@@ -649,6 +690,7 @@ public class PasarPlataSteps {
 		//Utilidades.validacionDeSaldos();
 	}
 
+	@Step
 	public void validoFondosInsuficientes(int repeticiones) {
 		pagePasarPlata.validoLblFondosInsuficientes();
 		pageHome.clickBotonAtras(repeticiones);
@@ -659,6 +701,7 @@ public class PasarPlataSteps {
 		Utilidades.esperaMiliseg(2000);
 	}
 
+	@Step
 	public void validoFondosInsuficientesBolsillo(int repeticiones) {
 		pagePasarPlata.validoLblFondosInsuficientesBolsillos();
 		pageHome.clickBotonAtras(repeticiones);
@@ -669,6 +712,7 @@ public class PasarPlataSteps {
 		Utilidades.esperaMiliseg(2000);
 	}
 
+	@Step
 	public void validoTransaccionRechazada() {
 		pagePasarPlata.validoLblFondosTransaccionDeclinada();
 		pageHome.clickBotonAtras(2);
@@ -679,6 +723,7 @@ public class PasarPlataSteps {
 		Utilidades.esperaMiliseg(2000);
 	}
 
+	@Step
 	public void validoTransaccionRechazada(int repeticiones) {
 		pagePasarPlata.validoLblFondosTransaccionDeclinada();
 		pageHome.clickBotonAtras(repeticiones);
@@ -689,6 +734,7 @@ public class PasarPlataSteps {
 		Utilidades.esperaMiliseg(2000);
 	}
 
+	@Step
 	public void validoRechazoFondosInsuficientes(int repeticiones) {
 		pagePasarPlata.validoLblRechazoFondosInsuficientes();
 		pageHome.clickBotonAtras(repeticiones);
@@ -699,6 +745,7 @@ public class PasarPlataSteps {
 		Utilidades.esperaMiliseg(2000);
 	}
 	
+	@Step
 	public void validoRechazoFondosInsuficientesAOtros(int repeticiones) {
 		pagePasarPlata.validoLblRechazoFondosInsuficientesAOtros();
 		pageHome.clickBotonAtras(repeticiones);
@@ -709,6 +756,7 @@ public class PasarPlataSteps {
 		Utilidades.esperaMiliseg(2000);
 	}
 
+	@Step
 	public void validoInferiorAlPermitido(int repeticiones) {
 		pagePasarPlata.validoLblValorSuperiorAlPermitido();
 		pageHome.clickBotonAtras(repeticiones);
@@ -719,6 +767,7 @@ public class PasarPlataSteps {
 		Utilidades.esperaMiliseg(2000);
 	}
 
+	@Step
 	public void validoValorInicialInvalidoBolsillo() {
 		pagePasarPlata.validoLblValorInicialInvalido();
 		pageHome.clickBotonAtrasBolsillos(3);
@@ -727,6 +776,7 @@ public class PasarPlataSteps {
 		utilidades.validacionDeSaldos();
 	}
 
+	@Step
 	public void validoSinAbonoPorFondoInsuficiente(int repeticiones) {
 		pagePasarPlata.validoLblSinAbonoFondosInsuficientes();
 		pageHome.clickBotonAtras(repeticiones);
@@ -737,6 +787,7 @@ public class PasarPlataSteps {
 		Utilidades.esperaMiliseg(2000);
 	}
 
+	@Step
 	public void validoBolsilloNoSaldoDisponible() {
 		pagePasarPlata.validoLblBolsilloNoSaldoDisponible();
 		pageHome.clickBotonAtrasBolsillos(3);
@@ -744,6 +795,7 @@ public class PasarPlataSteps {
 		Utilidades.tomaEvidencia("Valido no haya descuento del home");
 	}
 
+	@Step
 	public void validoValorInicialBolsilloInvalido() {
 		pagePasarPlata.validoLblValorInicialInvalido();
 		pageHome.clickBotonAtras(3);
@@ -754,15 +806,18 @@ public class PasarPlataSteps {
 		Utilidades.esperaMiliseg(2000);
 	}
 
+	@Step
 	public void validoExcedeCupo() {
 		pagePasarPlata.validoLblExcedeCupo();
 	}
 	
+	@Step
 	public void cerrarSesion() {
 		pageHome.clickBotonAtras(2);
 		pageHome.clickBtnLogout();
 	}
 	
+	@Step
 	public void validoExcedeCupoAOtros() {
 		pagePasarPlata.validoLblRechazoFondosInsuficientesAOtros();
 		//pagePasarPlata.validoBtnContinuarDeshabilitado();
@@ -774,6 +829,7 @@ public class PasarPlataSteps {
 		Utilidades.esperaMiliseg(2000);
 	}
 
+	@Step
 	public void validoExcedeCupo(int repeticiones) {
 		pagePasarPlata.validoLblExcedeCupo();
 		pagePasarPlata.validoBtnContinuarDeshabilitado();
@@ -785,6 +841,7 @@ public class PasarPlataSteps {
 		Utilidades.esperaMiliseg(2000);
 	}
 
+	@Step
 	public void validoTransaccionInvalida(int repeticiones) {
 		pagePasarPlata.validoLblTransaccionInvalida();
 		pageHome.clickBotonAtras(repeticiones);
@@ -795,14 +852,15 @@ public class PasarPlataSteps {
 		Utilidades.esperaMiliseg(2000);
 	}
 
+	@Step
 	public void verificarTransaccionExitosa() {
-		Utilidades.esperaMiliseg(10000);
-		Utilidades.tomaEvidencia("Transacción exitosa");
+		Utilidades.esperaMiliseg(3000);
 		pagePasarPlata.validarTransaccion();
 		pagePasarPlata.txtAutorizador();	
 		pagePasarPlata.darClickEnFinalizarTransaccion();
 	}
 	
+	@Step
 	public void verificarTransaccionFallida() {
 		Utilidades.tomaEvidencia("Transacción fallida");
 		pagePasarPlata.validarTransaccionFallida();
@@ -817,6 +875,7 @@ public class PasarPlataSteps {
         utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BOTON_GUARDAR_FAVORITO);
     }
 	
+	@Step
 	public void verificarTransaccionExitosaa() {
 		System.out.println("entre a validar la transaccion exitosa");
 		//List<MobileElement> listaElementos = pagePasarPlata.capturaResultadoTransaccion();
@@ -825,6 +884,7 @@ public class PasarPlataSteps {
 		pagePasarPlata.darClickEnFinalizarTransaccion();
 	}
 	
+	@Step
 	public void verificarTransaccionExitosaOtrosBancos() {
 		List<MobileElement> listaElementos = pagePasarPlata.capturaResultadoTransaccion();
 		Utilidades.tomaEvidencia("Resultado Transacción");
@@ -835,6 +895,7 @@ public class PasarPlataSteps {
 		pagePasarPlata.darClickEnFinalizarTransaccionOtrosBancos();
 	}
 
+	@Step
 	public void seleccionarCuentaOtroBanco(String numeroCuenta, String tipoId, String numId, String monto, String banco) {
 		Utilidades.tomaEvidencia("Seleccion tipo de destino");
 		btnAOtroBanco();
@@ -856,19 +917,21 @@ public class PasarPlataSteps {
 		pagePasarPlata.btnPasarPlata();		
 	}
 
-	
+	@Step
 	public void verificarTransacccionFallida() {
 		pageLogin.popUpDaviplata();
 		System.out.println(pageLogin.popUpDaviplata());
 		assertEquals("CUENTA NO EXISTE", pageLogin.popUpDaviplata());
 	}
 
+	@Step
 	public void verificarTransaccionExitosaDavNoExiste() {
 		pagePasarPlata.validarTransaccionExitosaDavNoExiste();
 		pagePasarPlata.btnVolver();
 		pagePasarPlata.btnVolver();
 	}
 
+	@Step
 	public void verificarSaldosCreditoDaviPlata() {
 		Utilidades.esperaMiliseg(5000);
 		pagePasarPlata.capturarSaldoFinal();
@@ -876,6 +939,7 @@ public class PasarPlataSteps {
 		pageLogin.validarCreditoSaldoDaviPlata();
 	}
 	
+	@Step
 	public void verificarSaldosDebitoDaviPlata() {
 		System.out.println("entre a verificar saldo de debito en daviplata");
 		Utilidades.esperaMiliseg(4000);
@@ -883,6 +947,13 @@ public class PasarPlataSteps {
 		Utilidades.tomaEvidencia("Saldo Final " + BaseUtil.saldoFinal);
 	}
 	
+	@Step
+	public void verificarInfoYPasarPlata() {
+		Utilidades.esperaMiliseg(1000);
+        utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.PASAR_PLATA_BTN_DAV);
+	}
+	
+	@Step
 	public void verificarIgualdadSaldoDaviPlata() {
 		Utilidades.esperaMiliseg(5000);
 		pageLogin.capturarSaldo();
@@ -890,6 +961,7 @@ public class PasarPlataSteps {
 		pageLogin.validarIgualdadSaldoDaviPlata();
 	}
 
+	@Step
 	public void verificarSaldosBolsillos() {
 		System.out.println("Entre a verificar el saldo del bolsillo");
 		try {
@@ -918,6 +990,7 @@ public class PasarPlataSteps {
 		} finally {contador=0;}
 	}
 
+	@Step
 	public void seleccionarCuantaOtroBancoInscrita() {
 		String tipoCuenta = "otro Banco";
 		pagePasarPlata.selecTipoCuentaDestino();
@@ -928,6 +1001,7 @@ public class PasarPlataSteps {
 		pagePasarPlata.seleccionarCuentaInscritaDestino();
 	}
 
+	@Step
 	public void diligenciarFormularioCuentasNoInscritas(String tipoCuenta) {
 		pagePasarPlata.darClickADesplegableBancos();
 		pagePasarPlata.seleccionarBancoAleatorio();
@@ -948,6 +1022,7 @@ public class PasarPlataSteps {
 		pagePasarPlata.txtAutorizador();
 	}
 
+	@Step
 	public void diligenciarFormularioCuentasNoInscritasSaldoMenor(String tipoCuenta) {
 		pagePasarPlata.darClickADesplegableBancos();
 		pagePasarPlata.seleccionarBancoAleatorio();
@@ -962,6 +1037,7 @@ public class PasarPlataSteps {
 		Utilidades.tomaEvidencia("Datos de Destino diligenciados");
 	}
 
+	@Step
 	public void diligenciarFormularioCuentasNoInscritasFondosInsuficientes(String tipoCuenta, String monto) {
 		pagePasarPlata.ingresarNombreContacto();
 		pagePasarPlata.darClickADesplegableBancos();
@@ -978,14 +1054,15 @@ public class PasarPlataSteps {
 		Utilidades.tomaEvidencia("Datos de Destino diligenciados");
 	}
 
+	@Step
 	public void diligenciarFormularioCuentasInscritas() {
-
 		pagePasarPlata.ingresarValorAPasarOtrosBancosCtaInscrita();
 		pagePasarPlata.ingresarMotivoODescripcionCtaInscrita();
 		Utilidades.tomaEvidencia("Datos de Destino diligenciados");
 		pagePasarPlata.btnPasarPlataa();
 	}
 
+	@Step
 	public void procesarTransaccionOtrosBancos(String tipoCuenta) {
 		pagePasarPlata.darClickEnBtnAceptar();
 		List<String> datosValidar = pagePasarPlata.tomarDatosParaValidar();
@@ -994,11 +1071,13 @@ public class PasarPlataSteps {
 		pagePasarPlata.validarDatosTransaccion(datosValidar, tipoCuenta);
 	}
 
+	@Step
 	public void procesarTransaccionOtrosBancosFondosInsuficientes() {
 		pagePasarPlata.darClickEnBtnAceptar();
 		pagePasarPlata.darClickBtnPasarPlataOtrosBancos();
 	}
 
+	@Step
 	public void procesarTransaccionOtrosBancosCtaInscrita() {
 		List<String> datosValidar = pagePasarPlata.tomarDatosParaValidar();
 		Utilidades.tomaEvidencia("Datos de Destino procesados");
@@ -1340,12 +1419,12 @@ public class PasarPlataSteps {
 	
 	@Step
 	public void irATransfiYa() {
-		System.out.println("di click a btn pasar plata");
 		Utilidades.tomaEvidencia("Clic opción pasar plata");
 		pagePasarPlata.clickBtnMas();
 		Utilidades.esperaMiliseg(1000);
 		pagePasarPlata.darClickEnOpcionPasarPlata();
-		Utilidades.esperaMiliseg(1000);
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+		Utilidades.esperaMiliseg(5000);
 		pagePasarPlata.escogerOpcionTransfiYa();
 		System.out.println("di click a opcion escoger opcion transfiya");
 		boolean estadoVisible = utilidadesTCS.validateElementVisibilityCatch("xpath", PasarPlataPageObjects.TEXTO_POPUP_PEDIR_PLATA);
@@ -1447,23 +1526,43 @@ public class PasarPlataSteps {
 	
 	@Step
 	public void realizarFlujoPedirPlata(String numCelular, String monto) {
-		Utilidades.esperaMiliseg(1500);
+		Utilidades.esperaMiliseg(2000);
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
 		pagePasarPlata.ingresarNumeroPasarPlataLinea(numCelular);
 		utilidadesTCS.clickCoordinates(200, 200);
-		pagePasarPlata.ingresarMontoPasarPlataLinea(monto);
-		utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BTN_DONE);
-		utilidadesTCS.scrollBackground("xpath", PasarPlataPageObjects.BTN_CONTINUAR, 0, 150);
+//		pagePasarPlata.ingresarMontoPasarPlataLinea(monto);
+		utilidadesTCS.writeElement("xpath", PasarPlataPageObjects.CAMPO_MONTO, monto);
+		utilidadesTCS.clickCoordinates(200, 200);
 		Utilidades.tomaEvidencia("Formulario pedir plata diligenciado");
 		utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BTN_CONTINUAR);
-		Utilidades.esperaMiliseg(1500);
-		pagePasarPlata.clicBtnContinuarPlataLinea();
-		utilidadesTCS.esperarElementVisibility("xpath", PasarPlataPageObjects.TXT_COMPLETAR_DATOS);
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+		Utilidades.esperaMiliseg(1000);
+		utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BTN_CONTINUAR);
+		//utilidadesTCS.esperarElementVisibility("xpath", PasarPlataPageObjects.TXT_COMPLETAR_DATOS);
 		Utilidades.esperaMiliseg(800);
+		pagePasarPlata.clicBtnContinuarPlataLinea();
+	}
+	
+	@Step
+	public void realizarFlujoPasarPlata(String numCelular, String monto) {
+		Utilidades.esperaMiliseg(2000);
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+		pagePasarPlata.ingresarNumeroPasarPlataLinea(numCelular);
+		utilidadesTCS.clickCoordinates(200, 200);
+		utilidadesTCS.writeElement("xpath", PasarPlataPageObjects.CAMPO_MONTO, monto);
+		utilidadesTCS.clickCoordinates(200, 200);
+		Utilidades.tomaEvidencia("Formulario pedir plata diligenciado");
+		utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BTN_CONTINUAR);
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+		Utilidades.esperaMiliseg(1000);
+		utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BTN_CONTINUAR);
+		Utilidades.esperaMiliseg(800);
+		pagePasarPlata.clicBtnContinuarPlataLinea();
 	}
 	
 	@Step
 	public void realizarFlujoPasarPlataTransfiya(String numCelular, String monto) {
-		Utilidades.esperaMiliseg(15000);
+		Utilidades.esperaMiliseg(8000);
 		pagePasarPlata.ingresarNumeroPasarPlataLinea(numCelular);
 		utilidadesTCS.clickCoordinates(200, 200);
 		pagePasarPlata.ingresarMontoPasarPlataLinea(monto);
@@ -1758,8 +1857,18 @@ public class PasarPlataSteps {
 	public void validarTransaccionDestino() {
 		pagePasarPlata.txtTransaccion();
 		pagePasarPlata.darClickEnFinalizarTransaccion();
-		pagePasarPlata.volverAtras();
-		pagePasarPlata.volverAtras();
+		int count = 0;
+		do {
+			Utilidades.esperaMiliseg(1000);
+		    utilidadesTCS.esperarElementVisibility("xpath", PasarPlataPageObjects.BOTON_ATRAS_BOLSILLOS);
+		    utilidadesTCS.clicElementAction("xpath", PasarPlataPageObjects.BOTON_ATRAS_BOLSILLOS);
+			Utilidades.esperaMiliseg(1500);
+			boolean estadoVisible = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.POP_UP_INVITE_AMIGOS);
+			if(estadoVisible == true) {
+				utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_CLOSE);
+			}
+		    count++;
+		} while (count < 2);
 		Utilidades.esperaMiliseg(5000);
 		pagePasarPlata.capturarSaldoFinal();
 	}
@@ -2068,4 +2177,40 @@ public class PasarPlataSteps {
 		}
 	}
 	
+	@Step
+	public void irALaOpcionMasHome() {
+		Utilidades.tomaEvidencia("Clic opción Más");
+        pagePasarPlata.darClickBotonMasHome();
+		utilidadesTCS.esperarElementVisibility("xpath", PasarPlataPageObjects.BTN_RECIBIR_PEDIR_PLATA);
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+        Utilidades.tomaEvidencia("Módulo transfiya");
+        Utilidades.esperar(5000);
+   }
+   
+	@Step
+	public void irARecibirYPedirPlata() {
+       Utilidades.tomaEvidencia("Texto'Que quiere hacer con su plata'");
+       utilidadesTCS.esperarElementVisibility("xpath", PasarPlataPageObjects.BTN_RECIBIR_PEDIR_PLATA);
+       utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BTN_RECIBIR_PEDIR_PLATA);
+       Utilidades.tomaEvidencia("Clic opción Recibir y Pedir Plata");
+       utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+       Utilidades.esperar(5000);
+       Utilidades.tomaEvidencia("Opciones del módulo transfiYa");
+   }
+   
+   @Step
+   public void validarSolicitudesTransfiya () {
+	   Utilidades.tomaEvidencia("Clic opción Recibir y Pedir Plata");
+       boolean recuadroSinSolicitud = utilidadesTCS.validateElementVisibilityCatch("xpath", PasarPlataPageObjects.TXT_NO_TIENE_SOLICITUDES);
+
+       if (recuadroSinSolicitud) {
+           String textoSinSolicitud = utilidadesTCS.obtenerTexto("xpath", PasarPlataPageObjects.TXT_NO_TIENE_SOLICITUDES);
+           utilidadesTCS.validateTextContainsString(textoSinSolicitud, "No tiene solicitudes de plata pendientes por autorizar en el momento");
+           Utilidades.tomaEvidencia("Validar que no cuente con solicitudes");
+       } else {
+           String textoConSolicitud = utilidadesTCS.obtenerTexto("xpath", PasarPlataPageObjects.TXT_TIENE_SOLICITUDES);
+           utilidadesTCS.validateTextContainsString(textoConSolicitud, "Tiene solicitudes pendientes");
+           Utilidades.tomaEvidencia("Validar que cuente con solicitudes pendientes");
+       }
+    }
 }

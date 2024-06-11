@@ -1039,7 +1039,7 @@ public class WebRedebanPageObjects {
 			return 0;
 	}
 	
-	public static int validarEstadoUsuarios(String estado) {
+	public int validarEstadoUsuarios(String estado) {
         boolean flag = false;
         WebElement element = null;
         int conta = 3; // el xpath revisa desde el tr3 de la tabla en redeban
@@ -1049,7 +1049,7 @@ public class WebRedebanPageObjects {
             element = BaseUtil.chromeDriver
                     .findElement(By.xpath("//*[@id='generalForm']/table[2]/tbody/tr[" + conta + "]/td[11]"));
             System.out.println("Element:" + element.getText());
-			if (element.getText().equalsIgnoreCase(estado)) {
+            if (element.getText().equalsIgnoreCase(estado)) {
                 i = TotalRowsList.size();
                 flag = true;
             } else {

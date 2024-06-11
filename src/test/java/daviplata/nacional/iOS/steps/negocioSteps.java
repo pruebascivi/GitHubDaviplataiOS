@@ -32,16 +32,18 @@ public class negocioSteps {
 	@Step
 	public void IrANegocio() {
 //		pageLogin.validarInicioSesion();
-		Utilidades.esperaMiliseg(10000);
 		utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_IR_NEGOCIO);
-		Utilidades.esperaMiliseg(1500);
+		Utilidades.esperaMiliseg(10000);
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+		Utilidades.esperaMiliseg(10000);
 		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
 		System.out.println("Ingresando a perfil negocio");
-		Utilidades.esperaMiliseg(1500);
-		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
-		Utilidades.esperaMiliseg(1000);
 		Utilidades.tomaEvidencia("Perfil Mi Negocio");
-		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+		boolean estadoVisiblePopUpAmigos = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.TXT_ERROR_SISTEMA);
+		if(estadoVisiblePopUpAmigos == true) {
+			Utilidades.esperaMiliseg(1000);
+			utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_CLOSE);
+		}	
 	}
 	
 	@Step
@@ -187,7 +189,6 @@ public class negocioSteps {
 		Utilidades.tomaEvidencia("Validar Opcion 'Pasar Plata' y 'Sacar Plata' de la opcion 'Usar Plata'");
 	}
 	
-	
 	@Step
 	public void nombrePerfilNegocio() {
 		Utilidades.esperaMiliseg(8000);
@@ -248,6 +249,7 @@ public class negocioSteps {
 		marketObj.clicBtnCrearPerfilNegocio();
 	}
 	
+	@Step
 	public void llenarFormularioCreacionNegocioZonaPublica(String nombre, String monto, String casa, String correo) {
 		marketObj.esperarDesaparezcalogoCarga();
 		utilidad.moverPantallaCorto();
@@ -267,6 +269,7 @@ public class negocioSteps {
 		Utilidades.tomaEvidencia("Completo el formulario requerido");
 	}
 	
+	@Step
 	public void validoBotonIrPerfilUsuario() {
 		negocioPO.validarBotónIrAPerfilPersona();
 		Utilidades.tomaEvidencia("Validar boton ir a perfil persona");
@@ -274,6 +277,7 @@ public class negocioSteps {
 		Utilidades.esperaMiliseg(10000);
 	}
 	
+	@Step
 	public void ingresarOpcionPasarPlataPerfilNegocio() {
 //		utilidad.tomaEvidencia("Clic en opcion usar plata");
 //		negocioPO.clicOpcionUsarPlata();
@@ -281,6 +285,7 @@ public class negocioSteps {
 		negocioPO.clicOpcionPasarPlataPerfilNegocio();
 	}
 	
+	@Step
 	public void ingresarOpcionSacarPlataPerfilNegocio() {
 //		utilidad.tomaEvidencia("Menú hamburguesa");
 //		negocioPO.clicOpcionUsarPlata();
@@ -302,17 +307,17 @@ public class negocioSteps {
 		negocioPO.esperarCargaPerfilNegocio();
 		Utilidades.tomaEvidencia("Clic en botón Pasar plata");
 		negocioPO.clicBotonPasarPlataHomePerfilNegocio();
-		
 	}
 	
+	@Step
 	public void ingresarOpcionAOtroDaviplataPerfilNegocio() {
 		Utilidades.esperaMiliseg(2000);
 		Utilidades.tomaEvidencia("Clic en opcion a otro daviplata");
 		negocioPO.clicBtnAOtroDaviplataPerfilNegocio();
 		negocioPO.clicBtnAceptarPerfilNegocio();
-				
 	}
 	
+	@Step
 	public void flujoPasarPlataAOtroDaviplataPerfilNegocio(String numCelular) {
 		Utilidades.tomaEvidencia("Ingresar numero cuenta: " + numCelular);
 		negocioPO.ingresarNumeroCuentaPerfilNegocio(numCelular);
@@ -326,11 +331,9 @@ public class negocioSteps {
 		Utilidades.tomaEvidencia("Validacion de transaccion");
 		negocioPO.validarTransaccionPerfilNegocio();
 		negocioPO.txtAutorizadorAotroDaviplata();	
-		
-		
-		
 	}
 	
+	@Step
 	public void flujoSacarPlataPerfilNegocio() {
 		negocioPO.escogerMontoPerfilNegocioSacarPlata();
 		Utilidades.tomaEvidencia("Seleccionar monto");
@@ -359,9 +362,9 @@ public class negocioSteps {
 		Utilidades.esperaMiliseg(4000);
 		negocioPO.txtAutorizadorSacarPlataPerfilNegocio();	
 		utilidadesTCS.clicElement("xpath", MenuHamburguesaPageObjects.BOTON_FINALIZAR_MOVIMIENTOS);
-		
 	}
 	
+	@Step
 	public void validacionBtnMasServicios() {
 		negocioPO.validarBtnMasServicios();
 		negocioPO.clicBtnMasServicios();
@@ -434,6 +437,7 @@ public class negocioSteps {
 		}
 	}
 	
+	@Step
 	public void verMovimientosPerfilNegocio() {
 		Utilidades.esperaMiliseg(2000);
 		negocioPO.clicBtnMasServicios();
@@ -444,11 +448,13 @@ public class negocioSteps {
 		Utilidades.tomaEvidencia("Validación movimientos de ventas en el perfil negocio");
 	}
 	
+	@Step
 	public void validarMovimientosPerfilNegocio() {
 		Utilidades.esperaMiliseg(2000);
 		Utilidades.tomaEvidencia("Validación movimientos de ventas en el perfil negocio");
 	}
 	
+	@Step
 	public void actualizacionDatosPerfilNegocio() {
 		negocioPO.clicBtnMasServicios();
 		Utilidades.tomaEvidencia("Ingresar a opcion 'Actualizar datos' desde 'Más Servicios' en el perfil negocio");
@@ -458,6 +464,7 @@ public class negocioSteps {
 		Utilidades.tomaEvidencia("Validación actualizacion de datos en el perfil negocio");
 	}
 	
+	@Step
 	public void actualizarDatosPerfilNegocio() {
 		negocioPO.clicBtnMasServicios();
 		Utilidades.tomaEvidencia("Ingresar a opcion 'Actualizar datos' desde 'Más Servicios' en el perfil negocio");
@@ -465,6 +472,7 @@ public class negocioSteps {
 		Utilidades.esperaMiliseg(15000);
 	}
 	
+	@Step
 	public void actualizarCorreoPerfilNegocio(String correoNuevo) {
 		//negocioPO.ingresarCorreoNuevoPerfilNegocio(correoNuevo);
         utilidadesTCS.clicElement("xpath", negocioPageObjects.CAMPO_CORREO);
@@ -480,6 +488,7 @@ public class negocioSteps {
 		negocioPO.clicGuardarCambiosPerfilNegocio();
 	}
 	
+	@Step
 	public void actualizarNombrePerfilNegocio(String nombreNegocioNuevo) {
 		negocioPO.ingresarNombrePerfilNegocio(nombreNegocioNuevo);
 		Utilidades.tomaEvidencia("Ingresar nombre nuevo en el perfil negocio");
@@ -1074,5 +1083,415 @@ public class negocioSteps {
 	public void validarElPerfilPersona() {
         utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.BOTON_VER_MOVIMIENTOS);
         Utilidades.tomaEvidencia("Valido ingreso al perfil negocio");
+    }
+	
+	@Step
+	public void ingresarALaOpcionMasServicios() {
+        utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.BOTON_MAS_SERVICIOS);
+        Utilidades.tomaEvidencia("Ingreso a la opcion de Más Servicios");
+        negocioPO.clicBtnMasServicios();
+    }
+    
+	@Step
+    public void ingresoEnAdministrarMiNegocio() {
+    	Utilidades.tomaEvidencia("Hacer clic en el botón administrar mi negocio");
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_ADMINISTRAR_MI_NEGOCIO);
+        Utilidades.esperaMiliseg(4000);
+        utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.BOTON_ADMINISTRAR_MI_NEGOCIO);
+        Utilidades.esperaMiliseg(2000);
+//        utilidadesTCS.scrollBackground("xpath", negocioPageObjects.TEXTO_ADMINISTRAR_NEGOCIO, 0, -310);
+    }
+    
+    @Step
+    public void crearFlujoDePuntoVenta(String nombrePuntoVenta, String ciudad, String primerNumeroDireccion, String segundoNumeroDireccion, String tercerNumeroDireccion) {
+        String nombresCiudadesPuntosVentas = ciudad;
+        utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.BOTON_ABRIR_PUNTO_VENTA);
+        Utilidades.tomaEvidencia("Dar clic en el boton 'Abrir punto de venta'");
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_ABRIR_PUNTO_VENTA);
+        Utilidades.esperaMiliseg(2000);
+        utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.TEXTO_FORMULARIO_CREAR_PUNTO_VENTA);
+        utilidadesTCS.writeElement("xpath", negocioPageObjects.CAMPO_NOMBRE_PUNTO_VENTA, nombrePuntoVenta);
+        utilidadesTCS.writeElement("xpath", negocioPageObjects.CAMPO_CIUDAD_PUNTO_VENTA, ciudad);
+        Utilidades.esperaMiliseg(2000);
+        utilidadesTCS.clicElement("xpath", "//XCUIElementTypeStaticText[contains(@value, '"+ nombresCiudadesPuntosVentas +"')]");
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.LISTA_DESPLEGABLE_NOMBRE_CALLE);
+        Utilidades.esperaMiliseg(1000);
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.OPCION_NOMBRE_AVENIDA);
+        Utilidades.esperaMiliseg(500);
+        utilidadesTCS.writeElement("xpath", negocioPageObjects.CAMPO_PRIMER_NUMERO_DIRECCION, primerNumeroDireccion);
+        Utilidades.esperaMiliseg(500);
+        utilidadesTCS.writeElement("xpath", negocioPageObjects.CAMPO_SEGUNDO_NUMERO_DIRECCION, segundoNumeroDireccion);
+        Utilidades.esperaMiliseg(500);
+        utilidadesTCS.writeElement("xpath", negocioPageObjects.CAMPO_TERCER_NUMERO_DIRECCION, tercerNumeroDireccion);
+        Utilidades.tomaEvidencia("Llenar formulario de creacion punto de venta");
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_CREAR);
+    }
+    
+    @Step
+    public void validarCreacionPuntoVenta() {
+        boolean estado = utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.POP_FALLA_CREACION_PUNTO_VENTA);
+        if(estado) {
+        	utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_ACEPTAR_POP_FALLA_CREACION_PUNTO_VENTA);
+            Utilidades.esperaMiliseg(2000);
+            utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_CREAR);
+        }
+//      utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.POP_CREACION_PUNTO_EXITOSO);
+//      String texto = utilidadesTCS.obtenerTexto("xpath", negocioPageObjects.POP_CREACION_PUNTO_EXITOSO);
+//      utilidadesTCS.validateTextContainsString(texto, "Ya creó el punto");
+        Utilidades.esperaMiliseg(2000);
+        Utilidades.tomaEvidencia("Validar que permita crear punto de venta");
+    }
+    
+    @Step
+    public void crearVendedor(String tipoDocumento, String nombreVendedor, String numeroDocumento, String numeroDeCelular) {
+        try {
+//        	utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_CREAR_VENDEDOR);
+            /** Acciones por coordenadas ya que no se pueden mapear elementos **/
+            utilidadesTCS.clickCoordinates(290, 580);
+        } catch (Exception e) {
+            System.out.println("Se presento un error debido a: "+ e.getMessage() );
+//            assert utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.BOTON_CREAR_VENDEDOR) : "No se pudo interactuar con el elemento." + negocioPageObjects.BOTON_CREAR_VENDEDOR;
+        }
+        try {
+        	utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.INPUT_NOMBRE_VENDEDOR);
+        	utilidadesTCS.writeElement("xpath", negocioPageObjects.INPUT_NOMBRE_VENDEDOR, nombreVendedor);
+        } catch (Exception e) {
+            System.out.println("Se presento un error debido a: "+ e.getMessage() );
+            assert utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.INPUT_NOMBRE_VENDEDOR) : "No se pudo interactuar con el elemento." + negocioPageObjects.INPUT_NOMBRE_VENDEDOR;
+        }
+        try {
+        	utilidadesTCS.clicElement("xpath", negocioPageObjects.LISTA_DESPLEGABLE_TIPO_DOCUMENTO);
+            Utilidades.esperaMiliseg(2000);
+            utilidadesTCS.seleccionarTipoDocumentoNegocio("xpath",tipoDocumento);
+        } catch (Exception e) {
+            System.out.println("Se presento un error debido a: "+ e.getMessage() );
+            assert utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.LISTA_DESPLEGABLE_TIPO_DOCUMENTO) : "No se pudo interactuar con el elemento." + negocioPageObjects.LISTA_DESPLEGABLE_TIPO_DOCUMENTO;
+        }
+        try {
+        	utilidadesTCS.writeElement("xpath", negocioPageObjects.INPUT_NUMERO_DOCUMENTO, numeroDocumento);
+        	Utilidades.esperaMiliseg(3000);
+            utilidadesTCS.writeElement("xpath", negocioPageObjects.INPUT_NUMERO_CELULAR, numeroDeCelular);
+        } catch (Exception e) {
+            System.out.println("Se presento un error debido a: "+ e.getMessage() );
+            assert utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.INPUT_NUMERO_DOCUMENTO) : "No se pudo interactuar con el elemento." + negocioPageObjects.INPUT_NUMERO_DOCUMENTO;
+        }
+        try {
+        	utilidadesTCS.clicElement("xpath", negocioPageObjects.CHECK_TYC);
+            Utilidades.tomaEvidencia("Finalice el formulario del vendedor");
+            System.out.println("Finalizo el formulario");
+            Utilidades.esperaMiliseg(2000);
+        } catch (Exception e) {
+                System.out.println("Se presento un error debido a: "+ e.getMessage() );
+                assert utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.CHECK_TYC) : "No se pudo interactuar con el elemento." + negocioPageObjects.CHECK_TYC;
+        }
+        try {
+        	utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_CREAR);
+        } catch (Exception e) {
+            System.out.println("Se presento un error debido a: "+ e.getMessage() );
+            assert utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.BOTON_CREAR) : "No se pudo interactuar con el elemento." + negocioPageObjects.BOTON_CREAR;
+        }
+        try {
+//        	utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.POP_UP_EXITOSO);
+//          String popUpExitoso = utilidadesTCS.obtenerTexto("xpath", negocioPageObjects.POP_UP_EXITOSO);
+//          utilidadesTCS.validateTextContainsStringIgnoreUppercaseLowercase(popUpExitoso, "se creó exitosamente");
+            Utilidades.tomaEvidencia("Valido la creación del vendedor");
+        }  catch (Exception e) {
+            System.out.println("Se presento un error debido a: "+ e.getMessage() );
+//            assert utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.POP_UP_EXITOSO) : "No se pudo interactuar con el elemento." + negocioPageObjects.POP_UP_EXITOSO;
+        }
+        try {
+//        	utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_CONTINUAR);
+            /** Acciones por coordenadas ya que no se pueden mapear elementos **/
+            utilidadesTCS.clickCoordinates(220, 550);
+            utilidadesTCS.clickCoordinates(215, 530);
+        } catch (Exception e) {
+            System.out.println("Se presento un error debido a: "+ e.getMessage() );
+//            assert utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.BOTON_CONTINUAR) : "No se pudo interactuar con el elemento." + OlvidoClavePageObjects.BOTON_CONTINUAR;
+        }
+    }
+    
+    @Step
+    public void validarQuePermitaActualizarDatosVendedorYVenta(String nombrePuntoVentaDos, String numeroDeCelularDos) {
+        try {
+            Utilidades.tomaEvidencia("Módulo administrar mi negocio");
+            utilidadesTCS.clicElement("xpath", negocioPageObjects.PUNTO_VENTA);
+        } catch (Exception e) {
+            System.out.println("Se presento un error debido a: "+ e.getMessage() );
+            assert utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.PUNTO_VENTA) : "No se pudo interactuar con el elemento." + negocioPageObjects.PUNTO_VENTA;
+        }
+        try {
+        	Utilidades.esperaMiliseg(2000);
+            utilidadesTCS.clicElement("xpath", negocioPageObjects.CAMPO_NOMBRE_PUNTO_VENTA);
+            utilidadesTCS.cleanInputElement("xpath", negocioPageObjects.CAMPO_NOMBRE_PUNTO_VENTA);
+        } catch (Exception e) {
+            System.out.println("Se presento un error debido a: "+ e.getMessage() );
+//            assert utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.EDITAR_OPCION_UNO) : "No se pudo interactuar con el elemento." + negocioPageObjects.EDITAR_OPCION_UNO;
+        }
+        try {
+        	utilidadesTCS.writeElement("xpath", negocioPageObjects.CAMPO_NOMBRE_PUNTO_VENTA, nombrePuntoVentaDos);
+        	Utilidades.esperaMiliseg(2000);
+        	utilidadesTCS.clicElement("xpath", negocioPageObjects.LISTA_DESPLEGABLE_NOMBRE_CALLE);
+            Utilidades.esperaMiliseg(1000);
+            utilidadesTCS.clicElement("xpath", negocioPageObjects.OPCION_NOMBRE_AVENIDA);
+            Utilidades.esperaMiliseg(500);
+            String primerNumeroDireccion = "10";
+            utilidadesTCS.writeElement("xpath", negocioPageObjects.CAMPO_PRIMER_NUMERO_DIRECCION, primerNumeroDireccion);
+            Utilidades.esperaMiliseg(500);
+            String segundoNumeroDireccion = "11";
+            utilidadesTCS.writeElement("xpath", negocioPageObjects.CAMPO_SEGUNDO_NUMERO_DIRECCION, segundoNumeroDireccion);
+            Utilidades.esperaMiliseg(500);
+            String tercerNumeroDireccion = "12";
+            utilidadesTCS.writeElement("xpath", negocioPageObjects.CAMPO_TERCER_NUMERO_DIRECCION, tercerNumeroDireccion);
+        } catch (Exception e) {
+            System.out.println("Se presento un error debido a: "+ e.getMessage() );
+            assert utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.CAMPO_NOMBRE_PUNTO_VENTA) : "No se pudo interactuar con el elemento." + negocioPageObjects.CAMPO_NOMBRE_PUNTO_VENTA;
+        }
+        try {
+        	Utilidades.tomaEvidencia("Actualizo el nombre del punto de venta");
+            utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_ACTUALIZAR);
+        } catch (Exception e) {
+            System.out.println("Se presento un error debido a: "+ e.getMessage() );
+            assert utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.BOTON_ACTUALIZAR) : "No se pudo interactuar con el elemento." + negocioPageObjects.BOTON_ACTUALIZAR;
+        }
+        try {
+//          String popUpExitoso = utilidadesTCS.obtenerTexto("xpath", negocioPageObjects.TEXTO_EXITOSO);
+//          utilidadesTCS.validateTextContainsStringIgnoreUppercaseLowercase(popUpExitoso, "se actualizaron exitosamente");
+            Utilidades.tomaEvidencia("Valido actualización de datos");
+        } catch (Exception e) {
+            System.out.println("Se presento un error debido a: "+ e.getMessage() );
+//            assert utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.TEXTO_EXITOSO) : "No se pudo interactuar con el elemento." + negocioPageObjects.TEXTO_EXITOSO;
+        }
+        try {
+//        	utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_CONTINUAR);
+            /** Acciones por coordenadas ya que no se pueden mapear elementos **/
+            utilidadesTCS.clickCoordinates(220, 550);
+            utilidadesTCS.clickCoordinates(215, 530);
+        	Utilidades.esperaMiliseg(2000);
+        } catch (Exception e) {
+            System.out.println("Se presento un error debido a: "+ e.getMessage() );
+//            assert utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.BOTON_CONTINUAR) : "No se pudo interactuar con el elemento." + OlvidoClavePageObjects.BOTON_CONTINUAR;
+        }
+        
+        /** Acciones por coordenadas ya que no se pueden mapear elementos **/
+        
+//        try {
+//        	Utilidades.tomaEvidencia("Módulo administrar mi negocio");
+//            utilidadesTCS.clicElement("xpath", negocioPageObjects.DATOS_VENDEDOR);
+//        } catch (Exception e) {
+//            System.out.println("Se presento un error debido a: "+ e.getMessage() );
+//            assert utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.DATOS_VENDEDOR) : "No se pudo interactuar con el elemento." + negocioPageObjects.DATOS_VENDEDOR;
+//        }
+//        try {
+//        	Utilidades.esperaMiliseg(2000);
+//        	utilidadesTCS.clicElement("xpath", negocioPageObjects.INPUT_NUMERO_CEL);
+//        	utilidadesTCS.cleanInputElement("xpath", negocioPageObjects.INPUT_NUMERO_CEL);
+//        	utilidadesTCS.writeElement("xpath", negocioPageObjects.INPUT_NUMERO_CEL, numeroDeCelularDos);
+//        } catch (Exception e) {
+//            System.out.println("Se presento un error debido a: "+ e.getMessage() );
+//            assert utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.INPUT_NUMERO_CEL) : "No se pudo interactuar con el elemento." + negocioPageObjects.INPUT_NUMERO_CEL;
+//        }
+//        try {
+//        	Utilidades.tomaEvidencia("Actualizo el nombre del punto de venta");
+//            utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_ACTUALIZAR);
+//        } catch (Exception e) {
+//            System.out.println("Se presento un error debido a: "+ e.getMessage() );
+//            assert utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.BOTON_ACTUALIZAR) : "No se pudo interactuar con el elemento." + negocioPageObjects.BOTON_ACTUALIZAR;
+//        }
+//        Utilidades.tomaEvidencia("Valido actualización de datos");
+//        utilidadesTCS.clickCoordinates(220, 550);
+//        utilidadesTCS.clickCoordinates(215, 530);
+    }
+    
+    @Step
+    public void validarQuePermitaEliminarVendedorYVenta() {
+    	
+    	Utilidades.esperaMiliseg(2000);
+        Utilidades.tomaEvidencia("Módulo administrar mi negocio");
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.PUNTO_VENTA);
+        
+        boolean estado = utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.TXT_ELIMINAR_PUNTO_VENTA);
+        if(estado) {
+        	try {
+            	Utilidades.esperaMiliseg(2000);
+            	Utilidades.tomaEvidencia("Datos del punto de venta a eliminar");
+                utilidadesTCS.clicElement("xpath", negocioPageObjects.ELIMINAR_PUNTO_VENTA);
+
+            } catch (Exception e) {
+                System.out.println("Se presento un error debido a: "+ e.getMessage() );
+                assert utilidadesTCS.validateElementVisibilityCatch("name", negocioPageObjects.ELIMINAR_PUNTO_VENTA) : "No se pudo interactuar con el elemento." + negocioPageObjects.ELIMINAR_PUNTO_VENTA;
+            }
+            try {
+            	Utilidades.tomaEvidencia("Pop Up de información del punto de venta y vendedor a eliminar");
+            	Utilidades.esperaMiliseg(800);
+//                utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_ACEPTAR_POP_UP_SALIR_DAVIPLATA);
+                /** Acciones por coordenadas ya que no se pueden mapear elementos **/
+            	utilidadesTCS.clickCoordinates(220, 560);
+            	Utilidades.esperaMiliseg(2000);
+
+            } catch (Exception e) {
+                System.out.println("Se presento un error debido a: "+ e.getMessage() );
+//                assert utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.BOTON_ACEPTAR_POP_UP_SALIR_DAVIPLATA) : "No se pudo interactuar con el elemento." + LoginPageObject.BOTON_ACEPTAR_POP_UP_SALIR_DAVIPLATA;
+            }
+        }
+    }
+    
+    @Step
+    public void seleccionoElBotonEnlaceDePagoOpcionDos() {
+        Utilidades.esperaMiliseg(10000);
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+        Utilidades.esperaMiliseg(1500);
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+        Utilidades.esperaMiliseg(5000);
+		boolean estadoVisiblePopUpAmigos = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.TXT_ERROR_SISTEMA);
+		if(estadoVisiblePopUpAmigos == true) {
+			Utilidades.esperaMiliseg(1000);
+			utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_CLOSE);
+		}	
+        utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.TEXTO_CUANTO_TENGO);
+        Utilidades.esperaMiliseg(1500);
+        utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.ELEMENTOS_PAGO_VENTA);
+        Utilidades.esperaMiliseg(1500);
+        Utilidades.tomaEvidencia("Valido el botón enlace de pago");
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_ENLACE_DE_PAGO);
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+        utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.TEXTO_OPCIONES_ENLACE);
+        Utilidades.esperaMiliseg(1500);
+        Utilidades.tomaEvidencia("Valido el módulo Enlaces de pago");
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.OPCION_ENLACE_PAGO_PSE);
+    }
+    
+    @Step
+    public void RealizoLaCreacionDeLaVenta () {
+    	Utilidades.esperaMiliseg(500);
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.OPCION_VALOR_FIJO);
+        Utilidades.esperaMiliseg(2000);
+        utilidadesTCS.clicElementAction("xpath", negocioPageObjects.DESPEGABLE_PRODUCTO_VENTA);
+        /** Acciones por coordenadas ya que no se pueden mapear elementos **/
+    	utilidadesTCS.clickCoordinates(360, 380);
+        Utilidades.esperaMiliseg(2000);
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.DESPEGABLE_CATALOGO);
+        Utilidades.esperaMiliseg(800);
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.BTN_DONE);
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.NOMBRE_CATALOGO);
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+        Utilidades.esperaMiliseg(2500);
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.DESPEGABLE_CATEGORIA);
+        Utilidades.esperaMiliseg(800);
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.BTN_DONE);
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.NOMBRE_CATEGORIA);
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+        Utilidades.esperaMiliseg(2500);
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.DESPEGABLE_PRODUCTO);
+        Utilidades.esperaMiliseg(1000);
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.BTN_DONE);
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.NOMBRE_PRODUCTO);
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+        Utilidades.tomaEvidencia("Diligencio formulario del producto de venta");
+        Utilidades.esperaMiliseg(1000);
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.BTN_CONTINUAR_PRODUCTO_VENTA);
+        Utilidades.esperaMiliseg(2000);
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.DESPEGABLE_REFERENCIA);
+        Utilidades.esperaMiliseg(1000);
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.NOMBRE_REFERENCIA_VENTA);
+        Utilidades.esperaMiliseg(2000);
+        Utilidades.tomaEvidencia("Finalizo el registro de mis productos");
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_CONTINUAR_PRODUCTO);
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+        utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.TEXTO_GENERACION_ENLACE);
+        String textoExitoso = utilidadesTCS.obtenerTexto("xpath", negocioPageObjects.TEXTO_GENERACION_ENLACE);
+        utilidadesTCS.validateTextContainsStringIgnoreUppercaseLowercase(textoExitoso, "Generación exitosa");
+        Utilidades.tomaEvidencia("Generación exitosa de enlace");
+        utilidadesTCS.scrollBackground("xpath", negocioPageObjects.DESPEGABLE_PRODUCTO_VENTA, 0, -150); 
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_FINALIZAR);
+    }
+    
+    @Step
+    public void seleccionoMasIngresosParaSuNegocioHome () {
+    	utilidadesTCS.scrollBackground("xpath", negocioPageObjects.TEXTO_CUANTO_TENGO, 0, -350);
+    	Utilidades.esperaMiliseg(5000);
+        Utilidades.tomaEvidencia("Selecciono Más ingresos");
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.OPCION_MAS_INGRESOS_HOME);
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+        Utilidades.tomaEvidencia("Módulo Más ingresos para su negocio");
+        
+        boolean visibilidadTYC = utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.TERMINOS_CONDICIONES_AUMENTE_INGRESOS);
+        if(visibilidadTYC) {
+        	Utilidades.esperaMiliseg(1500);
+            utilidadesTCS.clicElement("xpath", negocioPageObjects.TERMINOS_CONDICIONES_AUMENTE_INGRESOS);
+            Utilidades.tomaEvidencia("Acepto términos y condiciones de 'Aumente sus ingresos'");
+            utilidadesTCS.clicElement("xpath", negocioPageObjects.BTN_CONTRATAR);
+        }
+    }
+    
+    @Step
+    public void ingresarATiendaVirtualDesdeMasIngresos() {
+    	Utilidades.esperaMiliseg(1500);
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.BTN_TIENDA_VIRTUAL);
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+        Utilidades.tomaEvidencia("Ingreso a tienda virtual desde la opción 'Aumente sus ingresos'");
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.PRODUCTO_TIENDA_VIRTUAL);
+        utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.TXT_PRODUCTOS_TIENDA_VIRTUAL); 
+    	Utilidades.esperaMiliseg(500);
+        Utilidades.tomaEvidencia("Acepto mensaje de compra de productos");
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.BTN_ACEPTAR);
+    	Utilidades.esperaMiliseg(1500);
+        Utilidades.tomaEvidencia("Valido opciones de compra");
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.SPOTIFY_BONO);
+        utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.TXT_CARACTERISTICAS_BONO); 
+    	Utilidades.esperaMiliseg(500);
+        Utilidades.tomaEvidencia("Valido las caracteristicas del bono");
+        Utilidades.tomaEvidencia("Valido opciones de compra");
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.BTN_CONTINUAR);
+        utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.TXT_DETALLE_COMPRA); 
+    	Utilidades.esperaMiliseg(500);
+        Utilidades.tomaEvidencia("Valido los detalles de compra");
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.BTN_CONTINUAR);
+    	Utilidades.esperaMiliseg(1000);
+        Utilidades.tomaEvidencia("Valido resultado de la compra");
+    }
+    
+    @Step
+    public void ingresarAMovimientosDesdeMasIngresos() { 
+        utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.TEXTO_CUANTO_TENGO); 
+    	Utilidades.esperaMiliseg(500);
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.TEXTO_MOVIMIENTOS);  
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+        Utilidades.tomaEvidencia("Ingresé a movimientos desde la opción más ingresos");
+    }
+    
+    @Step
+    public void descargarExtractosDesdeMovimientos() {
+    	Utilidades.esperaMiliseg(500);
+        utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.TXT_SELECCIONAR_MES_MOVIMIENTOS); 
+    	Utilidades.esperaMiliseg(500);
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.BTN_DESCARGAR);  
+    }
+    
+    @Step
+    public void SeleccionoLaCreacionDelEnlaceDePagoOtros (String descripcion, String valor) {
+        seleccionoElBotonEnlaceDePagoOpcionDos();
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+        Utilidades.esperaMiliseg(1500);
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.OPCION_VALOR_FIJO);
+        Utilidades.esperaMiliseg(1000);
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_OTROS);
+        Utilidades.esperaMiliseg(1000);
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.CAMPO_DESCRIPCION);
+        utilidadesTCS.writeElement("xpath", negocioPageObjects.CAMPO_DESCRIPCION, descripcion);
+        Utilidades.esperaMiliseg(2000);
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.CAMPO_VALOR);
+        utilidadesTCS.writeElement("xpath", negocioPageObjects.CAMPO_VALOR, valor);
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.BTN_DONE);
+        Utilidades.esperaMiliseg(500);
+        Utilidades.tomaEvidencia("Formulario de enlace de pago Otros");
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_CONTINUAR_PRODUCTO);
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+        utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.TEXTO_GENERACION_ENLACE);
+        String textoExitoso = utilidadesTCS.obtenerTexto("xpath", negocioPageObjects.TEXTO_GENERACION_ENLACE);
+        utilidadesTCS.validateTextContainsStringIgnoreUppercaseLowercase(textoExitoso, "Generación exitosa");
+        Utilidades.tomaEvidencia("Generación exitosa de enlace");
+        Utilidades.esperaMiliseg(500);
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_FINALIZAR);
     }
 }

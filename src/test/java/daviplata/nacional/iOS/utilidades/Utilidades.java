@@ -762,7 +762,7 @@ public class Utilidades {
 
 	}
 
-//Press by coordinates
+	//Press by coordinates
 	public void pressByCoordinates(int x, int y, long seconds) {
 		new TouchAction(driver).press(point(x, y)).waitAction(waitOptions(ofSeconds(seconds))).release().perform();
 	}
