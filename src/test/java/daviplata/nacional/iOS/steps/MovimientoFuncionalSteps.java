@@ -397,7 +397,7 @@ public class MovimientoFuncionalSteps {
 	public void validoListaDeExtractosDisponibles() {
         Utilidades.tomaEvidencia("Doy clic en lista desplegable de extractos");
         utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.LISTA_DESPLEGABLE_EXTRACTOS);
-        Utilidades.tomaEvidencia("Validar que la pestaña Extractos, debe contener un campo de selección de fecha con el icono del XD (flecha en dirección abajo) qué contiene las fechas de los meses y año a solicitar el extracto. Se debe mostrar la cantidad de meses actuales en producción");
+        Utilidades.tomaEvidencia("Validar que la pestaña Extractos, debe contener un campo de selección de fecha con el icono del XD (flecha en dirección abajo)");
     }
 	
 	@Step
@@ -409,30 +409,31 @@ public class MovimientoFuncionalSteps {
     public void validarTextoDeExtractos() {
         boolean textoExtractos = utilidadesTcs.validateElementVisibility("xpath", MovimientoFuncionalPageObjects.TEXTO_EXTRACTOS);
         utilidadesTcs.validateStatusElement(textoExtractos);
-        utilidades.tomaEvidencia("Validar que en la pestaña Extractos aparezca un texto que diga 'Recuerde que sólo podrá descargar los extractos de los meses donde haya usado su DaviPlata'", "xpath", MovimientoFuncionalPageObjects.TEXTO_EXTRACTOS);
+        Utilidades.tomaEvidencia("Validar que en la pestaña Extractos aparezca un texto que diga 'Recuerde que sólo podrá descargar los extractos de los meses donde haya usado su DaviPlata'");
     }
     
     @Step
     public void validarBotonDescargasDeshabilitado() {
         boolean estado = utilidadesTcs.validateElementEnabled("xpath", MovimientoFuncionalPageObjects.BOTON_DESCARGAS);
         utilidadesTcs.validateStatusElementFalse(estado);
-        utilidades.tomaEvidencia("Validar que en la pantalla sobre puesta de Extractos, aparezca un boton (Descargar) y que se encuentre deshabilitado.", "xpath", MovimientoFuncionalPageObjects.BOTON_DESCARGAS);
+        Utilidades.tomaEvidencia("Validar que en la pantalla sobre puesta de Extractos, aparezca un boton (Descargar) y que se encuentre deshabilitado.");
     }
     
     @Step
     public void ValidoBotonDescargarHabilitadoAlEscogerExtracto() {
-        utilidades.tomaEvidencia("Doy clic en lista desplegable de extractos", "xpath", MovimientoFuncionalPageObjects.LISTA_DESPLEGABLE_EXTRACTOS);
+        Utilidades.tomaEvidencia("Doy clic en lista desplegable de extractos");
         utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.LISTA_DESPLEGABLE_EXTRACTOS);
-        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.TEXTO_EXTRACTOS);
+		Utilidades.esperaMiliseg(1500);
+        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.OPCION_LISTA_MESES);
         boolean estado = utilidadesTcs.validateElementEnabled("xpath", MovimientoFuncionalPageObjects.BOTON_DESCARGAS);
         utilidadesTcs.validateStatusElement(estado);
-        utilidades.tomaEvidencia("Validar que en el momento en el que el cliente seleccione un mes, se le debe habilitar el boton 'Descargar'", "xpath", MovimientoFuncionalPageObjects.BOTON_DESCARGAS);
+        Utilidades.tomaEvidencia("Validar que en el momento en el que el cliente seleccione un mes, se le debe habilitar el boton 'Descargar'");
         
     }
     
     @Step
     public void validarClicEquisEnMovimientos() {
-        utilidades.tomaEvidencia("Clic en el boton equis", "xpath", MovimientoFuncionalPageObjects.BOTON_EQUIS_EXTRACTOS);
+        Utilidades.tomaEvidencia("Clic en el boton equis");
         utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.BOTON_EQUIS_EXTRACTOS);
         Utilidades.tomaEvidencia("Validar que en la pantalla sobre puesta, debe contener en la parte superior una 'X' qué cuando el cliente de click en esta debe devolverlo a la pantalla de los movimientos");
     }

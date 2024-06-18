@@ -36,5 +36,10 @@ public class MovimientoFuncionalPageObjects extends PageObject {
     public static final String TXT_MOV_ENCONTRADOS = "//XCUIElementTypeStaticText[@name='Movimientos encontrados']";
     public static final String BTN_CERRAR_BUSQUEDAD_MOV = "//XCUIElementTypeImage[@name='Salir boton']";
     public static final String TXT_BUSCAR_MOVIMIENTOS = "//XCUIElementTypeStaticText[@name='Buscar Movimientos']";
-
+    public static final String BOTON_EXTRACTOS = "//XCUIElementTypeButton[@name='Extractos']";
+    public static final String LISTA_DESPLEGABLE_EXTRACTOS = "//XCUIElementTypeOther[@name='Seleccione el mes']/following-sibling::XCUIElementTypeImage | //XCUIElementTypeOther[@name='Seleccione el mes'] | (//XCUIElementTypeImage[@name='Icono fecha'])[2]";
+    public static final String TEXTO_EXTRACTOS = "//XCUIElementTypeStaticText[contains(@name, 'Recuerde que solo podrá descargar')]"; 
+    public static final String BOTON_DESCARGAS = "//XCUIElementTypeButton[@name='Descargar']";
+    public static final String OPCION_LISTA_MESES = "(//XCUIElementTypeOther[@name='main'])[3]/XCUIElementTypeOther[4]/XCUIElementTypeOther[1] | (//XCUIElementTypeOther)[35]";
+    public static final String BOTON_EQUIS_EXTRACTOS = "//XCUIElementTypeImage[@name='Salir movimientos boton']";
 }

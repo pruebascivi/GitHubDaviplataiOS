@@ -23,8 +23,6 @@ public class MeterPlataDefinitions {
 	@Steps
 	PasarPlataSteps stepsPasarPlata;
 
-	// EXISTENTES HASTA 08/NOV/23:
-
 	@When("^Valido la opcion meter plata desde home daviplata$")
 	public void validoOpcionMeterPlata() throws Exception {
 		meterPlataSteps.validarOpcionMeterPlata();
@@ -289,6 +287,11 @@ public class MeterPlataDefinitions {
 	public void editoCorreoDeTransaccion(String correo) {
 		meterPlataSteps.editarCorreoDeTransaccion(correo);
 	}
+	
+	@Given("^Edito número celular$")
+	public void editoCorreoDeTransaccion() {
+		meterPlataSteps.borrarEIngresarNumCel();
+	}
 
 	@Given("^Validar correo nuevo ingresado$")
 	public void validarCorreoNuevoIngresado() {
@@ -406,5 +409,20 @@ public class MeterPlataDefinitions {
 	@Then("^Validar que permita pegar la información númerica$")
     public void validarQuePermitaPegarLaInformaciónNumerica() throws Exception {
 		
+    }
+	
+	@When("^Doy clic en el boton continuar de informacion en recarga$")
+    public void doyClicEnElBotonContinuarDeInformacionEnRecarga() throws Exception {
+        meterPlataSteps.clicBotonContinuarInformacionTransaccion();
+    }
+    
+	@Then("^Validar mensaje de recarga del daviplata$")
+    public void validarMensajeDeRecargaDelDaviplata() throws Exception {
+        meterPlataSteps.validarMensajeDeRecargaDaviplata();
+    }
+	
+	@Then("^Validar mensaje de numero de usuario invalido$")
+    public void validarMensajeDeNumeroDeUsuarioInvalido() throws Exception {
+        meterPlataSteps.validarMensajeUsuarioNumeroInvalido();
     }
 }

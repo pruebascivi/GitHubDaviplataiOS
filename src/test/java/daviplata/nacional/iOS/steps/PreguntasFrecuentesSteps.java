@@ -15,6 +15,7 @@ public class PreguntasFrecuentesSteps {
 	public void ingresarAlBotonNecesitoAyuda() {
         Utilidades.tomaEvidencia("Hacer clic en el boton necesito ayuda desde zona publica");
         utilidadesTcs.clicElement("xpath", PreguntasFrecuentesPageObjects.BOTON_NECESITO_AYUDA);
+		utilidadesTcs.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
     }
 
 	@Step
@@ -29,9 +30,7 @@ public class PreguntasFrecuentesSteps {
 	@Step
 	public void ingresarCredenciales(String tipoDocumento, String numDocumento) {
 		Utilidades.esperaMiliseg(6000);
-		for(int i=0; i<2; i++) {
-			utilidadesTcs.esperarElementVisibility("xpath", PreguntasFrecuentesPageObjects.BOTON_DESPLEGAR_TIPO_DOCUMENTO);
-		}	
+		utilidadesTcs.esperarElementVisibility("xpath", PreguntasFrecuentesPageObjects.BOTON_DESPLEGAR_TIPO_DOCUMENTO);
 		Utilidades.tomaEvidencia("Hago clic en el input seleccionar tipo de documento");
         utilidadesTcs.clicElement("xpath", PreguntasFrecuentesPageObjects.BOTON_DESPLEGAR_TIPO_DOCUMENTO);
         utilidadesTcs.seleccionarTipoDocumentoInput("xpath",tipoDocumento);
@@ -43,7 +42,6 @@ public class PreguntasFrecuentesSteps {
 	public void aceptarTerminosCondiciones() {
         utilidadesTcs.clicElement("xpath", PreguntasFrecuentesPageObjects.BOTON_TERMINOS_CONDICIONES);
         Utilidades.tomaEvidencia("Aceptar terminos y condiciones");
-        
     }
 	
 	@Step

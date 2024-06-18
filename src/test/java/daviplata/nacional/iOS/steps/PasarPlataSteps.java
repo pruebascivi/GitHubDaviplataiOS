@@ -148,10 +148,15 @@ public class PasarPlataSteps {
 				utilidadesTCS.esperarElementVisibility("xpath", PasarPlataPageObjects.TXT_TRANSACCION_EXITOSA);
 				Utilidades.tomaEvidencia("Transacción exitosa.");
 				BaseUtil.Autorizador = utilidadesTCS.obtenerTexto("xpath", PasarPlataPageObjects.CODIGO_AUTORIZACION);
-				Utilidades.esperaMiliseg(2000);
+				utilidadesTCS.scrollBackground("xpath", PasarPlataPageObjects.CODIGO_AUTORIZACION, 0, -150);
+				Utilidades.esperaMiliseg(1000);
 				utilidadesTCS.esperarElementVisibility("xpath", PasarPlataPageObjects.FINALIZAR_TRANSACCION);
 				utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.FINALIZAR_TRANSACCION);
 				Utilidades.esperaMiliseg(4000);
+				boolean estadoVisible = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.POP_UP_INVITE_AMIGOS);
+				if(estadoVisible == true) {
+					utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_CLOSE);
+				}
 				pagePasarPlata.capturarSaldoFinal();
 				
 			} else {
@@ -172,10 +177,6 @@ public class PasarPlataSteps {
 			} else 
 				{assertEquals(true,validacion);
 			}
-		}
-		boolean estadoVisible = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.POP_UP_INVITE_AMIGOS);
-		if(estadoVisible == true) {
-			utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_CLOSE);
 		}
 	}
 	
@@ -283,7 +284,14 @@ public class PasarPlataSteps {
 		TouchAction touchAction=new TouchAction(driver);
         touchAction.tap(new PointOption().withCoordinates(22, 339)).perform();
         Utilidades.tomaEvidencia("Monto a transferir");
-        utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BTN_CONTINUAR);
+		boolean condicionContinuar = utilidadesTCS.validateElementVisibilityCatch("xpath", PasarPlataPageObjects.BTN_CONTINUAR);
+		if (condicionContinuar == true) {
+	        utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BTN_CONTINUAR);
+		}
+		boolean condicionPasarPlata = utilidadesTCS.validateElementVisibilityCatch("xpath", PasarPlataPageObjects.PASAR_PLATA_BTN_DAV);
+		if (condicionPasarPlata == true) {
+	        utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.PASAR_PLATA_BTN_DAV);
+		}
 	}
 
 	@Step
@@ -950,7 +958,15 @@ public class PasarPlataSteps {
 	@Step
 	public void verificarInfoYPasarPlata() {
 		Utilidades.esperaMiliseg(1000);
-        utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.PASAR_PLATA_BTN_DAV);
+		System.out.println("Valido datos para poder pasar plata");
+		boolean condicionContinuar = utilidadesTCS.validateElementVisibilityCatch("xpath", PasarPlataPageObjects.BTN_CONTINUAR);
+		if (condicionContinuar == true) {
+	        utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BTN_CONTINUAR);
+		}
+		boolean condicionPasarPlata = utilidadesTCS.validateElementVisibilityCatch("xpath", PasarPlataPageObjects.PASAR_PLATA_BTN_DAV);
+		if (condicionPasarPlata == true) {
+	        utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.PASAR_PLATA_BTN_DAV);
+		}
 	}
 	
 	@Step
@@ -1557,7 +1573,19 @@ public class PasarPlataSteps {
 		Utilidades.esperaMiliseg(1000);
 		utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BTN_CONTINUAR);
 		Utilidades.esperaMiliseg(800);
-		pagePasarPlata.clicBtnContinuarPlataLinea();
+		//pagePasarPlata.clicBtnContinuarPlataLinea();
+		Utilidades.tomaEvidencia("Selecciono opción por Transfiya");
+		utilidadesTCS.esperarElementVisibility("xpath", PasarPlataPageObjects.BTN_POR_TRANSFIYA);
+		utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BTN_POR_TRANSFIYA);
+		Utilidades.esperaMiliseg(2000);
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+	    boolean txtPorSuSeguridadDefecto = utilidadesTCS.validateElementVisibilityCatch("xpath", PasarPlataPageObjects.TXT_POR_SU_SEGURIDAD);
+	       if (txtPorSuSeguridadDefecto == true) {
+	    	   String txt = utilidadesTCS.obtenerTexto("xpath", PasarPlataPageObjects.TXT_POR_SU_SEGURIDAD);
+	           Utilidades.tomaEvidencia("Se evidencia defecto con texto: " + txt);
+	           System.out.println("Se evidencia defecto con texto: " + txt);
+	           fail("Se evidencia defecto con texto: " + txt);
+	       } 
 	}
 	
 	@Step
@@ -1700,10 +1728,10 @@ public class PasarPlataSteps {
 	public void regresarAlHome() {
 		int count = 0;
 		do {
-			Utilidades.esperaMiliseg(1000);
+			utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
 		    utilidadesTCS.esperarElementVisibility("xpath", PasarPlataPageObjects.BOTON_ATRAS_BOLSILLOS);
 		    utilidadesTCS.clicElementAction("xpath", PasarPlataPageObjects.BOTON_ATRAS_BOLSILLOS);
-			Utilidades.esperaMiliseg(1500);
+			utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
 			boolean estadoVisible = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.POP_UP_INVITE_AMIGOS);
 			if(estadoVisible == true) {
 				utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_CLOSE);
@@ -1712,6 +1740,7 @@ public class PasarPlataSteps {
 		} while (count < 4);
 	}
 	
+	@Step
 	public void validarSaldoFinalSinAceptacion() {
 
 		int count = 0;
@@ -2153,8 +2182,6 @@ public class PasarPlataSteps {
 	@Step
 	public void validarTransaccionFechas() {
 		Utilidades.esperaMiliseg(1500);
-		utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.TXT_PRIMER_MOVIMIENTO);
-		Utilidades.esperaMiliseg(800);
 		utilidadesTCS.esperarElementVisibility("xpath", PasarPlataPageObjects.TXT_FECHA_HORA_TRANS);
 		String fechaHora = utilidadesTCS.obtenerTexto("xpath", PasarPlataPageObjects.TXT_FECHA_HORA_TRANS);
         System.out.println("Fecha y hora de transacción: " + fechaHora);
@@ -2183,19 +2210,29 @@ public class PasarPlataSteps {
         pagePasarPlata.darClickBotonMasHome();
 		utilidadesTCS.esperarElementVisibility("xpath", PasarPlataPageObjects.BTN_RECIBIR_PEDIR_PLATA);
 		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
-        Utilidades.tomaEvidencia("Módulo transfiya");
-        Utilidades.esperar(5000);
+        Utilidades.tomaEvidencia("Opciones '¿Qué quiere hacer con su Plata?'");
+        Utilidades.esperaMiliseg(5000);
    }
    
 	@Step
 	public void irARecibirYPedirPlata() {
-       Utilidades.tomaEvidencia("Texto'Que quiere hacer con su plata'");
        utilidadesTCS.esperarElementVisibility("xpath", PasarPlataPageObjects.BTN_RECIBIR_PEDIR_PLATA);
-       utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BTN_RECIBIR_PEDIR_PLATA);
-       Utilidades.tomaEvidencia("Clic opción Recibir y Pedir Plata");
-       utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
-       Utilidades.esperar(5000);
-       Utilidades.tomaEvidencia("Opciones del módulo transfiYa");
+       utilidadesTCS.clicElementAction("xpath", PasarPlataPageObjects.BTN_RECIBIR_PEDIR_PLATA);
+       Utilidades.esperaMiliseg(2000);
+
+       boolean txtPorSuSeguridadDefecto = utilidadesTCS.validateElementVisibilityCatch("xpath", PasarPlataPageObjects.TXT_POR_SU_SEGURIDAD);
+       if (txtPorSuSeguridadDefecto == true) {
+    	   String txt = utilidadesTCS.obtenerTexto("xpath", PasarPlataPageObjects.TXT_POR_SU_SEGURIDAD);
+           Utilidades.tomaEvidencia("Se evidencia defecto con texto: " + txt);
+           System.out.println("Se evidencia defecto con texto: " + txt);
+           fail("Se evidencia defecto con texto: " + txt);
+    	   
+       } else {
+           Utilidades.tomaEvidencia("Clic opción Recibir y Pedir Plata");
+           utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+           Utilidades.esperaMiliseg(5000);
+           Utilidades.tomaEvidencia("Opciones del módulo transfiYa");
+       }
    }
    
    @Step

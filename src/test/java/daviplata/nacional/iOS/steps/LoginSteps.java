@@ -218,6 +218,115 @@ public class LoginSteps {
 		//pageLogin.cerrarMensajeTopes();
 	}
 	
+	
+	@Step
+	public void loginAds(String tipoDocumento, String usuario, String contrasena) {
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+		System.out.println("Ingresando a la app");
+		Utilidades.esperaMiliseg(1000);
+		utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.BOTON_NOTIFICACIONES);
+		Utilidades.esperaMiliseg(800);
+		verificarVersion();
+		utilidadesTCS.seleccionarTipoDocumentoInputHomeDaviplata("xpath",tipoDocumento);
+		utilidadesTCS.writeElement("xpath", LoginRobustoPage.CAMPO_INGRESO_USUARIO, usuario);
+		Utilidades.esperaMiliseg(800);
+		Utilidades.tomaEvidencia("Selecciono tipo de usurio: " + tipoDocumento + " e ingreso usuario: " + usuario);
+		utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_INGRESAR);
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 120);
+		boolean estadoVisibilidadPopUP = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.POP_UP_CAMBIAR_DISPOSITIVO);
+		if (estadoVisibilidadPopUP == true) {
+			utilidadesTCS.clicElement("xpath", LoginRobustoPage.CONTINUAR_POP_UP_CAMBIAR_DISPOSITIVO);
+			Utilidades.esperaMiliseg(1000);
+            boolean validarBiometria = utilidadesTCS.validateElementVisibilityCatch("xpath",LoginRobustoPage.TEXTO_TYT_BIOMETRIA);
+            if (validarBiometria == true) {
+                System.out.println("*********************************************");
+                System.out.println("*                                           *");
+                System.out.println("*          ¡ALERTA DE BIOMETRÍA!            *");
+                System.out.println("*                                           *");
+                System.out.println("*        BIOMETRÍA ACTIVA DETECTADA         *");
+                System.out.println("*                                           *");
+                System.out.println("*********************************************");
+                Utilidades.tomaEvidencia("Error, biometria activa en cambio de dispositivo");
+                fail("Se encuentra la biometria activa para el cambio de dispositivo");
+            }else {
+            	utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.POP_UP_REGLAMENTO_CAMBIO_DISPOSITIVO);
+    			utilidadesTCS.clicElement("xpath", LoginRobustoPage.POP_UP_REGLAMENTO_CAMBIO_DISPOSITIVO);
+    			Utilidades.esperaMiliseg(1000);
+    			utilidadesTCS.writeElement("xpath", LoginRobustoPage.INPUT_CORREO_ELECTRONICO, "XXX@gmail.com");
+    			utilidadesTCS.writeElement("xpath", LoginRobustoPage.INPUT_CLAVE_DAVIPLATA, contrasena);
+    			utilidadesTCS.clicElement("xpath", LoginRobustoPage.CONTINUAR_POP_UP_CAMBIAR_DISPOSITIVO);
+    			utilidadesTCS.clicElement("xpath", LoginRobustoPage.CONTINUAR_POP_UP_CAMBIAR_DISPOSITIVO);
+    			Utilidades.esperaMiliseg(1000);
+    			utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.POP_UP_OTP);
+    			utilidadesTCS.clicElement("xpath", LoginRobustoPage.POP_UP_OTP);
+    			Utilidades.esperaMiliseg(2000);
+    			utilidadesTCS.clickCoordinates(221,435);
+    			boolean visibilidadTeclado = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.BOTON_ACEPTAR_TECLADO_IOS);
+    			if(visibilidadTeclado == true) {
+    				utilidadesTCS.escribirPorTecladoIos("230116");
+    				utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_ACEPTAR_TECLADO_IOS);
+    			}else {
+    				utilidadesTCS.clickCoordinates(194,385);
+    				utilidadesTCS.escribirPorTecladoIos("230116");
+    				utilidadesTCS.validateElementVisibility("xpath", LoginRobustoPage.BOTON_ACEPTAR_TECLADO_IOS);
+    				utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_ACEPTAR_TECLADO_IOS);
+    			}
+    			Utilidades.esperaMiliseg(2000);
+    			utilidadesTCS.clickCoordinates(217,562);
+    			boolean estadoVisiblePopUpAmigos = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.POP_UP_INVITE_AMIGOS);
+    			boolean estadoVisibleSlideInformativo = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.SLIDE_INFORMATIVO_DAVIPLATA);
+    			if(estadoVisiblePopUpAmigos == true || estadoVisibleSlideInformativo ==true) {
+    				Utilidades.esperaMiliseg(1000);
+        			boolean estadoVisible = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.POP_UP_INVITE_AMIGOS);
+        			if(estadoVisible == true) {
+        				utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_CLOSE);
+        			}
+        			utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.SLIDE_INFORMATIVO_DAVIPLATA);
+        			utilidadesTCS.clicElement("xpath", LoginRobustoPage.CONTINUAR_POP_UP_CAMBIAR_DISPOSITIVO);
+    			}else {
+    				utilidadesTCS.clickCoordinates(198,490);
+    				Utilidades.esperaMiliseg(1000);
+        			boolean estadoVisible = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.POP_UP_INVITE_AMIGOS);
+        			if(estadoVisible == true) {
+        				utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_CLOSE);
+        			}
+        			utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.SLIDE_INFORMATIVO_DAVIPLATA);
+        			utilidadesTCS.clicElement("xpath", LoginRobustoPage.CONTINUAR_POP_UP_CAMBIAR_DISPOSITIVO);
+    			}
+            }
+			
+		}else {
+			Utilidades.esperaMiliseg(1000);
+			pageLogin.ingresarContrasena(contrasena);
+			Utilidades.tomaEvidencia("Diligencio contraseña " + contrasena);
+			pageLogin.darClicBotonIngresar();
+			Utilidades.esperaMiliseg(500);
+			pageLogin.darClicBotonIngresar();
+			utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 120);
+		}
+
+		boolean estadoVisible = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.POP_UP_INVITE_AMIGOS);
+		if(estadoVisible == true) {
+			utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_CLOSE);
+		}
+		
+        boolean condicionesUso = utilidadesTCS.validateElementVisibilityCatch("xpath", RegistroMayoresPageObjects.TEXTO_ACTUALIZAMOS_CONDICIONES);
+        if(condicionesUso) {
+            Utilidades.esperaMiliseg(500);
+            utilidadesTCS.clicElement("xpath", RegistroMayoresPageObjects.CHECK_BOX_ACTUALIZACION_1);
+            utilidadesTCS.clicElement("xpath", RegistroMayoresPageObjects.CHECK_BOX_ACTUALIZACION_2);
+            Utilidades.esperaMiliseg(500);
+            Utilidades.tomaEvidencia("Validar actualizacion de las condiciones de uso de los datos");
+            utilidadesTCS.clicElement("xpath", RegistroMayoresPageObjects.ACEPTAR_ACTUALZIACION_CONDICIONES);
+        }
+        
+		boolean aprovechaBeneficios = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.POPUP_APROVECHA_BENEFICIOS);
+		if(aprovechaBeneficios == true) {
+            Utilidades.esperaMiliseg(500);
+			utilidadesTCS.clicElement("xpath", LoginRobustoPage.BTN_LO_VERÉ_LUEGO_POPUP);
+		}
+	}
+	
 	@Step
 	public void ingresarAAppNuevaContrasenia(String tipoDocumento, String usuario, String claveNueva) {
 		System.out.println("Ingresando a la app");
@@ -632,6 +741,7 @@ public class LoginSteps {
 	@Step
 	public void ingresoAMensajesYNotificaciones() {
 		pageHome.darClickCampanaNotificaciones();
+		Utilidades.esperaMiliseg(5000);
 		Utilidades.tomaEvidencia("Ingreso a Mensajes y Notificaciones");
 	}
 
@@ -876,7 +986,7 @@ public class LoginSteps {
 			Utilidades.esperaMiliseg(2000);
 			utilidadesTCS.clicElement("xpath", LoginRobustoPage.ACERCA_DE_DAVIPLATA);
 			Utilidades.esperaMiliseg(1500);
-			Evidencias.capturaDispositivo("Entro a menu hamburguesa perfil negocio", AcercaDeDaviplataPage.VERSION);
+			Utilidades.tomaEvidencia("Entro a menu hamburguesa perfil negocio");
 			String version = utilidadesTCS.obtenerTexto("xpath", AcercaDeDaviplataPage.VERSION);
 			Utilidades.tomaEvidencia("Ingreso al módulo 'Acerca de Daviplata' y capturo la versión: " + version );
 			System.out.println("La versión es: " + version);

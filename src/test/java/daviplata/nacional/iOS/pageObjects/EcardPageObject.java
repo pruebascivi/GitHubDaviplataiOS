@@ -105,7 +105,11 @@ public class EcardPageObject extends PageObject {
 	public static final String BOTON_TARJETA_VIRTUAL = "//XCUIElementTypeOther[@name='Mi tarjeta virtual 0,00']";
 	public static final String BOTON_TIENDA_VIRTUAL = "(//XCUIElementTypeOther[@name='Tienda Virtual'])[1]";
 	public static final String TEXTO_TIENDA_VIRTUAL_MODULO = "//XCUIElementTypeStaticText[@name='Tienda virtual'] | //XCUIElementTypeStaticText[@name='Tienda Virtual']";
+	public static final String INPUT_NUMERO_CELULAR = "";
+	public static final String INPUT_HORA = "";
+	public static final String BOTON_SUBMIT_NANOCREDITO = "";
 
+	
 	public void verificoVisualizacionTextoElClienteNoTieneEcard() {
 		try {
 		    contador++;

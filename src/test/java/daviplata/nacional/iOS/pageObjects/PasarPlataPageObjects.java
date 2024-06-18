@@ -206,7 +206,7 @@ public class PasarPlataPageObjects extends PageObject {
 	private String txtFondosInsuficientesBolsillo = "//XCUIElementTypeStaticText[@name='Exitosa, bols. sin saldo por fondos insuficientes']";
 	private String txtFondosInsuficientesTransfiYa = "//XCUIElementTypeStaticText[@name='Ingrese un monto que se ajuste a su saldo disponible']";
 	private String btnDone = "//XCUIElementTypeButton[@name='Done']";
-	private String btnMasHome="//XCUIElementTypeButton[@name='iconPlus']";
+	private String btnMasHome= "//XCUIElementTypeButton[@name='iconPlus'] | //XCUIElementTypeOther[@name='btn-my-movements-3']";
 	private String btnFavoritos="//XCUIElementTypeStaticText[@name=\"Favoritos - Boton\"]";
 	private String btnCuentaFavorita="(//XCUIElementTypeCell)[1]";
 	private String btnNecesitoAyuda="//*[@name='Ir a asesor virtual ¿Necesita ayuda?']";
@@ -232,14 +232,14 @@ public class PasarPlataPageObjects extends PageObject {
 	public static final String ACEPTAR_POPUP = "//XCUIElementTypeButton[@name='Continuar']";
 	public static final String CONTINUAR_DATOS_PASAR_PLATA_DAV = "//XCUIElementTypeButton[@name='Continuar']";
 	public static final String PASAR_PLATA_BTN_DAV = "//XCUIElementTypeButton[@name='Pasar Plata']";
-	public static final String BOTON_ATRAS_BOLSILLOS = "//XCUIElementTypeButton[contains(@name, 'Regresar')] | //XCUIElementTypeButton[contains(@label, 'Regresar')] | //XCUIElementTypeButton[contains(@name, 'Botón atrás')] | //XCUIElementTypeButton[contains(@name,'Botón atrás')] | //*[contains(@name,'ic arrow left')] | //*[contains(@name, 'Regresar')] | //XCUIElementTypeButton[contains(@name, 'icon back button')] | //XCUIElementTypeOther[@name='image-header-0']/XCUIElementTypeImage | //XCUIElementTypeButton[@name='Atrás Botón'] | //XCUIElementTypeButton[@name='Atras'] | //XCUIElementTypeButton[@name='atrás Botón'] | //XCUIElementTypeButton[contains(@name, 'atrás')] | //XCUIElementTypeButton[contains(@name, 'Atrás')]";
+	public static final String BOTON_ATRAS_BOLSILLOS = "//XCUIElementTypeButton[contains(@name, 'Regresar')] | //XCUIElementTypeButton[contains(@label, 'Regresar')] | //XCUIElementTypeButton[contains(@name, 'Botón atrás')] | //XCUIElementTypeButton[contains(@name,'Botón atrás')] | //*[contains(@name,'ic arrow left')] | //*[contains(@name, 'Regresar')] | //XCUIElementTypeButton[contains(@name, 'icon back button')] | //XCUIElementTypeOther[@name='image-header-0']/XCUIElementTypeImage | //XCUIElementTypeButton[@name='Atrás Botón'] | //XCUIElementTypeButton[@name='Atras'] | //XCUIElementTypeButton[@name='atrás Botón'] | //XCUIElementTypeButton[contains(@name, 'atrás')] | //XCUIElementTypeButton[contains(@name, 'Atrás')] | //XCUIElementTypeImage[@name='Atrás Botón'] | //XCUIElementTypeImage[contains(@name, 'Atrás')]";
 	public static final String TEXTO_POPUP_PEDIR_PLATA = "//XCUIElementTypeStaticText[contains(@value, 'Por esta opción puede pasar, recibir y pedir plata a cualquier persona, solo debe conocer el número de celular')]";
 	public static final String CLIC_TEXT = "//XCUIElementTypeStaticText[@name='Complete la información']";
 	public static final String TXT_COMPLETAR_DATOS = "//XCUIElementTypeStaticText[contains(@name, 'Por favor confirme los siguientes datos')] | //XCUIElementTypeStaticText[@name='Por favor confirme los siguientes datos:'] | //XCUIElementTypeStaticText[contains(@value, 'Por favor confirme los siguientes datos:')] | //XCUIElementTypeOther[@name='ACHenLinea']/XCUIElementTypeOther[1]";
 	public static final String TXT_CONTACTO_CON_DAVIPLATA = "//XCUIElementTypeStaticText[contains(@name,'Este contacto tiene DaviPlata')]";
 	public static final String BTN_MEDIO_TRANSFIYA = "//XCUIElementTypeButton[contains(@name,'Por Transfiya')]";
 	public static final String TXT_COMPLETAR_INFO = "//XCUIElementTypeStaticText[contains(@name,'Complete la información')]";
-	public static final String BTN_RECIBIR_PEDIR_PLATA = "//XCUIElementTypeOther[@name='circle-button-6'] | (//XCUIElementTypeOther[contains(@label, 'Recibir y pedir plata')])[10]";
+	public static final String BTN_RECIBIR_PEDIR_PLATA = "//XCUIElementTypeOther[@name='circle-button-6'] | (//XCUIElementTypeOther[contains(@label, 'Recibir y pedir plata')])[10] | //XCUIElementTypeStaticText[@value= 'Recibir y Pedir Plata']";
 	public static final String ACEPTO_TERM_COND = "//XCUIElementTypeOther[@name='ACHenLinea']/XCUIElementTypeOther[6] | //XCUIElementTypeOther[@name='ACHenLinea']/XCUIElementTypeOther[6]/XCUIElementTypeSwitch";
 	public static final String BTN_CONTINUAR = "//XCUIElementTypeButton[contains(@name, 'Continuar')] | //XCUIElementTypeButton[contains(@label, 'Continuar')]";
 	public static final String BTN_PEDIR_PLATA_ENLINEA = "//XCUIElementTypeButton[@name='Pedir plata en Línea']";
@@ -258,6 +258,8 @@ public class PasarPlataPageObjects extends PageObject {
 	public static final String POPUP_COBRO_RECHAZADO = "//XCUIElementTypeStaticText[@name='El cobro ha sido rechazado']";
 	public static final String BTN_ACEPTAR_COBRO = "//XCUIElementTypeButton[@name='Aceptar']";
 	public static final String CAMPO_MONTO = "//XCUIElementTypeTextField[contains(@name, 'Ingrese un valor')] | //XCUIElementTypeOther[contains(@name, 'Cuánta plata quiere pedir')]/following-sibling::XCUIElementTypeTextField";
+	public static final String TXT_POR_SU_SEGURIDAD = "//XCUIElementTypeStaticText[contains(@name, 'Por su seguridad se ha cerrado la sesión')]";
+	
 	
 	public void btnBolsillos() {
 		MobileElement element = (MobileElement) wait

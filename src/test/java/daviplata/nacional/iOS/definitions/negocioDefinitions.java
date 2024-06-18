@@ -485,15 +485,29 @@ public class negocioDefinitions {
         negocioStep.ingresarATiendaVirtualDesdeMasIngresos();
     }
     
+    @Then("^Regreso un módulo atrás$")
+    public void regresoUnModuloAtras() throws Exception {
+        negocioStep.regresarXVeces();
+    }
+    
+    @Then("^Regreso desde movimientos desde la opcion más ingresos$")
+    public void regresoDesdeMovimientosDesdeLaOpcionMasIngresos() throws Exception {
+        negocioStep.regresarDesdeMovimientosOpcionIngresos();
+    }
+    
     @Then("^Ingreso y descargo el extracto de los movimientos$")
     public void ingresoYDescargoElExtractoDeLosMovimientos() throws Exception {
         negocioStep.descargarExtractosDesdeMovimientos();
     }
     
-    
     @Then("^Ingreso a los movimientos desde la opcion más ingresos$")
     public void ingresoALosMovimientosDesdeLaOpcionMasIngresos() throws Exception {
         negocioStep.ingresarAMovimientosDesdeMasIngresos();
+    }
+    
+    @Then("^Regreso al home elemento back visible$")
+    public void regresoAlHomeElementoBackVisible() throws Exception {
+        negocioStep.backToHome();
     }
     
     @Then("^Selecciono la creación del enlace de pago Otros \"([^\"]*)\" \"([^\"]*)\"$")

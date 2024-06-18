@@ -245,7 +245,7 @@ Feature: Modulo Olvido Clave
       | tipoId | usuario       | claveNueva |
       | "CE"   | "90062810017" | "1342"     | 
       
-  @CP1289M
+  #@CP1289M
   Scenario Outline: CP1289M_SYS_Validar proceso de olvido de clave para tipo documental CC
     Given obtener numero celular actual en redeban <usuario>
     And logout redeban al finalizar consulta

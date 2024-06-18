@@ -102,7 +102,7 @@ public class RegistroMayoresPageObjects extends PageObject {
 		public static final String LO_SENTIMOS_FUNCIONALIDAD_NEGOCIO = "//XCUIElementTypeTextView[contains(@value, 'esta funcionalidad estará disponible cuando cambie su documento de identidad')] | //XCUIElementTypeButton[@name='Aceptar']/preceding-sibling::XCUIElementTypeOther";
 		public static final String ACEPTAR_POP_UP_LO_SENTIMOS_FUNC_BTN = "//XCUIElementTypeButton[@name='Aceptar'] | //XCUIElementTypeButton[contains(@name, 'Aceptar')] | //XCUIElementTypeButton[contains(@label, 'Aceptar')]";
 		public static final String TEXTO_BENEFICIOS_MI_NEGOCIO = "//XCUIElementTypeStaticText[@name='Beneficios Mi Negocio']";
-		public static final String BOTON_USAR_MI_DAVIPLATA = "//XCUIElementTypeStaticText[@name='Usar Mi DaviPlata']";
+		public static final String BOTON_USAR_MI_DAVIPLATA = "//XCUIElementTypeStaticText[@name='Usar Mi DaviPlata'] | //XCUIElementTypeOther[@name='main']/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther[1]";
 		public static final String CHECK_TYC = "//XCUIElementTypeStaticText[@name='Beneficios Mi Negocio']/following-sibling::XCUIElementTypeOther[2]/XCUIElementTypeOther[1] | (//XCUIElementTypeOther//XCUIElementTypeTextView[contains(@value, 'Acepto términos y condiciones')]/ancestor::XCUIElementTypeOther/preceding-sibling::XCUIElementTypeOther)[2]";
 		public static final String BOTON_CREAR_MI_NEGOCIO = "//XCUIElementTypeButton[@name='Crear Mi Negocio']";
 		public static final String TEXTO_FORMULARIO_NEGOCIO = "//XCUIElementTypeStaticText[contains(@name, 'Ingrese los datos')]";

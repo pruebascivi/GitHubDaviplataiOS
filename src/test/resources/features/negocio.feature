@@ -313,7 +313,7 @@ Feature: Pruebas en la funcionalidad de perfil negocio de la app Daviplata.
       | "CC"   | "1020770002" | "1234"     | "98169994476" |
 
   @CP027028M @readyPorProbar
-  Scenario Outline: CP02702M_SYS_Validar funcionalidad de pasar plata (a cuenta corriente), desde botón de home desde perfil negocio.
+  Scenario Outline: CP027028M _SYS_Validar funcionalidad de pasar plata (a cuenta corriente), desde botón de home desde perfil negocio.
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     When Ingreso a perfil negocio
     And Ingresar a menu hamburguesa perfil negocio
@@ -465,7 +465,7 @@ Feature: Pruebas en la funcionalidad de perfil negocio de la app Daviplata.
       | tipoId | usuario      | contrasena | descripcion | valor   |
       | "CC"   | "10333040"   | "1234"     | "nuecesdos" | "10000" |
 
-  @CP02707M
+  @CP02707M @Passed
   Scenario Outline: CP02707M_SYS_Validar que permita compra en la tienda virtual mi negocio
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     When Ingreso a perfil negocio
@@ -476,7 +476,7 @@ Feature: Pruebas en la funcionalidad de perfil negocio de la app Daviplata.
       | tipoId | usuario      | contrasena |
       | "CC"   | "10050066"   | "2589"     |
 
-  @CP02708M
+  @CP02708M @Passed
   Scenario Outline: CP02708M_SYS_Validar que permita descargar el extracto de más ingresos para su negocio
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     When Ingreso a perfil negocio
@@ -488,16 +488,18 @@ Feature: Pruebas en la funcionalidad de perfil negocio de la app Daviplata.
       | tipoId | usuario      | contrasena |
       | "CC"   | "10050066"   | "2589"     |
 
-  @CP02709M
+  @CP02709M @Passed
   Scenario Outline: CP02709M_SYS_Validar que en la pantalla de consulta se vean los datos correctos del movimiento teniendo en cuenta que el usuario realiza el pago
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
+    And Valido saldo inicial usuario recien registrado
     When Ingreso a perfil negocio
-    And Validé saldos iniciales del daviplata
     And Selecciono más ingresos para su negocio desde el home
     Then Ingreso a tienda virtual y realizo una compra
-    And validar saldo final
-    And Selecciono más ingresos para su negocio desde el home
+    And Regreso un módulo atrás 
     And Ingreso a los movimientos desde la opcion más ingresos
+    And Regreso desde movimientos desde la opcion más ingresos 
+    And Me devuelvo al home de daviplata desde el boton usar mi daviplata
+    Then Validar Saldo Final
 
     Examples: 
       | tipoId | usuario      | contrasena |

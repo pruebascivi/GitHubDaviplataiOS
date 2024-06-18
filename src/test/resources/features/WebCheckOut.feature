@@ -1,7 +1,7 @@
 @Webcheckout
 Feature: casos de aumento de topes
 
-  @CP09010M
+  @CP09010M @Passed
   Scenario Outline: CP09010M_SYS_Validar que al dar tap en la opcion "Botón de pago" envie la pantalla "Botón de pago"
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     When Ingreso a perfil negocio
@@ -25,7 +25,7 @@ Feature: casos de aumento de topes
     When Ingreso a perfil negocio
     And Selecciono el botón enlace de pago
     And Realizo la creación del producto <nombreProducto> <valorProducto>
-    #And Ingreso a la web con la url de enlace de pago <usuario>
+    And Ingreso a la web con la url de enlace de pago <usuario>
 
     Examples: 
       | tipoId | usuario    | contrasena | nombreProducto | valorProducto |

@@ -268,8 +268,8 @@ public class negocioPageObjects {
 	public static final String TXT_SELECCIONAR_MES_MOVIMIENTOS = "//XCUIElementTypeStaticText[contains(@name, 'Seleccione el mes de los movimientos')]";
 	public static final String BTN_DESCARGAR = "(//XCUIElementTypeOther[contains(@name, 'Descargar')])[1]";
 	public static final String BTN_TIENDA_VIRTUAL = "//XCUIElementTypeStaticText[@name='Tienda Virtual']";
-	public static final String PRODUCTO_TIENDA_VIRTUAL = "(//XCUIElementTypeStaticText[@name='Bonos virtuales'])[1] | //XCUIElementTypeStaticText[@name='Bonos virtuales']";
-	public static final String TXT_PRODUCTOS_TIENDA_VIRTUAL = "//XCUIElementTypeStaticText[contains(@name, 'Aquí podrá comprar productos y servicios')]";
+	public static final String PRODUCTO_TIENDA_VIRTUAL = "(//XCUIElementTypeStaticText[@name='Bonos virtuales'])[1] | //XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeCollectionView/XCUIElementTypeCell[3]/XCUIElementTypeOther/XCUIElementTypeOther";
+	public static final String TXT_PRODUCTOS_TIENDA_VIRTUAL = "//XCUIElementTypeImage[contains(@name, 'Spotify')]";
 	public static final String BTN_ACEPTAR = "//XCUIElementTypeStaticText[@name='Aceptar']";
 	public static final String SPOTIFY_BONO = "//XCUIElementTypeImage[contains(@name, 'Spotify Bono')]";
 	public static final String TXT_CARACTERISTICAS_BONO = "//XCUIElementTypeStaticText[@name= 'Características del bono']";

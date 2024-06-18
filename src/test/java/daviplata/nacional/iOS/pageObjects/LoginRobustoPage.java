@@ -4,7 +4,7 @@ import net.serenitybdd.core.pages.PageObject;
 
 public class LoginRobustoPage extends PageObject {
 	
-	public static final String MENU_TRES_PUNTOS = "//XCUIElementTypeButton[@name='Menu de conocimiento']";
+	public static final String MENU_TRES_PUNTOS = "//XCUIElementTypeButton[@name='Menu de conocimiento'] | (//XCUIElementTypeButton)[2]";
 	public static final String ACERCA_DE_DAVIPLATA = "//XCUIElementTypeStaticText[@name='Acerca de DaviPlata'] | //XCUIElementTypeStaticText[@name='Acerca de Daviplata']";
 	public static final String CAMBIAR_MI_NUMERO_BTN = "//XCUIElementTypeStaticText[contains(@name, 'Cambiar mi número')] | //XCUIElementTypeStaticText[contains(@name, 'Cambiar mi numero')]";
 	public static final String CAMBIO_NUMERO_MODULO = "//XCUIElementTypeStaticText[@name='Cambio de número']";
@@ -45,7 +45,7 @@ public class LoginRobustoPage extends PageObject {
 	public static final String CAMPO_NUMERO_DOCUMENTO_REGISTRO = "//XCUIElementTypeTextField[@name='Editar Numero de documento - campo habilitado']";
 	public static final String CAMPO_INGRESO_USUARIO = "//XCUIElementTypeTextField[contains(@name, 'Ingrese su número de documento')] | //XCUIElementTypeTextField[contains(@name, 'Editar Numero de documento')]";
 	public static final String BOTON_INGRESAR = "//XCUIElementTypeButton[@name='Ingresar']";
-	public static final String BOTON_CONTINUAR = "//XCUIElementTypeStaticText[@name='Continuar']";
+	public static final String BOTON_CONTINUAR = "//XCUIElementTypeStaticText[@name='Continuar'] | //XCUIElementTypeButton[@name='Continuar']";
 	public static final String TXT_CODIGO_6_DIGITOS = "//XCUIElementTypeStaticText[contains(@name, 'Le hemos enviado un código de 6 dígitos')]";
 	public static final String POPUP_CLAVE_INCORRECTA = "//XCUIElementTypeTextView[contains(@value, 'es incorrecta')]";
 	public static final String BOTON_ACEPTAR_TECLADO_IOS = "//XCUIElementTypeButton[contains(@name,'Aceptar')]";
@@ -55,5 +55,5 @@ public class LoginRobustoPage extends PageObject {
 	public static final String POPUP_APROVECHA_BENEFICIOS = "//XCUIElementTypeStaticText[contains(@name, 'Aproveche los beneficios')] | //XCUIElementTypeStaticText[contains(@name, 'Compre por internet y en datáfonos')]";
 	public static final String BTN_LO_VERÉ_LUEGO_POPUP = "//XCUIElementTypeButton[@name='Lo veré luego']";
 	public static final String TXT_ERROR_SISTEMA = "//XCUIElementTypeStaticText[@name='Error en el sistema intente más tarde']";
-
+	public static final String TEXTO_SALDO = "//XCUIElementTypeStaticText[@name='lbl-header-balance'] | //XCUIElementTypeStaticText[@value= '¿Cuánto tengo?']";
 }

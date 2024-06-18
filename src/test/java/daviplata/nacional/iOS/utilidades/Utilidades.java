@@ -8,6 +8,10 @@ import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +33,8 @@ import daviplata.nacional.iOS.utilidades.BaseUtil;
 import daviplata.nacional.iOS.utilidades.Evidencias;
 
 import daviplata.nacional.iOS.modelo.ConsultaCupoTarjeta;
+import daviplata.nacional.iOS.pageObjects.LoginRobustoPage;
+import daviplata.nacional.iOS.pageObjects.PasarPlataPageObjects;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
@@ -52,7 +58,7 @@ public class Utilidades {
 	private static String dato = "Vacio";
 	private static int contador = 0;
 	private static WebDriverWait wait = Hooks.getDriverWait();
-
+	static UtilidadesTCS utilidadesTCS;
 
 
 	/**
@@ -834,6 +840,30 @@ public class Utilidades {
                 .findElement(MobileBy.IosUIAutomation("new UiScrollable(new UiSelector().scrollable(true))"
                         + ".scrollIntoView(new UiSelector().text(\"" + elemento + "\"))"));
     }
-
+	
+	public static void reutilizableRegresoHome(int contador) {
+		int count = 0;
+		do {
+			Utilidades.esperaMiliseg(2000);
+		    utilidadesTCS.esperarElementVisibility("xpath", PasarPlataPageObjects.BOTON_ATRAS_BOLSILLOS);
+		    utilidadesTCS.clicElementAction("xpath", PasarPlataPageObjects.BOTON_ATRAS_BOLSILLOS);
+			utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+			boolean estadoVisibleAmigos = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.POP_UP_INVITE_AMIGOS);
+			if(estadoVisibleAmigos == true) {
+				utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_CLOSE);
+			}
+		    count++;
+		} while (count < contador);
+	}
+	
+	public String capturarHoraSistema() {
+        // Capturar la hora exacta en Bogotá
+        ZoneId zonaHorariaBogota = ZoneId.of("America/Bogota");
+        ZonedDateTime horaActualBogota = ZonedDateTime.now(zonaHorariaBogota);
+        LocalTime horaActual = horaActualBogota.toLocalTime();
+        DateTimeFormatter formato24Horas = DateTimeFormatter.ofPattern("HH:mm");
+        String horaFormateada = horaActual.format(formato24Horas);
+        return horaFormateada;
+    }
 
 }

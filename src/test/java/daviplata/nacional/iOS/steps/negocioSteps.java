@@ -1432,33 +1432,68 @@ public class negocioSteps {
         Utilidades.tomaEvidencia("Ingreso a tienda virtual desde la opción 'Aumente sus ingresos'");
         utilidadesTCS.clicElement("xpath", negocioPageObjects.PRODUCTO_TIENDA_VIRTUAL);
         utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.TXT_PRODUCTOS_TIENDA_VIRTUAL); 
-    	Utilidades.esperaMiliseg(500);
-        Utilidades.tomaEvidencia("Acepto mensaje de compra de productos");
-        utilidadesTCS.clicElement("xpath", negocioPageObjects.BTN_ACEPTAR);
     	Utilidades.esperaMiliseg(1500);
         Utilidades.tomaEvidencia("Valido opciones de compra");
         utilidadesTCS.clicElement("xpath", negocioPageObjects.SPOTIFY_BONO);
         utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.TXT_CARACTERISTICAS_BONO); 
-    	Utilidades.esperaMiliseg(500);
+    	Utilidades.esperaMiliseg(1500);
         Utilidades.tomaEvidencia("Valido las caracteristicas del bono");
-        Utilidades.tomaEvidencia("Valido opciones de compra");
+    	utilidadesTCS.scrollBackground("xpath", negocioPageObjects.TXT_CARACTERISTICAS_BONO, 0, -150);
         utilidadesTCS.clicElement("xpath", negocioPageObjects.BTN_CONTINUAR);
         utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.TXT_DETALLE_COMPRA); 
     	Utilidades.esperaMiliseg(500);
         Utilidades.tomaEvidencia("Valido los detalles de compra");
-        utilidadesTCS.clicElement("xpath", negocioPageObjects.BTN_CONTINUAR);
-    	Utilidades.esperaMiliseg(1000);
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.BTN_COMPRAR);
+    	Utilidades.esperaMiliseg(5000);
+        Utilidades.tomaEvidencia("Acepto mensaje de compra de productos");
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_FINALIZAR);
+    	Utilidades.esperaMiliseg(1500);
         Utilidades.tomaEvidencia("Valido resultado de la compra");
+        utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_FINALIZAR);
+    }
+    
+    @Step
+    public void regresarXVeces() { 
+    	Utilidades.esperaMiliseg(1500);
+		Utilidades.reutilizableRegresoHome(1);
+		
+    }
+    
+    @Step
+    public void regresarDesdeMovimientosOpcionIngresos() { 
+    	Utilidades.esperaMiliseg(1500);
+		Utilidades.reutilizableRegresoHome(2);
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+		boolean estadoVisiblePopUpAmigos = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.TXT_ERROR_SISTEMA);
+		if(estadoVisiblePopUpAmigos == true) {
+			Utilidades.esperaMiliseg(1000);
+			utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_CLOSE);
+		}	
     }
     
     @Step
     public void ingresarAMovimientosDesdeMasIngresos() { 
-        utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.TEXTO_CUANTO_TENGO); 
-    	Utilidades.esperaMiliseg(500);
+    	Utilidades.esperaMiliseg(2000);
         utilidadesTCS.clicElement("xpath", negocioPageObjects.TEXTO_MOVIMIENTOS);  
 		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
         Utilidades.tomaEvidencia("Ingresé a movimientos desde la opción más ingresos");
     }
+    
+	
+	@Step
+	public void backToHome() {
+		boolean condition = utilidadesTCS.validateElementVisibilityCatch("xpath", PasarPlataPageObjects.BOTON_ATRAS_BOLSILLOS);
+		do {
+			utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+		    utilidadesTCS.esperarElementVisibility("xpath", PasarPlataPageObjects.BOTON_ATRAS_BOLSILLOS);
+		    utilidadesTCS.clicElementAction("xpath", PasarPlataPageObjects.BOTON_ATRAS_BOLSILLOS);
+			utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+			boolean estadoVisible = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.POP_UP_INVITE_AMIGOS);
+			if(estadoVisible == true) {
+				utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_CLOSE);
+			}
+		} while (condition == true);
+	}
     
     @Step
     public void descargarExtractosDesdeMovimientos() {

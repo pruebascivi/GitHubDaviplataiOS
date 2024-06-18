@@ -13,7 +13,7 @@ Feature: Casos de fondos insuficientes
     Then valido igualdad saldos cuenta origen y destino
 
     Examples: 
-      |tipoId | usuario      | contrasena | usuario2 |
+      | tipoId | usuario    | contrasena | usuario2   |
       | "CC"   | "10050038" | "2589"     | "10050034" |
 
   @CP1540M @fondosinsuficientes1
@@ -27,7 +27,7 @@ Feature: Casos de fondos insuficientes
     Then valido igualdad saldos cuenta origen y destino
 
     Examples: 
-      | tipoId | usuario      | contrasena | usuario2 |
+      | tipoId | usuario     | contrasena | usuario2    |
       | "CC"   | "100111512" | "2580"     | "100111513" |
 
   @CP1550M @fondos12
@@ -41,7 +41,7 @@ Feature: Casos de fondos insuficientes
     Then valido igualdad saldos cuenta origen
 
     Examples: 
-      | tipoId | usuario      | contrasena | tipoCuenta | cuentaNum     |
+      | tipoId | usuario    | contrasena | tipoCuenta | cuentaNum     |
       | "CC"   | "10050034" | "2589"     | "AHORROS"  | "98170019255" |
 
   @CP1560M @fondosinsuficientes1
@@ -55,7 +55,7 @@ Feature: Casos de fondos insuficientes
     Then valido igualdad saldos cuenta origen
 
     Examples: 
-      | tipoId | usuario      | contrasena | tipoCuenta | cuentaNum     |
+      | tipoId | usuario    | contrasena | tipoCuenta | cuentaNum     |
       | "CC"   | "10050033" | "2589"     | "AHORROS"  | "98170019255" |
 
   @CP1570M @fondos12
@@ -69,7 +69,7 @@ Feature: Casos de fondos insuficientes
     Then valido igualdad saldos cuenta origen
 
     Examples: 
-      | tipoId | usuario      | contrasena | tipoCuenta  | cuentaNum     |
+      | tipoId | usuario    | contrasena | tipoCuenta  | cuentaNum     |
       | "CC"   | "10050034" | "2589"     | "Corriente" | "98170019255" |
 
   @CP1580M @fondos12
@@ -83,7 +83,7 @@ Feature: Casos de fondos insuficientes
     Then valido igualdad saldos cuenta origen
 
     Examples: 
-      | tipoId | usuario      | contrasena | tipoCuenta  | cuentaNum     |
+      | tipoId | usuario    | contrasena | tipoCuenta  | cuentaNum     |
       | "CC"   | "10050033" | "2589"     | "Corriente" | "98170019255" |
 
   @CP1590M @fondos1
@@ -97,7 +97,7 @@ Feature: Casos de fondos insuficientes
     Then valido igualdad saldos cuenta origen
 
     Examples: 
-      | tipoId | usuario      | contrasena |
+      | tipoId | usuario    | contrasena |
       | "CC"   | "10050034" | "2589"     |
 
   @CP1600M @fondos1
@@ -111,10 +111,10 @@ Feature: Casos de fondos insuficientes
     Then valido igualdad saldos cuenta origen
 
     Examples: 
-      | tipoId | usuario      | contrasena |
+      | tipoId | usuario    | contrasena |
       | "CC"   | "10050033" | "2589"     |
 
-  @CP1610M 
+  @CP1610M
   Scenario Outline: CP1610M_SYS_Validar el mensaje de fondos insuficientes para la transacción Pasar Plata Desde y hacia mis Bolsillos (Con GMF) - (Hacia Bolsillo)
     Given consultar saldo tarjeta en redeban <usuario>
     And logout redeban
@@ -125,7 +125,7 @@ Feature: Casos de fondos insuficientes
     Then valido igualdad saldos cuenta origen
 
     Examples: 
-      | tipoId | usuario      | contrasena |
+      | tipoId | usuario    | contrasena |
       | "CC"   | "10050034" | "2589"     |
 
   @CP1620M @fondos1
@@ -139,10 +139,10 @@ Feature: Casos de fondos insuficientes
     Then valido igualdad saldos cuenta origen
 
     Examples: 
-      | tipoId | usuario      | contrasena |
+      | tipoId | usuario    | contrasena |
       | "CC"   | "10050033" | "2589"     |
 
-  @CP1630M 
+  @CP1630M
   Scenario Outline: CP1630M_SYS_Validar el mensaje de fondos insuficientes para la transacción Pasar Plata Desde y hacia mis Bolsillos (Con GMF) - (Creación Bolsillo)
     Given consultar saldo tarjeta en redeban <usuario>
     And logout redeban
@@ -153,7 +153,7 @@ Feature: Casos de fondos insuficientes
     Then valido igualdad saldos cuenta origen
 
     Examples: 
-      | tipoId | usuario      | contrasena |
+      | tipoId | usuario    | contrasena |
       | "CC"   | "10050034" | "2589"     |
 
   @CP1640M @fondos1
@@ -167,7 +167,7 @@ Feature: Casos de fondos insuficientes
     Then valido igualdad saldos cuenta origen
 
     Examples: 
-      | tipoId | usuario      | contrasena |
+      | tipoId | usuario    | contrasena |
       | "CC"   | "10050033" | "2589"     |
 
   @CP2550M @fondos13
@@ -182,7 +182,7 @@ Feature: Casos de fondos insuficientes
     Then valido igualdad saldos cuenta origen
 
     Examples: 
-      | tipoId | usuario      | contrasena | numCelular   | monto    |
+      | tipoId | usuario    | contrasena | numCelular   | monto    |
       | "CC"   | "10050034" | "2589"     | "3227680754" | "700000" |
 
   @CP1565M @fondos1
@@ -197,27 +197,27 @@ Feature: Casos de fondos insuficientes
     Then valido igualdad saldos cuenta origen
 
     Examples: 
-      | tipoId | usuario      | contrasena | numCelular   | monto     |
+      | tipoId | usuario    | contrasena | numCelular   | monto     |
       | "CC"   | "10050033" | "2589"     | "3221005016" | "1820000" |
 
-  @CP1566M 
+  @CP1566M
   Scenario Outline: CP1566M_SYS_Validar el mensaje de fondos insuficientes para la transacción Pasar Plata a Pasar Plata Ya (Con GMF) - (Pedir Plata)
     And consultar saldo tarjeta en redeban <usuario>
     And logout redeban
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     And ir a la opcion TransfiYA
     And pedir plata a banco en linea y meter dinero fondo insuficiente<numCelular><monto>
-		And cerrar sesion usuario 1
-		And ingreso usuario y contrasena del segundo usuario <tipoId2> <usuario2> <contrasena2>
-		And ir a la opcion TransfiYA
-		And aceptar y validar transferencia denegada
+    And cerrar sesion usuario 1
+    And ingreso usuario y contrasena del segundo usuario <tipoId2> <usuario2> <contrasena2>
+    And ir a la opcion TransfiYA
+    And aceptar y validar transferencia denegada
     And consultar saldo tarjeta en redeban <usuario>
     And logout redeban
     Then valido igualdad saldos cuenta origen
-    
+
     Examples: 
-      | tipoId | usuario   | contrasena | numCelular   | monto     | tipoId2 | usuario2   | contrasena2 |
-      | "CC"   | "10050034" | "2589"     | "3227680754" | "2000000" | "CC"    |"1020770034"| "1342"     |
+      | tipoId | usuario    | contrasena | numCelular   | monto     | tipoId2 | usuario2     | contrasena2 |
+      | "CC"   | "10050034" | "2589"     | "3227680754" | "2000000" | "CC"    | "1020770034" | "1342"      |
 
   @CP1581M @FONFDOS13
   Scenario Outline: CP1581M_SYS_Validar el mensaje de fondos insuficientes para la transacción Pasar Plata a Pasar Plata Ya (Sin GMF) - (Pedir Plata)
@@ -226,19 +226,19 @@ Feature: Casos de fondos insuficientes
     And ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     And ir a la opcion TransfiYA
     And pedir plata a banco en linea y meter dinero fondo insuficiente<numCelular><monto>
-		And cerrar sesion usuario 1
-		And ingreso usuario y contrasena del segundo usuario <tipoId2> <usuario2> <contrasena2>
-		And ir a la opcion TransfiYA
-		And aceptar y validar transferencia denegada
+    And cerrar sesion usuario 1
+    And ingreso usuario y contrasena del segundo usuario <tipoId2> <usuario2> <contrasena2>
+    And ir a la opcion TransfiYA
+    And aceptar y validar transferencia denegada
     And consultar saldo tarjeta en redeban <usuario>
     And logout redeban
     Then valido igualdad saldos cuenta origen
-    
-    Examples: 
-      | tipoId | usuario   | contrasena | numCelular   | monto     | tipoId2 | usuario2   | contrasena2 |
-      | "CC"   | "10050033" | "2589"     | "3221005016" | "2000000" | "CC"    |"1020770034"| "1342"     |
 
-  @CP1650M 
+    Examples: 
+      | tipoId | usuario    | contrasena | numCelular   | monto     | tipoId2 | usuario2     | contrasena2 |
+      | "CC"   | "10050033" | "2589"     | "3221005016" | "2000000" | "CC"    | "1020770034" | "1342"      |
+
+  @CP1650M
   Scenario Outline: CP1650M_SYS_Validar el mensaje de fondos insuficientes para la transacción Pasar Plata A otros Bancos (Con GMF)
     And consultar saldo tarjeta en redeban <usuario>
     And logout redeban
@@ -247,10 +247,10 @@ Feature: Casos de fondos insuficientes
     And consultar saldo tarjeta en redeban <usuario>
     And logout redeban
     Then valido igualdad saldos cuenta origen
-    
-   Examples: 
-      | tipoId | usuario   | contrasena | numeroCuenta   | tipoIdDestino | usuarioDestino | valorAPasar | banco    |
-      | "CC"   | "10050034" | "2589"     | "3227680754" | "CC"          | "1003613"      | "4000000"    | "Bogota" |
+
+    Examples: 
+      | tipoId | usuario    | contrasena | numeroCuenta | tipoIdDestino | usuarioDestino | valorAPasar | banco    |
+      | "CC"   | "10050034" | "2589"     | "3227680754" | "CC"          | "1003613"      | "4000000"   | "Bogota" |
 
   @CP1660M @fondos6
   Scenario Outline: CP1660M_SYS_Validar el mensaje de fondos insuficientes para la transacción Pasar Plata A otros Bancos (Sin GMF)
@@ -263,7 +263,7 @@ Feature: Casos de fondos insuficientes
     Then valido igualdad saldos cuenta origen
 
     Examples: 
-      | tipoId | usuario   | contrasena | numeroCuenta   | tipoIdDestino | usuarioDestino | valorAPasar | banco   | 
+      | tipoId | usuario    | contrasena | numeroCuenta | tipoIdDestino | usuarioDestino | valorAPasar | banco    |
       | "CC"   | "10050033" | "2589"     | "3221005016" | "CC"          | "1003613"      | "500000"    | "Bogota" |
 
   @CP1770M @fondos65
@@ -279,7 +279,7 @@ Feature: Casos de fondos insuficientes
     Then valido igualdad saldos cuenta origen
 
     Examples: 
-      | tipoId | usuario   | contrasena | empresaServicio       | referencia | valorTransaccion |
+      | tipoId | usuario      | contrasena | empresaServicio       | referencia | valorTransaccion |
       | "CC"   | "1020770054" | "1342"     | "DNR UNA REF ATH dos" | "528568"   | "5000000"        |
 
   @CP1780M @fondos13
@@ -293,7 +293,6 @@ Feature: Casos de fondos insuficientes
     And consultar saldo tarjeta en redeban <usuario>
     And logout redeban
     Then valido igualdad saldos cuenta origen
-
 
     Examples: 
       | tipoId | usuario    | contrasena | empresaServicio       | referencia | valorTransaccion |
@@ -312,8 +311,8 @@ Feature: Casos de fondos insuficientes
     Then valido igualdad saldos cuenta origen
 
     Examples: 
-      | tipoId | usuario   | contrasena | empresaServicio | referencia | referencia2 | valorTransaccion |
-      | "CC"   | "1020770054" | "1342"     | "DNR2"          | "52856856" | "25362536"  | "5000000"           |
+      | tipoId | usuario      | contrasena | empresaServicio | referencia | referencia2 | valorTransaccion |
+      | "CC"   | "1020770054" | "1342"     | "DNR2"          | "52856856" | "25362536"  | "5000000"        |
 
   @CP1800M @fondos13
   Scenario Outline: CP1800M_SYS_Validar el mensaje de fondos insuficientes para la transacción Pago Convenio DNR Con 2 Referencias (Sin GMF)
@@ -328,8 +327,8 @@ Feature: Casos de fondos insuficientes
     Then valido igualdad saldos cuenta origen
 
     Examples: 
-      | tipoId | usuario   | contrasena | empresaServicio | referencia | referencia2 | valorTransaccion |
-      | "CC"   | "10050033" | "2589"     | "DNR2"          | "52856856" | "25362536"  | "5000000"           |
+      | tipoId | usuario    | contrasena | empresaServicio | referencia | referencia2 | valorTransaccion |
+      | "CC"   | "10050033" | "2589"     | "DNR2"          | "52856856" | "25362536"  | "5000000"        |
 
   @CP1810M @fondos13
   Scenario Outline: CP1810M_SYS_Validar el mensaje de fondos insuficientes para la transacción Pasar Plata A Cuenta Corriente del mismo cliente (Con GMF)
@@ -342,11 +341,10 @@ Feature: Casos de fondos insuficientes
     Then valido igualdad saldos cuenta origen
 
     Examples: 
-      | tipoId | usuario    | contrasena | tipoCuenta  | cuentaNum      |
+      | tipoId | usuario      | contrasena | tipoCuenta  | cuentaNum      |
       | "CC"   | "1020770054" | "1342"     | "Corriente" | "098360033017" |
 
- 
-  @CP1821M 
+  @CP1821M
   Scenario Outline: CP1821M_SYS_Validar el mensaje de fondos insuficientes para la transacción Recarga Prepago (Con GMF)
     Given consultar saldo tarjeta en redeban <usuario>
     And logout redeban
@@ -360,7 +358,7 @@ Feature: Casos de fondos insuficientes
     Then valido igualdad saldos cuenta origen
 
     Examples: 
-      | tipoId | usuario    | contrasena | operador   | numero       |
+      | tipoId | usuario      | contrasena | operador   | numero       |
       | "CC"   | "1020770054" | "1342"     | "movistar" | "3176582733" |
 
   @CP1822M @fondos_insuficientes202
@@ -377,8 +375,8 @@ Feature: Casos de fondos insuficientes
     Then valido igualdad saldos cuenta origen
 
     Examples: 
-      | tipoId | usuario       | contrasena | operador   | numero       |
-      | "CC"   | "10050033"    | "2589"     | "movistar" | "3176582733" |
+      | tipoId | usuario    | contrasena | operador   | numero       |
+      | "CC"   | "10050033" | "2589"     | "movistar" | "3176582733" |
 
   @CP1730M @fondos65
   Scenario Outline: CP1730M_SYS_Validar el mensaje de fondos insuficientes para la transacción Sacar Plata ATM (Con GMF)
@@ -391,7 +389,7 @@ Feature: Casos de fondos insuficientes
     Then valido igualdad saldos cuenta origen
 
     Examples: 
-      | tipoId | usuario     | contrasena |
+      | tipoId | usuario      | contrasena |
       | "CC"   | "1020770054" | "1342"     |
 
   @CP1740M @fondos_insuficientes201
@@ -420,7 +418,6 @@ Feature: Casos de fondos insuficientes
     And consultar saldo tarjeta en redeban <usuario>
     And logout redeban
     Then valido igualdad saldos cuenta origen
-
 
     Examples: 
       | tipoId | usuario      | contrasena |
@@ -484,5 +481,3 @@ Feature: Casos de fondos insuficientes
     Examples: 
       | tipoId | usuario    | contrasena | tipoCuenta  | cuentaNum      |
       | "CC"   | "10050033" | "2589"     | "Corriente" | "098360033215" |
-
- 

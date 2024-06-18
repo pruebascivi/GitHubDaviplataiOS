@@ -624,6 +624,7 @@ public class RegistroMayoresSteps{
 
 	@Step
 	public void hacerClicAlBotonUsarMiDaviplata() {
+		utilidadesTcs.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
         Utilidades.tomaEvidencia("Hacer clic en el boton usar mi daviplata");
         utilidadesTcs.clicElement("xpath", RegistroMayoresPageObjects.BOTON_USAR_MI_DAVIPLATA);
 		

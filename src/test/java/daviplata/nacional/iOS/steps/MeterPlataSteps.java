@@ -406,6 +406,7 @@ public class MeterPlataSteps{
 		utilidadesTcs.esperarElementVisibility("xpath", MeterPlataPageObjects.OPCION_DESDE_CUENTAS_DAVIVIENDA);
 		Utilidades.tomaEvidencia("Ingreso a la opción desde cuentas davivienda");
 	    utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.OPCION_DESDE_CUENTAS_DAVIVIENDA);
+		utilidadesTcs.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 120);
 	}
 	
 	@Step
@@ -420,7 +421,8 @@ public class MeterPlataSteps{
 	public void editarCorreoDeTransaccion(String correo) {
 	    utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.INPUT_CORREO_PSE);
 	    utilidadesTcs.cleanInputElement("xpath", MeterPlataPageObjects.INPUT_CORREO_PSE);
-	    utilidadesTcs.escribirPorTecladoIos(correo);
+//	    utilidadesTcs.escribirPorTecladoIos(correo);
+	    utilidadesTcs.writeElement("xpath", MeterPlataPageObjects.INPUT_CORREO_PSE, correo);
 	    Utilidades.tomaEvidencia("Ingreso Correo Nuevo");
 	}
 	
@@ -434,13 +436,24 @@ public class MeterPlataSteps{
 	@Step
 	public void ingresarMontoARecargar(String monto) {
 	    utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.INPUT_INGRESE_UN_VALOR);
-		utilidadesTcs.escribirPorTecladoIos(monto);
+		//utilidadesTcs.escribirPorTecladoIos(monto);
+	    utilidadesTcs.writeElement("xpath", MeterPlataPageObjects.INPUT_INGRESE_UN_VALOR, monto);
+		Utilidades.esperaMiliseg(1000);
 	    Utilidades.tomaEvidencia("Ingresar monto a recargar en el daviplata");
 	}
 	
 	@Step
+	public void borrarEIngresarNumCel() {
+	    utilidadesTcs.clicElementAction("xpath", MeterPlataPageObjects.INPUT_INGRESE_UN_NUMERO);
+	    utilidadesTcs.cleanInputElement("xpath", MeterPlataPageObjects.INPUT_INGRESE_UN_NUMERO);
+	    utilidadesTcs.escribirPorTecladoIos("3221005082");
+		Utilidades.esperaMiliseg(1000);
+	    Utilidades.tomaEvidencia("Actualizo número de celular");
+	}
+	
+	@Step
 	public void clicBotonContinuar() {
-	    Utilidades.tomaEvidencia("Dar clic en el botón continuar");
+	    System.out.println("Dar clic en el botón continuar");
 	    utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.BOTON_CONTINUAR);
 	}
 	
@@ -452,10 +465,10 @@ public class MeterPlataSteps{
 	
 	@Step
 	public void validarPantallaInformacionIngresada() {
-		Utilidades.esperaMiliseg(4000);
+		Utilidades.esperaMiliseg(1000);
 	    utilidadesTcs.esperarElementVisibility("xpath", MeterPlataPageObjects.TEXTO_INFORMACION_INGRESADA);
 	    String texto = utilidadesTcs.obtenerTexto("xpath", MeterPlataPageObjects.TEXTO_INFORMACION_INGRESADA);
-	    utilidadesTcs.validateTextContainsString(texto, "Verifique la información ingresada");
+	    utilidadesTcs.validateTextContainsString(texto, "El valor a cargar en DaviPlata se descontará del banco Davivienda a través de PSE");
 	    Utilidades.tomaEvidencia("Validar que al seleccionar el botón continuar se dirija el flujo de la pantalla 'Verifique informacion ingresada'");
 	}
 	
@@ -564,12 +577,22 @@ public class MeterPlataSteps{
 	
 	@Step
 	public void llenarFormularioSamplePse() {
+		boolean estadoVisible = utilidadesTcs.validateElementVisibilityCatch("xpath", MeterPlataPageObjects.POPUP_COMUNICACION_NO_DISPONIBLE);
+		if(estadoVisible == true) {
+			Utilidades.tomaEvidencia("Comunicación no disponible por favor intente nuevamente");
+			System.out.println("Comunicación no disponible por favor intente nuevamente");
+			fail("Comunicación no disponible por favor intente nuevamente");
+		}
+		
         utilidadesTcs.esperarElementVisibility("xpath", MeterPlataPageObjects.LOGO_PSE);
+        Utilidades.esperaMiliseg(2000);
+        utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.INPUT_ACCOUNT_AGENCY);
         Utilidades.esperaMiliseg(1000);
-        Utilidades.scrollDownSwipe();
-        utilidadesTcs.writeElement("xpath", MeterPlataPageObjects.INPUT_ACCOUNT_AGENCY, "123456");
-        utilidadesTcs.writeElement("xpath", MeterPlataPageObjects.INPUT_ACCOUNT_NUMBER, "123456");
-        utilidadesTcs.writeElement("xpath", MeterPlataPageObjects.INPUT_PASSWORD, "123456");
+        utilidadesTcs.writeElement("xpath", MeterPlataPageObjects.INPUT_ACCOUNT_AGENCY, "123");
+        utilidadesTcs.writeElement("xpath", MeterPlataPageObjects.INPUT_ACCOUNT_NUMBER, "1234");
+        utilidadesTcs.writeElement("xpath", MeterPlataPageObjects.INPUT_PASSWORD, "12345");
+        utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.BTN_DONE);
+        utilidadesTcs.scrollBackground("xpath", MeterPlataPageObjects.INPUT_PASSWORD, 100, 0 );
         utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.BOTON_PAY);
         Utilidades.tomaEvidencia("Llenar formulario sample de Pse");
     }
@@ -675,4 +698,24 @@ public class MeterPlataSteps{
 			utilidadesTcs.clicElement("xpath", LoginRobustoPage.BOTON_CLOSE);
 		}	
 	}
+	
+	@Step
+	public void clicBotonContinuarInformacionTransaccion() {
+        Utilidades.tomaEvidencia("Clic en el boton continuar");
+        utilidadesTcs.clicElement("xpath", LoginRobustoPage.BOTON_CONTINUAR);
+    }
+    
+	@Step
+    public void validarMensajeDeRecargaDaviplata() {
+        //boolean elemento = utilidadesTcs.validateElementVisibility("xpath", MeterPlataPageObjects.BOTON_CONTINUAR);
+        //utilidadesTcs.validateStatusElement(elemento);
+        Utilidades.tomaEvidencia("Validar mensaje de recarga en daviplata");
+    }
+	
+	@Step
+	public void validarMensajeUsuarioNumeroInvalido() {
+        String texto = utilidadesTcs.obtenerTexto("xpath", MeterPlataPageObjects.POPUP_RECHAZO_TRANSACCION);
+        utilidadesTcs.validateTextContainsString(texto, "El DaviPlata destino no permite meter plata");
+        Utilidades.tomaEvidencia("Validar mensaje de número invalido por usuario bloqueado");
+    }
 }

@@ -75,7 +75,7 @@ Feature: Movimientos Funcionales
       | tipoId | usuario    | contrasena | montoATransar | cuentaNum    | nombreBusqueda | nombreBusquedaSinCoincidencia |
       | "CC"   | "10333040" | "1234"     | "5000"        | "3221005049" | "Plata"        | "prueba"                      |
       
-  @CP031104M
+  @CP031104M @Passed
   Scenario Outline: CP031104M_SYS_Validaciones de extractos en modulo movimientos
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     When Entro al modulo de movimientos
@@ -91,50 +91,49 @@ Feature: Movimientos Funcionales
       | tipoId | usuario    | contrasena | 
       | "CC"   | "10007760" | "1234"     |
       
-  @CP031105M
-  Scenario Outline: CP031105M_SYS_Validaciones movimientos en pasar plata del dia actual y anterior
+  @CP0311005M @Passed
+  Scenario Outline: CP0311005M_SYS_Validaciones movimientos en pasar plata del dia actual y anterior
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     When seleccionar pasar plata Home
-   	And pasar plata a otro Daviplata en cero <cuentaNum><montoATransar>
-    And validar transaccion exitosa
-    And Salir de la app 
-    Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
+    And pasar plata a otro Daviplata <cuentaNum>
     And Entro al modulo de movimientos
     And Valido enmascaramiento del numero de transaccion
-    And Ingreso al detalle del movimiento en el pasar plata
     Then Valido nombre y numero de la transaccion en los movimientos
+    And Ingreso al detalle del movimiento en el pasar plata
     Then Valido transaccion fecha actual y anterior 
 
     Examples: 
-      | tipoId | usuario    | contrasena | montoATransar | cuentaNum    | tipoId | usuario    | contraseña |  
-      | "CC"   | "10050072" | "2589"     | "5000"        | "3221005015" |  "CC"  | "10050032" |  "2589"    |
+      | tipoId | usuario    | contrasena | montoATransar | cuentaNum    | usuario2   | contrasena2 |  
+      | "CC"   | "10007760" | "1234"     | "5000"        | "3221005015" | "10050066" |  "2589"     |
       
-  @CP031106M
-  Scenario Outline: CP031106M_SYS_Validaciones movimientos cuando no tiene movimientos
+  @CP0311006M @Passed
+  Scenario Outline: CP0311006M_SYS_Validaciones movimientos cuando no tiene movimientos
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     Then Validar aun no tiene movimientos home
    
     Examples: 
-      | tipoId | usuario    | contrasena |    
-      | "CC"   | "20572990" | "2580"     |   
+      | tipoId | usuario     | contrasena |    
+      | "CE"   | "65753445"  | "1234"     |   
       
-  @CP031107M
+  @CP031107M @Passed 
   Scenario Outline: CP031107M_SYS_Validaciones movimientos cuando opcion buscar nombre, celular o cuenta
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
-    And Validar aun no tiene movimientos home
+    When seleccionar pasar plata Home
+   	And pasar plata a otro Daviplata en cero <cuentaNum><montoATransar>
+   	And Verifico la informacion y paso plata
+    And validar transaccion exitosa
+    And Entro al modulo de movimientos
+    And Ingreso a la opcion de busqueda
+    And Filtro la busqueda por numero celular <cuentaNum>
+    And Hago clic en el boton atras
+    And Entro al modulo de movimientos
+    And Ingreso a la opcion de busqueda
+    And Filtro la busqueda por nombre <nombreBusqueda>
+    And Hago clic en el boton atras
+    And Entro al modulo de movimientos
+    And Ingreso a la opcion de busqueda
    
     Examples: 
-      | tipoId | usuario    | contrasena |    
-      | "CC"   | "10050072" | "2589"     |
+      | tipoId | usuario    | contrasena | montoATransar | cuentaNum    | nombreBusqueda | nombreBusquedaSinCoincidencia |
+      | "CC"   | "10333040" | "1234"     | "5000"        | "3221005049" | "Plata"        | "prueba"                      |
       
-  @CP011010M
-  Scenario Outline: CP011010M_SYS_Validar transacción desde cuenta davivienda a daviplata
-    Given Abrir web de davivienda <tipoDocumentoWebDavivienda><usuarioDavivienda><contrasenaDavivienda><numeroCelularUsuarioDavivienda>
-    When Realizo transaccion de davivienda a daviplata <monto><numeroCelular>
-    Then Cerrar sesion de davivienda
-    When ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
-    And Valido la transacción en la campana de notificaciones
-
-    Examples: 
-      | tipoDocumentoWebDavivienda | usuarioDavivienda | contrasenaDavivienda | numeroCelularUsuarioDavivienda | monto  | numeroCelular | tipoId | usuario    | contrasena |
-      | "CC"                       | "808004"          | "252589"             | "3016984768"                   | "5000" | "3221005055"  | "CC"   | "10050072" | "2589"     |

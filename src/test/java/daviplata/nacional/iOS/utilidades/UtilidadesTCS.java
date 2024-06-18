@@ -5,16 +5,21 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import org.hamcrest.Matcher;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import daviplata.nacional.iOS.definitions.Hooks;
 import daviplata.nacional.iOS.pageObjects.LoginRobustoPage;
+import daviplata.nacional.iOS.pageObjects.NotificacionesPushPageObjects;
 import daviplata.nacional.iOS.pageObjects.PreguntasFrecuentesPageObjects;
 import daviplata.nacional.iOS.pageObjects.negocioPageObjects;
 import io.appium.java_client.AppiumDriver;
@@ -27,7 +32,7 @@ import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.offset.ElementOption;
 import io.appium.java_client.touch.offset.PointOption;
 import net.serenitybdd.core.pages.PageObject;
-
+import java.util.regex.Pattern;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -36,6 +41,7 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import io.appium.java_client.touch.WaitOptions;
 import org.openqa.selenium.Point;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.containsString;
@@ -50,6 +56,7 @@ public class UtilidadesTCS extends PageObject {
 	private WebDriverWait wait = new WebDriverWait(Hooks.getDriver(), 5);
 	private AppiumDriver<MobileElement> driver = Hooks.getDriver();
 	negocioPageObjects negocioPage;
+	Utilidades utilidad;
 	
 	/**
 	 * Este método utiliza la clase WebElement para encontrar y hacer clic en el elemento utilizando el método click().
@@ -1423,12 +1430,12 @@ public class UtilidadesTCS extends PageObject {
     
     /**
      * Método para abir web google
-     * 
+     * nombreVariablePagina - nombre variable que esta en el archivo properties
      * @author Laura Pérez
      */
-    public void abrirWeb(String pagina) {
+    public void abrirWeb(String nombreVariablePagina) {
         CustomChromeDriver.iniciarChromeDriver();
-        BaseUtil.chromeDriver.get(Credenciales.propertiesWebs().getProperty("web."+pagina+".url"));
+        BaseUtil.chromeDriver.get(Credenciales.propertiesWebs().getProperty(nombreVariablePagina.trim()));
         BaseUtil.chromeDriver.manage().window().maximize();
         System.out.println("paso");
         wait = new WebDriverWait(BaseUtil.chromeDriver, 60);
@@ -1476,7 +1483,7 @@ public class UtilidadesTCS extends PageObject {
         try {
             // Verificar que el driver sea una instancia de IOSDriver
             if (BaseUtil.driveriOS instanceof IOSDriver) {
-                ((IOSDriver) BaseUtil.driveriOS).hideKeyboard();
+                ((IOSDriver<?>) BaseUtil.driveriOS).hideKeyboard();
             } else {
                 System.out.println("Este método solo es compatible con iOS");
             }
@@ -1678,5 +1685,570 @@ public class UtilidadesTCS extends PageObject {
                 System.out.println("Operador no válido");
                 return false;
         }
+    }
+    
+    /**
+     * Se loguea en la pagina que se declare
+     */
+    public void loginWebPagina(String locatorType, String locator, String pagina) {
+        try {
+            abrirWeb(pagina);
+            for(int i=0; i<5; i++) {
+                boolean estadoVisible = validateElementInvisibilityWebCatch(locatorType, locator);
+                if(estadoVisible == true) {
+                    cerrarWebEnlaceDePago();
+                    abrirWeb(pagina);
+                } else {
+                    break;
+                }
+            }
+            System.out.println("Ya me encuentro en el enlace de pago");
+        } catch (Exception e) {
+            e.printStackTrace();
+            cerrarWebEnlaceDePago();
+            abrirWeb(pagina);
+        }
+    }
+    
+    public void esperarElementVisibilityWeb(String locatorType, String locator) {
+        By by = null;
+        switch (locatorType) {
+            case "name":
+                by = By.name(locator);
+                break;
+            case "id":
+                by = By.id(locator);
+                break;
+            case "xpath":
+                by = By.xpath(locator);
+                break;
+            default:
+                throw new IllegalArgumentException("Tipo de localizador no válido: " + locatorType);
+        }
+        try {
+        	contador++;
+            WebElement element = wait
+					.until(ExpectedConditions.presenceOfElementLocated(by));
+        } catch (Exception e) {
+            if (!(contador == 15)) {
+                Utilidades.esperaMiliseg(500);
+                esperarElementVisibilityWeb(locatorType, locator);
+            } else {
+                fail("No se encontró elemento: " + locator + ", debido a: " + e.getMessage());
+            }
+        } finally {
+            contador = 0;
+        }
+    }
+    
+    public static  void clicElementWeb(String locatorType, String locator) {
+        BaseUtil.chromeDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        By by = null;
+        switch (locatorType) {
+        case "name":
+            by = By.name(locator);
+            break;
+        case "id":
+            by = By.id(locator);
+            break;
+        case "xpath":
+            by = By.xpath(locator);
+            break;
+        default:
+            throw new IllegalArgumentException("Tipo de localizador no válido: " + locatorType);
+        }
+        try {
+            BaseUtil.chromeDriver.findElement(by).click();
+            System.out.println("Se realizó clic en: " + locator);
+        } catch (Exception e) {
+            fail("No pudo interactuar con el elemento: " + locator);
+        }
+    }
+    
+    /**
+     * Cambia de foco al iframe especificado
+     */
+    public void cambiarFocoIframe(String locatorType, String locator) {
+         By by = null;
+        switch (locatorType) {
+            case "name":
+                by = By.name(locator);
+                break;
+            case "id":
+                by = By.id(locator);
+                break;
+            case "xpath":
+                by = By.xpath(locator);
+                break;
+            default:
+                throw new IllegalArgumentException("Tipo de localizador no válido: " + locatorType);
+        }
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(by));
+        System.out.println("Cambió al iframe: " + locator);
+    }
+
+    /**
+     * Selecciona un valor en una lista desplegable identificada por el tipo de localizador y el locator especificado,
+     * utilizando la abreviación del tipo de documento.
+     *
+     * @param locatorType   El tipo de localizador del elemento (por ejemplo, "name", "id", "xpath").
+     * @param locator       El valor del localizador del elemento.
+     * @param abbreviation  La abreviación del tipo de documento para seleccionar el valor correspondiente en la lista desplegable.
+     * @throws IllegalArgumentException Si la abreviación del tipo de documento no es válida.
+     * @author Juan Doncel
+     */
+    public void selectDropdownValue(String locatorType, String locator, String abbreviation) {
+        BaseUtil.chromeDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+
+        // Inicializar el mapa de tipos de documento
+        Map<String, String> documentTypeMap = new HashMap<>();
+        documentTypeMap.put("CC", "Cedula de Ciudadania");
+        documentTypeMap.put("TI", "Tarjeta de Identidad");
+        documentTypeMap.put("CE", "Cedula de Extranjeria");
+
+        // Verificar si la abreviación es válida
+        String valueToSelect = documentTypeMap.get(abbreviation);
+        if (valueToSelect == null) {
+            throw new IllegalArgumentException("Sigla no válida: " + abbreviation);
+        }
+
+        By by = null;
+        switch (locatorType) {
+            case "name":
+                by = By.name(locator);
+                break;
+            case "id":
+                by = By.id(locator);
+                break;
+            case "xpath":
+                by = By.xpath(locator);
+                break;
+            default:
+                throw new IllegalArgumentException("Tipo de localizador no válido: " + locatorType);
+        }
+
+        try {
+            WebElement dropdown = BaseUtil.chromeDriver.findElement(by);
+            Select select = new Select(dropdown);
+
+            // Imprimir las opciones disponibles para verificación
+            // select.getOptions().forEach(option -> System.out.println("Opción disponible: " + option.getText()));
+
+            // Seleccionar el valor de la lista desplegable
+            select.selectByVisibleText(valueToSelect);
+            System.out.println("Se seleccionó el valor: " + valueToSelect + " para la sigla: " + abbreviation);
+        } catch (Exception e) {
+            System.err.println("No se pudo interactuar con el elemento: " + locator);
+            e.printStackTrace();
+        }
+    }
+    
+    public void abrirWebEnPestaniaNueva(String nombreVariablePagina) {
+        // Obtener la URL de las propiedades
+        String url = Credenciales.propertiesWebs().getProperty(nombreVariablePagina.trim());
+
+        // Abrir una nueva pestaña utilizando JavascriptExecutor
+        JavascriptExecutor js = (JavascriptExecutor) BaseUtil.chromeDriver;
+        js.executeScript("window.open()");
+
+        // Cambiar a la nueva pestaña
+        ArrayList<String> tabs = new ArrayList<>(BaseUtil.chromeDriver.getWindowHandles());
+        BaseUtil.chromeDriver.switchTo().window(tabs.get(tabs.size() - 1));
+
+        // Navegar a la URL deseada en la nueva pestaña
+        BaseUtil.chromeDriver.get(url);
+        
+        System.out.println("paso");
+
+        // Configurar WebDriverWait para la nueva pestaña
+        wait = new WebDriverWait(BaseUtil.chromeDriver, 60);
+    }
+    
+    public void cleanInputElementWeb(String locatorType, String locator) {
+        BaseUtil.chromeDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        By by = null;
+        switch (locatorType) {
+        case "name":
+            by = By.name(locator);
+            break;
+        case "id":
+            by = By.id(locator);
+            break;
+        case "xpath":
+            by = By.xpath(locator);
+            break;
+        default:
+            throw new IllegalArgumentException("Tipo de localizador no válido: " + locatorType);
+        }
+        try {
+            BaseUtil.chromeDriver.findElement(by).clear();
+            System.out.println("Se limpió campo del elemento: " + locator);
+        } catch (Exception e) {
+            fail("No se pudo interactuar con el elemento: " + locator);
+        }
+    }
+    
+    public String capturarOtpIngresoDaviviendaNotificaciones() {
+        BaseUtil.chromeDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        String auxiliar = "";
+        String mensajeOTP = "";
+        String FilasTablaNotificaciones = "//table[2]//tr";
+        String otp = "";
+        try {
+            int cantidadFilas = BaseUtil.chromeDriver.findElements( By.xpath(FilasTablaNotificaciones)).size();
+            
+            for(int fila=2; fila < cantidadFilas; fila++) {
+                Utilidades.esperar(250);
+                auxiliar = BaseUtil.chromeDriver.findElement(By.xpath(FilasTablaNotificaciones + "[" + fila + "]" + "/td[3]")).getText();
+                if(auxiliar.contains("Davivienda") || auxiliar.contains("Codigo") ) {
+                    mensajeOTP = BaseUtil.chromeDriver.findElement(By.xpath(FilasTablaNotificaciones + "[" + fila + "]" + "/td[3]")).getText();
+                    break;
+                }
+            }
+            
+            Pattern pattern = Pattern.compile("\\d+"); // Expresion regular para buscar digitos numericos
+            java.util.regex.Matcher matcher = pattern.matcher(mensajeOTP);
+
+            if (matcher.find()) {
+                otp = matcher.group(); // obtiene la primera coincidencia de digitos numericos encontrados
+                System.out.println("La otp es: " + otp);
+                Utilidades.tomaEvidenciaPantalla("Web - obtener clave virtual");
+            }
+            
+        } catch(Exception e) {
+            fail("No se encontró Otp CVV de la ecard, debido a: " + e.getMessage());
+        }
+        return otp;
+    }
+    
+    public boolean validateElementVisibilityWeb(String locatorType, String locator) {
+        BaseUtil.chromeDriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        boolean check = false;
+        By by = null;
+        switch (locatorType) {
+            case "name":
+                by = By.name(locator);
+                break;
+            case "id":
+                by = By.id(locator);
+                break;
+            case "xpath":
+                by = By.xpath(locator);
+                break;
+            default:
+                throw new IllegalArgumentException("Tipo de localizador no válido: " + locatorType);
+        }
+        try {
+            check = BaseUtil.chromeDriver.findElement(by).isDisplayed();
+            System.out.println("Se verifica presencia de el elemento: " + locator);
+        } catch (Exception e) {
+            fail("No se pudo interactuar con el elemento: " + locator);
+        }
+        return check;
+    }
+    
+    /**
+     * Cambiar al iframe contenido principal.
+     */
+    public void switchToIframeDefault() {
+        BaseUtil.chromeDriver.switchTo().defaultContent();
+    }
+    
+    public void cerrarChromdriver() {
+        try {
+            CustomChromeDriver.cerrarChromeDriver();
+        } catch (Exception e) {
+            System.out.println("No cerró ChromeDriver debido a: " + e.getMessage());
+        }
+    }
+    
+    public boolean validateElementVisibilityCatchWeb(String locatorType, String locator) {
+        BaseUtil.chromeDriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        boolean check = false;
+        By by = null;
+        switch (locatorType) {
+            case "name":
+                by = By.name(locator);
+                break;
+            case "id":
+                by = By.id(locator);
+                break;
+            case "xpath":
+                by = By.xpath(locator);
+                break;
+            default:
+                throw new IllegalArgumentException("Tipo de localizador no válido: " + locatorType);
+        }
+        try {
+            check = BaseUtil.chromeDriver.findElement(by).isDisplayed();
+            System.out.println("Se verifica presencia de el elemento: " + locator);
+        } catch (Exception e) {
+            System.out.println("No se pudo interactuar con el elemento: " + locator);
+        }
+        return check;
+    }
+    
+    /**
+     * Cambia el foco de la ventana del navegador a la pestaña especificada.
+     *
+     * @param direccion Una cadena que indica la dirección del cambio de pestaña.
+     *                  Puede ser "siguiente" para la siguiente pestaña,
+     *                  "anterior" para la pestaña anterior, o "origen" para volver
+     *                  a la pestaña de origen.
+     * @throws IllegalArgumentException Si el parámetro 'direccion' no es válido.
+     */
+    public void cambiarFocoVentana(String direccion) {
+        // Obtener todas las pestañas abiertas
+        ArrayList<String> tabs = new ArrayList<>(BaseUtil.chromeDriver.getWindowHandles());
+        
+        // Obtener la pestaña actual
+        String currentTab = BaseUtil.chromeDriver.getWindowHandle();
+        int currentIndex = tabs.indexOf(currentTab);
+        
+        switch(direccion.toLowerCase()) {
+            case "siguiente":
+                // Cambiar a la siguiente pestaña
+                int nextIndex = (currentIndex + 1) % tabs.size();
+                BaseUtil.chromeDriver.switchTo().window(tabs.get(nextIndex));
+                break;
+            case "anterior":
+                // Cambiar a la pestaña anterior
+                int prevIndex = (currentIndex - 1 + tabs.size()) % tabs.size();
+                BaseUtil.chromeDriver.switchTo().window(tabs.get(prevIndex));
+                break;
+            case "origen":
+                // Cambiar a la pestaña de origen
+                BaseUtil.chromeDriver.switchTo().window(tabs.get(0));
+                break;
+            default:
+                throw new IllegalArgumentException("Parámetro 'direccion' no válido. Use 'siguiente', 'anterior' o 'origen'.");
+        }
+    }
+
+    /**
+     * Captura el mensaje de notificación de recarga de una tabla web y extrae el valor del monto recargado.
+     * 
+     * Este método busca en una tabla web específica el mensaje de notificación que contiene la información 
+     * de una recarga realizada desde una cuenta Davivienda. Luego, extrae el valor del monto recargado y 
+     * lo devuelve como una cadena sin comas ni símbolo de dólar.
+     * 
+     * @return El valor del monto recargado como una cadena sin comas ni símbolo de dólar.
+     *         Si no se encuentra ningún valor de recarga, se devuelve una cadena vacía.
+     * @throws IllegalStateException Si no se encuentra el valor de recarga en las notificaciones.
+     */
+    public String capturarMensajeLatiniaNotificaciones() {
+        BaseUtil.chromeDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        String auxiliar = "";
+        String mensajeValorRecarga = "";
+        String FilasTablaMensajes = "//table[@class='mat-table cdk-table mat-sort card-table']//tr";
+        String valorRecarga = "";
+        try {
+            int cantidadFilas = BaseUtil.chromeDriver.findElements(By.xpath(FilasTablaMensajes)).size();
+            
+            for(int fila = 1; fila < cantidadFilas; fila++) {
+                Utilidades.esperar(250);
+                auxiliar = BaseUtil.chromeDriver.findElement(By.xpath(FilasTablaMensajes + "[" + fila + "]" + "/td[4]")).getText();
+                if(auxiliar.contains("Davivienda") || auxiliar.contains("cargado")) {
+                    mensajeValorRecarga = BaseUtil.chromeDriver.findElement(By.xpath(FilasTablaMensajes + "[" + fila + "]" + "/td[4]")).getText();
+                    break;
+                }
+            }
+            
+            // Expresión regular para encontrar el monto incluyendo el símbolo de dólar y separadores de miles
+            Pattern pattern = Pattern.compile("\\$([\\d,]+)"); 
+            java.util.regex.Matcher matcher = pattern.matcher(mensajeValorRecarga);
+
+            if (matcher.find()) {
+                valorRecarga = matcher.group(1).replace(",", ""); // obtiene la primera coincidencia y elimina comas
+                System.out.println("El valor de la recarga es: " + valorRecarga);
+                Utilidades.tomaEvidenciaPantalla("Web - Obtener valor de la recarga " + valorRecarga);
+            }
+        } catch(Exception e) {
+            cerrarChromdriver();
+            fail("No se encontró valor de la recarga en latinia realizada desde Davivienda, debido a: " + e.getMessage());
+        }
+        return valorRecarga;
+    }
+
+
+    /**
+     * Captura el mensaje de notificación de pasar plata cuenta de una tabla web y extrae el valor del monto que se transfirio.
+     * 
+     * Este método busca en una tabla web específica el mensaje de notificación que contiene la información 
+     * de un pasar plata cuenta realizada desde daviplata. Luego, extrae el valor del monto transferido y 
+     * lo devuelve como una cadena sin comas ni símbolo de dólar.
+     * 
+     * @return El valor del monto transferido como una cadena sin comas ni símbolo de dólar.
+     *         Si no se encuentra ningún valor transferido, se devuelve una cadena vacía.
+     * @throws IllegalStateException Si no se encuentra el valor de la transferencia en las notificaciones.
+     */
+    public String capturarMensajeLatiniaNotificacionesPasarPlataCuenta() {
+        BaseUtil.chromeDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        String auxiliar = "";
+        String mensajeValorTransferencia = "";
+        String FilasTablaMensajes = "//table[@class='mat-table cdk-table mat-sort card-table']//tr";
+        String valorTransferencia = "";
+        try {
+            int cantidadFilas = BaseUtil.chromeDriver.findElements(By.xpath(FilasTablaMensajes)).size();
+            
+            for(int fila = 1; fila < cantidadFilas; fila++) {
+                Utilidades.esperar(250);
+                auxiliar = BaseUtil.chromeDriver.findElement(By.xpath(FilasTablaMensajes + "[" + fila + "]" + "/td[4]")).getText();
+                if(auxiliar.contains("Paso Plata") || auxiliar.contains("Davivienda")) {
+                    mensajeValorTransferencia = BaseUtil.chromeDriver.findElement(By.xpath(FilasTablaMensajes + "[" + fila + "]" + "/td[4]")).getText();
+                    break;
+                }
+            }
+            
+            // Expresión regular para encontrar el monto incluyendo el símbolo de dólar y separadores de miles
+            Pattern pattern = Pattern.compile("\\$([\\d,]+)"); 
+            java.util.regex.Matcher matcher = pattern.matcher(mensajeValorTransferencia);
+
+            if (matcher.find()) {
+                valorTransferencia = matcher.group(1).replace(",", ""); // obtiene la primera coincidencia y elimina comas
+                System.out.println("El valor de la recarga es: " + valorTransferencia);
+                Utilidades.tomaEvidenciaPantalla("Web - Obtener valor de la recarga " + valorTransferencia);
+            }
+        } catch(Exception e) {
+            cerrarChromdriver();
+            fail("No se encontró valor de la transferencia en latinia realizada desde Daviplata, debido a: " + e.getMessage());
+        }
+        return valorTransferencia;
+    }
+
+    /**
+     * Captura el mensaje de notificación de pasar plata en linea de una tabla web y extrae el valor del monto que se transfirio.
+     * 
+     * Este método busca en una tabla web específica el mensaje de notificación que contiene la información 
+     * de un pasar plata en linea realizada desde daviplata. Luego, extrae el valor del monto transferido y 
+     * lo devuelve como una cadena sin comas ni símbolo de dólar.
+     * 
+     * @return El valor del monto transferido como una cadena sin comas ni símbolo de dólar.
+     *         Si no se encuentra ningún valor transferido, se devuelve una cadena vacía.
+     * @throws IllegalStateException Si no se encuentra el valor de la transferencia en las notificaciones.
+     */
+    public String capturarMensajeLatiniaNotificacionesPasarPlataEnLinea() {
+        BaseUtil.chromeDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        String auxiliar = "";
+        String mensajeValorTransferenciaEnLinea = "";
+        String FilasTablaMensajes = "//table[@class='mat-table cdk-table mat-sort card-table']//tr";
+        String valorTransferenciaEnLinea = "";
+        try {
+            int cantidadFilas = BaseUtil.chromeDriver.findElements(By.xpath(FilasTablaMensajes)).size();
+            
+            for(int fila = 1; fila < cantidadFilas; fila++) {
+                Utilidades.esperar(250);
+                auxiliar = BaseUtil.chromeDriver.findElement(By.xpath(FilasTablaMensajes + "[" + fila + "]" + "/td[4]")).getText();
+                if(auxiliar.contains("Paso Plata") || auxiliar.contains("Transfiya")) {
+                    mensajeValorTransferenciaEnLinea = BaseUtil.chromeDriver.findElement(By.xpath(FilasTablaMensajes + "[" + fila + "]" + "/td[4]")).getText();
+                    break;
+                }
+            }
+            
+            // Expresión regular para encontrar el monto incluyendo el símbolo de dólar y separadores de miles
+            Pattern pattern = Pattern.compile("\\$([\\d,]+)"); 
+            java.util.regex.Matcher matcher = pattern.matcher(mensajeValorTransferenciaEnLinea);
+
+            if (matcher.find()) {
+                valorTransferenciaEnLinea = matcher.group(1).replace(",", ""); // obtiene la primera coincidencia y elimina comas
+                System.out.println("El valor de la recarga es: " + valorTransferenciaEnLinea);
+                Utilidades.tomaEvidenciaPantalla("Web - Obtener valor de la recarga " + valorTransferenciaEnLinea);
+            }
+        } catch(Exception e) {
+            cerrarChromdriver();
+            fail("No se encontró valor de la transferencia en latinia realizada desde Daviplata, debido a: " + e.getMessage());
+        }
+        return valorTransferenciaEnLinea;
+    }
+
+    /**
+     * Captura el mensaje de notificación de compra en tienda virtual de una tabla web y extrae el valor del monto de la compra.
+     * 
+     * Este método busca en una tabla web específica el mensaje de notificación que contiene la información 
+     * de una compra en tienda virtual realizada desde daviplata. Luego, extrae el valor del monto en la compra y 
+     * lo devuelve como una cadena sin comas ni símbolo de dólar.
+     * 
+     * @return El valor del monto de la compra como una cadena sin comas ni símbolo de dólar.
+     *         Si no se encuentra ningún valor de la compra, se devuelve una cadena vacía.
+     * @throws IllegalStateException Si no se encuentra el valor de la compra en las notificaciones.
+     */
+    public String capturarMensajeLatiniaNotificacionesCompraTiendaVirtual() {
+        BaseUtil.chromeDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        String auxiliar = "";
+        String mensajeValorCompraTiendaVirtual = "";
+        String FilasTablaMensajes = "//table[@class='mat-table cdk-table mat-sort card-table']//tr";
+        String valorCompraTiendaVirtual = "";
+        try {
+            int cantidadFilas = BaseUtil.chromeDriver.findElements(By.xpath(FilasTablaMensajes)).size();
+            
+            for(int fila = 1; fila < cantidadFilas; fila++) {
+                Utilidades.esperar(250);
+                auxiliar = BaseUtil.chromeDriver.findElement(By.xpath(FilasTablaMensajes + "[" + fila + "]" + "/td[4]")).getText();
+                if(auxiliar.contains("Compra") || auxiliar.contains("Tienda Virtual")) {
+                    mensajeValorCompraTiendaVirtual = BaseUtil.chromeDriver.findElement(By.xpath(FilasTablaMensajes + "[" + fila + "]" + "/td[4]")).getText();
+                    break;
+                }
+            }
+            
+            // Expresión regular para encontrar el monto incluyendo el símbolo de dólar y separadores de miles
+            Pattern pattern = Pattern.compile("\\$([\\d,]+)"); 
+            java.util.regex.Matcher matcher = pattern.matcher(mensajeValorCompraTiendaVirtual);
+
+            if (matcher.find()) {
+                valorCompraTiendaVirtual = matcher.group(1).replace(",", ""); // obtiene la primera coincidencia y elimina comas
+                System.out.println("El valor de la compra en tienda virtual es: " + valorCompraTiendaVirtual);
+                Utilidades.tomaEvidenciaPantalla("Web - Obtener valor de la compra en tienda virtual " + valorCompraTiendaVirtual);
+            }
+        } catch(Exception e) {
+            cerrarChromdriver();
+            fail("No se encontró valor de la compra, desde tienda virtual en latinia, realizada desde Daviplata, debido a: " + e.getMessage());
+        }
+        return valorCompraTiendaVirtual;
+    }
+
+
+    /**
+     * Captura el mensaje de notificación de compra en pse de una tabla web y extrae el valor del monto de la compra.
+     * 
+     * Este método busca en una tabla web específica el mensaje de notificación que contiene la información 
+     * de una compra en pse realizada desde daviplata. Luego, extrae el valor del monto en la compra y 
+     * lo devuelve como una cadena sin comas ni símbolo de dólar.
+     * 
+     * @return El valor del monto de la compra como una cadena sin comas ni símbolo de dólar.
+     *         Si no se encuentra ningún valor de la compra, se devuelve una cadena vacía.
+     * @throws IllegalStateException Si no se encuentra el valor de la compra en las notificaciones.
+     */
+    public String capturarMensajeLatiniaNotificacionesCompraPse() {
+        BaseUtil.chromeDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        String auxiliar = "";
+        String mensajeValorCompraPse = "";
+        String FilasTablaMensajes = "//table[@class='mat-table cdk-table mat-sort card-table']//tr";
+        String valorCompraPse = "";
+        try {
+            int cantidadFilas = BaseUtil.chromeDriver.findElements(By.xpath(FilasTablaMensajes)).size();
+            
+            for(int fila = 1; fila < cantidadFilas; fila++) {
+                Utilidades.esperar(250);
+                auxiliar = BaseUtil.chromeDriver.findElement(By.xpath(FilasTablaMensajes + "[" + fila + "]" + "/td[4]")).getText();
+                if(auxiliar.contains("Compra") || auxiliar.contains("Tienda Virtual")) {
+                    mensajeValorCompraPse = BaseUtil.chromeDriver.findElement(By.xpath(FilasTablaMensajes + "[" + fila + "]" + "/td[4]")).getText();
+                    break;
+                }
+            }
+            
+            // Expresión regular para encontrar el monto incluyendo el símbolo de dólar y separadores de miles
+            Pattern pattern = Pattern.compile("\\$([\\d,]+)"); 
+            java.util.regex.Matcher matcher = pattern.matcher(mensajeValorCompraPse);
+
+            if (matcher.find()) {
+                valorCompraPse = matcher.group(1).replace(",", ""); // obtiene la primera coincidencia y elimina comas
+                System.out.println("El valor de la compra en tienda virtual es: " + valorCompraPse);
+                Utilidades.tomaEvidenciaPantalla("Web - Obtener valor de la compra en tienda virtual " + valorCompraPse);
+            }
+        } catch(Exception e) {
+            cerrarChromdriver();
+            fail("No se encontró valor de la compra, desde tienda virtual en latinia, realizada desde Daviplata, debido a: " + e.getMessage());
+        }
+        return valorCompraPse;
     }
 }

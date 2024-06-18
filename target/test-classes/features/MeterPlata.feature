@@ -227,3 +227,41 @@ Feature: Modulo Meter plata
     Examples: 
       | tipoId | usuario    | contrasena |
       | "CC"   | "10050066" | "2589"     |
+      
+  @CP020009M @Passed
+  Scenario Outline: CP020009M_SYS_Validar que al realizar un Meter plata exitoso se visualiza en la campana de notificaciones- Transacciones el mensaje "Su Daviplata a sido cargado desde otro banco por $x.xxx"
+    Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
+    When Ingreso a la opción meter plata desde el home daviplata
+    And Ingreso a la opción 'Desde cuentas Davivienda' en el módulo meter plata
+    And Edito correo de transaccion <correo>
+    And Ingreso monto a recargar en el daviplata <monto>
+    And Doy clic en el botón continuar
+    And Valido Pantalla de verificar informacion ingresada
+    And Doy clic en el boton continuar de informacion en recarga
+    And Lleno información del sample en pse
+    And Valido información de la transaccion del meter plata
+    And Doy clic en boton finalizar
+    Then Validar Saldo Final
+    And ingreso a mensajes y notificaciones
+    And Validar mensaje de recarga del daviplata
+
+    Examples: 
+      | tipoId | usuario    | contrasena | correo                 | monto   | subtipo |
+      | "CC"   | "10050078" | "2580"     | "proplayer3@gmail.com" | "10000" | "BMO"   |
+      
+	@CP020010M @Passed
+  Scenario Outline: CP020010M_SYS_Validar que al ingresar un Daviplata bloqueado genera el mensaje "Daviplata inválido"
+    Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
+    And Valido saldo inicial usuario recien registrado
+    When Ingreso a la opción meter plata desde el home daviplata
+    And Ingreso a la opción 'Desde cuentas Davivienda' en el módulo meter plata
+    And Edito correo de transaccion <correo>
+    And Edito número celular
+    And Ingreso monto a recargar en el daviplata <monto>
+    And Doy clic en el botón continuar
+    Then Validar mensaje de numero de usuario invalido
+
+    Examples: 
+      | tipoId | usuario    | contrasena | correo                 | monto   | subtipo |
+      | "CC"   | "10050078" | "2580"     | "proplayer4@gmail.com" | "10000" | "BMO"   |
+   

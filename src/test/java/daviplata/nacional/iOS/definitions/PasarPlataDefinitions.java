@@ -848,6 +848,7 @@ public class PasarPlataDefinitions {
 		BaseUtil.idTransaccion = BaseUtil.Autorizador;
 		BaseUtil.montoTrasadoRedeban = stepsWebRedeban.consultaDiaria3(cuenta, BaseUtil.Autorizador);
 	}
+	
 
 	@Given("^Validé saldos iniciales del daviplata$")
 	public void validarSaldosIniciales() {

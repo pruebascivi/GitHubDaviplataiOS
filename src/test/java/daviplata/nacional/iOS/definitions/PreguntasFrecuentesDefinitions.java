@@ -3,6 +3,7 @@ package daviplata.nacional.iOS.definitions;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import daviplata.nacional.iOS.steps.LauraVozSteps;
 import daviplata.nacional.iOS.steps.PreguntasFrecuentesSteps;
 import net.thucydides.core.annotations.Steps;
 
@@ -22,18 +23,17 @@ public class PreguntasFrecuentesDefinitions {
     }
 	
 	@When("^Ingreso credenciales para la solicitud \"([^\"]*)\"\"([^\"]*)\"$")
-	public void ingresoCredencialesParaLaSolicitud(String tipoDocumento, String numDocumento) {
+	public void ingresoCredencialesParaLaSolicitud(String tipoDocumento, String numDocumento) throws Exception {
 		preguntasFrecuentesSteps.ingresarCredenciales(tipoDocumento,numDocumento);
 	}
 	
 	@When("^Acepto terminos y condiciones antes de ingresar al modulo necesito ayuda$")
-	public void aceptoTerminosYCondicionesAntesDeIngresarAlModuloNecesitoAyuda() {
+	public void aceptoTerminosYCondicionesAntesDeIngresarAlModuloNecesitoAyuda() throws Exception {
 		preguntasFrecuentesSteps.aceptarTerminosCondiciones();
-
 	}
 	
 	@When("^Doy clic en el botón continuar para ingresar al modulo necesito ayuda$")
-	public void doyClicEnElBotónContinuarParaIngresarAlModuloNecesitoAyuda() {
+	public void doyClicEnElBotónContinuarParaIngresarAlModuloNecesitoAyuda() throws Exception  {
 		preguntasFrecuentesSteps.clicEnBotonContinuar();
 	}
 	
@@ -163,5 +163,4 @@ public class PreguntasFrecuentesDefinitions {
 	public void hacerScrollHaciaArriba() throws Exception {
 		preguntasFrecuentesSteps.hacerUnScrollHaciaArribaEnBarraDeBusqueda();
 	}
-
 }

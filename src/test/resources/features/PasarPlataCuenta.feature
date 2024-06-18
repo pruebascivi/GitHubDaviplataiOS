@@ -307,7 +307,7 @@ Feature: Grupo de casos pasar plata a cuenta
       | tipoId | usuario    | contrasena | monto   |
       | "CC"   | "10050038" | "2589"     | "10000" |
 
-  @CP02473M
+  @CP02473M @Passed
   Scenario Outline: CP02473M_SYS_Validar proceso de pasar plata a cuenta de ahorros con cliente CC GMF mostrando que genera el cobro de GMF
     Given obtener numero celular actual en redeban bolsillos <usuario>
     And Consulté saldo disponible en redeban GMF
@@ -325,8 +325,8 @@ Feature: Grupo de casos pasar plata a cuenta
     And Validar afectacion de saldos en redeban y daviplata GMF
 
     Examples: 
-      | tipoId | usuario     | contrasena | tipoCuenta | cuentaNum     | monto   |
-      | "CC"   | "100111511" | "2580"     | "Ahorros"  | "98170019255" | "10000" |
+      | tipoId | usuario    | contrasena | tipoCuenta | cuentaNum     | monto   |
+      | "CC"   | "10050066" | "2589"     | "Ahorros"  | "98170019255" | "10000" |
 
   @CP02474M
   Scenario Outline: CP02474M_SYS_Validar proceso de pasar plata a cuenta de ahorros con cliente CC GMF mostrando mensaje de Fondos insuficientes

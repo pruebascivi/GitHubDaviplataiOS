@@ -36,10 +36,14 @@ public class LoginDefinitions {
 		loginSteps.ingresarAAppCambioDispositivo(tipoDocumento, usuario, contrasena);
 	}
 	
-	 
 	@Given("^ingreso usuario y contrasena \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\"$")
 	public void ingresoUsuarioYContrasena(String tipoDocumento, String usuario, String contrasena) {
 		loginSteps.ingresarAApp(tipoDocumento, usuario, contrasena);
+	}
+	
+	@Given("^Login ADS \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\"$")
+	public void loginADS(String tipoDocumento, String usuario, String contrasena) {
+		loginSteps.loginAds(tipoDocumento, usuario, contrasena);
 	}
 	
 	@Given("^ingreso usuario y contrasena sin capturar saldo \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\"$")
@@ -188,7 +192,6 @@ public class LoginDefinitions {
 	public void validarQueAparezcanLasNotificaciones() {
 		loginSteps.validarQueAparezcanLasNotificaciones();
 	}
-	
 
 	
 	@Then("^validar que aparezcan las compras$")

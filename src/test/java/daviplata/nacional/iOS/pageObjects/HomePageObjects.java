@@ -130,11 +130,11 @@ public class HomePageObjects extends PageObject {
 		int cantidad = subSaldo.length();
 		int numero = cantidad - 2;
 		subSaldo = subSaldo.substring(0, numero);
-		base.saldo = new BigDecimal(subSaldo);
+		BaseUtil.saldo = new BigDecimal(subSaldo);
 		
 		
 		//base.saldoFinal = new BigDecimal(subSaldo);
-		return base.saldo;
+		return BaseUtil.saldo;
 	}
 
 	public void capturarSaldoIniciall() {
@@ -144,7 +144,7 @@ public class HomePageObjects extends PageObject {
 			String labelSaldo = driver.findElement(By.xpath(this.txtSaldoEcardHome )).getText();
 			System.out.println(labelSaldo);
 			subSaldo = labelSaldo.replace(" ", "").replace("$", "").replace(".", "").replace(",", ".");
-			base.saldoInicialTarjeta = new BigDecimal(subSaldo);
+			BaseUtil.saldoInicialTarjeta = new BigDecimal(subSaldo);
 
 		} catch (Exception e) {
 			System.out.println("No hay saldo en ecard inicial");
@@ -166,8 +166,8 @@ public class HomePageObjects extends PageObject {
 			subSaldo = subSaldo.substring(0, numero);
 			
 			
-			base.saldoFinal = new BigDecimal(subSaldo);
-			System.out.println("capturarSaldoFinal: " +base.saldoFinal);
+			BaseUtil.saldoFinal = new BigDecimal(subSaldo);
+			System.out.println("capturarSaldoFinal: " +BaseUtil.saldoFinal);
 			
 		}catch (Exception e) {
 			if(!(contador==8)) {Utilidades.esperaMiliseg(500); capturarSaldoFinal();
@@ -178,22 +178,22 @@ public class HomePageObjects extends PageObject {
 	
 	
 	public void validacionDeSaldos() {
-		String saldoMenosMonto =  base.saldo.toString().replace(".","").replace(",","");
+		String saldoMenosMonto =  BaseUtil.saldo.toString().replace(".","").replace(",","");
 		int cantidad = saldoMenosMonto.length();
 		int numero = cantidad - 2;
 		saldoMenosMonto = saldoMenosMonto.substring(0, numero);
 		
 		BigDecimal saldoFinal = new BigDecimal(saldoMenosMonto);
 				
-		System.out.println("saldo base: " + base.saldo);
-		System.out.println("monto transado: " + base.montoTransado);
-		System.out.println("saldo final: " + base.saldoFinal);
+		System.out.println("saldo base: " + BaseUtil.saldo);
+		System.out.println("monto transado: " + BaseUtil.montoTransado);
+		System.out.println("saldo final: " + BaseUtil.saldoFinal);
 		System.out.println("saldo final sin decimales: " + saldoFinal);
 		
 		
 		System.out.println("saldo menos monto: " + saldoMenosMonto);
 		
-		assertEquals(saldoFinal.subtract(base.montoTransado), base.saldoFinal);
+		assertEquals(saldoFinal.subtract(BaseUtil.montoTransado), BaseUtil.saldoFinal);
 
 	}
 
@@ -255,7 +255,6 @@ public class HomePageObjects extends PageObject {
 				fail("No se encontró campana de notificaciones en home perfil persona, debido a: " + e.getMessage());
 			}
 		}finally {contador=0;}
-		
 	}
 	
 	public void darClickBtnMas() {
@@ -390,8 +389,8 @@ public class HomePageObjects extends PageObject {
 		String labelSaldo = driver.findElement(By.xpath(this.labelSaldo)).getText();
 		System.out.println(labelSaldo);
 		subSaldo = labelSaldo.replace(" ", "").replace("$", "").replace(".", "").replace(",", ".");
-		base.saldoTotalInicial = new BigDecimal(subSaldo);
-		return base.saldoTotalInicial;
+		BaseUtil.saldoTotalInicial = new BigDecimal(subSaldo);
+		return BaseUtil.saldoTotalInicial;
 	}
 
 	public void pulsarBtnIngresar() {
@@ -440,6 +439,5 @@ public class HomePageObjects extends PageObject {
 		} finally {
 			contador = 0;
 		}
-
 	}
 }

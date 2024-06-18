@@ -137,7 +137,7 @@ public class BaseUtil {
 	public static String versionApp = "";
 	public static int fila;
 	public static String urlCopy = "";
-	
+	public static String horaSistema = "";
 
 
 }

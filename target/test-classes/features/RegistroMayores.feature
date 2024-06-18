@@ -44,7 +44,7 @@ Feature: Modulo Registro De Mayores
 
     Examples: 
       | tipoID | numDocumentoCincoDigitos | numDocumentoDiezYSeisDigitos | numeroCedulaExistente |
-      | "CC"   | "12395"                  | "9876584562145987"           | "10050099"            |
+      | "CC"   | "12395"                  | "9876584562145987"           | "10050066"            |
 
   @CP031002M
   Scenario Outline: CP031002M_SYS_Validacion de registro en cedula de extranjeria exitoso y no exitoso

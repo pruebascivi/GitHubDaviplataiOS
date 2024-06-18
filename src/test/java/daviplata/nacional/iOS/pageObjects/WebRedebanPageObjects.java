@@ -4,8 +4,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.fail;
-import static org.hamcrest.MatcherAssert.assertThat; 
+import static org.hamcrest.MatcherAssert.assertThat;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -1758,15 +1761,49 @@ public class WebRedebanPageObjects {
 		return registros;
 	}
 
-
-	
-	
-	
 	public static void abrirWebRedeban() {
 		confiChromeDriver.iniciarChromeDriver();
 		base.chromeDriver.get(Credenciales.propertiesWebs().getProperty("web.redeban.url"));
 		base.chromeDriver.manage().window().maximize();
 		wait = new WebDriverWait(base.chromeDriver, 60);
+		try {
+            // Crear una instancia de Robot
+            Robot robot = new Robot();
+
+            // Esperar un poco para asegurarse de que la página se ha cargado completamente
+            Thread.sleep(3000);
+
+            // Seleccionar toda la URL en la barra de direcciones (Command + L en Mac)
+            robot.keyPress(KeyEvent.VK_META);
+            robot.keyPress(KeyEvent.VK_L);
+            robot.keyRelease(KeyEvent.VK_L);
+            robot.keyRelease(KeyEvent.VK_META);
+
+            // Esperar un poco para asegurarse de que la selección se ha realizado
+            Thread.sleep(2000);
+
+            // Navegar con las flechas al inicio de la "s"
+            for (int i = 0; i < 5; i++) {
+                robot.keyPress(KeyEvent.VK_LEFT);
+                robot.keyRelease(KeyEvent.VK_LEFT);
+                Thread.sleep(200); // Pequeña pausa entre las pulsaciones de las flechas
+            }
+
+            // Borrar la 's'
+            robot.keyPress(KeyEvent.VK_BACK_SPACE);
+            robot.keyRelease(KeyEvent.VK_BACK_SPACE);
+
+            // Presionar Enter para cargar la URL correcta
+            Thread.sleep(1000); // Aumentar el tiempo de espera antes de presionar Enter
+            robot.keyPress(KeyEvent.VK_ENTER);
+            robot.keyRelease(KeyEvent.VK_ENTER);
+
+        } catch (AWTException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // Ahora la URL debe ser cargada con "http"
+        WebDriverWait wait = new WebDriverWait(BaseUtil.driver, 60);
 	}
 
 	public static void cerrarWebRedeban() {

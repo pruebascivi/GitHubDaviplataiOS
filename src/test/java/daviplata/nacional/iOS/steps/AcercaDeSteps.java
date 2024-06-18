@@ -30,9 +30,10 @@ public class AcercaDeSteps {
 	
 	@Step
 	public void seleccionarModuloAcercaDe() {
+		
 		try {
-			
-			utilidadesTCS.clicElement("name", LoginRobustoPage.MENU_TRES_PUNTOS);
+			utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.MENU_TRES_PUNTOS);
+			utilidadesTCS.clicElementAction("xpath", LoginRobustoPage.MENU_TRES_PUNTOS);
 			Utilidades.tomaEvidencia("Menu tres puntos");
 		} catch(Exception e) {
 			
@@ -49,7 +50,6 @@ public class AcercaDeSteps {
 			assert utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.ACERCA_DE_DAVIPLATA) : "No se pudo interactuar con el elemento." + LoginRobustoPage.ACERCA_DE_DAVIPLATA;
 		}	
 	}
-	
 	
 	@Step
 	public void ingresoAOpcionParaQueSirve() {
@@ -74,8 +74,6 @@ public class AcercaDeSteps {
 		pageAcercaDe.esperarVisibilidadDondeUsarDaviplata();
 		pageAcercaDe.validarOpcionDondeUsarDP();
 		Utilidades.tomaEvidencia("Validar la opción donde usar Daviplata");
-		
-		
 	}
 	
 	@Step

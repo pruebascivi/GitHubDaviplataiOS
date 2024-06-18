@@ -233,7 +233,7 @@ Feature: Set de pasar plata en linea
       | tipoId | usuario      | contrasena |
       | "CC"   | "1020770054" | "1342"     |
            
- @CP03640M @defecto
+  @CP03640M @DiseñadoCompletoPeroPresenteDefecto
   Scenario Outline: CP03640M_SYS_Validar proceso por la opción a otro banco en línea a un daviplata y realizando rechazo
     Given obtener numero celular actual en redeban <usuario>
     And consultar saldo tarjeta en redeban pasar plata cuenta
@@ -253,10 +253,10 @@ Feature: Set de pasar plata en linea
     And logout redeban
 
     Examples: 
-      | tipoId | usuario      | contrasena | numCelular   | monto   | tipoId2 | usuario2  | contrasena2 |
-			|"CC"|"1020770006"|"1234"|"3213702112"|"11000"|"CC"|"1007708"|"1234"|
+      | tipoId | usuario      | contrasena | numCelular   | monto  | tipoId2 | usuario2  | contrasena2 |
+			| "CC"   | "1020770006" | "1234"     | "3213702112" | "2000" | "CC"    | "1007708" | "1234"      |
 			
-	@CP037302M
+	@CP037302M @DiseñadoCompletoPeroPresenteDefecto
   Scenario Outline: CP037302M_SYS_Validar que al dar tap en el boton (+) Se muestre la pantalla de "que quiere hacer con su plata"
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     And ir a la opcion más Home

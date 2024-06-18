@@ -1,24 +1,14 @@
 package daviplata.nacional.iOS.steps;
 
 import static org.junit.Assert.fail;
-
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Properties;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import daviplata.nacional.iOS.pageObjects.AumentoDeTopesPageObjects;
 import daviplata.nacional.iOS.pageObjects.LoginPageObjects;
 import daviplata.nacional.iOS.pageObjects.LoginRobustoPage;
-import daviplata.nacional.iOS.pageObjects.MovimientoFuncionalPageObjects;
-import daviplata.nacional.iOS.pageObjects.PreguntasFrecuentesPageObjects;
 import daviplata.nacional.iOS.pageObjects.WebCheckOutPageObjects;
 import daviplata.nacional.iOS.utilidades.BaseUtil;
-import daviplata.nacional.iOS.utilidades.Credenciales;
 import daviplata.nacional.iOS.utilidades.CustomChromeDriver;
 import daviplata.nacional.iOS.utilidades.Utilidades;
 import daviplata.nacional.iOS.utilidades.UtilidadesTCS;
