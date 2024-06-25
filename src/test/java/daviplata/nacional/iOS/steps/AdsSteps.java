@@ -469,8 +469,8 @@ public class AdsSteps {
     
     @Step
     public void aceptarAutorizacionesFinales() {
-        utilidadesTCS.esperarElementVisibility("xpath", AdsPageObjects.FORMULARIO_DECLARACIONES);
-        Utilidades.tomaEvidencia("Valido pantalla de declaraciones");
+        utilidadesTCS.esperarElementVisibility("xpath", AdsPageObjects.TXT_AUTORIZACIONES);
+        Utilidades.tomaEvidencia("Valido pantalla de autorizaciones");
         Utilidades.tomaEvidencia("Validar que el sistema deje al usuario en el punto maximo donde dejo diligenciado");
     }
 }

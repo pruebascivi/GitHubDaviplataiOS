@@ -81,4 +81,7 @@ public class AdsPageObjects {
     public static final String CHECKOUT_NO_OBJETIVO_INVESTIGACIONES = "(//XCUIElementTypeStaticText[@name='No']/preceding-sibling::XCUIElementTypeOther)[11]";
     public static final String CHECKOUT_OBJETIVO_AUTORIZACIONES = "(//XCUIElementTypeStaticText[contains(@name, 'Declaro que he leído')]/preceding-sibling::XCUIElementTypeSwitch)[3]";
     public static final String TXT_VALOR_CUPO = "//XCUIElementTypeStaticText[contains(@name, 'El cupo de su Adelanto de Sueldo será de')]";
+    public static final String CHECKOUT_AUTORIZADOR_CONTRATO = "//XCUIElementTypeOther[contains(@name, 'Acepto que conozco y estoy de acuerdo')]/preceding-sibling::XCUIElementTypeSwitch";
+    public static final String CHECKOUT_AUTORIZADOR_DEBITAR_AUTOMATICO = "(//XCUIElementTypeOther[contains(@name, 'Autorizo a Davivienda para')]/preceding-sibling::XCUIElementTypeSwitch)[2]"; 
+    public static final String CHECKOUT_AUTORIZADOR_PAGARE = "(//XCUIElementTypeOther[contains(@name, 'Declaro que he leído y acepto firmar el')]/preceding-sibling::XCUIElementTypeSwitch)[3]";
 }
