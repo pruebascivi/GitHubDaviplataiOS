@@ -25,6 +25,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.offset.PointOption;
+import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
 
@@ -310,10 +311,10 @@ public class PasarPlataSteps {
 	//Modulo pasar plata	
 	@Step
 	public void escogerOpcionCuentasDavivienda() {
-		Utilidades.esperar(8);
+		Utilidades.esperaMiliseg(10);
 		Utilidades.tomaEvidencia("Seleccionar cuentas Davivienda");
 		pagePasarPlata.seleccionarCuentasDavivienda();
-		Utilidades.esperar(4);
+		Utilidades.esperaMiliseg(1000);
 		pagePasarPlata.seleccionarTipoCuentasDavivienda();
 	}
 	
@@ -372,7 +373,7 @@ public class PasarPlataSteps {
 		pagePasarPlata.inputNumeroCuentaBanco(numeroCuenta);
 		Utilidades.tomaEvidencia("Seleccion banco y num cuenta");
 		//DAR SCROLL
-		Utilidades.scrollDownSwipe();
+		Utilidades.scrollDownSwipe(1);
 		//BTN SELECCIONAR TIPO DE DOCUMENTO
 		pagePasarPlata.seleccioneTipoIdentificacion();
 		//SELECCIONAR TIPO DE DOCUMENTACION
@@ -422,7 +423,7 @@ public class PasarPlataSteps {
 		pagePasarPlata.inputNumeroCuentaBanco(numeroCuenta);
 		Utilidades.tomaEvidencia("Seleccion banco y num cuenta");
 		//DAR SCROLL
-		Utilidades.scrollDownSwipe();
+		Utilidades.scrollDownSwipe(1);
 		//BTN SELECCIONAR TIPO DE DOCUMENTO
 		pagePasarPlata.seleccioneTipoIdentificacion();
 		//SELECCIONAR TIPO DE DOCUMENTACION
@@ -466,7 +467,7 @@ public class PasarPlataSteps {
 		pagePasarPlata.inputNumeroCuentaBanco(numeroCuenta);
 		Utilidades.tomaEvidencia("Seleccion banco y num cuenta");
 		//DAR SCROLL
-		Utilidades.scrollDownSwipe();
+		Utilidades.scrollDownSwipe(1);
 		//BTN SELECCIONAR TIPO DE DOCUMENTO
 		pagePasarPlata.seleccioneTipoIdentificacion();
 		//SELECCIONAR TIPO DE DOCUMENTACION
@@ -496,7 +497,7 @@ public class PasarPlataSteps {
 		pagePasarPlata.inputNumeroCuentaBanco(numeroCuenta);
 		Utilidades.tomaEvidencia("Seleccion banco y num cuenta");
 		//DAR SCROLL
-		Utilidades.scrollDownSwipe();
+		Utilidades.scrollDownSwipe(1);
 		//BTN SELECCIONAR TIPO DE DOCUMENTO
 		pagePasarPlata.seleccioneTipoIdentificacion();
 		//SELECCIONAR TIPO DE DOCUMENTACION
@@ -513,7 +514,7 @@ public class PasarPlataSteps {
 	
 	@Step
 	public void llenarPrimerFormularioPasarPlata(String numeroCuenta, String tipoId, String numId, String valorAPasar, String banco) {
-		Utilidades.esperar(4000);
+		Utilidades.esperaMiliseg(1000);
 		pagePasarPlata.inputNombreContacto();
 		pagePasarPlata.btnSeleccioneBanco();
 		pagePasarPlata.discoSeleccioneBanco(banco);
@@ -573,7 +574,7 @@ public class PasarPlataSteps {
 		pagePasarPlata.inputNumeroCuentaBanco(numeroCuenta);
 		Utilidades.tomaEvidencia("Seleccion banco y num cuenta");
 		//DAR SCROLL
-		Utilidades.scrollDownSwipe();
+		Utilidades.scrollDownSwipe(1);
 		//BTN SELECCIONAR TIPO DE DOCUMENTO
 		pagePasarPlata.seleccioneTipoIdentificacion();
 		//SELECCIONAR TIPO DE DOCUMENTACION
@@ -899,7 +900,7 @@ public class PasarPlataSteps {
 		pagePasarPlata.verificoResultadoTransaccion(listaElementos);		
 		utilidades.scrollHastaElFinalDePantalla();
 		pagePasarPlata.txtAutorizadorOtrosBancos();
-		Utilidades.scrollDownSwipe();
+		Utilidades.scrollDownSwipe(1);
 		pagePasarPlata.darClickEnFinalizarTransaccionOtrosBancos();
 	}
 
@@ -1377,10 +1378,12 @@ public class PasarPlataSteps {
 		objBolsillosPageObjects.btnVolver();
 	}
 	
+	@Step
 	public void cerrarPopup() {
 		objBolsillosPageObjects.cerrarPopupSacarBolsillo();
 	}
 	
+	@Step
 	public void validarPasarPlataBolsillosADaviplata() {
 		pagePasarPlata.darClickEnFinalizarTransaccion();
 		objBolsillosPageObjects.btnVolver();
@@ -1389,6 +1392,7 @@ public class PasarPlataSteps {
 		Utilidades.tomaEvidencia("capturo saldo final");
 	}
 
+	@Step
 	public void ingresarMonto(String monto) {
 		objBolsillosPageObjects.ingresarMonto(monto);
 		pagePasarPlata.clicContinuar(2);
@@ -1575,6 +1579,7 @@ public class PasarPlataSteps {
 		Utilidades.esperaMiliseg(800);
 		//pagePasarPlata.clicBtnContinuarPlataLinea();
 		Utilidades.tomaEvidencia("Selecciono opción por Transfiya");
+		Utilidades.esperaMiliseg(3000);
 		utilidadesTCS.esperarElementVisibility("xpath", PasarPlataPageObjects.BTN_POR_TRANSFIYA);
 		utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BTN_POR_TRANSFIYA);
 		Utilidades.esperaMiliseg(2000);
@@ -1653,6 +1658,7 @@ public class PasarPlataSteps {
 		Utilidades.esperaMiliseg(2000);
 	}
 	
+	@Step
 	public void ingresoALaOpcionPedirPlataFondosInsuficientes(String numCelular, String monto) {
 		pagePasarPlata.esperarVisibilidadPantallaTransfiYa();
 		pagePasarPlata.clickOpcionPedirPlata();
@@ -1670,6 +1676,7 @@ public class PasarPlataSteps {
 		
 	}
 	
+	@Step
 	public void validoResultadoTransaccionExitosa() throws Exception {
 		pagePasarPlata.validarResultadoTransaccionExitosaTransfiYa();
 		Utilidades.esperaMiliseg(5000);
@@ -1678,6 +1685,7 @@ public class PasarPlataSteps {
 		Utilidades.tomaEvidencia("Finalicé Transaccion");
 	}
 	
+	@Step
 	public void validoResultadoSolicitudExitosa() throws Exception {
 		pagePasarPlata.validarResultadoSolicitudExitosaTransfiYa();
 		Utilidades.tomaEvidencia("Solicitud exitosa");
@@ -1685,11 +1693,13 @@ public class PasarPlataSteps {
 		Utilidades.tomaEvidencia("Finalicé Transaccion");
 	}
 	
+	@Step
 	public void validarClienteGMF(String estadoExenta) throws Exception {
 		pagePasarPlata.validarClienteGMF(estadoExenta);
 		Utilidades.tomaEvidencia("Valido estado cliente, es GMF");
 	}
 	
+	@Step
 	public void validarResultadoSolicitudRechazada() throws Exception {
 		Utilidades.esperaMiliseg(1000);
 		utilidadesTCS.esperarElementVisibility("xpath", PasarPlataPageObjects.POPUP_COBRO_RECHAZADO);
@@ -1713,6 +1723,7 @@ public class PasarPlataSteps {
 		Utilidades.tomaEvidencia("capturo saldo final");
 	}
 	
+	@Step
 	public void validarResultadoTransaccionRechazada() throws Exception {
 		pagePasarPlata.validarResultadoTransaccionRechazada();
 		Utilidades.tomaEvidencia("Transacción rechazada");
@@ -1761,15 +1772,17 @@ public class PasarPlataSteps {
 		Utilidades.tomaEvidencia("capturo saldo final");
 	}
 	
-	
+	@Step
 	public void validarMontoEsMayorATopeCredito(String monto) throws Exception {
 		pagePasarPlata.validarMontoEsMayorATopeCredito(monto);
 	}
 	
+	@Step
 	public void validarMontoEsMayorATopeDebito(String monto) throws Exception {
 		pagePasarPlata.validarMontoEsMayorATopeDebito(monto);
 	}
 	
+	@Step
 	public void validarDescripcionPopUpTransfiYa() throws Exception {
 		Utilidades.esperaMiliseg(10000);
 		pagePasarPlata.clickIcono();
@@ -1779,6 +1792,7 @@ public class PasarPlataSteps {
 		Utilidades.tomaEvidencia("Valide y di click al btn continuar del pop up");
 	}
 	
+	@Step
 	public void aceptarSolicitudPendiente1(String monto) throws Exception {
 		Utilidades.tomaEvidencia("ingreso Modulo trannsfiYa");
 		Utilidades.esperaMiliseg(5000);
@@ -1831,6 +1845,7 @@ public class PasarPlataSteps {
 		}
 	}
 	
+	@Step
 	public void ingresarDatosBanco(String agenciaCuentas, String numeroCuenta,  String password) throws Exception {
 		pagePasarPlata.validarVisibilidadFormularioPse();
 		pagePasarPlata.inputAgenciaCuentas(agenciaCuentas);
@@ -1840,6 +1855,7 @@ public class PasarPlataSteps {
 		pagePasarPlata.clicBtnPay();
 	}
 	
+	@Step
 	public void validarTransaccionPse() throws Exception {
 		Utilidades.esperaMiliseg(8000);
 		pagePasarPlata.validarAparezcaTransaccionPseBanco();
@@ -1847,6 +1863,7 @@ public class PasarPlataSteps {
 		Utilidades.tomaEvidencia("Validar transaccion pse");
 	}
 
+	@Step
 	public void validoBolsilloFondosInsuficientes() {
 		pagePasarPlata.validoLblBolsilloFondosInsuficientes();
 		pageHome.clickBotonAtrasBolsillos(3);
@@ -1856,23 +1873,27 @@ public class PasarPlataSteps {
 		Utilidades.esperaMiliseg(2000);
 	}
 	
+	@Step
 	public void verificarSaldoInicialDaviplataGmf() {
 		pagePasarPlata.capturarSaldoInicialDaviplata();
 		pagePasarPlata.validarIgualdadSaldosInicialesGmf();
 		Utilidades.tomaEvidencia("Saldo Inicial Gmf" + BaseUtil.saldoInicial);
 	}
 
+	@Step
 	public void verificarSaldoInicialDaviplata() {
 		pagePasarPlata.capturarSaldoInicialDaviplata();
 		pagePasarPlata.validarIgualdadSaldosIniciales();
 		Utilidades.tomaEvidencia("Saldo Inicial " + BaseUtil.saldoInicial);
 	}
 	
+	@Step
 	public void validarSaldoInicialNuevoUsuario() {
 		pagePasarPlata.capturarSaldoInicialDaviplata();
 		Utilidades.tomaEvidencia("Verifico saldo inicial en DaviPlata de usuario recíen registrado: " + BaseUtil.saldoInicial);
 	}
 	
+	@Step
 	public void verificarTransaccionExitosaPasarPlata() {
 		Utilidades.esperaMiliseg(4000);
 		pagePasarPlata.txtTransaccion();
@@ -1883,6 +1904,7 @@ public class PasarPlataSteps {
 		pagePasarPlata.darClickEnFinalizarTransaccion();
 	}
 	
+	@Step
 	public void validarTransaccionDestino() {
 		pagePasarPlata.txtTransaccion();
 		pagePasarPlata.darClickEnFinalizarTransaccion();
@@ -1902,12 +1924,14 @@ public class PasarPlataSteps {
 		pagePasarPlata.capturarSaldoFinal();
 	}
 	
+	@Step
 	public void verificarSaldos() {
 		Utilidades.esperaMiliseg(4000);
 		pagePasarPlata.capturarSaldoFinal();
 		Utilidades.tomaEvidencia("Saldo Final " + BaseUtil.saldoFinal);
 	}
 	
+	@Step
 	public void pasarPlataAOtroDaviplataTopeDebitos(String numero) {
 		pagePasarPlata.pasarPlataAOtroDaviplata();
 		Utilidades.tomaEvidencia("Ingreso el numero de telefono " + numero);
@@ -1937,6 +1961,7 @@ public class PasarPlataSteps {
 		}
 	}
 	
+	@Step
 	public void pasarPlataAOtroDaviplataMonto(String numero, String monto) {
 		pagePasarPlata.pasarPlataAOtroDaviplata();
 		Utilidades.tomaEvidencia("Ingreso el numero de telefono " + numero);
@@ -1969,11 +1994,13 @@ public class PasarPlataSteps {
 		}
 	}
 
+	@Step
 	public void ingresarMontoCuentaDaviviendaCero(String monto) {
 		pagePasarPlata.ingresarMontoCuenta(monto);
 		Utilidades.tomaEvidencia("Ingresar Monto Cuenta");
 	}
 	
+	@Step
 	public void ingresarMontoCuentaDaviviendaTopeDebitos() {
 		pagePasarPlata.ingresarMontoCuentaTopeDebitos();
 		Utilidades.tomaEvidencia("Ingresar Monto Cuenta");
@@ -1984,11 +2011,13 @@ public class PasarPlataSteps {
 		pagePasarPlata.clicBotonPasarPlata();
 	}
 
+	@Step
 	public void ingesoALaOpcionPasarPlataHome() {
 		pagePasarPlata.darClickEnOpcionPasarPlata();
 		Utilidades.tomaEvidencia("Ingreso a Pasar plata desde home daviplata");
 	}
 	
+	@Step
 	public void ingresarMontoCuentaDaviviendaPasarPlata(String monto) {
 		pagePasarPlata.ingresarMontoCuenta(monto);
 		Utilidades.tomaEvidencia("Ingresar Monto Cuenta " + monto);
@@ -1996,6 +2025,7 @@ public class PasarPlataSteps {
         touchAction.tap(new PointOption().withCoordinates(20, 352)).perform();
 	}
 	
+	@Step
 	public void validarBotonInhabilitado() throws Exception {
 		pagePasarPlata.validarBotonContinuarPasarPlataInhabilitado();
 		Utilidades.tomaEvidencia("Validar boton inhabilitado");
@@ -2007,12 +2037,14 @@ public class PasarPlataSteps {
 		Utilidades.tomaEvidencia("Saldo final daviplata");
 	}
 	
+	@Step
 	public void escogerOpcionCuentasDaviviendaInscritas() {
 		Utilidades.esperaMiliseg(2000);
 		Utilidades.tomaEvidencia("Seleccionar cuentas Davivienda");
 		pagePasarPlata.seleccionarCuentasDavivienda();
 	}
 	
+	@Step
 	public void ingresarMontoCuentaInscritas(String monto) {
 		pagePasarPlata.clicBotonFavoritosCuentaInscritas();
 		pagePasarPlata.clicBotonCuentaFav();
@@ -2025,11 +2057,13 @@ public class PasarPlataSteps {
 		pagePasarPlata.clicBotonPasarPlata();
 	}
 	
+	@Step
 	public void ingresarMontoCeroCuentaDavivienda(String monto) {
 		pagePasarPlata.ingresarMontoCuenta(monto);
 		Utilidades.tomaEvidencia("Ingresar Monto Cuenta " + monto);
 	}
 	
+	@Step
 	public void validarMontoCeroCuentas() {
 		pagePasarPlata.validoBtnContinuarDeshabilitado();
 		Utilidades.tomaEvidencia("Transferencia denegada botón continuar deshabilitado");
@@ -2039,12 +2073,14 @@ public class PasarPlataSteps {
 		Utilidades.tomaEvidencia("Saldo final del daviplata");
 	}
 
+	@Step
 	public void ingresarMayorSaldoDisponible() {
 		pagePasarPlata.ingresarMontoMayor();
 		TouchAction touchAction=new TouchAction(driver);
         touchAction.tap(new PointOption().withCoordinates(20, 352)).perform();
 	}
 
+	@Step
 	public void validarMensajeMontoSuperiorAlSaldoDisponible() {
 		pagePasarPlata.validarMensajeMontoSuperiorSaldoDisponible();
 		Utilidades.tomaEvidencia("Mensaje de fondos insuficientes");
@@ -2054,6 +2090,7 @@ public class PasarPlataSteps {
 		pagePasarPlata.capturarSaldoFinal();
 	}
 	
+	@Step
 	public void validarMensajeFondosInsuficientes() {
 		pagePasarPlata.validarFondosInsuficientes();
 		Utilidades.tomaEvidencia("Validar Fondos Insuficientes");
@@ -2064,6 +2101,7 @@ public class PasarPlataSteps {
 		Utilidades.tomaEvidencia("Saldo Final " + BaseUtil.saldoFinal);
 	}
 	
+	@Step
 	public void llenarFormularioMontoInferiorOtrosBancos(String numeroCuenta, String tipoId, String numId, String valorAPasar, String banco) {
 		Utilidades.esperaMiliseg(4000);
 		//INGRESAR NOMBRE DE CONTACTO
@@ -2080,7 +2118,7 @@ public class PasarPlataSteps {
 		pagePasarPlata.inputNumeroCuentaBanco(numeroCuenta);
 		Utilidades.tomaEvidencia("Seleccion banco y num cuenta");
 		//DAR SCROLL
-		Utilidades.scrollDownSwipe();
+		Utilidades.scrollDownSwipe(1);
 		//BTN SELECCIONAR TIPO DE DOCUMENTO
 		pagePasarPlata.seleccioneTipoIdentificacion();
 		//SELECCIONAR TIPO DE DOCUMENTACION
@@ -2096,6 +2134,7 @@ public class PasarPlataSteps {
 		Utilidades.tomaEvidencia("Dar en el boton Pop Up continuar");
 	}
 	
+	@Step
 	public void validarMensajeValorInferior() {
 		pagePasarPlata.validarValorInferiorOtrosBancos();
 		Utilidades.tomaEvidencia("Validar valor inferior");
@@ -2106,6 +2145,7 @@ public class PasarPlataSteps {
 		Utilidades.tomaEvidencia("Saldo Final " + BaseUtil.saldoFinal);
 	}
 	
+	@Step
 	public void validarSaldoFinalBolsillos() {
 		pagePasarPlata.darClickEnFinalizarTransaccion();
 		pageHome.clickBotonAtrasBolsillos(1);
@@ -2114,12 +2154,13 @@ public class PasarPlataSteps {
 		Utilidades.tomaEvidencia("Saldo final del daviplata");
 	}
 
-
+	@Step
 	public void meterPlataBolsillo(int numero) {
 		objBolsillosPageObjects.pulsarMeterPlata();
 		objBolsillosPageObjects.pulsarBolsilloSeleccionado(numero);
 	}
 	
+	@Step
 	public int consultarMeterPlataBolsilloAleatorio() {
 		objBolsillosPageObjects.verBolsillos();
 		objBolsillosPageObjects.seleccionarBolsilloAleatorio();
@@ -2250,4 +2291,44 @@ public class PasarPlataSteps {
            Utilidades.tomaEvidencia("Validar que cuente con solicitudes pendientes");
        }
     }
+   
+   @Step
+   public void validarTopeDebito(String topeDebito) throws Exception {
+       validarTopeDebitos(topeDebito);
+   }
+   
+   @Step
+   public void validarTopeDebitos(String topeDebito) {
+       try {
+           contador++;
+           String topeDebitos = Serenity.sessionVariableCalled("acumuladoMensualDebitoRedebanDestino");
+           int longitud = topeDebitos.length();
+           int numero = longitud - 2;
+           topeDebitos = topeDebitos.substring(0, numero).replace(",", "").replace(".", ""); 
+           String realStringCreditos = String.valueOf(topeDebitos);
+           assertThat(realStringCreditos,equalTo(topeDebito));
+           System.out.println("El usuario uno tiene tope debitos");
+       } catch (Exception e) {
+           if (!(contador == 10)) {
+               Utilidades.esperaMiliseg(500);
+               validarTopeDebitos(topeDebito);
+           } else {
+               fail("No se pudo validar el monto con el tope de debitos, debido a: " + e.getMessage());
+           }
+       } finally {
+           contador = 0;
+       }
+   }
+   
+   @Step
+   public void validoResultadoTransaccionRechazadaTope() throws Exception {
+       Utilidades.esperaMiliseg(2000);
+       pagePasarPlata.validarResultadoTransaccionRechazada();
+       Utilidades.tomaEvidencia("Transacción rechazada");
+       pagePasarPlata.darClickEnFinalizarTransaccion();
+       Utilidades.tomaEvidencia("Finalicé Transaccion");
+       Utilidades.esperaMiliseg(4000);
+       pagePasarPlata.capturarSaldoFinal();
+       Utilidades.tomaEvidencia("Capturar saldo final");
+   }
 }

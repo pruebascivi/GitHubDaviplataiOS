@@ -28,6 +28,7 @@ import daviplata.nacional.iOS.modelo.Cliente;
 import daviplata.nacional.iOS.modelo.ConsultaCupoTarjeta;
 import daviplata.nacional.iOS.definitions.Hooks;
 import daviplata.nacional.iOS.utilidades.Utilidades;
+import daviplata.nacional.iOS.utilidades.UtilidadesTCS;
 import daviplata.nacional.iOS.utilidades.BaseUtil;
 import daviplata.nacional.iOS.steps.WebRedebanSteps;
 import io.appium.java_client.AppiumDriver;
@@ -56,7 +57,9 @@ public class PasarPlataPageObjects extends PageObject {
 	private Faker objFaker;
 	WebRedebanSteps StepsRedeban;
 	Cliente origenCliente = new Cliente();
-
+	UtilidadesTCS utilidadesTCS;
+	LoginPageObjects loginPageObject;
+	
 	private String txtSaldoDaviPlata = "//XCUIElementTypeStaticText[contains(@label, '¿Cuánto tengo?')]/following-sibling::XCUIElementTypeOther";
 	private String resultadosTransaccionExitosa = "//XCUIElementTypeStaticText[@name='Transacción exitosa' or @name='Transaccion exitosa']";
 	// --------------Pasar Plata Ya----------------
@@ -259,7 +262,7 @@ public class PasarPlataPageObjects extends PageObject {
 	public static final String BTN_ACEPTAR_COBRO = "//XCUIElementTypeButton[@name='Aceptar']";
 	public static final String CAMPO_MONTO = "//XCUIElementTypeTextField[contains(@name, 'Ingrese un valor')] | //XCUIElementTypeOther[contains(@name, 'Cuánta plata quiere pedir')]/following-sibling::XCUIElementTypeTextField";
 	public static final String TXT_POR_SU_SEGURIDAD = "//XCUIElementTypeStaticText[contains(@name, 'Por su seguridad se ha cerrado la sesión')]";
-	
+	public static final String BOTON_ATRAS = "//XCUIElementTypeButton[@name='Atrás Botón'] | //XCUIElementTypeButton[contains(@name, 'Regresar')] | //XCUIElementTypeOther[contains(@name, 'left')]";
 	
 	public void btnBolsillos() {
 		MobileElement element = (MobileElement) wait
@@ -384,8 +387,6 @@ public class PasarPlataPageObjects extends PageObject {
 			}
 		}finally {contador=0;}
 	}
-	
-
 
 	public void quitarCerosIzquierda(String numero) {
 		long p = Long.parseLong(numero);
@@ -729,7 +730,6 @@ public class PasarPlataPageObjects extends PageObject {
         }
         return aux;
 	}
-	
 	
 	public boolean elementBtnContinuarPresente() {
 		boolean aux=false;
@@ -1882,9 +1882,9 @@ public class PasarPlataPageObjects extends PageObject {
 
 		MobileElement labelTipoProductoDestino = (MobileElement) wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath(this.labelTipoProductoDestino)));
-		Utilidades.esperar(1000);
+		Utilidades.esperaMiliseg(1000);
 //		utilidad.moverPantalla();
-		Utilidades.esperar(1000);
+		Utilidades.esperaMiliseg(1000);
 		MobileElement labelValorTotalAPasar = (MobileElement) wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath(this.labelValorTotalAPasar)));
 
@@ -2581,7 +2581,7 @@ public class PasarPlataPageObjects extends PageObject {
 			btnFinalizar.click();
 		}catch(Exception e) {
 			if(!(contador == 5)) {
-				Utilidades.esperar(2000);
+				Utilidades.esperaMiliseg(2000);
 				darClickEnFinalizarTransaccion();
 			}else {
 				fail("No se encontro boton finalizar transaccion debido a: " + e.getMessage());
@@ -3244,4 +3244,36 @@ public class PasarPlataPageObjects extends PageObject {
 			contador = 0;
 		}
 	}
+
+	public void validarVisibilidadSolicitudExitosaTransfiYa() {
+        try {
+            contador++;
+            wait
+                    .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(TXT_TRANSACCION_EXITOSA)));
+        } catch (Exception e) {
+            if (!(contador < 30)) {
+                Utilidades.esperaMiliseg(500);
+                validarVisibilidadSolicitudExitosaTransfiYa();
+            } else {
+                fail("No se encontró txt Solicitud exitosa, debido a: " + e.getMessage());
+            }
+        } finally {
+            contador = 0;
+        }
+    }
+	
+    public void regresarAlHome(int repeticiones) {
+        int count = 0;
+        do {
+            Utilidades.esperaMiliseg(1000);
+            utilidadesTCS.esperarElementVisibility("xpath", PasarPlataPageObjects.BOTON_ATRAS);
+            utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BOTON_ATRAS);
+            Utilidades.esperaMiliseg(1500);
+            boolean estadoVisible = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.POP_UP_INVITE_AMIGOS);
+            if(estadoVisible == true) {
+            	utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_CLOSE);
+            }
+            count++;
+        } while (count < repeticiones);
+    }
 }

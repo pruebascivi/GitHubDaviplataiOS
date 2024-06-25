@@ -188,7 +188,6 @@ public class MarketPlaceDefinitions {
 	@Then("^Completo el flujo compra Bono con correo$")
 	public void completoElFlujoCompraBonoConCorreo() throws Exception {
 		stepsMarket.ingresarBono();
-
 	}
 
 	@Then("^completo flujo descuento mcDonals$")

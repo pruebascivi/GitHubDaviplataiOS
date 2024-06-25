@@ -36,13 +36,20 @@ import java.util.regex.Pattern;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import io.appium.java_client.touch.WaitOptions;
 import org.openqa.selenium.Point;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import java.util.List;
 import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
@@ -1437,7 +1444,6 @@ public class UtilidadesTCS extends PageObject {
         CustomChromeDriver.iniciarChromeDriver();
         BaseUtil.chromeDriver.get(Credenciales.propertiesWebs().getProperty(nombreVariablePagina.trim()));
         BaseUtil.chromeDriver.manage().window().maximize();
-        System.out.println("paso");
         wait = new WebDriverWait(BaseUtil.chromeDriver, 60);
     }
     
@@ -1457,20 +1463,31 @@ public class UtilidadesTCS extends PageObject {
      * 
      * @author Laura Pérez
      */
-    public void setearUrlAProperties (String url) {
-        String filePath = System.getProperty("user.dir") + "\\credenciales_web.properties";
-        Properties properties = new Properties();
-        try (FileInputStream fis = new FileInputStream(filePath)) {
-            properties.load(fis);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        // Setear el valor de la URL capturada a la propiedad web.google.url
-        properties.setProperty("web.google.url", url);
+    public void setearUrlAProperties(String nombreVariableProperties, String url) {
+        String filePath = System.getProperty("user.dir") + "/credenciales_web.properties";
+        Path path = Paths.get(filePath);
         
-        // Guardar los cambios en el archivo .properties
-        try (FileOutputStream fos = new FileOutputStream(filePath)) {
-            properties.store(fos, null);
+        // Leer todas las líneas del archivo
+        try {
+            List<String> lines = Files.readAllLines(path);
+            boolean propertyFound = false;
+            
+            // Modificar la línea que contiene la propiedad deseada
+            for (int i = 0; i < lines.size(); i++) {
+                if (lines.get(i).startsWith(nombreVariableProperties +"=")) {
+                    lines.set(i,  nombreVariableProperties +"=" + url);
+                    propertyFound = true;
+                    break;
+                }
+            }
+            
+            // Si la propiedad no se encontró, añadirla al final
+            if (!propertyFound) {
+                lines.add(nombreVariableProperties +"=" + url);
+            }
+            
+            // Escribir las líneas modificadas de vuelta al archivo
+            Files.write(path, lines, StandardOpenOption.TRUNCATE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -1741,6 +1758,31 @@ public class UtilidadesTCS extends PageObject {
         }
     }
     
+    public void esperarElementoVisibleEnLaWeb(String locatorType, String locator) {
+    	BaseUtil.chromeDriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        By by = null;
+        switch (locatorType) {
+            case "name":
+                by = By.name(locator);
+                break;
+            case "id":
+                by = By.id(locator);
+                break;
+            case "xpath":
+                by = By.xpath(locator);
+                break;
+            default:
+                throw new IllegalArgumentException("Tipo de localizador no válido: " + locatorType);
+        }
+        try {
+            BaseUtil.chromeDriver.findElement(by).isDisplayed();
+            System.out.println("Se verifica presencia de el elemento: " + locator);
+        } catch (Exception e) {
+            System.out.println("No se pudo interactuar con el elemento: " + locator);
+        }
+    }
+    
+    
     public static  void clicElementWeb(String locatorType, String locator) {
         BaseUtil.chromeDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         By by = null;
@@ -1768,8 +1810,11 @@ public class UtilidadesTCS extends PageObject {
     /**
      * Cambia de foco al iframe especificado
      */
-    public void cambiarFocoIframe(String locatorType, String locator) {
-         By by = null;
+    public static void cambiarFocoIframe(String locatorType, String locator) {
+        WebDriver driver = BaseUtil.chromeDriver;
+        WebDriverWait wait = new WebDriverWait(driver, 30); // Espera de 30 segundos
+
+        By by = null;
         switch (locatorType) {
             case "name":
                 by = By.name(locator);
@@ -1783,8 +1828,17 @@ public class UtilidadesTCS extends PageObject {
             default:
                 throw new IllegalArgumentException("Tipo de localizador no válido: " + locatorType);
         }
-        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(by));
-        System.out.println("Cambió al iframe: " + locator);
+
+        try {
+            // Espera explícita para asegurarse de que el iframe está disponible
+            wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(by));
+            System.out.println("Cambió al iframe: " + locator);
+        } catch (TimeoutException e) {
+            System.err.println("No se pudo cambiar al iframe: " + locator);
+
+            // Depuración adicional: imprime el estado del DOM
+            System.out.println(driver.getPageSource());
+        }
     }
 
     /**
@@ -1898,7 +1952,7 @@ public class UtilidadesTCS extends PageObject {
             int cantidadFilas = BaseUtil.chromeDriver.findElements( By.xpath(FilasTablaNotificaciones)).size();
             
             for(int fila=2; fila < cantidadFilas; fila++) {
-                Utilidades.esperar(250);
+                Utilidades.esperaMiliseg(250);
                 auxiliar = BaseUtil.chromeDriver.findElement(By.xpath(FilasTablaNotificaciones + "[" + fila + "]" + "/td[3]")).getText();
                 if(auxiliar.contains("Davivienda") || auxiliar.contains("Codigo") ) {
                     mensajeOTP = BaseUtil.chromeDriver.findElement(By.xpath(FilasTablaNotificaciones + "[" + fila + "]" + "/td[3]")).getText();
@@ -2046,7 +2100,7 @@ public class UtilidadesTCS extends PageObject {
             int cantidadFilas = BaseUtil.chromeDriver.findElements(By.xpath(FilasTablaMensajes)).size();
             
             for(int fila = 1; fila < cantidadFilas; fila++) {
-                Utilidades.esperar(250);
+                Utilidades.esperaMiliseg(250);
                 auxiliar = BaseUtil.chromeDriver.findElement(By.xpath(FilasTablaMensajes + "[" + fila + "]" + "/td[4]")).getText();
                 if(auxiliar.contains("Davivienda") || auxiliar.contains("cargado")) {
                     mensajeValorRecarga = BaseUtil.chromeDriver.findElement(By.xpath(FilasTablaMensajes + "[" + fila + "]" + "/td[4]")).getText();
@@ -2092,7 +2146,7 @@ public class UtilidadesTCS extends PageObject {
             int cantidadFilas = BaseUtil.chromeDriver.findElements(By.xpath(FilasTablaMensajes)).size();
             
             for(int fila = 1; fila < cantidadFilas; fila++) {
-                Utilidades.esperar(250);
+                Utilidades.esperaMiliseg(250);
                 auxiliar = BaseUtil.chromeDriver.findElement(By.xpath(FilasTablaMensajes + "[" + fila + "]" + "/td[4]")).getText();
                 if(auxiliar.contains("Paso Plata") || auxiliar.contains("Davivienda")) {
                     mensajeValorTransferencia = BaseUtil.chromeDriver.findElement(By.xpath(FilasTablaMensajes + "[" + fila + "]" + "/td[4]")).getText();
@@ -2137,7 +2191,7 @@ public class UtilidadesTCS extends PageObject {
             int cantidadFilas = BaseUtil.chromeDriver.findElements(By.xpath(FilasTablaMensajes)).size();
             
             for(int fila = 1; fila < cantidadFilas; fila++) {
-                Utilidades.esperar(250);
+                Utilidades.esperaMiliseg(250);
                 auxiliar = BaseUtil.chromeDriver.findElement(By.xpath(FilasTablaMensajes + "[" + fila + "]" + "/td[4]")).getText();
                 if(auxiliar.contains("Paso Plata") || auxiliar.contains("Transfiya")) {
                     mensajeValorTransferenciaEnLinea = BaseUtil.chromeDriver.findElement(By.xpath(FilasTablaMensajes + "[" + fila + "]" + "/td[4]")).getText();
@@ -2182,7 +2236,7 @@ public class UtilidadesTCS extends PageObject {
             int cantidadFilas = BaseUtil.chromeDriver.findElements(By.xpath(FilasTablaMensajes)).size();
             
             for(int fila = 1; fila < cantidadFilas; fila++) {
-                Utilidades.esperar(250);
+                Utilidades.esperaMiliseg(250);
                 auxiliar = BaseUtil.chromeDriver.findElement(By.xpath(FilasTablaMensajes + "[" + fila + "]" + "/td[4]")).getText();
                 if(auxiliar.contains("Compra") || auxiliar.contains("Tienda Virtual")) {
                     mensajeValorCompraTiendaVirtual = BaseUtil.chromeDriver.findElement(By.xpath(FilasTablaMensajes + "[" + fila + "]" + "/td[4]")).getText();
@@ -2228,7 +2282,7 @@ public class UtilidadesTCS extends PageObject {
             int cantidadFilas = BaseUtil.chromeDriver.findElements(By.xpath(FilasTablaMensajes)).size();
             
             for(int fila = 1; fila < cantidadFilas; fila++) {
-                Utilidades.esperar(250);
+                Utilidades.esperaMiliseg(250);
                 auxiliar = BaseUtil.chromeDriver.findElement(By.xpath(FilasTablaMensajes + "[" + fila + "]" + "/td[4]")).getText();
                 if(auxiliar.contains("Compra") || auxiliar.contains("Tienda Virtual")) {
                     mensajeValorCompraPse = BaseUtil.chromeDriver.findElement(By.xpath(FilasTablaMensajes + "[" + fila + "]" + "/td[4]")).getText();
@@ -2250,5 +2304,68 @@ public class UtilidadesTCS extends PageObject {
             fail("No se encontró valor de la compra, desde tienda virtual en latinia, realizada desde Daviplata, debido a: " + e.getMessage());
         }
         return valorCompraPse;
+    }
+    
+    /**
+     * Extrae la otp de la pagina generada desde el boton de pago en el modulo de negocio
+     * @return El valor de la otp
+     */
+    public String extraerNumeroOTPLinkPago() {
+        JavascriptExecutor js = (JavascriptExecutor) BaseUtil.chromeDriver;
+        String script = "var elementos = document.querySelectorAll('div.loggerItem.ng-star-inserted');" +
+                        "var ultimoElemento = elementos[elementos.length - 1].innerText;" +
+                        "var regex = /\"otp\": \"(\\d+)\"/;" +  // Expresión regular para encontrar el número de OTP
+                        "var match = ultimoElemento.match(regex);" +
+                        "var numeroOTP = match ? match[1] : 'No se encontró OTP';" + // Si no se encuentra, mostrar mensaje
+                        "return numeroOTP;";
+        String numeroOTP = (String) js.executeScript(script);
+
+        // Mostrar el número de OTP obtenido
+        System.out.println("Número de OTP:");
+        System.out.println(numeroOTP);
+        return numeroOTP;
+    }
+    
+    /**
+     * Ingresa la otp en la web del link de pago, generado desde negocio
+     * @param otp - Numero de la otp
+     */
+    public void ingresarOtpLinkBotonPago(String otp) {
+        BaseUtil.chromeDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    	try {
+            int j = 1;
+            for (int i = 0; i < 6; i++) {
+                BaseUtil.chromeDriver.findElement(By.xpath("//input[@name='otp" + j + "']")).sendKeys(otp.substring(i, j));
+                j++;
+            }
+            System.out.println("Ingresé la otp correctamente");
+
+        } catch (Exception e) {
+            fail("No se pudo ingresar la otp del usuario en la web de pago, debido a: " + e.getMessage());
+        }
+    }
+    
+    public void scrollToElementWeb(String locatorType, String locator) {
+        // Convertir el tipo de localizador a By
+        By by = null;
+        switch (locatorType) {
+            case "name":
+                by = By.name(locator);
+                break;
+            case "id":
+                by = By.id(locator);
+                break;
+            case "xpath":
+                by = By.xpath(locator);
+                break;
+            default:
+                throw new IllegalArgumentException("Tipo de localizador no válido: " + locatorType);
+        }
+
+        // Encontrar el elemento utilizando el localizador convertido
+        WebElement elemento = BaseUtil.chromeDriver.findElement(by);
+
+        // Hacer scroll hasta el elemento utilizando JavaScript
+        ((JavascriptExecutor) BaseUtil.chromeDriver).executeScript("arguments[0].scrollIntoView(true);", elemento);
     }
 }

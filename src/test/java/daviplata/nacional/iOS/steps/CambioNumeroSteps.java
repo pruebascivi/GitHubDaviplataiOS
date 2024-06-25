@@ -70,7 +70,7 @@ public class CambioNumeroSteps {
 		pageLatinia.ingresarPassword();
 		utilidad.tomaEvidencia("Ingreso de credenciales");
 		pageLatinia.darClickAcceder();
-		utilidad.esperar(500);
+		utilidad.esperaMiliseg(500);
 		utilidad.tomaEvidencia("Click boton Acceder");
 		pageLatinia.darClickBtnActualizar();
 		String numeroOTP = pageLatinia.traeOTP(numeroCelular);
@@ -97,7 +97,7 @@ public class CambioNumeroSteps {
 		pageLatinia.ingresarPassword();
 		utilidad.tomaEvidencia("Ingreso de credenciales");
 		pageLatinia.darClickAcceder();
-		utilidad.esperar(500);
+		utilidad.esperaMiliseg(500);
 		utilidad.tomaEvidencia("Click boton Acceder");
 		pageLatinia.darClickBtnActualizar();
 		String numeroOTP = pageLatinia.traeOPTFiltro(numeroCelular);

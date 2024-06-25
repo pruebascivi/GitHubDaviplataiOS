@@ -27,7 +27,7 @@ public class RegistroSteps {
 		registroObj.txtNumCel(cel);
 		registroObj.txtNumCelConf(cel);
 		registroObj.txtCorreo(correo);
-		Utilidades.scrollDownSwipe();
+		Utilidades.scrollDownSwipe(1);
 		registroObj.txtCorreoConfirmar(correo);
 		registroObj.btnContinuar();
 		registroObj.checkBoxTerminosCondiciones();
@@ -156,11 +156,11 @@ public class RegistroSteps {
 		registroObj.ingresarMes(mes);
 		registroObj.ingresarAño(año);
 		Utilidades.esperaMiliseg(2000);
-		Utilidades.scrollDownSwipe();
+		Utilidades.scrollDownSwipe(1);
 		registroObj.ingresarDiaExpedicion(diaExpedicion); 
 		registroObj.ingresarMesExpedicion(mesExpedicion); 
 		registroObj.ingresarAnioExpedicion(anioExpedicion); 
-		Utilidades.scrollDownSwipe();
+		Utilidades.scrollDownSwipe(1);
 		registroObj.ingresarLugarExp(lugar);
 		registroObj.txtNumCel(cel);
 		registroObj.txtCorreo(correo);

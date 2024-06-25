@@ -100,7 +100,7 @@ public class NewLPageObjects {
 			System.out.println("Actualizo pagina " + contador);
 			contador++;
 			darClickBtnActualizar();
-			Utilidades.esperar(3);
+			Utilidades.esperaMiliseg(3);
 			traeOTP(numCel);
 		}
 		return otp;
@@ -110,7 +110,7 @@ public class NewLPageObjects {
 		WebElement btnFinalizarSesion = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(this.btnFinalizarSesion)));
 		btnFinalizarSesion.click();
-		utilidad.esperar(2000);
+		utilidad.esperaMiliseg(2000);
 		base.chromeDriver.quit();
 	}
 

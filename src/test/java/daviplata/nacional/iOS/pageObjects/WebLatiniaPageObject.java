@@ -277,7 +277,7 @@ public class WebLatiniaPageObject extends PageObject {
 			System.out.println("Actualizo pagina " + contador);
 			contador = contador + 1;
 			darClickBtnActualizar();
-			utilidad.esperar(2000);
+			utilidad.esperaMiliseg(2000);
 			//traeOTP(numCel);
 			msj = buscarMsj(numCel);
 		}
@@ -362,7 +362,7 @@ public class WebLatiniaPageObject extends PageObject {
 			System.out.println("Actualizo pagina " + contador);
 			contador++;
 			darClickBtnActualizar();
-			utilidad.esperar(3);
+			utilidad.esperaMiliseg(3);
 			traeOTP(numCel);
 		}
 		return otp;
@@ -390,7 +390,7 @@ public class WebLatiniaPageObject extends PageObject {
 			System.out.println("Actualizo pagina " + contador);
 			contador = contador + 1;
 			darClickBtnActualizar();
-			utilidad.esperar(2000);
+			utilidad.esperaMiliseg(2000);
 			//traeOTP(numCel);
 			strOTP = extraerOPTFiltro(numCelular);
 		}

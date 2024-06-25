@@ -1023,6 +1023,16 @@ public class PasarPlataDefinitions {
     public void validarSolicitudesTransfiya() throws Exception {
         stepsPasarPlata.validarSolicitudesTransfiya();
     }
+    
+    @Given("^Valido tope debito \"([^\"]*)\"$")
+    public void validoTopeDebito(String monto) throws Exception {
+        stepsPasarPlata.validarTopeDebito(monto);
+    }
+    
+    @Then("^valido resultado transaccion rechazada tope$")
+    public void validoResultadoTransaccionRechazadaTope() throws Exception {
+        stepsPasarPlata.validoResultadoTransaccionRechazadaTope();
+    }
 }
 			
 

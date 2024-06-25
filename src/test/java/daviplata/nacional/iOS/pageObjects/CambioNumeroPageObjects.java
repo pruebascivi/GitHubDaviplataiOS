@@ -421,12 +421,8 @@ public class CambioNumeroPageObjects extends PageObject {
 		driver.findElement(By.xpath(this.btnAceptarNuevaClave)).click();
 	}
 
-	public void esperar() {
-		utilidad.esperaMiliseg(10000);
-	}
-
 	public void pulsarBtnNoMeInteresaOfertaCredito() {
-		WebDriverWait espera = new WebDriverWait(base.driver, 10);
+		WebDriverWait espera = new WebDriverWait(BaseUtil.driver, 10);
 		try {
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnNoMeInteresaOfertaCredito)));
 			driver.findElement(By.xpath(this.btnNoMeInteresaOfertaCredito)).click();

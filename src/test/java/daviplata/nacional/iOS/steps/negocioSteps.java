@@ -556,7 +556,7 @@ public class negocioSteps {
 	public void ingresarAOpcionCrearCatalogo() {
 		Utilidades.esperaMiliseg(5000);
 		utilidadesTCS.scrollBackground("xpath", negocioPageObjects.SALDOS_HOME_NEGOCIO, 0, -100);
-		//Utilidades.scrollDownSwipe();
+		//Utilidades.scrollDownSwipe(1);
 		Utilidades.tomaEvidencia("Ingresar a crear catalago");
 		negocioPO.clicCrearCatalogoPerfilNegocio();
 	}
@@ -692,7 +692,7 @@ public class negocioSteps {
 		Utilidades.esperaMiliseg(35000);
 		System.out.println("termine de esperar");
 		for(int i = 0; i<3; i++) {
-			Utilidades.scrollDownSwipe();	
+			Utilidades.scrollDownSwipe(1);	
 		}
 		//negocioPO.scrollCatalogo();
 		negocioPO.validarCatalogoPerfilNegocio();
@@ -702,7 +702,7 @@ public class negocioSteps {
 	public void ingresarACatalogo() {
 		Utilidades.esperaMiliseg(35000);
 		for(int i = 0; i<3; i++) {
-			Utilidades.scrollDownSwipe();	
+			Utilidades.scrollDownSwipe(1);	
 		}
 		Utilidades.tomaEvidencia("Ingresar a catálogo existente");
 		negocioPO.clicCatalogoPerfilNegocio();
@@ -1426,7 +1426,9 @@ public class negocioSteps {
     
     @Step
     public void ingresarATiendaVirtualDesdeMasIngresos() {
-    	Utilidades.esperaMiliseg(1500);
+		Utilidades.esperaMiliseg(1500);
+		utilidadesTCS.scrollBackground("xpath", MarketPlacePageObjects.BTN_CAJA, -250, 0);
+		Utilidades.esperaMiliseg(1000);
         utilidadesTCS.clicElement("xpath", negocioPageObjects.BTN_TIENDA_VIRTUAL);
 		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
         Utilidades.tomaEvidencia("Ingreso a tienda virtual desde la opción 'Aumente sus ingresos'");

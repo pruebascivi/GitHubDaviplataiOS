@@ -320,7 +320,7 @@ public class ReferidosSteps {
 	@Step
 	public void validarContadoresDeReferidos() {
 		Utilidades.esperaMiliseg(2000);
-		Utilidades.scrollDownSwipe();
+		Utilidades.scrollDownSwipe(1);
 		boolean contadorUno = utilidadesTCS.validateElementVisibility("xpath",
 				ReferidosPageObjects.CONTADOR_ENLACES_VECES_COMPARTIDO);
 		boolean contadorDos = utilidadesTCS.validateElementVisibility("xpath",

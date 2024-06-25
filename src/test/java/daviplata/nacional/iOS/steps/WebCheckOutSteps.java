@@ -1,8 +1,8 @@
 package daviplata.nacional.iOS.steps;
 
 import static org.junit.Assert.fail;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import daviplata.nacional.iOS.pageObjects.AumentoDeTopesPageObjects;
 import daviplata.nacional.iOS.pageObjects.LoginPageObjects;
@@ -12,7 +12,6 @@ import daviplata.nacional.iOS.utilidades.BaseUtil;
 import daviplata.nacional.iOS.utilidades.CustomChromeDriver;
 import daviplata.nacional.iOS.utilidades.Utilidades;
 import daviplata.nacional.iOS.utilidades.UtilidadesTCS;
-import net.serenitybdd.core.annotations.findby.By;
 import net.thucydides.core.annotations.Step;
 
 public class WebCheckOutSteps {
@@ -359,54 +358,29 @@ public class WebCheckOutSteps {
         System.out.println("Realizo clic en el botón Generar el enlace");
         utilidadesTcs.esperarElementVisibility("xpath", WebCheckOutPageObjects.TEXTO_GENERACION_EXITOSA);
         Utilidades.tomaEvidencia("Generación exitosa");
+        BaseUtil.urlBotonPago = utilidadesTcs.obtenerTexto("xpath", WebCheckOutPageObjects.RUTA_URL);
+        System.out.println(BaseUtil.urlBotonPago);
+        utilidadesTcs.clicElement("xpath", WebCheckOutPageObjects.BOTON_FINALIZAR);
     }
     
     @Step
     public void ingresoAWebEnlaceDePago (String numeroDocumento) {
-        Utilidades.esperaMiliseg(5000);
-        String url = "https://lab-ct-frontend.dvpapps.io/pgprntng/index.html#/checkout?paymentLinkId=ZtxoIsGolADXgTC%2FoU7dvfzn0A6USmKWAl3XiSG%2BbvgDIEVB";
-        //String url = utilidadesTcs.obtenerTexto("xpath", WebCheckOutPageObjects.RUTA_URL);
-        System.out.println(url);
-        utilidadesTcs.setearUrlAProperties(url);
-        utilidadesTcs.abrirWeb("google");
-        
-        try {
-            Utilidades.esperaMiliseg(5000);
-            Utilidades.tomaEvidenciaPantalla("Web - Ingreso a la web con la url generada de enlace de pago");
-        }
-        catch(Exception e) {
-             System.out.println("No se pudo interactuar con el elemento: " + WebCheckOutPageObjects.INPUT_WEB_NUMERO_DOCUMENTO);
-             assert utilidadesTcs.validateElementVisibilityCatch("name", WebCheckOutPageObjects.INPUT_WEB_NUMERO_DOCUMENTO) : "No se pudo interactuar con el elemento." + WebCheckOutPageObjects.INPUT_WEB_NUMERO_DOCUMENTO;
-        }
-        try {
+        try{
+            utilidadesTcs.setearUrlAProperties("web.enlacePago.url", BaseUtil.urlBotonPago);
+            utilidadesTcs.abrirWeb("web.enlacePago.url");
+            Utilidades.esperaMiliseg(4000);
+            Utilidades.tomaEvidenciaPantalla("Ingreso a la web con la url generada de enlace de pago");
             utilidadesTcs.writeElementWeb("xpath",WebCheckOutPageObjects.INPUT_WEB_NUMERO_DOCUMENTO, numeroDocumento);
             Utilidades.tomaEvidenciaPantalla("Web - Ingreso cédula");
+            Utilidades.esperaMiliseg(4000);
+            Utilidades.tomaEvidenciaPantalla("Web - Hacer clic en el boton continuar");
+            UtilidadesTCS.clicElementWeb("xpath", WebCheckOutPageObjects.BOTON_CONTINUAR_WEB);
+        } catch (WebDriverException e) {
+            utilidadesTcs.cerrarWebEnlaceDePago();
+            fail("Error en WebDriver: " + e.getMessage());
+        } catch (Exception e) {
+            utilidadesTcs.cerrarWebEnlaceDePago();
+            fail("Se produjo un error no esperado: " + e.getMessage());
         }
-        catch(Exception e) {
-             System.out.println("No se pudo interactuar con el elemento: " + WebCheckOutPageObjects.INPUT_WEB_NUMERO_DOCUMENTO);
-             assert utilidadesTcs.validateElementVisibilityCatch("xpath", WebCheckOutPageObjects.INPUT_WEB_NUMERO_DOCUMENTO) : "No se pudo interactuar con el elemento." + WebCheckOutPageObjects.INPUT_WEB_NUMERO_DOCUMENTO;
-        }
-        try {
-            utilidadesTcs.clicElement("xpath", WebCheckOutPageObjects.BOTON_CONTINUAR_WEB);
-            System.out.println("Realizo clic al botón continuar");
-        }
-        catch (AssertionError e) {
-            assert utilidadesTcs.validateElementVisibilityCatch("xpath", WebCheckOutPageObjects.BOTON_CONTINUAR_WEB) : "No se pudo interactuar con el elemento." + WebCheckOutPageObjects.BOTON_CONTINUAR_WEB;
-        }
-        try {
-            Utilidades.tomaEvidenciaPantalla("Web - Confirmación de Pago");
-            Utilidades.esperaMiliseg(5000);
-            //String otp = utilidadesTcs.obtenerTexto("xpath", WebcheckoutPageObjects.ELEMENTO_L_OTP);
-            
-            WebElement element = wait
-                    .until(ExpectedConditions.presenceOfElementLocated(By.xpath(WebCheckOutPageObjects.ELEMENTO_L_OTP)));
-            String transaccionExitosa = element.getText();
-            System.out.println("Texto obtenido: " + transaccionExitosa);
-        }
-        catch (AssertionError e) {
-            assert utilidadesTcs.validateElementVisibilityCatch("xpath", WebCheckOutPageObjects.ELEMENTO_L_OTP) : "No se pudo interactuar con el elemento." + WebCheckOutPageObjects.ELEMENTO_L_OTP;
-        }
-        
-        utilidadesTcs.cerrarWebEnlaceDePago(); 
     }
 }

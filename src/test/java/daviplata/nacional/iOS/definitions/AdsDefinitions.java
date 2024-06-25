@@ -25,6 +25,11 @@ public class AdsDefinitions {
         adsSteps.clicBotonContinuarDeBeneficios();
     }
     
+    @When("^Valido presencia Pop Up 'ya ha iniciado una solicitud de adelanto de saldo' y cancelar$")
+    public void validoPresenciaPopUpYaHaIniciadoUnaSolicitudDeAdelantoDeSaldoYCancelar() throws Exception  {         
+        adsSteps.validarPopUpSolicitudIniciadaYCancelar();
+    }
+    
     @When("^Valido pantalla de autorizaciones$")
     public void validoPantallaDeAutorizaciones() throws Exception  {         
         adsSteps.validarPantallaDeAutorizaciones();
@@ -90,7 +95,7 @@ public class AdsDefinitions {
         adsSteps.llenarFormularioInformacionPersonalPrimeraPantalla(ciudadExpedicionDocumento,paisNacimiento);
     }
     
-    @When("^Lleno formulario de informacion personal segunda pantalla \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\"$")
+    @When("^Lleno formulario de informacion personal segunda pantalla \"([^\"]*)\"\"([^\"]*)\"\"([^\"]*)\"\"([^\"]*)\"\"([^\"]*)\"\"([^\"]*)\"\"([^\"]*)\"$")
     public void llenoFormularioDeInformacionPersonalSegundaPantalla(String correoElectronico, String tipoCalle, String numUnoDireccion, String numDosDireccion, String numTresDireccion, String tipoInmueble, String ciudadResidencia) throws Exception {
         adsSteps.llenarFormularioInformacionPersonalSegundaPantalla(correoElectronico,tipoCalle,numUnoDireccion,numDosDireccion,numTresDireccion,tipoInmueble,ciudadResidencia);
     }
@@ -150,6 +155,11 @@ public class AdsDefinitions {
         adsSteps.llenoFormularioPersonaPoliticamenteExpuesta();
     }
     
+    @When("^Lleno formulario de persona politicamente expuesta flujo si$")
+    public void llenoFormularioDePersonaPoliticamenteExpuestaFlujoSi() throws Exception {         
+        adsSteps.llenoFormularioPersonaPoliticamenteExpuestaFlujoSi();
+    }
+    
     @Then("^Validar que se haya guardado los datos de la persona politicamente expuesta al salir de la app$")
     public void validarQueSeHayaGuardadoLosDatosDeLaPersonaPoliticamenteExpuestaAlSalirDeLaApp() throws Exception {         
         adsSteps.validarQueSeHayanGuardadoLosDatosDelFormularioEnLaPantallaPersonaPoliticamenteExpuesta();
@@ -190,9 +200,20 @@ public class AdsDefinitions {
         adsSteps.llenoFormularioDeclaracionFacta();
     }
     
+    @When("^Valido cupo resultado del adelanto de sueldo$")
+    public void validoCupoResultadoDelAdelantoDeSueldo() throws Exception {         
+        adsSteps.validarCupoResultadoAdelantoSueldo();
+    }
+    
     @Then("^Validar que se haya guardado los datos de la pantalla declaraciones al salir de la app$")
     public void validarQueSeHayaGuardadoLosDatosDeLaPantallaDeclaracionesAlSalirDeLaApp() throws Exception {        
         adsSteps.validarQueSeHayanGuardadoLosDatosDelFormularioEnLaPantallaDeclaraciones();
     }
+    
+    @When("^Acepto autorizaciones finales$")
+    public void aceptoAutorizacionesFinales() throws Exception {         
+        adsSteps.aceptarAutorizacionesFinales();
+    }
+    
 }
 

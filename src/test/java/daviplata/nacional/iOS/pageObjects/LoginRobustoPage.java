@@ -20,7 +20,7 @@ public class LoginRobustoPage extends PageObject {
 	public static final String POPUP_PARA_INGRESAR = "//XCUIElementTypeTextView[contains(@value, 'Para ingresar a su DaviPlata desde este celular')] | //XCUIElementTypeTextView[contains(@value, '¡Hola!')]";
 	public static final String TXT_ESCRIBE_CORREO_Y_CLAVE = "//XCUIElementTypeStaticText[contains(@name,'Escriba su correo electrónico')]";
 	public static final String PARA_INGRESAR_BTN = "//XCUIElementTypeButton[@name='Continuar - Botón']";
-	public static final String PROGRESS_BAR = "//XCUIElementTypeActivityIndicator[@name='In progress'] | //*[contains(@name,'In progress')] | //XCUIElementTypeImage[@name='loader'] | //XCUIElementTypeActivityIndicator[contains(@name, 'In progress')]";
+	public static final String PROGRESS_BAR = "//XCUIElementTypeActivityIndicator[@name='In progress'] | //*[contains(@name,'In progress')] | //XCUIElementTypeImage[@name='loader'] | //XCUIElementTypeActivityIndicator[contains(@name, 'In progress')] | //XCUIElementTypeImage[@name='loader']";
 	public static final String POP_UP_CAMBIAR_DISPOSITIVO = "//XCUIElementTypeTextView[contains(@value,'Para ingresar a su DaviPlata')]";
 	public static final String CONTINUAR_POP_UP_CAMBIAR_DISPOSITIVO = "//XCUIElementTypeButton[contains(@name,'Continuar')] | (//XCUIElementTypeButton[@name='Continuar'])[2]";
 	public static final String POP_UP_REGLAMENTO_CAMBIO_DISPOSITIVO = "//XCUIElementTypeStaticText[contains(@name,'Al oprimir Continuar, usted acepta')]";
@@ -31,7 +31,7 @@ public class LoginRobustoPage extends PageObject {
 	public static final String INPUT_OTP = "//XCUIElementTypeSecureTextField[contains(@name,'Editar casilla número')]";
 	public static final String SLIDE_INFORMATIVO_DAVIPLATA = "//XCUIElementTypeStaticText[contains(@name,'Conozca todo lo que')]";
 	public static final String BOTON_BOLSILLOS = "//XCUIElementTypeStaticText[@value='Mis bolsillos']";
-	public static final String BOTON_NOTIFICACIONES = "//*[@name='Menu de conocimiento']";
+	public static final String BOTON_NOTIFICACIONES = "//XCUIElementTypeButton[@name='Menu de conocimiento']";
 	public static final String TEXTO_TYT_BIOMETRIA = "//XCUIElementTypeStaticText[contains(@name,'Autorizaciones')]";
 	public static final String CAMPO_NUMERO_DOCUMENTO = "//XCUIElementTypeTextField[contains(@name,'Ingrese su número de documento') or contains(@name,'Numero de documento')]";
 	public static final String TIPO_DOCUMENTO = "//XCUIElementTypeButton[@name='Lista Desplegable']";

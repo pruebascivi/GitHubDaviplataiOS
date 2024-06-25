@@ -355,14 +355,6 @@ public class Utilidades {
 		new TouchAction(Hooks.getDriver()).tap(PointOption.point(puntoX, puntoY)).perform();
 	}
 
-	public static void esperar(int tiempo) {
-		try {
-			Thread.sleep(tiempo * 1000);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-	}
-
 	/**
 	 * Toma evidencia del dispositivo.
 	 * 
@@ -676,18 +668,20 @@ public class Utilidades {
 		Assert.assertEquals(disponibleIni + "", disponibleFin + "");
 	}
 
-	public static void scrollDownSwipe() {
+	public static void scrollDownSwipe(int repes) {
+		int count = 0;
+		do {
+			Dimension dimension = Hooks.getDriver().manage().window().getSize();
+			int initX = (int) (dimension.width * 0.5);
+			int initY = (int) (dimension.height * 0.8);
+			int endX = (int) (dimension.width * 0.5);
+			int endY = (int) (dimension.height * 0.6);
 
-		Dimension dimension = Hooks.getDriver().manage().window().getSize();
-
-		int initX = (int) (dimension.width * 0.5);
-		int initY = (int) (dimension.height * 0.8);
-		int endX = (int) (dimension.width * 0.5);
-		int endY = (int) (dimension.height * 0.6);
-
-		TouchAction touchAction = new TouchAction(Hooks.getDriver());
-		touchAction.press(PointOption.point(initX, initY)).waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
-				.moveTo(PointOption.point(endX, endY)).release().perform();
+			TouchAction touchAction = new TouchAction(Hooks.getDriver());
+			touchAction.press(PointOption.point(initX, initY)).waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
+					.moveTo(PointOption.point(endX, endY)).release().perform();
+        count++;
+    	} while (count < repes);
 	}
 
 	public static String numAleatorio(int limSuperior, int limInferior) {
@@ -857,13 +851,33 @@ public class Utilidades {
 	}
 	
 	public String capturarHoraSistema() {
-        // Capturar la hora exacta en Bogotá
-        ZoneId zonaHorariaBogota = ZoneId.of("America/Bogota");
-        ZonedDateTime horaActualBogota = ZonedDateTime.now(zonaHorariaBogota);
-        LocalTime horaActual = horaActualBogota.toLocalTime();
-        DateTimeFormatter formato24Horas = DateTimeFormatter.ofPattern("HH:mm");
-        String horaFormateada = horaActual.format(formato24Horas);
-        return horaFormateada;
+		try {
+            // Depuración: imprimir paso a paso
+            System.out.println("Iniciando captura de hora del sistema...");
+
+            // Capturar la zona horaria de Bogotá
+            ZoneId zonaHorariaBogota = ZoneId.of("America/Bogota");
+            System.out.println("Zona horaria: " + zonaHorariaBogota);
+
+            // Capturar la hora actual en Bogotá
+            ZonedDateTime horaActualBogota = ZonedDateTime.now(zonaHorariaBogota);
+            System.out.println("Hora actual en Bogotá (ZonedDateTime): " + horaActualBogota);
+
+            // Obtener solo la parte de la hora
+            LocalTime horaActual = horaActualBogota.toLocalTime();
+            System.out.println("Hora actual en Bogotá (LocalTime): " + horaActual);
+
+            // Formatear la hora en formato de 24 horas
+            DateTimeFormatter formato24Horas = DateTimeFormatter.ofPattern("HH:mm");
+            String horaFormateada = horaActual.format(formato24Horas);
+            System.out.println("Hora formateada: " + horaFormateada);
+
+            return horaFormateada;
+        } catch (Exception e) {
+            System.err.println("Error capturando la hora del sistema:");
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }

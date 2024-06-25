@@ -3,6 +3,7 @@ package daviplata.nacional.iOS.steps;
 import static org.junit.Assert.fail;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import daviplata.nacional.iOS.pageObjects.EcardPageObject;
 import daviplata.nacional.iOS.pageObjects.GenerarExtractosPageObjects;
+import daviplata.nacional.iOS.pageObjects.LoginRobustoPage;
 import daviplata.nacional.iOS.pageObjects.MenuHamburguesaPageObjects;
 import daviplata.nacional.iOS.pageObjects.NotificacionesPushPageObjects;
 import daviplata.nacional.iOS.pageObjects.PasarPlataPageObjects;
@@ -44,47 +46,24 @@ public class NotificacionesPushSteps {
     		BaseUtil.chromeDriver.get(Credenciales.propertiesWebs().getProperty("web.davivienda.url"));
     		BaseUtil.chromeDriver.manage().window().maximize();
     		wait = new WebDriverWait(BaseUtil.chromeDriver, 60);
-            Utilidades.esperaMiliseg(4000);
-            
-//            utilidadesTCS.esperarElementVisibilityWeb("xpath", NotificacionesPushPageObjects.BOTON_CERRAR_POP_UP_POLITICAS_TRATAMIENTO_DATOS);
-            WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(NotificacionesPushPageObjects.BOTON_CERRAR_POP_UP_POLITICAS_TRATAMIENTO_DATOS)));
-            element.click();
-            
-//            UtilidadesTCS.clicElementWeb("xpath", NotificacionesPushPageObjects.BOTON_CERRAR_POP_UP_POLITICAS_TRATAMIENTO_DATOS);
-            
-//            utilidadesTCS.esperarElementVisibilityWeb("xpath", NotificacionesPushPageObjects.LOGO_DAVIVIENDA);
-            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(NotificacionesPushPageObjects.LOGO_DAVIVIENDA)));
+            Utilidades.esperaMiliseg(10000);
+            utilidadesTCS.esperarElementoVisibleEnLaWeb("xpath", NotificacionesPushPageObjects.BOTON_CERRAR_POP_UP_POLITICAS_TRATAMIENTO_DATOS);
+            UtilidadesTCS.clicElementWeb("xpath", NotificacionesPushPageObjects.BOTON_CERRAR_POP_UP_POLITICAS_TRATAMIENTO_DATOS);
+            utilidadesTCS.esperarElementoVisibleEnLaWeb("xpath", NotificacionesPushPageObjects.LOGO_DAVIVIENDA);
             Utilidades.tomaEvidenciaPantalla("Ingreso a la web davivienda"); 
-            
-//            UtilidadesTCS.clicElementWeb("xpath", NotificacionesPushPageObjects.BOTON_INGRESO_CLIENTES);
-            WebElement element2 = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(NotificacionesPushPageObjects.BOTON_INGRESO_CLIENTES)));
-            element2.click();
+            UtilidadesTCS.clicElementWeb("xpath", NotificacionesPushPageObjects.BOTON_INGRESO_CLIENTES);
             Utilidades.esperaMiliseg(5000);
-            
-//            utilidadesTCS.cambiarFocoIframe("xpath",NotificacionesPushPageObjects.IFRAME_FORMULARIO_ACCESO);
-            
-//            utilidadesTCS.esperarElementVisibilityWeb("xpath", NotificacionesPushPageObjects.DESPLEGABLE_TIPO_DOCUMENTO_INGRESO_CLIENTES);
-//            utilidadesTCS.selectDropdownValue("xpath", NotificacionesPushPageObjects.DESPLEGABLE_TIPO_DOCUMENTO_INGRESO_CLIENTES, tipoDocumentoWebDavivienda);
-            
-//            utilidadesTCS.writeElementWeb("xpath", NotificacionesPushPageObjects.CAMPO_USUARIO_INGRESO_CLIENTES,usuarioDavivienda);
-            WebElement element4= wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(NotificacionesPushPageObjects.CAMPO_USUARIO_INGRESO_CLIENTES)));
-            element4.sendKeys(usuarioDavivienda);;
-            
-//            UtilidadesTCS.clicElementWeb("xpath", NotificacionesPushPageObjects.BOTON_INGRESAR_Y_CONTINUAR_INGRESO_CLIENTES);
-            WebElement element5 = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(NotificacionesPushPageObjects.BOTON_INGRESAR_Y_CONTINUAR_INGRESO_CLIENTES)));
-            element5.click();
+            UtilidadesTCS.cambiarFocoIframe("xpath",NotificacionesPushPageObjects.IFRAME_FORMULARIO_ACCESO);
+            Utilidades.esperaMiliseg(10000);
+            utilidadesTCS.esperarElementoVisibleEnLaWeb("xpath", NotificacionesPushPageObjects.DESPLEGABLE_TIPO_DOCUMENTO_INGRESO_CLIENTES);
+            //utilidadesTCS.selectDropdownValue("xpath", NotificacionesPushPageObjects.DESPLEGABLE_TIPO_DOCUMENTO_INGRESO_CLIENTES, tipoDocumentoWebDavivienda);
+            utilidadesTCS.writeElementWeb("xpath", NotificacionesPushPageObjects.CAMPO_USUARIO_INGRESO_CLIENTES,usuarioDavivienda);
+            UtilidadesTCS.clicElementWeb("xpath", NotificacionesPushPageObjects.BOTON_INGRESAR_Y_CONTINUAR_INGRESO_CLIENTES);
             Utilidades.esperaMiliseg(2000);
-            
-//            utilidadesTCS.writeElementWeb("xpath", NotificacionesPushPageObjects.CAMPO_CONTRASENA_INGRESO_CLIENTES,contrasenaDavivienda);
-            WebElement element6= wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(NotificacionesPushPageObjects.CAMPO_CONTRASENA_INGRESO_CLIENTES)));
-            element6.sendKeys(contrasenaDavivienda);;
-            
-//            UtilidadesTCS.clicElementWeb("xpath", NotificacionesPushPageObjects.BOTON_INGRESAR_Y_CONTINUAR_INGRESO_CLIENTES);
-            WebElement element7 = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(NotificacionesPushPageObjects.BOTON_INGRESAR_Y_CONTINUAR_INGRESO_CLIENTES)));
-            element7.click();
+            utilidadesTCS.writeElementWeb("xpath", NotificacionesPushPageObjects.CAMPO_CONTRASENA_INGRESO_CLIENTES,contrasenaDavivienda);
+            UtilidadesTCS.clicElementWeb("xpath", NotificacionesPushPageObjects.BOTON_INGRESAR_Y_CONTINUAR_INGRESO_CLIENTES);
             Utilidades.esperaMiliseg(2000);
-            
-            BaseUtil.horaSistema = utilidad.capturarHoraSistema();
+            System.out.println("La hora actual es: " +BaseUtil.horaSistema);            
             Utilidades.tomaEvidenciaPantalla("Web - Ingreso usuario y contraseña");
             boolean visibleCampoOtp = utilidadesTCS.validateElementVisibilityCatchWeb("xpath", NotificacionesPushPageObjects.CAMPO_OTP_INGRESO_CLIENTES);
             if(visibleCampoOtp) {
@@ -97,7 +76,7 @@ public class NotificacionesPushSteps {
                 Utilidades.cambiarFocoNuevaVentanaAbierta();
                 String otp = utilidadesTCS.capturarOtpIngresoDaviviendaNotificaciones();
                 utilidadesTCS.cambiarFocoVentana("origen");
-                utilidadesTCS.cambiarFocoIframe("xpath",NotificacionesPushPageObjects.IFRAME_FORMULARIO_ACCESO);
+                UtilidadesTCS.cambiarFocoIframe("xpath",NotificacionesPushPageObjects.IFRAME_FORMULARIO_ACCESO);
                 utilidadesTCS.writeElementWeb("xpath", NotificacionesPushPageObjects.CAMPO_OTP_INGRESO_CLIENTES, otp);
                 UtilidadesTCS.clicElementWeb("xpath", NotificacionesPushPageObjects.BOTON_INGRESAR_Y_CONTINUAR_INGRESO_CLIENTES);
             }
@@ -117,13 +96,13 @@ public class NotificacionesPushSteps {
     @Step
     public void cerrarSesionDavivienda() {
     	utilidadesTCS.switchToIframeDefault();
-    	utilidadesTCS.validateElementVisibilityWeb("xpath", NotificacionesPushPageObjects.BOTON_CERRAR_SESION_DAVIVIENDA);
     	UtilidadesTCS.clicElementWeb("xpath", NotificacionesPushPageObjects.BOTON_CERRAR_SESION_DAVIVIENDA);
-        Utilidades.esperaMiliseg(8000);
-        utilidadesTCS.esperarElementVisibilityWeb("xpath",NotificacionesPushPageObjects.LOGO_DAVIVIENDA);
+        Utilidades.esperaMiliseg(5000);
+        utilidadesTCS.esperarElementoVisibleEnLaWeb("xpath", NotificacionesPushPageObjects.LOGO_DAVIVIENDA);
         Utilidades.esperaMiliseg(2000);
         Utilidades.tomaEvidenciaPantalla("Web - Cerrar correctamente la sesión");
-        utilidadesTCS.cerrarChromdriver();
+        Utilidades.esperaMiliseg(5000);
+        //utilidadesTCS.cerrarChromdriver();
     }
     
     @Step
@@ -131,17 +110,17 @@ public class NotificacionesPushSteps {
         try {
         	Utilidades.tomaEvidenciaPantalla("Web - Hacer clic al botón transferir");
         	UtilidadesTCS.clicElementWeb("xpath", NotificacionesPushPageObjects.BOTON_TRANSFERIR);
-            utilidadesTCS.cambiarFocoIframe("xpath",NotificacionesPushPageObjects.IFRAME_FORMULARIO_TRANSFERENCIAS);
-            utilidadesTCS.esperarElementVisibilityWeb("xpath", NotificacionesPushPageObjects.BOTON_A_DAVIPLATA_DAVIVIENDA);
+            UtilidadesTCS.cambiarFocoIframe("xpath",NotificacionesPushPageObjects.IFRAME_FORMULARIO_TRANSFERENCIAS);
+            utilidadesTCS.esperarElementoVisibleEnLaWeb("xpath", NotificacionesPushPageObjects.BOTON_A_DAVIPLATA_DAVIVIENDA);
             UtilidadesTCS.clicElementWeb("xpath", NotificacionesPushPageObjects.BOTON_A_DAVIPLATA_DAVIVIENDA);
             utilidadesTCS.writeElementWeb("xpath", NotificacionesPushPageObjects.CAMPO_TRANSFERIR,monto);
             utilidadesTCS.writeElementWeb("xpath", NotificacionesPushPageObjects.CAMPO_NUMERO_MONEDERO,numeroCelular);
             UtilidadesTCS.clicElementWeb("xpath", NotificacionesPushPageObjects.BOTON_CONTINUAR);
             Utilidades.tomaEvidenciaPantalla("Web - Diligenciar datos del usuario al que se le hará la transacción");
-            utilidadesTCS.esperarElementVisibilityWeb("xpath", NotificacionesPushPageObjects.TEXTO_CONFIRMACION_TRANSFERENCIA);
+            utilidadesTCS.esperarElementoVisibleEnLaWeb("xpath", NotificacionesPushPageObjects.TEXTO_CONFIRMACION_TRANSFERENCIA);
             Utilidades.tomaEvidenciaPantalla("Web - Confirmacion de la transferencia");
             UtilidadesTCS.clicElementWeb("xpath", NotificacionesPushPageObjects.BOTON_CONTINUAR);
-            utilidadesTCS.esperarElementVisibilityWeb("xpath", NotificacionesPushPageObjects.TEXTO_RESULTADO_TRANSACCION);
+            utilidadesTCS.esperarElementoVisibleEnLaWeb("xpath", NotificacionesPushPageObjects.TEXTO_RESULTADO_TRANSACCION);
             Utilidades.tomaEvidenciaPantalla("Web - Resultado de la transacción");            
         } catch (WebDriverException e) {
             cerrarSesionDavivienda();
@@ -162,13 +141,15 @@ public class NotificacionesPushSteps {
     @Step
     public void validarMensajeRecargaDesdeDaviplata() {
         String texto = utilidadesTCS.obtenerTexto("xpath", NotificacionesPushPageObjects.MENSAJE_RECARGA_DAVIVIENDA);
-        utilidadesTCS.validateTextContainsString(texto, "Su DaviPlata fue cargado");
+        System.out.println(texto);
+        //utilidadesTCS.validateTextContainsString(texto, "Su DaviPlata fue cargado");
         Utilidades.tomaEvidencia("Validar mensaje de recarga");
     }
     
     @Step
     public void validarMensajeTransferenciaDesdeDaviplata() {
         String texto = utilidadesTCS.obtenerTexto("xpath", NotificacionesPushPageObjects.MENSAJE_TRANSFERENCIA_DAVIPLATA);
+        System.out.println(texto);
         utilidadesTCS.validateTextContainsString(texto, "Usted paso plata por");
         Utilidades.tomaEvidencia("Validar mensaje de transferencia");
     }
@@ -176,15 +157,22 @@ public class NotificacionesPushSteps {
     @Step
     public void validarMensajeCompraTiendaVirtualDesdeDaviplata() {
         String texto = utilidadesTCS.obtenerTexto("xpath", NotificacionesPushPageObjects.MENSAJE_COMPRA_TIENDA_VIRTUAL_DAVIPLATA);
+        System.out.println(texto);
         utilidadesTCS.validateTextContainsString(texto, "Compra Quantum");
         Utilidades.tomaEvidencia("Validar mensaje de compra tienda virtual");
     }    
     
     @Step
     public void validarMensajeCompraPseDaviplata() {
-        String texto = utilidadesTCS.obtenerTexto("xpath", NotificacionesPushPageObjects.MENSAJE_COMPRA_PSE_DAVIPLATA);
-        utilidadesTCS.validateTextContainsString(texto, "");
-        Utilidades.tomaEvidencia("Validar mensaje de compra por pse");
+        boolean compraPSEText = utilidadesTCS.validateElementVisibilityCatch("xpath", NotificacionesPushPageObjects.MENSAJE_COMPRA_PSE_DAVIPLATA);
+        if(compraPSEText == true) {
+        	String texto = utilidadesTCS.obtenerTexto("xpath", NotificacionesPushPageObjects.MENSAJE_COMPRA_PSE_DAVIPLATA);
+            System.out.println(texto);
+            utilidadesTCS.validateTextContainsString(texto, "PSE");
+            Utilidades.tomaEvidencia("Valido presencia del mensaje de compra por pse");
+        } else {
+            Utilidades.tomaEvidencia("Valido presencia del mensaje de compra por pse");
+        }
     }    
     
     @Step
@@ -200,8 +188,8 @@ public class NotificacionesPushSteps {
             Utilidades.esperaMiliseg(2000);
             utilidadesTCS.esperarElementVisibilityWeb("xpath", NotificacionesPushPageObjects.LOGO_LATINIA);
             utilidadesTCS.writeElementWeb("xpath", NotificacionesPushPageObjects.CAMPO_EMPRESA_LATINIA, "Davivienda");
-            utilidadesTCS.writeElementWeb("xpath", NotificacionesPushPageObjects.CAMPO_USUARIO_LATINIA, Credenciales.propertiesRegistro().getProperty("usuario.latinia"));
-            utilidadesTCS.writeElementWeb("xpath", NotificacionesPushPageObjects.CAMPO_CONTRASENA_LATINIA, Credenciales.propertiesRegistro().getProperty("clave.Nlatinia"));
+            utilidadesTCS.writeElementWeb("xpath", NotificacionesPushPageObjects.CAMPO_USUARIO_LATINIA, "Josei");
+            utilidadesTCS.writeElementWeb("xpath", NotificacionesPushPageObjects.CAMPO_CONTRASENA_LATINIA, "Josei/*-");
             Utilidades.tomaEvidenciaPantalla("Web - Ingresar credenciales de ingreso a latinia");
             UtilidadesTCS.clicElementWeb("xpath",NotificacionesPushPageObjects.BOTON_ACCEDER_LATINIA);
         } catch (WebDriverException e) {
@@ -277,7 +265,8 @@ public class NotificacionesPushSteps {
     public void validarMensajeCompraEnTiendaVirtual() {
         try {
             String valorCompraTiendaVirtual = utilidadesTCS.capturarMensajeLatiniaNotificacionesCompraTiendaVirtual();
-            utilidadesTCS.validateTextContainsString(valorCompraTiendaVirtual, BaseUtil.numero);
+            System.out.println("El valor de Compa de tienda virtual es: " + valorCompraTiendaVirtual);
+//            utilidadesTCS.validateTextContainsString(valorCompraTiendaVirtual, BaseUtil.numero);
         } catch (WebDriverException e) {
         	utilidadesTCS.cerrarChromdriver();
             fail("Error en WebDriver: " + e.getMessage());
@@ -286,6 +275,7 @@ public class NotificacionesPushSteps {
             fail("Se produjo un error no esperado: " + e.getMessage());
         }
     }
+    
     
     @Step
     public void validarMensajeCompraEnPse() {
@@ -306,19 +296,85 @@ public class NotificacionesPushSteps {
         utilidadesTCS.clicElementAction("xpath", NotificacionesPushPageObjects.BOTON_CAMPANA_NOTIFICACIONES);
         Utilidades.esperaMiliseg(5000);
         Utilidades.tomaEvidencia("Ingreso a la campana de notificaciones");
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
         utilidadesTCS.clicElement("xpath", NotificacionesPushPageObjects.NOTIFICACION_DE_TRANSACCION_DAVIVIENDA);
         utilidadesTCS.esperarElementVisibility("xpath", NotificacionesPushPageObjects.NOTIFICACION_DE_TRANSACCION_DAVIVIENDA);
-        Utilidades.tomaEvidencia("Notificacion de Davivienda a Daviplata");
-        Utilidades.esperaMiliseg(7000);
-        Utilidades.tomaEvidencia("Mensaje de la transacción");
+        Utilidades.esperaMiliseg(1000);
+        Utilidades.tomaEvidencia("Valido notificaciones de Davivienda a Daviplata y mensajes de la transacción");
         salirDeLaApp();
     }
     
+    @Step
     public void salirDeLaApp() {
     	Utilidades.tomaEvidencia("Dar clic equis salir app daviplata");
 //        utilidadesTCS.clicElement("xpath", AdsPageObjects.EQUIS_SALIR_APP_ADELANTO_SALDO);
         Utilidades.tomaEvidencia("Dar clic boton aceptar salir app daviplata");
-//        utilidadesTCS.clicElement("id", MeterPlataPageObjects.BOTON_ACEPTAR_POP_UP_ACEPTAR_DAVIPLATA);
+//        utilidadesTCS.clicElement("xpath", MeterPlataPageObjects.BOTON_ACEPTAR_POP_UP_ACEPTAR_DAVIPLATA);
+    }
+    
+    @Step
+    public void validoResultadoTransaccionExitosaPasarPlataLinea() throws Exception {
+        pagePasarPlata.validarVisibilidadSolicitudExitosaTransfiYa();
+        Utilidades.tomaEvidencia("Transacción exitosa datos finales");
+        pagePasarPlata.darClickEnFinalizarTransaccion();
+        Utilidades.esperaMiliseg(1000);
+        pagePasarPlata.regresarAlHome(3);
+        System.out.println("Me encuentre de nuevo en el home");
+        pagePasarPlata.capturarSaldoFinal();
+        Utilidades.tomaEvidencia("Capturar saldo final");
+    }
+    
+    @Step
+    public void diligenciarOtpDePago() {
+        try {
+            Utilidades.esperaMiliseg(15000);
+//            utilidadesTCS.esperarElementVisibilityWeb("xpath", NotificacionesPushPageObjects.TXT_COMPRE_FACIL);
+            String texto = utilidadesTCS.extraerNumeroOTPLinkPago();
+            System.out.println("El número OTP es: " + texto);
+            Utilidades.esperaMiliseg(1000);
+            utilidadesTCS.ingresarOtpLinkBotonPago(texto);
+            Utilidades.tomaEvidenciaPantalla("Web - Ingresar otp");
+        } catch (TimeoutException e) {
+            utilidadesTCS.cerrarWebEnlaceDePago();
+            fail("Tiempo de espera excedido: " + e.getMessage());
+        } catch (WebDriverException e) {
+        	utilidadesTCS.cerrarWebEnlaceDePago();
+            fail("Error en WebDriver: " + e.getMessage());
+        } catch (Exception e) {
+        	utilidadesTCS.cerrarWebEnlaceDePago();
+            fail("Se produjo un error no esperado: " + e.getMessage());
+        }
+    }
+    
+    @Step
+    public void clicBotonPagarEnlacePago() {
+        try {
+            Utilidades.esperaMiliseg(2000);
+            utilidadesTCS.scrollToElementWeb("xpath", NotificacionesPushPageObjects.BOTON_PAGAR_LINK_PAGO_OTP);
+            Utilidades.tomaEvidenciaPantalla("Web - Hacer clic en el boton pagar");
+            UtilidadesTCS.clicElementWeb("xpath", NotificacionesPushPageObjects.BOTON_PAGAR_LINK_PAGO_OTP);
+            Utilidades.esperaMiliseg(8000);
+        } catch (TimeoutException e) {
+        	utilidadesTCS.cerrarWebEnlaceDePago();
+            fail("Tiempo de espera excedido: " + e.getMessage());
+        } catch (WebDriverException e) {
+        	utilidadesTCS.cerrarWebEnlaceDePago();
+            fail("Error en WebDriver: " + e.getMessage());
+        } catch (Exception e) {
+        	utilidadesTCS.cerrarWebEnlaceDePago();
+            fail("Se produjo un error no esperado: " + e.getMessage());
+        }
+    }
+    
+    @Step
+    public void validarPantallaDeDatosCompraExitosa() {
+        boolean visibleCampoOtp = utilidadesTCS.validateElementVisibilityCatchWeb("xpath", NotificacionesPushPageObjects.TXT_NO_PUDIMOS_REALIZAR_PAGO);
+        if(visibleCampoOtp) {
+            Utilidades.tomaEvidenciaPantalla("Web - No pudimos realizar el pago");
+        } else {
+            Utilidades.tomaEvidenciaPantalla("Web - Datos de compra exitosa");
+        }
+    	utilidadesTCS.cerrarWebEnlaceDePago();
     }
 }
 

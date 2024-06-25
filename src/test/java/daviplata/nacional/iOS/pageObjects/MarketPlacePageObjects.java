@@ -42,9 +42,10 @@ public class MarketPlacePageObjects extends PageObject {
 	// -------------Aliados-----------------//
 
 	private int contador = 0;
-	private String btnMarketPlace = "(//XCUIElementTypeOther[@name='Tienda Virtual'])[2]";
+	private String btnMarketPlace = "(//XCUIElementTypeOther[@name='Tienda Virtual'])[2] | //XCUIElementTypeStaticText[@name='name-product-5'] | //XCUIElementTypeOther[@name='Tienda Virtual']";
 	private String btnPopMarket = "//XCUIElementTypeButton[@name='iconTiendaVirtual']";
 	private String cerrarPopup = "//XCUIElementTypeButton[@name='Aceptar']";
+	public static final String CERRAR_POPUP = "//XCUIElementTypeButton[@name='Aceptar']";
 	private String btnSeguros = "//XCUIElementTypeOther[@name='Seguros']";
 	private String btnSeguroVida = "//XCUIElementTypeStaticText[@name=\"Vida\"]";
 	private String btnLuz = "//*[@text='Luz']";
@@ -86,7 +87,7 @@ public class MarketPlacePageObjects extends PageObject {
 
 	// validar
 	private String resultadosTransaccion = "//*[@class='android.widget.TextView']";
-	private String btnFinalizar = "//*[contains(@name,'Finalizar')]";
+	private String btnFinalizar = "//*[contains(@name,'Finalizar')] | //XCUIElementTypeButton[@name='Finalizar']";
 	private String txtNumeroPoliza = "//XCUIElementTypeOther[2]/XCUIElementTypeOther[2]";
 	private String txtValorPoliza = "(//XCUIElementTypeStaticText[contains(@name, '$')])[3]";
 	private String txtValorPolizaBicicleta = "(//XCUIElementTypeStaticText[contains(@name, '$')])[2]";
@@ -319,8 +320,8 @@ public class MarketPlacePageObjects extends PageObject {
 	private String btnTodosTiendaVirtual = "//XCUIElementTypeStaticText[@name='Todos']";
 	private String txtCorral = "//*[@name='El Corral']";
 	private String txtDetalleCompraCorral = "//*[@name='Detalles de compra']";
-	private String txtCompraBono = "//*[@name='¡Gracias por su compra!']";
-	private String btnFinalizarCompraBono = "//*[@name='Finalizar']";
+	private String txtCompraBono = "//*[@name='¡Gracias por su compra!'] | //XCUIElementTypeStaticText[contains(@name, 'Gracias por su compra')]";
+	private String btnFinalizarCompraBono = "//*[@name='Finalizar'] | //XCUIElementTypeButton[@name='Finalizar']";
 	private String btnNotificacionBono = "//*[contains(@name,'El Corral')]";
 	private String inputCorreoCorral = "//*[@name='Quantum - DaviPlata: Catalogs']//following-sibling::XCUIElementTypeOther/XCUIElementTypeTextField";
 	private String btnCompartirBono = "//*[@name='Compartir']";
@@ -334,8 +335,10 @@ public class MarketPlacePageObjects extends PageObject {
 	public static final String BTN_CONTINUAR_BONO = "//XCUIElementTypeButton[@name='Continuar']";
 	public static final String BTN_COMPRAR = "//XCUIElementTypeButton[@name='Comprar']";
 	public static final String BTN_FINALIZAR = "//XCUIElementTypeButton[@name='Finalizar']";
-
-
+	public static final String BTN_CAJA = "//XCUIElementTypeOther[@name='image-product-2'] | (//XCUIElementTypeOther[contains(@name, 'Mis bolsillos')]/XCUIElementTypeOther)[11]";
+	public static final String TXT_EL_CORRAL = "(//*[@name='El Corral'])[2]";
+	public static final String POPUP_SU_COMPRA_NO_PUDO_SER_PROCESADA = "//XCUIElementTypeStaticText[@name='Su compra no pudo ser procesada']";
+	
 	// TECLADO
 	private String btnDone = "//XCUIElementTypeButton[@name='Done']";
 
@@ -351,7 +354,7 @@ public class MarketPlacePageObjects extends PageObject {
 
 		boolean validacion = false;
 		if (txtinvalido.contains("Fondos insuficientes")) {
-			utilidad.tomaEvidencia("Valido mensaje fondos insuficientes");
+			Utilidades.tomaEvidencia("Valido mensaje fondos insuficientes");
 			validacion = true;
 		}
 		assertEquals(true, validacion);
@@ -370,7 +373,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnMarketPlace)).click();
 		} catch (Exception e) {
 			if (!(contador == 10)) {
-				utilidades.esperaMiliseg(500);
+				Utilidades.esperaMiliseg(500);
 				btnMarketPlace();
 			} else {
 				fail("No se pudo encontrar botón 'Tienda Virtual' en sección 'Ver más' de perfil persona, debido a: "
@@ -388,7 +391,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnVerMasHomeDaviplata)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				clickBtnMas();
 			} else {
 				fail("No se pudo encontrar botón más debido a: " + e.getMessage());
@@ -407,12 +410,12 @@ public class MarketPlacePageObjects extends PageObject {
 	public void btnNecesitoAyuda() {
 		BaseUtil.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.findElement(By.xpath(this.btnNecesitoAyuda)).isDisplayed();
-		utilidades.tomaEvidencia("Valido que se encuentra el boton Necesito ayuda");
+		Utilidades.tomaEvidencia("Valido que se encuentra el boton Necesito ayuda");
 
 	}
 	
 	public void volverAtras() {
-		base.driver.findElement(By.xpath(this.btnVolver2)).click();
+		BaseUtil.driver.findElement(By.xpath(this.btnVolver2)).click();
 	}
 
 	public void btnVolver() {
@@ -422,7 +425,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnVolver)).click();
 		} catch (Exception e) {
 			if (!(contador == 10)) {
-				utilidades.esperaMiliseg(500);
+				Utilidades.esperaMiliseg(500);
 				btnVolver();
 			} else {
 				fail("No se pudo encontrar botón volver debido a: " + e.getMessage());
@@ -436,8 +439,8 @@ public class MarketPlacePageObjects extends PageObject {
 	public void txtValidarVolver(String xpath) {
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
 		driver.findElement(By.xpath(xpath));
-		utilidades.esperaMiliseg(4000);
-		utilidades.tomaEvidencia("Valido pantalla anterior");
+		Utilidades.esperaMiliseg(4000);
+		Utilidades.tomaEvidencia("Valido pantalla anterior");
 	}
 
 	public void btnNecesitoAyuda1() {
@@ -445,7 +448,7 @@ public class MarketPlacePageObjects extends PageObject {
 		MobileElement btnNecesitoAyuda = driver.findElement(By.xpath(this.btnNecesitoAyuda1));
 
 		assertTrue(btnNecesitoAyuda.isDisplayed());
-		utilidades.tomaEvidencia("Valido que se encuentra el boton Necesito ayuda");
+		Utilidades.tomaEvidencia("Valido que se encuentra el boton Necesito ayuda");
 
 	}
 
@@ -472,7 +475,7 @@ public class MarketPlacePageObjects extends PageObject {
 
 	public void volver() {
 		for (int i = 0; i < 5; i++) {
-			utilidad.esperaMiliseg(2000);
+			Utilidades.esperaMiliseg(2000);
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnVolver)));
 			driver.findElement(By.xpath(this.btnVolver)).click();
 		}
@@ -504,16 +507,16 @@ public class MarketPlacePageObjects extends PageObject {
 			validacion = true;
 		}
 		assertTrue(validacion);
-		utilidades.tomaEvidencia("Valido el registro exitoso");
+		Utilidades.tomaEvidencia("Valido el registro exitoso");
 
 		TouchAction touchAction = new TouchAction(driver);
 		touchAction.tap(new PointOption().withCoordinates(184, 146)).perform();
-		utilidades.esperaMiliseg(10000);
+		Utilidades.esperaMiliseg(10000);
 
 		// MobileElement txtDaviplataNegocio = (MobileElement) wait
 		// .until(ExpectedConditions.elementToBeClickable(By.xpath(this.txtDaviplataNegocio)));
 
-		utilidades.tomaEvidencia("Valido la creacion del negocio");
+		Utilidades.tomaEvidencia("Valido la creacion del negocio");
 
 	}
 
@@ -528,7 +531,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnHamburguesa)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				ingresarMenuHamburguesa();
 			} else {
 				fail("No se encontró menu hamburguesa debido a: " + e.getMessage());
@@ -546,7 +549,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnIrNegocio)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				ingresarCrearNegocio();
 			} else {
 				fail("No se encontró boton ir a negocio debido a: " + e.getMessage());
@@ -564,7 +567,7 @@ public class MarketPlacePageObjects extends PageObject {
 			System.out.println("di click a terminos y condiciones checkbox");
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				ingresarTerminosCondiciones();
 			} else {
 				fail("No se encontró enlace terminos y condiciones de perfil negocio debido a: " + e.getMessage());
@@ -582,7 +585,7 @@ public class MarketPlacePageObjects extends PageObject {
 					.click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				hacerClicBtnAceptarTerminosCondiciones();
 			} else {
 				fail("No se encontró botón aceptar terminos y condiciones de perfil negocio debido a: "
@@ -602,7 +605,7 @@ public class MarketPlacePageObjects extends PageObject {
 			System.out.println("di click a btn crear negocio");
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				hacerClicBtnCrearNegocio();
 			} else {
 				fail("No se encontró botón crear negocio de perfil negocio debido a: " + e.getMessage());
@@ -634,7 +637,7 @@ public class MarketPlacePageObjects extends PageObject {
 
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				ingresarNombrePerfilNegocio(nombre);
 			} else {
 				fail("No se encontró input ingresar nombre de perfil negocio debido a: " + e.getMessage());
@@ -653,7 +656,7 @@ public class MarketPlacePageObjects extends PageObject {
 			System.out.println("ingrese que vende negocio");
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				ingresarQueVendeNegocio(queVende);
 			} else {
 				fail("No se encontró input ingresar nombre de perfil negocio debido a: " + e.getMessage());
@@ -670,7 +673,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnVender)).click();
 		} catch (Exception e) {
 			if (!(contador == 20)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				clicBtnVenderPerfilNegocio(queVende);
 			} else {
 				fail("No se encontró botón vender de perfil negocio debido a: " + e.getMessage());
@@ -687,7 +690,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btn_Discos_Vender)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				clicDiscoVenderPerfilNegocio(queVende);
 			} else {
 				fail("No se encontró disco vender de perfil negocio debido a: " + e.getMessage());
@@ -718,7 +721,7 @@ public class MarketPlacePageObjects extends PageObject {
 			// utilidades.ocultarTeclado();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				ingresarCiudadNegocio(ciudad);
 			} else {
 				fail("No se encontró input monto de perfil negocio debido a: " + e.getMessage());
@@ -734,7 +737,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnCiudadNegocio)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				clicBtnCiudadPerfilNegocio();
 			} else {
 				fail("No se encontró boton ciudad de perfil negocio debido a: " + e.getMessage());
@@ -745,13 +748,13 @@ public class MarketPlacePageObjects extends PageObject {
 	}
 
 	public void elegirBtnCiudadPerfilNegocio() {
-		utilidades.esperaMiliseg(4000);
+		Utilidades.esperaMiliseg(4000);
 		try {
 			contador++;
 			driver.findElement(By.xpath(this.btnElegirCiudad)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				elegirBtnCiudadPerfilNegocio();
 			} else {
 				fail("No se encontró disco ciudad de perfil negocio debido a: " + e.getMessage());
@@ -767,7 +770,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnDireccion1)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				clicTipoViaPerfilNegocio();
 			} else {
 				fail("No se encontró botón tipo via de perfil negocio debido a: " + e.getMessage());
@@ -783,7 +786,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnCalle)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				elegirTipoViaPerfilNegocio();
 			} else {
 				fail("No se encontró disco tipo via de perfil negocio debido a: " + e.getMessage());
@@ -799,7 +802,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.txtDireccion2)).sendKeys("2");
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				ingresarNumeroViaPerfilNegocio();
 			} else {
 				fail("No se encontró input de numero via de perfil negocio debido a: " + e.getMessage());
@@ -815,7 +818,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.txtDireccion3)).sendKeys("5");
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				ingresarPrimerNumeroPlacaPerfilNegocio();
 			} else {
 				fail("No se encontró input de primer numero placa de perfil negocio debido a: " + e.getMessage());
@@ -831,7 +834,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.txtDireccion4)).sendKeys("2");
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				ingresarSegundoNumeroPlacaPerfilNegocio();
 			} else {
 				fail("No se encontró input de segundo numero placa de perfil negocio debido a: " + e.getMessage());
@@ -849,7 +852,7 @@ public class MarketPlacePageObjects extends PageObject {
 			txtCasa.sendKeys(casa);
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				ingresarTipoViviendaPerfilNegocio(casa);
 			} else {
 				fail("No se encontró input para ingresar tipo vivienda de perfil negocio debido a: " + e.getMessage());
@@ -868,7 +871,7 @@ public class MarketPlacePageObjects extends PageObject {
 			txtCorreo.sendKeys(correo);
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				ingresarCorreoPerfilNegocio(correo);
 			} else {
 				fail("No se encontró input para ingresar correo de perfil negocio debido a: " + e.getMessage());
@@ -885,7 +888,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnCrearNego)).click();
 		} catch (Exception e) {
 			if (!(contador == 20)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				clicBtnCrearPerfilNegocio();
 			} else {
 				fail("No se encontró botón crear de perfil negocio debido a: " + e.getMessage());
@@ -900,17 +903,17 @@ public class MarketPlacePageObjects extends PageObject {
 
 	// ---------------- Inicio flujo, perfil negocio ----------------//
 	public void ingresoPerfilNegocio() {
-		utilidades.tomaEvidencia("Menu Hamburguesa");
+		Utilidades.tomaEvidencia("Menu Hamburguesa");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnHamburguesa)));
 		driver.findElement(By.xpath(this.btnHamburguesa)).click();
-		utilidades.tomaEvidencia("Ir a negocio");
+		Utilidades.tomaEvidencia("Ir a negocio");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnIrNegocio)));
 		driver.findElement(By.xpath(this.btnIrNegocio)).click();
 	}
 
 	// ---------- Validar saldo disponible perfil negocio ---------//
 	public void validoSaldoPerfilNegocio() {
-		utilidades.esperaMiliseg(10000);
+		Utilidades.esperaMiliseg(10000);
 		try {
 			contador++;
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(this.txtSaldoNegocioDaviplata)));
@@ -921,7 +924,7 @@ public class MarketPlacePageObjects extends PageObject {
 					"...Saldo del perfil negocio: " + String.valueOf(txtSaldoDisponiblePerfilNegocio.getText()));
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				validoSaldoPerfilNegocio();
 			} else {
 				fail("No se encontró label saldo perfil negocio debido a: " + e.getMessage());
@@ -952,21 +955,21 @@ public class MarketPlacePageObjects extends PageObject {
 
 		validarAliadosMetodo(btnRestaurante, "Valido restaurantes");
 		validarAliadosMetodo(btnRecargas, "Valido recargas");
-		utilidades.hacerScrollHorizontal("(//XCUIElementTypeCollectionView)[3]");
+		Utilidades.hacerScrollHorizontal("(//XCUIElementTypeCollectionView)[3]");
 		validarAliadosMetodo(btnVestuario, "Valido vestuario");
 		validarAliadosMetodo(btnSalud, "Validar Salud");
 		validarAliadosMetodo(btnServiciosHogar, "Validar Servicios Hogar");
-		utilidades.hacerScrollHorizontal("(//XCUIElementTypeCollectionView)[3]");
+		Utilidades.hacerScrollHorizontal("(//XCUIElementTypeCollectionView)[3]");
 		validarAliadosMetodo(btnCines, "Validar Cines");
 		validarAliadosMetodo(btnMercado, "Valido mercado");
-		utilidades.hacerScrollHorizontal("(//XCUIElementTypeCollectionView)[3]");
+		Utilidades.hacerScrollHorizontal("(//XCUIElementTypeCollectionView)[3]");
 		validarAliadosMetodo(btnSegurosAliados, "Valido Seguros Aliados");
 		validarAliadosMetodo(btnEntretenimiento, "Valido Entretenimiento");
-		utilidades.hacerScrollHorizontal("(//XCUIElementTypeCollectionView)[3]");
+		Utilidades.hacerScrollHorizontal("(//XCUIElementTypeCollectionView)[3]");
 		validarAliadosMetodo(btnContenidoDigital, "Validar contenido digital");
 		validarAliadosMetodo(btnJuegos, "Validar Juegos");
 		validarAliadosMetodo(btnTransporte, "Validar transporte");
-		utilidades.hacerScrollHorizontal("(//XCUIElementTypeCollectionView)[3]");
+		Utilidades.hacerScrollHorizontal("(//XCUIElementTypeCollectionView)[3]");
 		validarAliadosMetodo(btnDomicilios, "Validar Domicilios");
 
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnDomicilios)));
@@ -979,9 +982,9 @@ public class MarketPlacePageObjects extends PageObject {
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
 		driver.findElement(By.xpath(xpath)).click();
 
-		utilidades.esperaMiliseg(6000);
+		Utilidades.esperaMiliseg(6000);
 
-		utilidades.tomaEvidencia(Evidencia);
+		Utilidades.tomaEvidencia(Evidencia);
 	}
 
 	// Fin Flujo validar aliados
@@ -1034,8 +1037,8 @@ public class MarketPlacePageObjects extends PageObject {
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnChia)));
 		driver.findElement(By.xpath(this.btnChia)).click();
 
-		utilidades.esperaMiliseg(4000);
-		utilidades.tomaEvidencia("Ingreso los datos solicitados");
+		Utilidades.esperaMiliseg(4000);
+		Utilidades.tomaEvidencia("Ingreso los datos solicitados");
 
 		utilidades.moverPantallaXY(driver, 532, 2057, 496, 1028);
 
@@ -1049,7 +1052,7 @@ public class MarketPlacePageObjects extends PageObject {
 			System.out.println("Di click al boton Continuar");
 		} catch (Exception e) {
 			if (!(contador == 40)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				btnContinuarGeneral();
 			} else {
 				fail("No se pudo dar click al boton continuar debido a: " + e.getMessage());
@@ -1086,7 +1089,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnBono20k)).click();
 		} catch (Exception e) {
 			if (!(contador == 10)) {
-				Utilidades.esperar(500);
+				Utilidades.esperaMiliseg(500);
 				btnBono20k();
 			} else {
 				fail("No se encontró botón de bono en el corral, debido a: " + e.getMessage());
@@ -1116,7 +1119,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnContinuarBogo)).click();
 		} catch (Exception e) {
 			if (!(contador == 10)) {
-				utilidad.esperaMiliseg(500);
+				Utilidades.esperaMiliseg(500);
 				btnContinuarBono();
 			} else {
 				fail("No se encontró botón 'Continuar' en compra de bono, debido a: " + e.getMessage());
@@ -1143,7 +1146,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.txtCorreoInput)).sendKeys("xxx@gmail.com");
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidad.esperaMiliseg(500);
+				Utilidades.esperaMiliseg(500);
 				btnComprarBono();
 			} else {
 				fail("No se pudo llenar el correo debido a: " + e.getMessage());
@@ -1160,7 +1163,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnComprar)).click();
 		} catch (Exception e) {
 			if (!(contador == 10)) {
-				utilidad.esperaMiliseg(500);
+				Utilidades.esperaMiliseg(500);
 				btnComprarBono();
 			} else {
 				fail("No se pudo dar click al boton comprar debido a: " + e.getMessage());
@@ -1185,7 +1188,7 @@ public class MarketPlacePageObjects extends PageObject {
 			System.out.println("Valide correctamente la compra");
 		} catch (Exception e) {
 			if (!(contador == 40)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				txtValidarCompra();
 			} else {
 				fail("No se pudo validar correctamente la compra debido a: " + e.getMessage());
@@ -1203,7 +1206,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnDescargarBono)).click();
 		} catch (Exception e) {
 			if (!(contador == 10)) {
-				utilidad.esperaMiliseg(500);
+				Utilidades.esperaMiliseg(500);
 				clicBotonDescargaBono();
 			} else {
 				fail("No se encontró botón de 'Descarga' en compra de bono, debido a: " + e.getMessage());
@@ -1223,7 +1226,7 @@ public class MarketPlacePageObjects extends PageObject {
 			System.out.println("Finalicé correctamente la compra");
 		} catch (Exception e) {
 			if (!(contador == 10)) {
-				utilidad.esperaMiliseg(500);
+				Utilidades.esperaMiliseg(500);
 				btnFinalizar();
 			} else {
 				fail("No se pudo finalizar correctamente la compra debido a: " + e.getMessage());
@@ -1238,7 +1241,7 @@ public class MarketPlacePageObjects extends PageObject {
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.txtValorBono)));
 		String txValorBono = driver.findElement(By.xpath(this.txtValorBono)).getText();
 		String subSaldo = txtValorBono.replaceAll("[^0-9]", "");
-		base.ValorPago = new BigDecimal(subSaldo);
+		BaseUtil.ValorPago = new BigDecimal(subSaldo);
 
 	}
 
@@ -1344,7 +1347,7 @@ public class MarketPlacePageObjects extends PageObject {
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.listaFecha)));
 			MobileElement listaDesplegable = driver.findElement(By.xpath(this.listaFecha));
 
-			JavascriptExecutor js = (JavascriptExecutor) base.driver;
+			JavascriptExecutor js = (JavascriptExecutor) BaseUtil.driver;
 			Map<String, Object> params = new HashMap<>();
 
 			params.put("order", "next");
@@ -1389,7 +1392,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnBicicleta)).click();
 		}catch(Exception e) {
 			if(!(contador==5)) {
-				utilidades.esperaMiliseg(500);
+				Utilidades.esperaMiliseg(500);
 				btnBicicleta();
 			}else {
 				fail("No se encontró boton 'Bicicleta' en el modulo de seguros, debido a: " + e.getMessage());
@@ -1413,7 +1416,7 @@ public class MarketPlacePageObjects extends PageObject {
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.listaFecha)));
 			MobileElement listaDesplegable = driver.findElement(By.xpath(this.listaFecha));
 
-			JavascriptExecutor js = (JavascriptExecutor) base.driver;
+			JavascriptExecutor js = (JavascriptExecutor) BaseUtil.driver;
 			Map<String, Object> params = new HashMap<>();
 
 			params.put("order", "next");
@@ -1440,7 +1443,7 @@ public class MarketPlacePageObjects extends PageObject {
 		 * .until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnContinuarSoat
 		 * ))); element.click();
 		 */
-		utilidades.esperar(5);
+		Utilidades.esperaMiliseg(500);
 		utilidades.darUnTap(569, 2060);
 
 	}
@@ -1572,7 +1575,7 @@ public class MarketPlacePageObjects extends PageObject {
 	public void txtvalor() {
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.txtvalor)));
 		driver.findElement(By.xpath(this.txtvalor)).sendKeys("2500");
-		base.ValorPago = new BigDecimal(2500);
+		BaseUtil.ValorPago = new BigDecimal(2500);
 
 	}
 
@@ -1671,7 +1674,7 @@ public class MarketPlacePageObjects extends PageObject {
 	}
 
 	public void capturoValor() {
-		base.ValorPago = new BigDecimal(136740);
+		BaseUtil.ValorPago = new BigDecimal(136740);
 
 	}
 
@@ -1705,14 +1708,14 @@ public class MarketPlacePageObjects extends PageObject {
 
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnAno)));
 		driver.findElement(By.xpath(this.btnAno)).click();
-		utilidades.esperaMiliseg(1000);
+		Utilidades.esperaMiliseg(1000);
 		utilidades.moverPantallaXY(driver, 527, 863, 537, 1555);
 		utilidades.moverPantallaXY(driver, 527, 863, 537, 1555);
 		utilidades.moverPantallaXY(driver, 527, 863, 537, 1555);
 		utilidades.moverPantallaXY(driver, 527, 863, 537, 1555);
 		utilidades.moverPantallaXY(driver, 527, 863, 537, 1555);
 		utilidades.moverPantallaXY(driver, 527, 863, 537, 1555);
-		utilidades.esperaMiliseg(1000);
+		Utilidades.esperaMiliseg(1000);
 
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnAnoEspecifico)));
 		driver.findElement(By.xpath(this.btnAnoEspecifico)).click();
@@ -1725,7 +1728,7 @@ public class MarketPlacePageObjects extends PageObject {
 		for (int i = 0; i < 2; i++) {
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//XCUIElementTypePickerWheel[3]")));
 			MobileElement listaDesplegable = driver.findElement(By.xpath("//XCUIElementTypePickerWheel[3]"));
-			JavascriptExecutor js = (JavascriptExecutor) base.driver;
+			JavascriptExecutor js = (JavascriptExecutor) BaseUtil.driver;
 			Map<String, Object> params = new HashMap<>();
 			params.put("order", "previous");
 			params.put("offset", 0.15);
@@ -1754,7 +1757,7 @@ public class MarketPlacePageObjects extends PageObject {
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnContinuarCheck)));
 		driver.findElement(By.xpath(this.btnContinuarCheck)).click();
 
-		utilidades.esperaMiliseg(10000);
+		Utilidades.esperaMiliseg(10000);
 	}
 
 	public void btnComprar() {
@@ -1765,10 +1768,10 @@ public class MarketPlacePageObjects extends PageObject {
 
 	// Validaciones
 	public List<MobileElement> capturaResultadoTransaccion() {
-		utilidades.esperaMiliseg(6000);
+		Utilidades.esperaMiliseg(6000);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.resultadosTransaccion)));
 		driver.findElement(By.xpath(this.resultadosTransaccion));
-		List<MobileElement> listaElementos = base.driver.findElements(By.xpath(resultadosTransaccion));
+		List<MobileElement> listaElementos = BaseUtil.driver.findElements(By.xpath(resultadosTransaccion));
 		return listaElementos;
 
 	}
@@ -1795,26 +1798,26 @@ public class MarketPlacePageObjects extends PageObject {
 
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.txtNumeroPoliza)));
 		String txtNumeroPoliza = driver.findElement(By.xpath(this.txtNumeroPoliza)).getText().replaceAll("[^0-9]", "");
-		base.numeroPoliza = txtNumeroPoliza;
-		base.cuentaONumero = txtNumeroPoliza;
+		BaseUtil.numeroPoliza = txtNumeroPoliza;
+		BaseUtil.cuentaONumero = txtNumeroPoliza;
 
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.txtValorPoliza)));
 		String txtValorPoliza = driver.findElement(By.xpath(this.txtValorPoliza)).getText();
 		System.out.println("valor poliza: " + txtValorPoliza);
 
 		System.out.println("valor poliza numeros: " + txtValorPoliza.replaceAll("[^0-9]", ""));
-		base.ValorPoliza = txtValorPoliza.replaceAll("[^0-9]", "");
+		BaseUtil.ValorPoliza = txtValorPoliza.replaceAll("[^0-9]", "");
 //		base.monto = txtValorPoliza.getText().replace(" ", "").replace("$", "").replace(".", "").replace(",", ".");
 
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.txtNumeroAutorizacion)));
 		String txtNumeroAutorizacion = driver.findElement(By.xpath(this.txtNumeroAutorizacion)).getText()
 				.replaceAll("[^0-9]", "");
-		base.Autorizador = txtNumeroAutorizacion;
-		base.idTransaccion = txtNumeroAutorizacion;
+		BaseUtil.Autorizador = txtNumeroAutorizacion;
+		BaseUtil.idTransaccion = txtNumeroAutorizacion;
 
 		String txtFechaHoraApp = driver.findElement(By.xpath(this.txtFechaHora)).getText();
-		base.fechaHora = txtFechaHoraApp;
-		System.out.println("Hora app:" + base.fechaHora);
+		BaseUtil.fechaHora = txtFechaHoraApp;
+		System.out.println("Hora app:" + BaseUtil.fechaHora);
 
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnFinalizar)));
 		driver.findElement(By.xpath(this.btnFinalizar)).click();
@@ -1827,7 +1830,7 @@ public class MarketPlacePageObjects extends PageObject {
 		System.out.println("valor poliza: " + txtValorPoliza);
 
 		System.out.println("valor poliza numeros: " + txtValorPoliza.replaceAll("[^0-9]", ""));
-		base.ValorPoliza = txtValorPoliza.replaceAll("[^0-9]", "");
+		BaseUtil.ValorPoliza = txtValorPoliza.replaceAll("[^0-9]", "");
 
 		Utilidades.tomaEvidencia("valor a pagar: " + txtValorPoliza.replaceAll("[^0-9]", ""));
 
@@ -1840,7 +1843,7 @@ public class MarketPlacePageObjects extends PageObject {
 		System.out.println("valor poliza: " + txtValorPoliza);
 
 		System.out.println("valor poliza numeros: " + txtValorPoliza.replaceAll("[^0-9]", ""));
-		base.ValorPoliza = txtValorPoliza.replaceAll("[^0-9]", "");
+		BaseUtil.ValorPoliza = txtValorPoliza.replaceAll("[^0-9]", "");
 
 		Utilidades.tomaEvidencia("valor a pagar: " + txtValorPoliza.replaceAll("[^0-9]", ""));
 
@@ -1873,7 +1876,7 @@ public class MarketPlacePageObjects extends PageObject {
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.txtAutorizador)));
 			String auto = driver.findElement(By.xpath(this.txtAutorizador)).getText();
 			if (auto.length() == 6) {
-				base.Autorizador = auto;
+				BaseUtil.Autorizador = auto;
 			} else {
 				quitarCerosIzquierda(auto);
 			}
@@ -1889,7 +1892,7 @@ public class MarketPlacePageObjects extends PageObject {
 
 	public void quitarCerosIzquierda(String numero) {
 		long p = Long.parseLong(numero);
-		base.Autorizador = Long.toString(p);
+		BaseUtil.Autorizador = Long.toString(p);
 	}
 
 	public void darClickEnActualizarSaldo() {
@@ -1910,42 +1913,42 @@ public class MarketPlacePageObjects extends PageObject {
 		int longitud = subSaldo.length();
 		int numero = longitud - 2;
 		subSaldo = subSaldo.substring(0, numero);
-		base.saldoFinal = new BigDecimal(subSaldo);
-		System.out.println("saldo Final: " + base.saldoFinal);
-		base.saldoFin = subSaldo;
+		BaseUtil.saldoFinal = new BigDecimal(subSaldo);
+		System.out.println("saldo Final: " + BaseUtil.saldoFinal);
+		BaseUtil.saldoFin = subSaldo;
 	}
 
 	public void validarSaldos() {
-		System.out.println("Saldo inicial " + base.saldo);
-		System.out.println("Valor transaccion" + base.ValorPoliza);
-		System.out.println("Saldo final" + base.saldoFinal);
-		BigDecimal Poliza = new BigDecimal(base.ValorPoliza);
-		BigDecimal resultado = base.saldo.subtract(Poliza);
-		assertThat(base.saldoFinal, equalTo(resultado));
+		System.out.println("Saldo inicial " + BaseUtil.saldo);
+		System.out.println("Valor transaccion" + BaseUtil.ValorPoliza);
+		System.out.println("Saldo final" + BaseUtil.saldoFinal);
+		BigDecimal Poliza = new BigDecimal(BaseUtil.ValorPoliza);
+		BigDecimal resultado = BaseUtil.saldo.subtract(Poliza);
+		assertThat(BaseUtil.saldoFinal, equalTo(resultado));
 	}
 
 	public void validarSaldosRecarga() {
-		System.out.println("Saldo inicial " + base.saldo);
-		System.out.println("Valor transaccion" + base.montoTransado);
-		System.out.println("Saldo final" + base.saldoFinal);
-		BigDecimal monto = base.montoTransado;
-		BigDecimal resultado = base.saldoFinal.add(monto);
-		assertEquals(base.saldo, resultado);
+		System.out.println("Saldo inicial " + BaseUtil.saldo);
+		System.out.println("Valor transaccion" + BaseUtil.montoTransado);
+		System.out.println("Saldo final" + BaseUtil.saldoFinal);
+		BigDecimal monto = BaseUtil.montoTransado;
+		BigDecimal resultado = BaseUtil.saldoFinal.add(monto);
+		assertEquals(BaseUtil.saldo, resultado);
 	}
 
 	public void validarSaldosPagos() {
-		System.out.println("Saldo inicial " + base.saldoSinDecimal);
-		System.out.println("Valor transaccion" + base.ValorPago);
-		System.out.println("Saldo final" + base.saldoFinal);
-		BigDecimal resultado = base.saldoFinal.add(base.ValorPago);
+		System.out.println("Saldo inicial " + BaseUtil.saldoSinDecimal);
+		System.out.println("Valor transaccion" + BaseUtil.ValorPago);
+		System.out.println("Saldo final" + BaseUtil.saldoFinal);
+		BigDecimal resultado = BaseUtil.saldoFinal.add(BaseUtil.ValorPago);
 		// assertEquals(base.saldoSinDecimal, resultado);
 	}
 
 	public void validarSaldosTransacciones() {
 		System.out.println("Saldos recolectados: " + this.listaMontos);
-		System.out.println("autorizadores recolectados: " + this.listaAutorizadores);
-		System.out.println("Saldo inicial: " + base.saldoSinDecimal);
-		System.out.println("Saldo final: " + base.saldoFinal);
+		System.out.println("autorizadores recolectados: " + MarketPlacePageObjects.listaAutorizadores);
+		System.out.println("Saldo inicial: " + BaseUtil.saldoSinDecimal);
+		System.out.println("Saldo final: " + BaseUtil.saldoFinal);
 
 		Integer montoAcumuladoTransacciones = 0;
 
@@ -1955,13 +1958,13 @@ public class MarketPlacePageObjects extends PageObject {
 
 		System.out.println("monto acumulado: " + montoAcumuladoTransacciones);
 
-		BigDecimal resultado = base.saldoFinal.add(new BigDecimal(montoAcumuladoTransacciones));
-		assertEquals(base.saldoSinDecimal, resultado);
+		BigDecimal resultado = BaseUtil.saldoFinal.add(new BigDecimal(montoAcumuladoTransacciones));
+		assertEquals(BaseUtil.saldoSinDecimal, resultado);
 	}
 
 	public void llenarAutorizadoresTest() {
-		this.listaAutorizadores.add("142330");
-		this.listaAutorizadores.add("954453");
+		MarketPlacePageObjects.listaAutorizadores.add("142330");
+		MarketPlacePageObjects.listaAutorizadores.add("954453");
 	}
 
 	public void validarMensaje() {
@@ -2018,13 +2021,13 @@ public class MarketPlacePageObjects extends PageObject {
 	public void darClickBtnScrollCategorias() {
 		try {
 			contador++;
-			utilidad.esperaMiliseg(1000);
+			Utilidades.esperaMiliseg(1000);
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnScroll)));
 			driver.findElement(By.xpath(this.btnScroll)).click();
 			System.out.println("Di click al boton Scroll Categorias");
 		} catch (Exception e) {
 			if (!(contador == 40)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				darClickBtnScrollCategorias();
 			} else {
 				fail("No se pudo dar click al boton Scroll Categorias debido a: " + e.getMessage());
@@ -2041,11 +2044,11 @@ public class MarketPlacePageObjects extends PageObject {
 			String txtPruebas = driver.findElement(By.xpath(this.btnPruebasTecnologia)).getText();
 
 			assertThat(txtPruebas, containsString("Adquiera los mejores productos"));
-			utilidad.esperaMiliseg(1000);
+			Utilidades.esperaMiliseg(1000);
 			System.out.println("Valide correctamente el ultimo elemento de la barra de navegacion de Categorias");
 		} catch (Exception e) {
 			if (!(contador == 20)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				validarUltimoElementoCategorias();
 			} else {
 				fail("No pude Validar correctamente el ultimo elemento de la barra de navegacion de Categorias debido a: "
@@ -2063,11 +2066,11 @@ public class MarketPlacePageObjects extends PageObject {
 			String txtTodos = driver.findElement(By.xpath(this.txtTodos)).getText();
 
 			assertThat(txtTodos, containsString("Todos"));
-			utilidad.esperaMiliseg(1000);
+			Utilidades.esperaMiliseg(1000);
 			System.out.println("Valide correctamente el primer elemento de la barra de navegacion de Categorias");
 		} catch (Exception e) {
 			if (!(contador == 20)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				validarPrimerElementoCategorias();
 			} else {
 				fail("No pude Validar correctamente el primer elemento de la barra de navegacion de Categorias debido a: "
@@ -2095,7 +2098,7 @@ public class MarketPlacePageObjects extends PageObject {
 			System.out.println("Di click al btn " + categoria + " correctamente");
 		} catch (Exception e) {
 			if (!(contador == 20)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				darClickBtn(categoria);
 			} else {
 				fail("No pude ingresar a " + categoria + " debido a: " + e.getMessage());
@@ -2110,11 +2113,11 @@ public class MarketPlacePageObjects extends PageObject {
 			contador++;
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnTiendaNumero4)));
 			driver.findElement(By.xpath(this.btnTiendaNumero4)).click();
-			utilidad.esperaMiliseg(1000);
+			Utilidades.esperaMiliseg(1000);
 			System.out.println("Di click al boton Seven seven");
 		} catch (Exception e) {
 			if (!(contador == 40)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				darClickBtnSevenSeven();
 			} else {
 				fail("No se pudo dar click al boton Seven Seven debido a: " + e.getMessage());
@@ -2131,7 +2134,7 @@ public class MarketPlacePageObjects extends PageObject {
 					.release().perform();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				irAVestuario();
 			} else {
 				fail("No se pudo dar click al boton Seven Seven debido a: " + e.getMessage());
@@ -2150,7 +2153,7 @@ public class MarketPlacePageObjects extends PageObject {
 			}
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				irAVestuario();
 			} else {
 				fail("No se pudo dar click al boton Seven Seven debido a: " + e.getMessage());
@@ -2165,11 +2168,11 @@ public class MarketPlacePageObjects extends PageObject {
 			contador++;
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnTiendaNumero4)));
 			driver.findElement(By.xpath(this.btnTiendaNumero4)).click();
-			utilidad.esperaMiliseg(1000);
+			Utilidades.esperaMiliseg(1000);
 			System.out.println("Di click al boton Cine Colombia");
 		} catch (Exception e) {
 			if (!(contador == 40)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				darClickBtnCineColombia();
 			} else {
 				fail("No se pudo dar click al boton CineColombia debido a: " + e.getMessage());
@@ -2187,7 +2190,7 @@ public class MarketPlacePageObjects extends PageObject {
 			System.out.println("Di click al boton Cine Cinemark");
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				darClickBtnCineCinemark();
 			} else {
 				fail("No se pudo dar click al boton cinemark debido a: " + e.getMessage());
@@ -2205,7 +2208,7 @@ public class MarketPlacePageObjects extends PageObject {
 			System.out.println("Di click al boton 2d");
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				darClickEntrada2D();
 			} else {
 				fail("No se pudo dar click al boton 2d debido a: " + e.getMessage());
@@ -2222,7 +2225,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnVestuario)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				clickBtnVestuario();
 			} else {
 				fail("No se pudo dar click al boton CineColombia debido a: " + e.getMessage());
@@ -2239,7 +2242,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnCines)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				clickBtnCines();
 			} else {
 				fail("No se pudo dar click al boton cines debido a: " + e.getMessage());
@@ -2254,11 +2257,11 @@ public class MarketPlacePageObjects extends PageObject {
 			contador++;
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.bono)));
 			driver.findElement(By.xpath(this.bono)).click();
-			utilidad.esperaMiliseg(1000);
+			Utilidades.esperaMiliseg(1000);
 			System.out.println("Di click al bono de 50.000");
 		} catch (Exception e) {
 			if (!(contador == 40)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				darClickBtnBono50();
 			} else {
 				fail("No se pudo dar click al bono de 50.000 debido a: " + e.getMessage());
@@ -2285,11 +2288,11 @@ public class MarketPlacePageObjects extends PageObject {
 			} else if (bono2.contains("Bono")) {
 				System.out.println("Encontré el bono");
 			}
-			utilidad.esperaMiliseg(1000);
+			Utilidades.esperaMiliseg(1000);
 
 		} catch (Exception e) {
 			if (!(contador == 40)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				validarPrimerElemento();
 			} else {
 				fail("No se pudo dar click al bono de 50.000 debido a: " + e.getMessage());
@@ -2312,10 +2315,10 @@ public class MarketPlacePageObjects extends PageObject {
 			valorBonoFinal = Integer.parseInt(valorTotalBono);
 			System.out.println(valorBonoFinal);
 
-			utilidad.esperaMiliseg(1000);
+			Utilidades.esperaMiliseg(1000);
 		} catch (Exception e) {
 			if (!(contador == 40)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				darClickBtnBono50();
 			} else {
 				fail("No se pudo dar click al bono de 50.000 debido a: " + e.getMessage());
@@ -2336,11 +2339,11 @@ public class MarketPlacePageObjects extends PageObject {
 			assertThat(btnDescargar.getText(), containsString("Descargar"));
 			System.out.println("Encontré el boton Descargar");
 			btnDescargar.click();
-			utilidad.esperaMiliseg(1000);
+			Utilidades.esperaMiliseg(1000);
 
 		} catch (Exception e) {
 			if (!(contador == 40)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				validarBtnDescarga();
 			} else {
 				fail("No se pudo dar click al boton Descargar debido a: " + e.getMessage());
@@ -2359,11 +2362,11 @@ public class MarketPlacePageObjects extends PageObject {
 			assertThat(btnCompartir.getText(), containsString("Compartir"));
 			System.out.println("Encontré el boton Compartir");
 			btnCompartir.click();
-			utilidad.esperaMiliseg(1000);
+			Utilidades.esperaMiliseg(1000);
 
 		} catch (Exception e) {
 			if (!(contador == 40)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				validarBtnCompartir();
 			} else {
 				fail("No se pudo dar click al boton Compartir debido a: " + e.getMessage());
@@ -2382,7 +2385,7 @@ public class MarketPlacePageObjects extends PageObject {
 			assertThat(txtTerminos, containsString("Aquí podrá comprar productos"));
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				validarPopUpTerminosCondicionesMarketplace();
 			} else {
 				fail("No se encontró popUp términos y condiciones de tienda virtual, debido a: " + e.getMessage());
@@ -2400,7 +2403,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnOpcionesHome)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				ingresarAlBotonOpcionesHome();
 			} else {
 				fail("No se encontró boton 'Más' del home perfil persona , debido a: " + e.getMessage());
@@ -2418,7 +2421,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnPagos)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				ingresarOpcionPagarTiendaVirtual();
 			} else {
 				fail("No se encontró botón 'Pagos' de tienda virtual, debido a: " + e.getMessage());
@@ -2442,7 +2445,7 @@ public class MarketPlacePageObjects extends PageObject {
 			assertThat(pagoAguaHabilitado, is(true));
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				validarPestañaPagosServicios();
 			} else {
 				fail("No se encontró botón 'Pagos' de tienda virtual, debido a: " + e.getMessage());
@@ -2460,7 +2463,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnRecargasTiendaVirtual)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				ingresarOpcionRecargasTiendaVirtual();
 			} else {
 				fail("No se encontró botón 'Recargas' de tienda virtual, debido a: " + e.getMessage());
@@ -2484,7 +2487,7 @@ public class MarketPlacePageObjects extends PageObject {
 			assertThat(btnMovistar, is(true));
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				validarPestañaRecargas();
 			} else {
 				fail("No se encontró botón 'Recargas' o 'Recarga de minutos movistar' de tienda virtual, debido a: "
@@ -2503,7 +2506,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnRestaurantes)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				ingresarARestaurantes();
 			} else {
 				fail("No se encontró botón 'Restaurantes' de tienda virtual, debido a: " + e.getMessage());
@@ -2521,7 +2524,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnBonoHamburguesas)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				ingresarBonoHamburguesas();
 			} else {
 				fail("No se encontró botón 'Bono de hamburguesas' de tienda virtual, debido a: " + e.getMessage());
@@ -2539,7 +2542,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnTerminosCondicionesTiendaVirtual)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				aceptarTerminosCondicionesTiendaVirtual();
 			} else {
 				fail("No se encontró botón 'Aceptar' de terminos y condiciones en tienda virtual, debido a: "
@@ -2558,7 +2561,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnCerrar)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				cerrarVentanaQueQuiereHacerConSuPlata();
 			} else {
 				fail("No se pudo encontrar botón cerrar de '¿Qué quiere hacer con su plata?' en home daviplata, debido a: "
@@ -2577,7 +2580,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.listaNotificaciones)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				abrirNotificacionTiendaVirtual();
 			} else {
 				fail("No se pudo encontrar notificaciones de tienda virtual en campana de notificaciones, debido a: "
@@ -2597,7 +2600,7 @@ public class MarketPlacePageObjects extends PageObject {
 			assertThat(isDisplayed, is(true));
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				validarBono();
 			} else {
 				fail("No se pudo encontrar bono de compras de tienda virtual en campana de notificaciones, debido a: "
@@ -2616,7 +2619,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnEditarBono)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				clicBtnEditarCorreoBono();
 			} else {
 				fail("No se pudo encontrar botón de editar correo en los bonos de tienda virtual, debido a: "
@@ -2637,7 +2640,7 @@ public class MarketPlacePageObjects extends PageObject {
 			element.clear();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				clicInputCorreoBono();
 			} else {
 				fail("No se pudo encontrar input correo en los bonos de tienda virtual, debido a: " + e.getMessage());
@@ -2661,7 +2664,7 @@ public class MarketPlacePageObjects extends PageObject {
 			}
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				txtValidarCompraCampanaMcDonals();
 			} else {
 				fail("No se encontró texto del nombre de bono en campana de notificaciones, debido a: "
@@ -2682,7 +2685,7 @@ public class MarketPlacePageObjects extends PageObject {
 					"La franja de aliados se encuentra en la mitad de la pantalla, con la posicion: " + ubicacion);
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				validarFranjaAliadosPosicionEnLaMitad();
 			} else {
 				fail("No se pudo encontrar franja 'Nuestros aliados' de tienda virtual, debido a: " + e.getMessage());
@@ -2699,7 +2702,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.contenedorAliados)).click();
 		} catch (Exception e) {
 			if (!(contador == 10)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				tapFranjaNuestroAliados();
 			} else {
 				fail("No se pudo encontrar franja 'Nuestros aliados' de tienda virtual, debido a: " + e.getMessage());
@@ -2719,7 +2722,7 @@ public class MarketPlacePageObjects extends PageObject {
 			assertThat(isDisplayed, is(true));
 		} catch (Exception e) {
 			if (!(contador == 10)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				validarPantallaCategorias();
 			} else {
 				fail("No se pudo encontrar franja 'Categorias' de nuestros aliados en tienda virtual, debido a: "
@@ -2739,7 +2742,7 @@ public class MarketPlacePageObjects extends PageObject {
 			assertThat(txtMensaje, containsString("ya cuenta con seguro vigente"));
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				validarMensajeCuentaConSeguroVida();
 			} else {
 				fail("No se encontró mensaje de que ya cuenta con seguro de vida en microseguro, debido a: "
@@ -2760,7 +2763,7 @@ public class MarketPlacePageObjects extends PageObject {
 			assertThat(check.isEnabled(), is(true));
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				validarTyCMicroseguros();
 			} else {
 				fail("No se encontró terminos y condiciones en microseguro, debido a: " + e.getMessage());
@@ -2790,7 +2793,7 @@ public class MarketPlacePageObjects extends PageObject {
 			assertThat(popumMarketplace, containsString("Pago de Servicios"));
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				validarNoAparezcaPopUpTerminosCondicionesMarketplace();
 			} else {
 				fail("No aparece popUp términos y condiciones de tienda virtual, debido a: " + e.getMessage());
@@ -2809,7 +2812,7 @@ public class MarketPlacePageObjects extends PageObject {
 
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				clicBtnDesplegableFechaNacimiento();
 			} else {
 				fail("No se encontró boton desplegable de 'Fecha de nacimiento' en microseguro, debido a: "
@@ -2826,17 +2829,17 @@ public class MarketPlacePageObjects extends PageObject {
 			contador++;
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnAno)));
 			driver.findElement(By.xpath(this.btnAno)).click();
-			utilidades.esperaMiliseg(1000);
-			utilidades.moverPantalla(527, 863, 537, 1555);
-			utilidades.moverPantalla(527, 863, 537, 1555);
-			utilidades.moverPantalla(527, 863, 537, 1555);
+			Utilidades.esperaMiliseg(1000);
+			Utilidades.moverPantalla(527, 863, 537, 1555);
+			Utilidades.moverPantalla(527, 863, 537, 1555);
+			Utilidades.moverPantalla(527, 863, 537, 1555);
 //			utilidades.moverPantalla(527, 863, 537, 1555);
 //			utilidades.moverPantalla(527, 863, 537, 1555);
 //			utilidades.moverPantalla(527, 863, 537, 1555);
-			utilidades.esperaMiliseg(1000);
+			Utilidades.esperaMiliseg(1000);
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				abrirDiscosFechaNacimiento();
 			} else {
 				fail("No se encontró boton de año en microseguro, debido a: " + e.getMessage());
@@ -2852,7 +2855,7 @@ public class MarketPlacePageObjects extends PageObject {
 			for (int i = 0; i < 20; i++) {
 				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//XCUIElementTypePickerWheel[3]")));
 				MobileElement listaDesplegable = driver.findElement(By.xpath("//XCUIElementTypePickerWheel[3]"));
-				JavascriptExecutor js = (JavascriptExecutor) base.driver;
+				JavascriptExecutor js = (JavascriptExecutor) BaseUtil.driver;
 				Map<String, Object> params = new HashMap<>();
 				params.put("order", "previous");
 				params.put("offset", 0.15);
@@ -2861,7 +2864,7 @@ public class MarketPlacePageObjects extends PageObject {
 			}
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				escogerFechaNacimiento();
 			} else {
 				fail("No se encontró fecha de nacimiento del desplegable en micro seguros, debido a: "
@@ -2877,15 +2880,15 @@ public class MarketPlacePageObjects extends PageObject {
 		String anio = "1994";
 		System.out.println("ingresando año");
 		try {
-			utilidad.esperaMiliseg(4000);
+			Utilidades.esperaMiliseg(4000);
 		    contador++;
 			driver.findElement(By.xpath(this.btnAnio)).click();
 			
-			utilidad.esperaMiliseg(1000);
+			Utilidades.esperaMiliseg(1000);
 			driver.findElement(By.xpath("//XCUIElementTypeStaticText[@name='"+ anio +"']")).click();
 		}catch(Exception e) {
 		    if(!(contador==5)) {
-		    	utilidad.esperaMiliseg(2000);
+		    	Utilidades.esperaMiliseg(2000);
 		    	ingresarAño();
 		    }else {
 		    	fail("No se encontró btn 'Año' en registro, debido a: " + e.getMessage());
@@ -2901,7 +2904,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnAceptar2)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				clicBtnAceptarFechaNacimiento();
 			} else {
 				fail("No se encontró botón 'Aceptar' fecha de nacimiento en microseguros , debido a: "
@@ -2920,7 +2923,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnGenero)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				clicbtnGenero();
 			} else {
 				fail("No se encontró botón de genero en microseguros , debido a: " + e.getMessage());
@@ -2938,7 +2941,7 @@ public class MarketPlacePageObjects extends PageObject {
 				wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.listaGenero)));
 				MobileElement listaDesplegable = driver.findElement(By.xpath(this.listaGenero));
 
-				JavascriptExecutor js = (JavascriptExecutor) base.driver;
+				JavascriptExecutor js = (JavascriptExecutor) BaseUtil.driver;
 				Map<String, Object> params = new HashMap<>();
 
 				params.put("order", "next");
@@ -2952,7 +2955,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnContinuarTeclado)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidades.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				escogerGenero(genero);
 			} else {
 				fail("No se encontró lista desplegable de genero en microseguro, debido a: " + e.getMessage());
@@ -2970,7 +2973,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnRecargar)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				ingresarBtnRecargar();
 			} else {
 				fail("No se pudo dar click al boton recargar debido a: " + e.getMessage());
@@ -2989,7 +2992,7 @@ public class MarketPlacePageObjects extends PageObject {
 			assertThat(txtMensaje.toLowerCase(), containsString("rechazada por fondos insuficientes"));
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				validarMensajeTransaccionFallida();
 			} else {
 				fail("No se pudo dar click al boton recargar debido a: " + e.getMessage());
@@ -3006,7 +3009,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnPaquetes)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				ingresarBtnPaquetes();
 			} else {
 				fail("No se pudo dar click al boton recargar debido a: " + e.getMessage());
@@ -3023,7 +3026,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnMovistar)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				clickOperadorMovistar();
 			} else {
 				fail("No se pudo dar click al boton recargar debido a: " + e.getMessage());
@@ -3040,7 +3043,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnTodoIncluido)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				seleccionarTodoIncluido();
 			} else {
 				fail("No se pudo dar click al boton todo incluido debido a: " + e.getMessage());
@@ -3057,7 +3060,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnPrimerPaquete)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				seleccionarPaqueteAComprar();
 			} else {
 				fail("No se pudo dar click al boton todo incluido debido a: " + e.getMessage());
@@ -3074,7 +3077,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnPrimerPaquete)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				seleccionoPaqueteVoz();
 			} else {
 				fail("No se pudo dar click al boton todo incluido debido a: " + e.getMessage());
@@ -3091,7 +3094,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnContinuar3)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				clickBtnContinuar();
 			} else {
 				fail("No se pudo dar click al boton continuar debido a: " + e.getMessage());
@@ -3108,7 +3111,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnRecargarConfirmarCompra)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				clickBtnRecargar();
 			} else {
 				fail("No se pudo dar click al boton recargar debido a: " + e.getMessage());
@@ -3125,7 +3128,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnFinalizar)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				clickbtnFinalizar();
 			} else {
 				fail("No se pudo dar click al boton finalizar debido a: " + e.getMessage());
@@ -3142,7 +3145,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnAceptar)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				clickBtnAceptar();
 			} else {
 				fail("No se pudo dar click al boton aceptar debido a: " + e.getMessage());
@@ -3161,7 +3164,7 @@ public class MarketPlacePageObjects extends PageObject {
 			assertThat(txtTransaccion, containsString("Exitosa"));
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				validarTransaccionExitosa();
 			} else {
 				fail("No se pudo obtener la transaccion exitosa debido a: " + e.getMessage());
@@ -3178,15 +3181,15 @@ public class MarketPlacePageObjects extends PageObject {
 			String auto = driver.findElement(By.xpath(this.txtAutorizador)).getText();
 			auto = auto.replaceAll("[^0-9]", "");
 			if (auto.length() >= 6) {
-				base.Autorizador = auto;
-				base.idTransaccion = base.Autorizador;
-				System.out.println("Autorizador " + base.Autorizador);
+				BaseUtil.Autorizador = auto;
+				BaseUtil.idTransaccion = BaseUtil.Autorizador;
+				System.out.println("Autorizador " + BaseUtil.Autorizador);
 			} else {
 				agregarCeros(auto);
 			}
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				guardarNumeroAutorizador();
 			} else {
 				fail("No se pudo obtener la transaccion exitosa debido a: " + e.getMessage());
@@ -3198,7 +3201,7 @@ public class MarketPlacePageObjects extends PageObject {
 
 	public void agregarCeros(String numero) {
 		String f = "0" + numero;
-		base.Autorizador = f;
+		BaseUtil.Autorizador = f;
 	}
 
 	public void guardarNumeroAutorizadorArreglo() {
@@ -3208,14 +3211,14 @@ public class MarketPlacePageObjects extends PageObject {
 			String auto = driver.findElement(By.xpath(this.txtAutorizador)).getText();
 			auto = auto.replaceAll("[^0-9]", "");
 			if (auto.length() == 6) {
-				this.listaAutorizadores.add(auto);
+				MarketPlacePageObjects.listaAutorizadores.add(auto);
 				System.out.println("Autorizador " + auto);
 			} else {
 				agregarCerosArreglo(auto);
 			}
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				guardarNumeroAutorizador();
 			} else {
 				fail("No se pudo obtener la transaccion exitosa debido a: " + e.getMessage());
@@ -3227,7 +3230,7 @@ public class MarketPlacePageObjects extends PageObject {
 
 	public void agregarCerosArreglo(String numero) {
 		String f = "0" + "numero";
-		this.listaAutorizadores.add(f);
+		MarketPlacePageObjects.listaAutorizadores.add(f);
 	}
 
 	public void obtenerMontoAPagar() {
@@ -3238,10 +3241,10 @@ public class MarketPlacePageObjects extends PageObject {
 
 			System.out.println("el valor a pagar es: " + txtvalor);
 
-			base.montoTransado = new BigDecimal(txtvalor);
+			BaseUtil.montoTransado = new BigDecimal(txtvalor);
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				obtenerMontoAPagar();
 			} else {
 				fail("No se pudo obtener el valro del pago debido a: " + e.getMessage());
@@ -3264,7 +3267,7 @@ public class MarketPlacePageObjects extends PageObject {
 
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				obtenerMontoAPagarArreglo();
 			} else {
 				fail("No se pudo obtener el valor del pago debido a: " + e.getMessage());
@@ -3284,7 +3287,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnDone)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				ingresarNumeroCelularARecargar(numero);
 			} else {
 				fail("No se pudo ingresar numero de celular debido a: " + e.getMessage());
@@ -3325,7 +3328,7 @@ public class MarketPlacePageObjects extends PageObject {
 			System.out.println("di click a btn done");
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				utilidad.esperaMiliseg(2000);
+				Utilidades.esperaMiliseg(2000);
 				ingresarBtnRecargar();
 			} else {
 				fail("No se pudo ingresar el monto debido a: " + e.getMessage());
@@ -3351,7 +3354,7 @@ public class MarketPlacePageObjects extends PageObject {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(this.btnTodosTiendaVirtual)));
 		} catch (Exception e) {
 			if (!(contador == 30)) {
-				utilidad.esperaMiliseg(500);
+				Utilidades.esperaMiliseg(500);
 				esperarVisibilidadDeTiendaVirtual();
 			} else {
 				fail("No se encontró botón 'Todos' de tienda virtual, debido a: " + e.getMessage());
@@ -3367,7 +3370,7 @@ public class MarketPlacePageObjects extends PageObject {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(this.btnBono20k)));
 		} catch (Exception e) {
 			if (!(contador == 30)) {
-				Utilidades.esperar(500);
+				Utilidades.esperaMiliseg(500);
 				esperarVisibilidadBtnBono20k();
 			} else {
 				fail("No se encontró botón de bono en el corral, debido a: " + e.getMessage());
@@ -3384,7 +3387,7 @@ public class MarketPlacePageObjects extends PageObject {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(this.txtCorral)));
 		} catch (Exception e) {
 			if (!(contador == 30)) {
-				Utilidades.esperar(500);
+				Utilidades.esperaMiliseg(500);
 				esperarVisibilidadBonoCompraCorral();
 			} else {
 				fail("No se encontró titulo del bono en el corral, debido a: " + e.getMessage());
@@ -3401,7 +3404,7 @@ public class MarketPlacePageObjects extends PageObject {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(this.txtDetalleCompraCorral)));
 		} catch (Exception e) {
 			if (!(contador == 30)) {
-				Utilidades.esperar(500);
+				Utilidades.esperaMiliseg(500);
 				esperarVisibilidadDetalleCompraBono();
 			} else {
 				fail("No se encontró titulo del detalle bono en el corral, debido a: " + e.getMessage());
@@ -3418,7 +3421,7 @@ public class MarketPlacePageObjects extends PageObject {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(this.txtCompraBono)));
 		} catch (Exception e) {
 			if (!(contador == 30)) {
-				Utilidades.esperar(500);
+				Utilidades.esperaMiliseg(500);
 				esperarVisibilidadCompraExitosaBono();
 			} else {
 				fail("No se encontró titulo de la compra bono exitosa en el corral, debido a: " + e.getMessage());
@@ -3436,7 +3439,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnFinalizarCompraBono)).click();
 		} catch (Exception e) {
 			if (!(contador == 10)) {
-				Utilidades.esperar(500);
+				Utilidades.esperaMiliseg(500);
 				clicFinalizarCompraBono();
 			} else {
 				fail("No se encontró botón 'Finalizar' del bono en el corral, debido a: " + e.getMessage());
@@ -3454,7 +3457,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnFinalizarCompraBono)).click();
 		} catch (Exception e) {
 			if (!(contador == 10)) {
-				Utilidades.esperar(500);
+				Utilidades.esperaMiliseg(500);
 				clicFinalizarCompraBono();
 			} else {
 				fail("No se encontró botón 'Finalizar' del bono en el corral, debido a: " + e.getMessage());
@@ -3474,7 +3477,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnNotificacionBono)).click();
 		} catch (Exception e) {
 			if (!(contador == 10)) {
-				utilidades.esperaMiliseg(500);
+				Utilidades.esperaMiliseg(500);
 				validarBonoCorral();
 			} else {
 				fail("No se pudo encontrar bono de compras de corral en campana de notificaciones, debido a: "
@@ -3493,7 +3496,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.inputCorreoCorral)).sendKeys("xxx@gmail.com");
 		} catch (Exception e) {
 			if (!(contador == 10)) {
-				utilidades.esperaMiliseg(500);
+				Utilidades.esperaMiliseg(500);
 				ingresarCorreoCompraBonoCorral();
 			} else {
 				fail("No se pudo encontrar input de correo electronico en compra de bono corral, debido a: "
@@ -3512,7 +3515,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnCompartirBono)).click();
 		} catch (Exception e) {
 			if (!(contador == 10)) {
-				utilidades.esperaMiliseg(500);
+				Utilidades.esperaMiliseg(500);
 				clicBotonCompartirBono();
 			} else {
 				fail("No se pudo encontrar botón 'Compartir' de compra en bonos, debido a: " + e.getMessage());
@@ -3530,7 +3533,7 @@ public class MarketPlacePageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnCerrarCompartirBono)).click();
 		} catch (Exception e) {
 			if (!(contador == 10)) {
-				utilidades.esperaMiliseg(500);
+				Utilidades.esperaMiliseg(500);
 				clicBotonCerrarVentanaCompartirBono();
 			} else {
 				fail("No se pudo encontrar botón para cerrar ventana de compartir compra en bonos, debido a: "
@@ -3550,7 +3553,7 @@ public class MarketPlacePageObjects extends PageObject {
 			assertTrue(isDisplayed);
 		} catch (Exception e) {
 			if (!(contador == 20)) {
-				utilidad.esperaMiliseg(500);
+				Utilidades.esperaMiliseg(500);
 				validarDescargaBono();
 			} else {
 				fail("No se encontró pdf de la descarga del bono, debido a: " + e.getMessage());
@@ -3567,7 +3570,7 @@ public class MarketPlacePageObjects extends PageObject {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(this.btnCorral)));
 		} catch (Exception e) {
 			if (!(contador == 30)) {
-				utilidad.esperaMiliseg(500);
+				Utilidades.esperaMiliseg(500);
 				esperarAparezcaBtnCorral();
 			} else {
 				fail("No se encontró botón 'Bonos de hamburguesas y malteadas' del corral en tienda virtual, debido a: "

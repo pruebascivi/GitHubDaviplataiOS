@@ -13,7 +13,7 @@ import daviplata.nacional.iOS.utilidades.DataToFeature;
 		
 features = "src/test/resources/features" 
 ,glue = "daviplata.nacional.iOS.definitions"
-,tags = "@CP011010M",
+,tags = "@CP09005M",
 monochrome = true
 ,snippets = SnippetType.CAMELCASE    
 )

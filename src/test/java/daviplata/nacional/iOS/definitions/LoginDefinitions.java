@@ -23,7 +23,6 @@ public class LoginDefinitions {
 	BaseUtil base;
 	@Steps
 	Evidencias evidencia;
-	
 	String numCelular = "";
 	
 	@Given("^ingresar a app sin credenciales$")
@@ -56,7 +55,6 @@ public class LoginDefinitions {
 		loginSteps.ingresarUsuarioContraseña(tipoDocumento, usuario, contrasena);
 	}
 
-	
 	@Given("^ingreso usuario con caracteres \"([^\"]*)\" \"([^\"]*)\"$")
 	public void ingresoUsuarioYContrasena(String tipoDocumento, String usuario) {
 		loginSteps.ingresarCaracteresEspeciales(tipoDocumento, usuario);
@@ -192,7 +190,6 @@ public class LoginDefinitions {
 	public void validarQueAparezcanLasNotificaciones() {
 		loginSteps.validarQueAparezcanLasNotificaciones();
 	}
-
 	
 	@Then("^validar que aparezcan las compras$")
 	public void validarQueAparezcanLasCompras() throws Exception {
@@ -214,8 +211,6 @@ public class LoginDefinitions {
 	public void verificoPopUpNanocredito() {
 		loginSteps.verificoPopUpNanocredito();
 	}	
-	
-	
 	
 	// Stratus!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	

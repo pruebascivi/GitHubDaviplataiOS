@@ -138,6 +138,6 @@ public class BaseUtil {
 	public static int fila;
 	public static String urlCopy = "";
 	public static String horaSistema = "";
-
+	public static String urlBotonPago = "";
 
 }

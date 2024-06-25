@@ -189,7 +189,7 @@ public class RegistroPageObject extends PageObject {
 		//utilidad.moverPantalla(734, 1597, 723, 1927);
 		//utilidad.moverPantalla(734, 1597, 723, 1927);
 		for(int i = 0 ; i<=5; i++) {
-			Utilidades.scrollDownSwipe();
+			Utilidades.scrollDownSwipe(1);
 		}
 	}
 	
@@ -209,7 +209,7 @@ public class RegistroPageObject extends PageObject {
 		AndroidElement element2 = (AndroidElement) wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(this.btnFechaFi)));
 		for(int i = 0 ; i<=2; i++) {
-			Utilidades.scrollDownSwipe();
+			Utilidades.scrollDownSwipe(1);
 		}
 		
 		//MobileElement element1 = (MobileElement) wait

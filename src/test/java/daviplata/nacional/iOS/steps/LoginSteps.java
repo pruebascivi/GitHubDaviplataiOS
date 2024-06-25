@@ -33,10 +33,11 @@ public class LoginSteps {
 	AcercaDePageObjects pageAcercaDe;
 	OlvidoClavePageObjects olvidoClaveageObjects;
 	BolsilloPageObjects pageBolsillos;
-	 WebLatiniaPageObject pageLatinia;
+	WebLatiniaPageObject pageLatinia;
 	StratusDev stratusdev;
 	UtilidadesTCS utilidadesTCS;
 	LoginRobustoSteps loginRobustoSteps;
+	Utilidades utilidades;
 	//private AppiumDriver<MobileElement> driver = Hooks.getDriver();
 	//private Scenario scenario = Hooks.scenario;
 	Random rand = new Random();
@@ -60,9 +61,8 @@ public class LoginSteps {
 	public void ingresarAApp(String tipoDocumento, String usuario, String contrasena) {
 		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
 		System.out.println("Ingresando a la app");
-		Utilidades.esperaMiliseg(1000);
-		utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.BOTON_NOTIFICACIONES);
-		Utilidades.esperaMiliseg(800);
+		Utilidades.esperaMiliseg(5000);
+		utilidadesTCS.validateElementVisibility("xpath", LoginRobustoPage.BOTON_NOTIFICACIONES);
 		verificarVersion();
 		utilidadesTCS.seleccionarTipoDocumentoInputHomeDaviplata("xpath",tipoDocumento);
 		utilidadesTCS.writeElement("xpath", LoginRobustoPage.CAMPO_INGRESO_USUARIO, usuario);
@@ -120,7 +120,7 @@ public class LoginSteps {
         			}
         			utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.SLIDE_INFORMATIVO_DAVIPLATA);
         			utilidadesTCS.clicElement("xpath", LoginRobustoPage.CONTINUAR_POP_UP_CAMBIAR_DISPOSITIVO);
-    			}else {
+    			} else {
     				utilidadesTCS.clickCoordinates(198,490);
     				Utilidades.esperaMiliseg(1000);
         			boolean estadoVisible = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.POP_UP_INVITE_AMIGOS);
@@ -355,7 +355,6 @@ public class LoginSteps {
 		Utilidades.tomaEvidencia("Se diligencia tipo de documento y usuario");
 		utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_INGRESAR);
 		Utilidades.tomaEvidencia("Ingreso a Daviplata");
-		
 		pageLogin.ingresarContrasenaDespuesCambio(claveNueva);
 		Utilidades.tomaEvidencia("Diligencio usuario " + usuario + " contraseña " + claveNueva);
 		pageLogin.darClicBotonIngresar();
@@ -741,6 +740,7 @@ public class LoginSteps {
 	@Step
 	public void ingresoAMensajesYNotificaciones() {
 		pageHome.darClickCampanaNotificaciones();
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
 		Utilidades.esperaMiliseg(5000);
 		Utilidades.tomaEvidencia("Ingreso a Mensajes y Notificaciones");
 	}

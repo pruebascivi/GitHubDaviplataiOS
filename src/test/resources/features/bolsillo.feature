@@ -1,7 +1,7 @@
 @Bolsillos
 Feature: Pruebas modulo Bolsillos
 
-  @CP1163M	@PASSED
+  @CP1163M	@Passed
   Scenario Outline: CP02030M_SYS_Validar la creación de bolsillo en cero pesos desde el home
     Given obtener numero celular actual en redeban bolsillos <usuario>
     And Consulté saldo disponible en redeban
@@ -20,7 +20,7 @@ Feature: Pruebas modulo Bolsillos
       | tipoId | usuario      | contrasena | valordisponible | status  |
       | "CC"   | "1020770044" | "1342"     | "0"             | "false" |
 
-  @CP02040M
+  @CP02040M @Passed
   Scenario Outline: CP02040M_SYS_Validar la creación de bolsillo semanal con valor desde el home daviplata.
     Given obtener numero celular actual en redeban bolsillos <usuario>
     And Consulté saldo disponible en redeban

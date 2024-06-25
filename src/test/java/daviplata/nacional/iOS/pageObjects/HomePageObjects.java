@@ -38,7 +38,7 @@ public class HomePageObjects extends PageObject {
 	private String btnAceptarPermisos = "//*[@id='button1']";
     private String btnAtencionLinea = "//android.view.View[@content-desc='Ir a asesor virtual ¿Necesita ayuda?']";
 	private String btnsegurodevida  = "//XCUIElementTypeStaticText[@name='Vida']";
-	private String btnNotificaciones = "//XCUIElementTypeOther[@name='btn-rigth-0']";
+	private String btnNotificaciones = "//XCUIElementTypeOther[@name='btn-rigth-0'] | //XCUIElementTypeOther[@label= 'Notificaciones botón'] | //XCUIElementTypeImage[@name='Notificaciones Botón']";
 	private String btnTiendaVirtual = "//XCUIElementTypeButton[@name='iconTiendaVirtual']";
 	private String btnAtrasBolsillos = "//XCUIElementTypeButton[@name='Regresar a pantalla Anterior']";
 	private String btnAgua = "//XCUIElementTypeOther[@name=\"Agua boton\"]";

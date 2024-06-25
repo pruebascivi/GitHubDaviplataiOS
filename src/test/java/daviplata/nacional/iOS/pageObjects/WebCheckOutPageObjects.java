@@ -34,7 +34,7 @@ public class WebCheckOutPageObjects {
   //WEB ENLACE
     public static final String TEXTO_WEB_ENLACE = "//div[@class='contDate']";
     public static final String INPUT_WEB_NUMERO_DOCUMENTO = "//input[@name='numeroDocumento']";
-    public static final String BOTON_CONTINUAR_WEB = "(//*[@class='button button--primary'])";
+    public static final String BOTON_CONTINUAR_WEB = "//*[@mbaasdynatraceclick='continuar'] | (//*[@class='button button--primary'])";
     public static final String TEXTO_WEB_CONFIRMACION ="//div[@class='contSubtitle']";
     public static final String ELEMENTO_L_OTP = "(//*[@class='logger-container ng-star-inserted']//child::p[contains(text(),'otp')])[last()]";
 

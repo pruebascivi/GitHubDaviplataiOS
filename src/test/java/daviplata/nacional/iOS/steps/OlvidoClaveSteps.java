@@ -160,7 +160,7 @@ public class OlvidoClaveSteps {
 		Utilidades.tomaEvidenciaPantalla("Ingresar documento " + usuario);
 		WebRedebanPageObjects.clicEnviarOlvidoClave();
 		Utilidades.esperaMiliseg(4000);
-		Utilidades.scrollDownSwipe();
+		Utilidades.scrollDownSwipe(1);
 		WebRedebanPageObjects.clicAceptarOlvidoClave();
 		WebRedebanPageObjects.clicAceptarAlerta();
 		Utilidades.esperaMiliseg(4000);

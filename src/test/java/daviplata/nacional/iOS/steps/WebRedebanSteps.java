@@ -392,6 +392,7 @@ public class WebRedebanSteps {
             webRedebanPageObjects.cerrarWebRedeban();
         }
     }
+    
 
 	public String correoActual(String usuario) {
 		utilidad.esperaMiliseg(2000);

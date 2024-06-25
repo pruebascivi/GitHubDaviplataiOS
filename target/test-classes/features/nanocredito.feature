@@ -108,6 +108,15 @@ Feature: Agrupoación de casos de Nanocredito
       | usuario   | contrasena |
       | "2569109" | "1234"     |
 
+  @CP0682M @Passed
+  Scenario Outline: CP0682M_SYS_Validar caja productos sin campaña nanocredito activa
+    Given Ingreso usuario y contrasena en nanocredito <tipoId> <usuario> <contrasena>
+    Then Validar home daviplata
+
+    Examples: 
+      | tipoId | usuario    | contrasena |
+      | "CC"   | "10050072" | "2589"     |
+
   @CP0684M @Passed
   Scenario Outline: CP0684M_SYS_Validar cajón de nanocredito barra productos
     Given Ingreso usuario y contrasena en nanocredito <tipoId> <usuario> <contrasena>
@@ -132,5 +141,4 @@ Feature: Agrupoación de casos de Nanocredito
     Examples: 
       | tipoId | usuario    | contrasena |
       | "CC"   | "80145621" | "1234"     |
-      
       

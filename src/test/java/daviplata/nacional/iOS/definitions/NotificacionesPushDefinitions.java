@@ -99,5 +99,25 @@ public class NotificacionesPushDefinitions {
     public void validoLaTansaccionEnCampanaNotificaciones() throws Exception {
     	notificacionesPushSteps.validoLaTansaccionEnCampanaNotificaciones();
     }
+    
+    @Then("^Valido resultado transaccion exitosa pasar plata linea$")
+    public void validoResultadoTransaccionExitosaPasarPlataLinea() throws Exception {
+    	notificacionesPushSteps.validoResultadoTransaccionExitosaPasarPlataLinea();
+    }
+    
+    @When("^Diligencio otp en el enlace de pago$")
+    public void diligencioOtpEnElEnlaceDePago() throws Exception {
+    	notificacionesPushSteps.diligenciarOtpDePago();
+    }
+    
+    @When("^Hago clic en el boton de pagar en la otp de enlace de pago$")
+    public void hagoClicEnElBotonDePagarEnLaOtpDeEnlaceDePago() throws Exception {
+    	notificacionesPushSteps.clicBotonPagarEnlacePago();
+    }
+    
+    @Then("Validar datos de transaccion exitosa$")
+    public void validarDatosDeTransaccionExitosa() throws Exception {
+    	notificacionesPushSteps.validarPantallaDeDatosCompraExitosa();
+    }
 }
 

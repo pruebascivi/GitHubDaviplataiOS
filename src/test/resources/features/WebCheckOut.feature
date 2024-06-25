@@ -19,14 +19,17 @@ Feature: casos de aumento de topes
       | tipoId | usuario    | contrasena |
       | "CC"   | "10088844" | "2589"     |
 
-  @CP09020M
+  @CP09020M @PassedDefectoEnLaWebDavivienda
   Scenario Outline: CP09020M_SYS_Validar que al dar tap en la opcion "Botón de pago" envie la pantalla "Botón de pago"
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     When Ingreso a perfil negocio
     And Selecciono el botón enlace de pago
     And Realizo la creación del producto <nombreProducto> <valorProducto>
     And Ingreso a la web con la url de enlace de pago <usuario>
+    And Diligencio otp en el enlace de pago
+    And Hago clic en el boton de pagar en la otp de enlace de pago
+    Then Validar datos de transaccion exitosa
 
     Examples: 
       | tipoId | usuario    | contrasena | nombreProducto | valorProducto |
-      | "CC"   | "10050033" | "2589"     | "juguete"      | "26000"       |
+      | "CC"   | "10050033" | "2589"     | "Juguetes"     | "20000"       |

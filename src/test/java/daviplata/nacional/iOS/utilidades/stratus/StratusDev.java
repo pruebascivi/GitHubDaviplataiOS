@@ -278,7 +278,7 @@ public class StratusDev {
 	}
 
 	public static void consultarCuenta(String cuenta, String tipoCuenta) {
-		esperar(1000);
+		esperaMiliseg(1000);
 		seleccionarFuncion("2");
 		esperarElemento("Consulta_Maestras.PNG");
 		if (tipoCuenta.equals("Cuenta Corriente") || tipoCuenta.equals("Crediplus")
@@ -395,19 +395,10 @@ public class StratusDev {
 		Settings.OcrTextSearch = true;
 		Region region = new Region(corX, corY, with, height);
 //		region.highlight(0.5)
-		esperar(300);
+		esperaMiliseg(300);
 		String texto = region.text();
 		// System.out.println("Texto encontrado: " + texto);
 		return texto;
-	}
-
-	public static void esperar(long milisegundos) {
-		try {
-			Thread.sleep(milisegundos);
-
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
 
 	public static void salirFlujo(int repeticiones, String flujo) {
@@ -432,13 +423,13 @@ public class StratusDev {
 	}
 
 	public static void flujoAuxTRDB() {
-		esperar(500);
+		esperaMiliseg(500);
 		escribirTexto("4");
-		esperar(500);
+		esperaMiliseg(500);
 		darEnter(2);
-		esperar(500);
+		esperaMiliseg(500);
 		seleccionarFuncion("2");
-		esperar(500);
+		esperaMiliseg(500);
 	}
 	public static void salirFlujoDos(int repeticiones, String flujo) {
 		Robot r;
@@ -486,7 +477,7 @@ public class StratusDev {
 			System.out.println(texto);
 		}
 		texto = texto.replace(",", "").replace(" ", "").replace("$", "");
-		esperar(250);
+		esperaMiliseg(250);
 		return texto;
 	}
 
@@ -511,11 +502,11 @@ public class StratusDev {
 		tabular(3);
 		System.out.println("HORA: " + hora);
 		do {
-			Utilidades.esperar(500);
+			Utilidades.esperaMiliseg(500);
 			String pantalla = obtenerTexto((int) puntoTituloPagos.getX() - 280, puntoY + suma, 50, 192);
 //			System.out.println("Datos Obtenidos: " + pantalla);
 			pantalla = pantalla.replaceAll("o", "0").replaceAll("g", "9").replaceAll("O", "0");
-			Utilidades.esperar(500);
+			Utilidades.esperaMiliseg(500);
 			if (pantalla.contains(hora) || pantalla.contains(horaMaxima) || pantalla.contains(horaMinima)) {
 				Utilidades.tomaEvidenciaStratus("Consultando pago web");
 				consulta = true;
@@ -554,7 +545,7 @@ public class StratusDev {
 					suma = 0;
 				}
 			} else {
-				Utilidades.esperar(100);
+				Utilidades.esperaMiliseg(100);
 				seleccionarFuncion("2");
 				suma = 0;
 

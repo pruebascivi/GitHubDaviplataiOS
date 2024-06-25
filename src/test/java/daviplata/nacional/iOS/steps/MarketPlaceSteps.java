@@ -16,6 +16,8 @@ import daviplata.nacional.iOS.pageObjects.HomePageObjects;
 import daviplata.nacional.iOS.pageObjects.LoginPageObjects;
 import daviplata.nacional.iOS.pageObjects.LoginRobustoPage;
 import daviplata.nacional.iOS.pageObjects.MenuHamburguesaPageObjects;
+import daviplata.nacional.iOS.pageObjects.NanocreditoPageObjects;
+import daviplata.nacional.iOS.pageObjects.NotificacionesPushPageObjects;
 import daviplata.nacional.iOS.pageObjects.PagarPageObjects;
 import daviplata.nacional.iOS.pageObjects.RecargaPageObjects;
 import daviplata.nacional.iOS.pageObjects.RegistroMayoresPageObjects;
@@ -42,6 +44,7 @@ public class MarketPlaceSteps {
 	PagarPageObjects pagePagar;
 	WebRedebanSteps webRedebanSteps;
 	MenuHamburguesaPageObjects menuHamburguesaPageObjects;
+	NanocreditoPageObjects nanocreditoPageObjects;
 	private int contador = 0;
 	Utilidades utilidad;
 	UtilidadesTCS utilidadesTCS;
@@ -53,11 +56,16 @@ public class MarketPlaceSteps {
 
 	@Step("Ingresar a MarketPlace")
 	public void btnMarketPlace() {
-		utilidad.esperaMiliseg(1500);
+		Utilidades.esperaMiliseg(1500);
+		utilidadesTCS.scrollBackground("xpath", MarketPlacePageObjects.BTN_CAJA, -200, 0);
+		Utilidades.esperaMiliseg(1000);
 		marketObj.btnMarketPlace();
-		//marketObj.cerrarPopUpTiendaVirtual();
+		boolean estadoVisible = utilidadesTCS.validateElementVisibilityCatch("xpath", MarketPlacePageObjects.CERRAR_POPUP);
+		if(estadoVisible == true) {
+			marketObj.cerrarPopUpTiendaVirtual();
+		}
 		marketObj.esperarVisibilidadDeTiendaVirtual();
-		utilidad.tomaEvidencia("Ingreso a MarketPlace");
+		Utilidades.tomaEvidencia("Ingreso a MarketPlace");
 	}
 	
 	@Step("Validar btn inhabilitado")
@@ -213,7 +221,7 @@ public class MarketPlaceSteps {
 		utilidad.esperaMiliseg(10000);
 		utilidad.tomaEvidencia("Ingreso a recargas");
 		marketObj.btnRecargas();
-		utilidad.scrollDownSwipe();
+		utilidad.scrollDownSwipe(1);
 		marketObj.btnOperador(operador);
 		
 	}
@@ -549,9 +557,7 @@ public class MarketPlaceSteps {
 		utilidad.tomaEvidencia("Ingreso a crepes");
 		marketObj.btnTodos();
 		utilidad.esperaMiliseg(2000);
-		utilidad.scrollDownSwipe();
-		utilidad.scrollDownSwipe();
-		utilidad.scrollDownSwipe();
+		utilidad.scrollDownSwipe(3);
 		utilidad.tomaEvidencia("Ingreso al corral");
 		marketObj.btnCorral();
 		marketObj.esperarVisibilidadBtnBono20k();
@@ -572,21 +578,16 @@ public class MarketPlaceSteps {
 		utilidad.esperaMiliseg(4000);
 		marketObj.btnNecesitoAyuda();
 		System.out.println("di scroll");
-		utilidad.scrollDownSwipe();
-		utilidad.scrollDownSwipe();
-		utilidad.scrollDownSwipe();
+		utilidad.scrollDownSwipe(3);
 		utilidad.esperaMiliseg(4000);
 		System.out.println("buscando crepes");
-		utilidad.scrollDownSwipe();
-		utilidad.scrollDownSwipe();
-		utilidad.scrollDownSwipe();
-		utilidad.scrollDownSwipe();
+		utilidad.scrollDownSwipe(4);
 		utilidad.tomaEvidencia("Ingreso a crepes");
 		marketObj.btnCrepes();
 		utilidad.esperaMiliseg(1000);
 		utilidad.tomaEvidencia("Bono");
 		marketObj.btnMiniWafle();
-		utilidad.scrollDownSwipe();
+		utilidad.scrollDownSwipe(1);
 		utilidad.tomaEvidencia("Continuar");
 		marketObj.btnContinuarBono();
 		marketObj.btnComprarBono();	
@@ -621,7 +622,7 @@ public class MarketPlaceSteps {
 	public void ingresarBonoSinCorreo() {
 		utilidad.esperaMiliseg(4000);
 		for(int i = 0; i<=3; i++) {
-			utilidad.scrollDownSwipe();
+			utilidad.scrollDownSwipe(1);
 		}
 		utilidad.tomaEvidencia("Ingreso al corral");
 		marketObj.btnCorral();
@@ -708,8 +709,8 @@ public class MarketPlaceSteps {
 	public void ingresarDonas() {
 		marketObj.btnRestaurante();
 		utilidad.esperaMiliseg(6000);
-		utilidad.scrollDownSwipe();
-		utilidad.scrollDownSwipe();
+		utilidad.scrollDownSwipe(1);
+		utilidad.scrollDownSwipe(1);
 		utilidad.moverPantalla(543, 1530, 537, 605);
 
 	}
@@ -745,9 +746,7 @@ public class MarketPlaceSteps {
 		utilidad.tomaEvidencia("Ingreso a crepes");
 		marketObj.btnTodos();
 		utilidad.esperaMiliseg(2000);
-		utilidad.scrollDownSwipe();
-		utilidad.scrollDownSwipe();
-		utilidad.scrollDownSwipe();
+		utilidad.scrollDownSwipe(3);
 		utilidad.tomaEvidencia("Ingreso al corral");
 		marketObj.btnCorral();
 		marketObj.esperarVisibilidadBtnBono20k();
@@ -1168,7 +1167,7 @@ public class MarketPlaceSteps {
 	
 	public void comprarBono() {
 		utilidad.esperaMiliseg(2000);
-		utilidad.scrollDownSwipe();
+		utilidad.scrollDownSwipe(1);
 		utilidad.esperaMiliseg(500);
 		utilidad.tomaEvidencia("Localicé la tienda Seven Seven");
 		marketObj.darClickBtnSevenSeven();
@@ -1198,31 +1197,43 @@ public class MarketPlaceSteps {
 	public void ingresarBono() {
 		utilidad.esperaMiliseg(4000);
 		utilidad.tomaEvidencia("Ingreso a categoria 'Todos'");
+		System.out.println("Ingreso a categoria 'Todos'");
 		marketObj.btnTodos();
-		utilidad.esperaMiliseg(2000);
-		utilidad.scrollDownSwipe();
-		utilidad.scrollDownSwipe();
-		utilidad.scrollDownSwipe();
+		utilidad.esperaMiliseg(1000);
+		utilidad.scrollDownSwipe(3);
 		utilidad.tomaEvidencia("Ingreso al corral");
 		marketObj.btnCorral();
+		utilidad.esperaMiliseg(1000);
 		marketObj.esperarVisibilidadBtnBono20k();
 		utilidad.tomaEvidencia("Bono");
 		marketObj.btnBono20k();
-		marketObj.esperarVisibilidadBonoCompraCorral();
-		utilidad.tomaEvidencia("Continuar");
+		utilidadesTCS.scrollBackground("xpath", MarketPlacePageObjects.TXT_EL_CORRAL, 0, -250);
+//		marketObj.esperarVisibilidadBonoCompraCorral();
+		utilidad.esperaMiliseg(1000);
 		marketObj.btnContinuarBono();
 		marketObj.esperarVisibilidadDetalleCompraBono();
-		marketObj.ingresarCorreoCompraBonoCorral();
+//		marketObj.ingresarCorreoCompraBonoCorral();
 		utilidad.tomaEvidencia("Ingresar correo electrónico y dar clic en comprar bono");
 		marketObj.btnComprarBono();
-		marketObj.esperarVisibilidadCompraExitosaBono();
-		utilidad.tomaEvidencia("Dar clic en 'Finalizar' compra");
-		marketObj.clicFinalizarCompraBono();
-		utilidad.tomaEvidencia("Validé la compra");
-		marketObj.validarTransaccionExitosa();
-		utilidad.tomaEvidencia("Valido transaccón exitosa");
-		marketObj.btnFinalizar();
+		utilidad.esperaMiliseg(10000);
+        boolean visibleCampoOtp = utilidadesTCS.validateElementVisibilityCatch("xpath", MarketPlacePageObjects.POPUP_SU_COMPRA_NO_PUDO_SER_PROCESADA);
+        if(visibleCampoOtp) {
+    		utilidad.tomaEvidencia("Su compra no pudo ser procesada");
+        	utilidadesTCS.clicElement("xpath", MarketPlacePageObjects.BTN_CONTINUAR_BONO);;
+        } else {
+        	marketObj.esperarVisibilidadCompraExitosaBono();
+    		utilidad.tomaEvidencia("Dar clic en 'Finalizar' compra");
+    		marketObj.clicFinalizarCompraBono();
+    		utilidad.tomaEvidencia("Validé la compra");
+    		marketObj.validarTransaccionExitosa();
+    		utilidad.tomaEvidencia("Valido transaccón exitosa");
+    		marketObj.btnFinalizar();
+        }
 		marketObj.btnVolver();
+		boolean estadoVisible = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.POP_UP_INVITE_AMIGOS);
+		if(estadoVisible == true) {
+			utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_CLOSE);
+		}
 		utilidad.esperaMiliseg(2000);
 		marketObj.capturarSaldoFinal();
 	}
@@ -1236,7 +1247,6 @@ public class MarketPlaceSteps {
 		marketObj.clicBotonDescargaBono();
 		marketObj.validarDescargaBono();
 		utilidad.tomaEvidencia("Valido opción compartir de compra de bono");
-
 	}
 
 

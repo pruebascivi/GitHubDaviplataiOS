@@ -60,7 +60,7 @@ Feature: Modulo PSE Avanza
       | tipoId | usuario    | contrasena | correo             | monto  |
       | "CC"   | "10333040" | "1234"     | "yuli36@gmail.com" | "6000" |
       
-  @CP021003M @PassedenCasoCP021003M @Versio6.1 
+  @CP021003M @PassedEnCasoCP021003M @Versio6.1 
   Scenario Outline: CP021003M_SYS_Realizar tres recargas en la App con un usuario a un mismo DaviPlata pero con tres correos diferentes
     Given Obtuve el numero celular del usuario destino validando el estado <usuarioDestino><estado>
     And Validé estado nor del usuario origen <usuario>

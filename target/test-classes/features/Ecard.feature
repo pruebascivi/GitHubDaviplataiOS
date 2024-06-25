@@ -34,8 +34,8 @@ Feature: Agrupacion de casos de ecard
       | tipoId | usuario    | contrasena |
       | "CC"   | "19758461" | "1234"     |
 
-  @CP1163M
-  Scenario Outline: CP1163M_SYS_Validar el proceso de mostrar movimientos de la tarjeta virtual
+  @CP11630M @Passed
+  Scenario Outline: CP11630M_SYS_Validar el proceso de mostrar movimientos de la tarjeta virtual
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     When ingreso a tarjeta de credito
     And selecciono Movimientos Tarjeta
@@ -43,7 +43,7 @@ Feature: Agrupacion de casos de ecard
 
     Examples: 
       | tipoId | usuario    | contrasena |
-      | "CC"   | "19758461" | "1234"     |
+      | "CC"   | "10050066" | "2589"     |
 
   @CP1164M
   Scenario Outline: CP1164M_SYS_Validar el proceso de ver datos de tarjeta virtual

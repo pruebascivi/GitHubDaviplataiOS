@@ -1,20 +1,6 @@
 package daviplata.nacional.iOS.steps;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
-
-import javax.swing.JOptionPane;
-
-import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
 import daviplata.nacional.iOS.definitions.Hooks;
 import daviplata.nacional.iOS.pageObjects.AcercaDeDaviplataPage;
 import daviplata.nacional.iOS.pageObjects.CuantoDeboPageObjects;
@@ -24,15 +10,11 @@ import daviplata.nacional.iOS.pageObjects.MenuHamburguesaPageObjects;
 import daviplata.nacional.iOS.pageObjects.NanocreditoPageObjects;
 import daviplata.nacional.iOS.pageObjects.RegistroMayoresPageObjects;
 import daviplata.nacional.iOS.pageObjects.RegistroPageObject;
-import daviplata.nacional.iOS.utilidades.Credenciales;
-import daviplata.nacional.iOS.utilidades.CustomAppiumDriver;
-import daviplata.nacional.iOS.utilidades.Evidencias;
 import daviplata.nacional.iOS.utilidades.Utilidades;
 import daviplata.nacional.iOS.utilidades.UtilidadesTCS;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import net.thucydides.core.annotations.Step;
-import net.thucydides.core.annotations.Steps;
 
 public class NanocreditoSteps {
 	
@@ -51,61 +33,61 @@ public class NanocreditoSteps {
 	public void ingresoAOpcionNanocredito() {
 		pageHome.darClickEnNoMeInteresa();
 		pageMenuHamburguesa.darClickMenuHamburguesa();
-		utilidad.tomaEvidencia("Ingreso a menu Hamburguesa");
+		Utilidades.tomaEvidencia("Ingreso a menu Hamburguesa");
 		pageMenuHamburguesa.darClickBtnNanoCredito();
-		utilidad.esperaMiliseg(1000);
-		utilidad.tomaEvidencia("Click a opcion Nanocredito");
+		Utilidades.esperaMiliseg(1000);
+		Utilidades.tomaEvidencia("Click a opcion Nanocredito");
 
 	}
 
 	public void autorizoUtilizacionDeDatos() {
 		pageNanoCredito.esperoAQueAparezcaAutorizoNanoCredito();
 		utilidad.scrollHastaElFinalDePantalla();
-		utilidad.esperaMiliseg(1000);
-		utilidad.tomaEvidencia("Autorizando tratamiento de datos");
+		Utilidades.esperaMiliseg(1000);
+		Utilidades.tomaEvidencia("Autorizando tratamiento de datos");
 		pageNanoCredito.darClickAutorizo();
 
 	}
 
 	public void adquirirCreditoMontoNoPermitido() {
 		pageNanoCredito.darClickNoDeseo();
-		utilidad.esperaMiliseg(2500);
-		utilidad.tomaEvidencia("Condiciones para adquirir credito");
-		utilidad.esperaMiliseg(1000);
+		Utilidades.esperaMiliseg(2500);
+		Utilidades.tomaEvidencia("Condiciones para adquirir credito");
+		Utilidades.esperaMiliseg(1000);
 		pageNanoCredito.darClickContinuar();
-		utilidad.esperaMiliseg(1000);
-		utilidad.tomaEvidencia("Sugerencia de monto para el credito");
+		Utilidades.esperaMiliseg(1000);
+		Utilidades.tomaEvidencia("Sugerencia de monto para el credito");
 		pageNanoCredito.obtenerMontoMaximo();
 		String montoSuperior = pageNanoCredito.calcularMontoSuperior();
 		pageNanoCredito.ingresarMonto(montoSuperior);
-		utilidad.esperaMiliseg(1000);
-		utilidad.tomaEvidencia("Ingresando monto no permitido");
+		Utilidades.esperaMiliseg(1000);
+		Utilidades.tomaEvidencia("Ingresando monto no permitido");
 		pageNanoCredito.darClickContinuar();
 	}
 	
 	public void adquirirCreditoMontoPermitido() {
 		pageNanoCredito.darClickNoDeseo();
-		utilidad.esperaMiliseg(2500);
-		utilidad.tomaEvidencia("Condiciones para adquirir credito");
-		utilidad.esperaMiliseg(1000);
+		Utilidades.esperaMiliseg(2500);
+		Utilidades.tomaEvidencia("Condiciones para adquirir credito");
+		Utilidades.esperaMiliseg(1000);
 		pageNanoCredito.darClickContinuar();
-		utilidad.esperaMiliseg(1000);
+		Utilidades.esperaMiliseg(1000);
 		pageNanoCredito.obtenerMontoMaximo();
 		pageNanoCredito.ingresarMontoAleatorio();
-		utilidad.esperaMiliseg(1000);
-		utilidad.tomaEvidencia("ingresar monto permitido");
+		Utilidades.esperaMiliseg(1000);
+		Utilidades.tomaEvidencia("ingresar monto permitido");
 		pageNanoCredito.darClickContinuar();
 		pageNanoCredito.escogerFechaInicialPago();
 		pageNanoCredito.seleccionarDiaDePago();
-		utilidad.tomaEvidencia("Escoger fecha de cobro");
+		Utilidades.tomaEvidencia("Escoger fecha de cobro");
 		pageNanoCredito.darClickContinuar();
 		pageNanoCredito.ingresarCiudadResidencia();
 		// Vamos en el paso 1
-		utilidad.tomaEvidencia("Ingresar ciudad de residencia");
+		Utilidades.tomaEvidencia("Ingresar ciudad de residencia");
 		pageNanoCredito.darClickAceptarCondiciones();
-		utilidad.tomaEvidencia("Aceptar terminos y condiciones");
+		Utilidades.tomaEvidencia("Aceptar terminos y condiciones");
 		pageNanoCredito.darClickAutorizoDebitoAutomatico();
-		utilidad.tomaEvidencia("Aceptar debito automatico");
+		Utilidades.tomaEvidencia("Aceptar debito automatico");
 		pageNanoCredito.darClickAceptoInformacion();
 
 		// Vamos en el paso 2 o 50%
@@ -113,21 +95,21 @@ public class NanocreditoSteps {
 	//	utilidad.moverPantalla();
 //		utilidad.moverPantalla();
 		pageNanoCredito.darClickContinuar();
-		utilidad.tomaEvidencia("Se evalua la solicitud");
+		Utilidades.tomaEvidencia("Se evalua la solicitud");
 		pageNanoCredito.esperarConfirmacionPreaprobacionNanoCredito();
-		utilidad.tomaEvidencia("Confirmacion de preaprobacion de nanocredito");
+		Utilidades.tomaEvidencia("Confirmacion de preaprobacion de nanocredito");
 	//	utilidad.moverPantalla();
 		//utilidad.moverPantalla();
 		pageNanoCredito.darClickContinuar();
 
 		pageNanoCredito.darClickAceptarFirmarPagare();
-		utilidad.tomaEvidencia("Aceptar firmar pagare");
+		Utilidades.tomaEvidencia("Aceptar firmar pagare");
 		pageNanoCredito.darClickContratoCreditoDaviplata();
-		utilidad.tomaEvidencia("Aceptar credito daviplata");
+		Utilidades.tomaEvidencia("Aceptar credito daviplata");
 		pageNanoCredito.darClickSeguroVida();
-		utilidad.tomaEvidencia("Aceptar seguro de vida");
+		Utilidades.tomaEvidencia("Aceptar seguro de vida");
 		pageNanoCredito.darClickAutorizacionDaviplata();
-		utilidad.tomaEvidencia("Autorizacion desembolso en Daviplata");
+		Utilidades.tomaEvidencia("Autorizacion desembolso en Daviplata");
 	//	utilidad.moverPantalla();
 		pageNanoCredito.darClickFinalizarFirmaAutenticacion();
 
@@ -135,36 +117,36 @@ public class NanocreditoSteps {
 
 	public void solicitudDelCreditoPorMontoPermitidoNoCumploPoliticas() {
 		pageNanoCredito.darClickNoDeseo();
-		utilidad.esperaMiliseg(2500);
-		utilidad.tomaEvidencia("Condiciones para adquirir credito");
-		utilidad.esperaMiliseg(1000);
+		Utilidades.esperaMiliseg(2500);
+		Utilidades.tomaEvidencia("Condiciones para adquirir credito");
+		Utilidades.esperaMiliseg(1000);
 		pageNanoCredito.darClickContinuar();
-		utilidad.esperaMiliseg(1000);
+		Utilidades.esperaMiliseg(1000);
 		pageNanoCredito.obtenerMontoMaximo();
 		pageNanoCredito.ingresarMontoAleatorio();
-		utilidad.esperaMiliseg(1000);
-		utilidad.tomaEvidencia("ingresar monto permitido");
+		Utilidades.esperaMiliseg(1000);
+		Utilidades.tomaEvidencia("ingresar monto permitido");
 		pageNanoCredito.darClickContinuar();
 		pageNanoCredito.escogerFechaInicialPago();
 		pageNanoCredito.seleccionarDiaDePago();
-		utilidad.tomaEvidencia("Escoger fecha de cobro");
+		Utilidades.tomaEvidencia("Escoger fecha de cobro");
 		pageNanoCredito.darClickContinuar();
 		pageNanoCredito.ingresarCiudadResidencia();
 		// Vamos en el paso 1
-		utilidad.tomaEvidencia("Ingresar ciudad de residencia");
+		Utilidades.tomaEvidencia("Ingresar ciudad de residencia");
 		pageNanoCredito.darClickAceptarCondiciones();
-		utilidad.tomaEvidencia("Aceptar terminos y condiciones");
+		Utilidades.tomaEvidencia("Aceptar terminos y condiciones");
 		pageNanoCredito.darClickAutorizoDebitoAutomatico();
-		utilidad.tomaEvidencia("Aceptar debito automatico");
+		Utilidades.tomaEvidencia("Aceptar debito automatico");
 		pageNanoCredito.darClickAceptoInformacion();
 		// Vamos en el paso 2 o 50%
 		pageNanoCredito.esperarIconoEstudioCredito50();
 	//	utilidad.moverPantalla();
 		//utilidad.moverPantalla();
 		pageNanoCredito.darClickContinuar();
-		utilidad.tomaEvidencia("Se evalua la solicitud");
+		Utilidades.tomaEvidencia("Se evalua la solicitud");
 		pageNanoCredito.esperarConfirmacionPreaprobacionNanoCredito();
-		utilidad.tomaEvidencia("Confirmacion de preaprobacion de nanocredito");
+		Utilidades.tomaEvidencia("Confirmacion de preaprobacion de nanocredito");
 	//	utilidad.moverPantalla();
 	//	utilidad.moverPantalla();
 		pageNanoCredito.darClickContinuar();
@@ -172,18 +154,18 @@ public class NanocreditoSteps {
 
 	public void validoNegacionDelCredito() {
 		pageNanoCredito.validoNegacionDelCredito();
-		utilidad.esperaMiliseg(5000);
-		utilidad.tomaEvidencia("Credito negado.");
+		Utilidades.esperaMiliseg(5000);
+		Utilidades.tomaEvidencia("Credito negado.");
 	}
 	
 	public void validoNegacionDelCreditoOTPNoValida() {
 		for (int contador = 0; contador < 3; contador++) {
 			pageNanoCredito.ingresarOTPNoValida();
-			utilidad.tomaEvidencia("Se ingresa OTP invalida");
+			Utilidades.tomaEvidencia("Se ingresa OTP invalida");
 			pageNanoCredito.darClickAceptarOTP();
 			if (contador < 2) {
-				utilidad.esperaMiliseg(5000);
-				utilidad.tomaEvidencia("Se informa que la OTP es invalida");
+				Utilidades.esperaMiliseg(5000);
+				Utilidades.tomaEvidencia("Se informa que la OTP es invalida");
 				pageNanoCredito.darClickNotificacionOTPInvalida();
 			}
 		}
@@ -197,9 +179,9 @@ public class NanocreditoSteps {
 
 	public void validoQueElDaviPlataNoConcuerde() {
 		pageNanoCredito.validoDaviplataNoConcuerde();
-		utilidad.esperaMiliseg(500);
-		utilidad.tomaEvidencia("Numero DaviPlata no concuerda");
-		utilidad.esperaMiliseg(1000);
+		Utilidades.esperaMiliseg(500);
+		Utilidades.tomaEvidencia("Numero DaviPlata no concuerda");
+		Utilidades.esperaMiliseg(1000);
 		pageNanoCredito.darClickEnAceptar();
 	}
 	
@@ -305,18 +287,18 @@ public class NanocreditoSteps {
 
 		try {
 			
-			utilidadesTCS.clicElement("name", LoginRobustoPage.MENU_TRES_PUNTOS);
+			utilidadesTCS.clicElement("xpath", LoginRobustoPage.MENU_TRES_PUNTOS);
 			Utilidades.tomaEvidencia("Menu tres puntos");
 		} catch(Exception e) {
 			
 			System.out.println("No se pudo interactuar con el elemento debido a: " + e.getMessage().toString());
-			assert utilidadesTCS.validateElementVisibilityCatch("name", LoginRobustoPage.MENU_TRES_PUNTOS) : "No se pudo interactuar con el elemento." + LoginRobustoPage.MENU_TRES_PUNTOS;
+			assert utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.MENU_TRES_PUNTOS) : "No se pudo interactuar con el elemento." + LoginRobustoPage.MENU_TRES_PUNTOS;
 		}
 		try {
 			Utilidades.esperaMiliseg(2000);
 			utilidadesTCS.clicElement("xpath", LoginRobustoPage.ACERCA_DE_DAVIPLATA);
 			Utilidades.esperaMiliseg(1500);
-			Evidencias.capturaDispositivo("Entro a menu hamburguesa perfil negocio", AcercaDeDaviplataPage.VERSION);
+			Utilidades.tomaEvidencia("Entro a menu hamburguesa perfil negocio");
 			String version = utilidadesTCS.obtenerTexto("xpath", AcercaDeDaviplataPage.VERSION);
 			Utilidades.tomaEvidencia("Ingreso al módulo 'Acerca de Daviplata' y capturo la versión: " + version );
 			System.out.println("La versión es: " + version);
@@ -376,7 +358,8 @@ public class NanocreditoSteps {
 		Utilidades.esperaMiliseg(1500);
 		utilidadesTCS.clicElement("xpath", NanocreditoPageObjects.BTN_CAJA_NANOCREDITO);
 		Utilidades.esperaMiliseg(2000);
-		Utilidades.tomaEvidencia("Pantalla solicitar nanocredito");		boolean visibilidad = utilidadesTCS.validateElementVisibilityCatch("xpath", RegistroPageObject.CHECK_BOX_REGLAMENTO_USO);
+		Utilidades.tomaEvidencia("Pantalla solicitar nanocredito");		
+		boolean visibilidad = utilidadesTCS.validateElementVisibilityCatch("xpath", RegistroPageObject.CHECK_BOX_REGLAMENTO_USO);
 		if(visibilidad == true) {
 			Utilidades.esperaMiliseg(800);
 			registroObj.aceptoReglamentoUso();

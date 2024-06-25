@@ -22,6 +22,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -45,6 +46,8 @@ import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.pages.PageObject;
 import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.annotations.Steps;
+import org.openqa.selenium.safari.SafariDriver;
+
 
 public class WebRedebanPageObjects {
 
@@ -1762,49 +1765,14 @@ public class WebRedebanPageObjects {
 	}
 
 	public static void abrirWebRedeban() {
-		confiChromeDriver.iniciarChromeDriver();
-		base.chromeDriver.get(Credenciales.propertiesWebs().getProperty("web.redeban.url"));
-		base.chromeDriver.manage().window().maximize();
-		wait = new WebDriverWait(base.chromeDriver, 60);
-		try {
-            // Crear una instancia de Robot
-            Robot robot = new Robot();
-
-            // Esperar un poco para asegurarse de que la página se ha cargado completamente
-            Thread.sleep(3000);
-
-            // Seleccionar toda la URL en la barra de direcciones (Command + L en Mac)
-            robot.keyPress(KeyEvent.VK_META);
-            robot.keyPress(KeyEvent.VK_L);
-            robot.keyRelease(KeyEvent.VK_L);
-            robot.keyRelease(KeyEvent.VK_META);
-
-            // Esperar un poco para asegurarse de que la selección se ha realizado
-            Thread.sleep(2000);
-
-            // Navegar con las flechas al inicio de la "s"
-            for (int i = 0; i < 5; i++) {
-                robot.keyPress(KeyEvent.VK_LEFT);
-                robot.keyRelease(KeyEvent.VK_LEFT);
-                Thread.sleep(200); // Pequeña pausa entre las pulsaciones de las flechas
-            }
-
-            // Borrar la 's'
-            robot.keyPress(KeyEvent.VK_BACK_SPACE);
-            robot.keyRelease(KeyEvent.VK_BACK_SPACE);
-
-            // Presionar Enter para cargar la URL correcta
-            Thread.sleep(1000); // Aumentar el tiempo de espera antes de presionar Enter
-            robot.keyPress(KeyEvent.VK_ENTER);
-            robot.keyRelease(KeyEvent.VK_ENTER);
-
-        } catch (AWTException | InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        // Ahora la URL debe ser cargada con "http"
-        WebDriverWait wait = new WebDriverWait(BaseUtil.driver, 60);
-	}
+        confiChromeDriver.iniciarChromeDriver();
+        BaseUtil.chromeDriver.get(Credenciales.propertiesWebs().getProperty("web.redeban.url"));
+        BaseUtil.chromeDriver.manage().window().maximize();
+        wait = new WebDriverWait(BaseUtil.chromeDriver, 60);
+		
+//		WebDriver driver = new SafariDriver();
+//		driver.get("http://www.rbmtest.com.co/AdminMenuMonWeb/pages/welcome/Login.jsp");
+    }
 
 	public static void cerrarWebRedeban() {
 		BaseUtil.chromeDriver.quit();

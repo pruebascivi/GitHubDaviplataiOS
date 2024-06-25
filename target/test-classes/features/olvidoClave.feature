@@ -16,6 +16,17 @@ Feature: Modulo Olvido Clave
       | tipoDocumento | NumeroDocumento | claveNueva |
       | "cc"          | "10050077"      | "1342"     |
 
+	@CP13001M @passed
+  Scenario Outline: CP13001M_SYS_Validar proceso de olvido de clave para tipo documental CC solicitando nuevamente clave temporal
+    Given obtener numero celular actual en redeban <usuario>
+    And logout redeban al finalizar consulta
+    When completar flujo olvido clave solicitando nuevamente clave temporal <tipoId> <usuario> <claveNueva>
+    Then validar cambio de clave <tipoId> <usuario> <claveNueva>
+
+    Examples: 
+      | tipoId | usuario   | claveNueva |
+			|"CC"|"10050079"|"2580"|
+	
   @CP1321M
   Scenario Outline: CP1321M_SYS_Validar proceso de olvido de clave para tipo documental CC ingresando clave temporal erronea
     Given Ingresé al modulo olvido clave
