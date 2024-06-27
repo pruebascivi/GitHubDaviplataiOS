@@ -1,5 +1,7 @@
 package daviplata.nacional.iOS.steps;
 
+import static org.junit.Assert.fail;
+
 import daviplata.nacional.iOS.pageObjects.AdsPageObjects;
 import daviplata.nacional.iOS.pageObjects.LoginPageObjects;
 import daviplata.nacional.iOS.pageObjects.LoginRobustoPage;
@@ -48,6 +50,11 @@ public class AdsSteps {
 	
 	@Step
 	public void validarPopUpSolicitudIniciadaYCancelar() {
+        boolean popupFalla = utilidadesTCS.validateElementVisibilityCatch("xpath", AdsPageObjects.POPUP_NO_ES_POSIBLE_YA_CUENTA_CON_ADS);
+        if(popupFalla == true) {
+            Utilidades.tomaEvidencia("En este momento no es posible hacer la consulta o ya cuentas con un ADS vigente");
+            fail("En este momento no es posible hacer la consulta o ya cuentas con un ADS vigente");
+        }
         boolean elemento = utilidadesTCS.validateElementVisibilityCatch("xpath", AdsPageObjects.POPUP_YA_HA_INICIADO_SOLICITUD);
         if(elemento == true) {
             Utilidades.tomaEvidencia("Valido presencia de un proceso de solicitud iniciada");
@@ -202,14 +209,17 @@ public class AdsSteps {
     
 	@Step
     public void llenarFormularioInformacionPersonalSegundaPantalla(String correoElectronico, String tipoCalle, String numUnoDireccion, String numDosDireccion, String numTresDireccion, String tipoInmueble, String ciudadResidencia) {
-    	utilidadesTCS.clicElement("xpath",AdsPageObjects.CAMPO_CORREO_ELECTRONICO);
+        Utilidades.esperaMiliseg(8000);    
+		utilidadesTCS.esperarElementVisibility("xpath",AdsPageObjects.CAMPO_CORREO_ELECTRONICO);
     	//utilidadesTCS.cleanInputElement("xpath",AdsPageObjects.CAMPO_CORREO_ELECTRONICO);
     	//utilidadesTCS.escribirPorTecladoIos(correoElectronico);
         Utilidades.tomaEvidencia("Ingreso el correo electrónico");
         utilidadesTCS.clicElement("xpath",AdsPageObjects.DESPLEGABLE_DONDE_VIVE);
         utilidadesTCS.clicElement("xpath", "//XCUIElementTypeButton[@name='"+tipoCalle.trim()+"']");
         utilidadesTCS.writeElement("xpath",AdsPageObjects.CAMPO_NUMERO_UNO_DIRECCION, numUnoDireccion);
+        utilidadesTCS.clicElement("xpath",AdsPageObjects.BTN_DONE);
         utilidadesTCS.writeElement("xpath",AdsPageObjects.CAMPO_NUMERO_DOS_DIRECCION, numDosDireccion);
+        utilidadesTCS.clicElement("xpath",AdsPageObjects.BTN_DONE);
         utilidadesTCS.writeElement("xpath",AdsPageObjects.CAMPO_NUMERO_TRES_DIRECCION, numTresDireccion);
         utilidadesTCS.clicElement("xpath",AdsPageObjects.BTN_DONE);
         Utilidades.tomaEvidencia("Ingreso tipo de calle y la dirección");
@@ -229,7 +239,9 @@ public class AdsSteps {
         utilidadesTCS.clicElement("xpath", "//XCUIElementTypeButton[@name='"+tipoCalleDondeTrabaja.trim()+"']");
         Utilidades.tomaEvidencia("Ingresar tipo de calle de la dirección donde trabaja");
         utilidadesTCS.writeElement("xpath",AdsPageObjects.CAMPO_NUMERO_UNO_DIRECCION_TRABAJO, numUnoDireccionDondeTrabaja);
+        utilidadesTCS.clicElement("xpath",AdsPageObjects.BTN_DONE);
         utilidadesTCS.writeElement("xpath",AdsPageObjects.CAMPO_NUMERO_DOS_DIRECCION, numDosDireccionDondeTrabaja);
+        utilidadesTCS.clicElement("xpath",AdsPageObjects.BTN_DONE);
         utilidadesTCS.writeElement("xpath",AdsPageObjects.CAMPO_NUMERO_TRES_DIRECCION, numTresDireccionDondeTrabaja);
         utilidadesTCS.clicElement("xpath",AdsPageObjects.BTN_DONE);
         utilidadesTCS.clicElementAction("xpath",AdsPageObjects.CHECKOUT_SI_DIRECCION_PROPIA_DONDE_TRABAJA);
@@ -260,11 +272,12 @@ public class AdsSteps {
     
     @Step
     public void llenarFormularioInformacionFinancieraDos(String montoSumaLoQueDebe) {
-        Utilidades.esperaMiliseg(1000);   
-		for(int i = 0 ; i<2; i++) {
+        Utilidades.esperaMiliseg(8000);   
+        utilidadesTCS.clicElement("xpath", AdsPageObjects.TXT_ADELANTO_SALDO);  	
+		for(int i = 0 ; i<3; i++) {
 	        utilidadesTCS.clicElement("xpath", AdsPageObjects.SUMA_LO_QUE_DEBE);  
 		}
-        utilidadesTCS.writeElement("xpath", AdsPageObjects.SUMA_LO_QUE_DEBE, montoSumaLoQueDebe);
+        utilidadesTCS.writeElement("xpath", AdsPageObjects.SUMA_LO_QUE_DEBE, montoSumaLoQueDebe);  
         utilidadesTCS.clicElement("xpath", AdsPageObjects.BTN_DONE);
         utilidadesTCS.clicElementAction("xpath",AdsPageObjects.CHECKOUT_NO_PRODUCTOS_MONEDA_EXTRANJERA);
         Utilidades.tomaEvidencia("Diligenciar formulario informacion financiera dos");
@@ -333,22 +346,37 @@ public class AdsSteps {
         utilidadesTCS.esperarElementVisibility("xpath", AdsPageObjects.FORMULARIO_PANTALLA_INFORMACION_FINANCIERA);
         Utilidades.tomaEvidencia("Valido pantalla de informacion financiera");
         utilidadesTCS.clicElement("xpath", AdsPageObjects.BOTON_ATRAS_ADS);
-        utilidadesTCS.esperarElementVisibility("xpath",AdsPageObjects.SUMA_LO_QUE_DEBE);
+        utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.CONTINUAR_POP_UP_CAMBIAR_DISPOSITIVO);
         Utilidades.tomaEvidencia("Validar que el sistema deje al usuario en el punto maximo donde dejo diligenciado es decir debe tener toda la informacion de la pantalla informacion financiera dos");
     }
     
     @Step
     public void llenoFormularioPersonaPoliticamenteExpuesta() {
         Utilidades.esperaMiliseg(8000);    
-        utilidadesTCS.clicElementAction("xpath", AdsPageObjects.CHECKOUT_PERSONA_EXPUESTA);
-        Utilidades.esperaMiliseg(1000);    
-        utilidadesTCS.clicElementAction("xpath", AdsPageObjects.CHECKOUT_CARGO_POLITICO);
-        utilidadesTCS.clicElementAction("xpath", AdsPageObjects.CHECKOUT_JUNTA_DIRECTIVA);
-        Utilidades.scrollDownSwipe(1);
-        utilidadesTCS.clicElementAction("xpath", AdsPageObjects.CHECKOUT_PERSONA_POLITICAMENTE_EXPUESTA);
-        utilidadesTCS.clicElementAction("xpath", AdsPageObjects.CHECKOUT_FAMILIAR);
-        Utilidades.scrollDownSwipe(1);
+        boolean elemento = utilidadesTCS.validateElementVisibilityCatch("xpath", AdsPageObjects.TXT_USTED_HA_SIDO_O_FUE);
+        if(elemento == true) {
+            utilidadesTCS.clicElementAction("xpath", AdsPageObjects.CHECKOUT_USTED_HA_SIDO_O_FUE);
+        }
+        boolean elemento2 = utilidadesTCS.validateElementVisibilityCatch("xpath", AdsPageObjects.TXT_PER_POL_EXPUESTA);
+        if(elemento2 == true) {
+            utilidadesTCS.clicElementAction("xpath", AdsPageObjects.CHECKOUT_CARGO_POLITICO_NO);
+        }
+        boolean elemento3 = utilidadesTCS.validateElementVisibilityCatch("xpath", AdsPageObjects.TXT_FAMILIAR_PERSONA_CARACT_ANTERIORES);
+        if(elemento3 == true) {
+            utilidadesTCS.clicElementAction("xpath", AdsPageObjects.CHECKOUT_FAMILIAR_PERSONA_CARACT_ANTERIORES_NO);
+        }
         Utilidades.tomaEvidencia("Llenar formulario de persona politicamente expuesta");
+//        Utilidades.esperaMiliseg(8000);    
+//        utilidadesTCS.clicElementAction("xpath", AdsPageObjects.CHECKOUT_PERSONA_EXPUESTA);
+//        Utilidades.esperaMiliseg(1000);    
+//        utilidadesTCS.clicElementAction("xpath", AdsPageObjects.CHECKOUT_CARGO_POLITICO);
+//        utilidadesTCS.clicElementAction("xpath", AdsPageObjects.CHECKOUT_JUNTA_DIRECTIVA);
+//        utilidadesTCS.clicElement("xpath",AdsPageObjects.BTN_DONE);
+//        Utilidades.scrollDownSwipe(1);
+//        utilidadesTCS.clicElementAction("xpath", AdsPageObjects.CHECKOUT_PERSONA_POLITICAMENTE_EXPUESTA);
+//        utilidadesTCS.clicElementAction("xpath", AdsPageObjects.CHECKOUT_FAMILIAR);
+//        Utilidades.scrollDownSwipe(1);
+//        Utilidades.tomaEvidencia("Llenar formulario de persona politicamente expuesta");
     }
     
     @Step
@@ -361,6 +389,7 @@ public class AdsSteps {
         Utilidades.scrollDownSwipe(1);
         utilidadesTCS.clicElementAction("xpath", AdsPageObjects.CHECKOUT_PERSONA_POLITICAMENTE_EXPUESTA);
         utilidadesTCS.clicElementAction("xpath", AdsPageObjects.CHECKOUT_FAMILIAR);
+        utilidadesTCS.clicElement("xpath",AdsPageObjects.BTN_DONE);
         Utilidades.scrollDownSwipe(1);
         utilidadesTCS.clicElement("xpath", AdsPageObjects.CAMPO_QUE_CARGO_TIENE);
         utilidadesTCS.escribirPorTecladoIos("Alcalde");
@@ -375,7 +404,7 @@ public class AdsSteps {
         utilidadesTCS.esperarElementVisibility("xpath", AdsPageObjects.FORMULARIO_PANTALLA_INFORMACION_TRIBUTARIA);
         Utilidades.tomaEvidencia("Valido pantalla de informacion tributaria");
         utilidadesTCS.clicElement("xpath", AdsPageObjects.BOTON_ATRAS_ADS);
-        utilidadesTCS.esperarElementVisibility("xpath", AdsPageObjects.CHECKOUT_PERSONA_EXPUESTA);
+        utilidadesTCS.esperarElementVisibility("xpath", AdsPageObjects.TXT_USTED_HA_SIDO_O_FUE);
         Utilidades.tomaEvidencia("Validar que el sistema deje al usuario en el punto maximo donde dejo diligenciado es decir debe tener toda la informacion de la pantalla persona politicamente expuesta");
     }
 
@@ -425,7 +454,7 @@ public class AdsSteps {
         utilidadesTCS.writeElement("xpath", AdsPageObjects.CAMPO_DIRECCION_FACTA, direccionResidenciaFacta);
         utilidadesTCS.clicElement("xpath", AdsPageObjects.CAMPO_CIUDAD);
         utilidadesTCS.escribirPorTecladoIos(ciudad);
-//        Utilidades.scrollDownSwipe(1);
+        //Utilidades.scrollDownSwipe(1);
         utilidadesTCS.clicElement("xpath", AdsPageObjects.CAMPO_CIUDAD);
         utilidadesTCS.escribirPorTecladoIos(numeroPostal);
         utilidadesTCS.clicElement("xpath", AdsPageObjects.CAMPO_NUMERO_SEGURO_SOCIAL);

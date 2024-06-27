@@ -101,7 +101,7 @@ Feature: Modulo ADS
       | "CC"   | "1020624" | "1234"     | "Bogo"                    | "Colo"         | "xxx@gmail.com"   | "Calle"   | "51"            | "57"            | "20"             | "Casa"       | "Bogo"           | "Calle"               | "50"                        | "51"                        | "10"                         | "Oficina"                | "Bogo"         |
 
   # La data que se debe usar es un usuario con ADS
-  @CP09005M
+  @CP09005M @Passed
   Scenario Outline: CP09005M_SYS_Validar que si el cliente esta realizando su proceso de vinculacion ADS entre la pantalla de informacion financiera 1 y pasa a la pantalla de informacion financiera 2 y cierre el proceso, en el momento de retomar el sistema deje al usuario en el punto maximo donde dejo diligenciado es decir debe tener toda la informacion de la pantalla financiera 1.
     Given Login ADS <tipoId> <usuario> <contrasena>
     When Ingreso al pop up de adelanto de sueldo
@@ -129,7 +129,7 @@ Feature: Modulo ADS
       | "CC"   | "1020624" | "1234"     | "Bogo"                    | "Colo"         | "xxx@gmail.com"   | "Calle"   | "51"            | "57"            | "20"             | "Casa"       | "Bogo"           | "Calle"               | "50"                        | "51"                        | "10"                         | "Oficina"                | "Bogo"         | "50000"        | "2000000"           |
 
   # La data que se debe usar es un usuario con ADS
-  @CP09006M
+  @CP09006M @Passed
   Scenario Outline: CP09006M_SYS_Validar que si el cliente esta realizando su proceso de vinculacion ADS entre la pantalla de informacion financiera 2 y pasa a la pantalla de informacion PEP y cierre el proceso, en el momento de retomar el sistema deje al usuario en el punto maximo donde dejo diligenciado es decir debe tener toda la informacion de la pantalla financiera 2.
     Given Login ADS <tipoId> <usuario> <contrasena>
     When Ingreso al pop up de adelanto de sueldo
@@ -159,7 +159,7 @@ Feature: Modulo ADS
       | "CC"   | "1020624" | "1234"     | "Bogo"                    | "Colo"         | "xxx@gmail.com"   | "Calle"   | "51"            | "57"            | "20"             | "Casa"       | "Bogo"           | "Calle"               | "50"                        | "51"                        | "10"                         | "Oficina"                | "Bogo"         | "50000"        | "2000000"           | "1000000"          |
 
   # La data que se debe usar es un usuario con ADS
-  @CP09007M
+  @CP09007M @Passed
   Scenario Outline: CP09007M_SYS_Validar que si el cliente esta realizando su proceso de vinculacion ADS entre la pantalla de informacion PEP y pasa a la pantalla de informacion tributaria y cierre el proceso, en el momento de retomar el sistema deje al usuario en el punto maximo donde dejo diligenciado es decir debe tener toda la informacion de la pantalla PEP.
     Given Login ADS <tipoId> <usuario> <contrasena>
     When Ingreso al pop up de adelanto de sueldo
@@ -191,7 +191,7 @@ Feature: Modulo ADS
       | "CC"   | "1020624" | "1234"     | "Bogo"                    | "Colo"         | "xxx@gmail.com"   | "Calle"   | "51"            | "57"            | "20"             | "Casa"       | "Bogo"           | "Calle"               | "50"                        | "51"                        | "10"                         | "Oficina"                | "Bogo"         | "50000"        | "2000000"           | "1000000"          |
 
   # La data que se debe usar es un usuario con ADS
-  @CP09008M
+  @CP09008M @Passed
   Scenario Outline: CP09008M_SYS_Validar que si el cliente esta realizando su proceso de vinculacion ADS entre la pantalla de informacion tributaria 1 y pasa a la pantalla de declaracion tributaria y cierre el proceso, en el momento de retomar el sistema deje al usuario en el punto maximo donde dejo diligenciado es decir debe tener toda la informacion de la pantalla tributaria.
     Given Login ADS <tipoId> <usuario> <contrasena>
     When Ingreso al pop up de adelanto de sueldo
