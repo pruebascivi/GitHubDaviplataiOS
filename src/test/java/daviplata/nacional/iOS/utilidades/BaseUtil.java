@@ -48,10 +48,7 @@ public class BaseUtil {
 	public static String baseInfo;
 	public  static WebDriverWait wait;
 	public WebDriverWait waitAll;
-	public String numCelular;
-	public static String numero;
 	public static String numCelularUsuarioDestino = "";
-	public static String numCelularRedeban = "";
 	public static AppiumDriver<MobileElement> driver;
     public static IOSDriver<MobileElement> driveriOS;
 	//public LoginSteps stepsLogin;

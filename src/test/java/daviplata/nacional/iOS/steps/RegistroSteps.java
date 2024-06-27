@@ -38,8 +38,10 @@ public class RegistroSteps {
 	public void aceptarTerminos() {
 		registroObj.clickDaviplataInfo();
 		registroObj.btnTerminos();
-		Utilidades.tomaEvidencia("Acepto los terminos");
+		utilidad.tomaEvidencia("Acepto los terminos");
 		registroObj.btnContinuar();
+		
+
 	}
 	
 	@Step("Escribo la clave")
@@ -57,14 +59,17 @@ public class RegistroSteps {
 	@Step("Escribo la clave")
 	public void validoIngreso() {
 		registroObj.validoIngreso();
-		Utilidades.tomaEvidencia("Valido el ingreso correcto");
+		utilidad.tomaEvidencia("Valido el ingreso correcto");
+		
+
 	}
 	
 	@Step("Ingreso la otp invalida")
 	public void ingresoOtpInvalida() {
 		registroObj.ingresarOtpInvalida();
+		
+
 	}
-	
 	@Step("valido el mensaje otp invalida")
 	public void validoOtpInvalida() {
 		registroObj.otpInvalido();
@@ -79,7 +84,7 @@ public class RegistroSteps {
 	@Step("valido el mensaje otp invalida")
 	public void validoClaveInvalida() {
 		registroObj.validoClaveInco();
-		Utilidades.tomaEvidencia("Valido que se genere el mensaje de clave invalida");
+		utilidad.tomaEvidencia("Valido que se genere el mensaje de clave invalida");
 	}
 	
 	@Step
@@ -107,49 +112,40 @@ public class RegistroSteps {
 	
 	@Step
 	public void aceptarAutorizacion() {
-		Utilidades.esperaMiliseg(1500);
+		utilidad.esperaMiliseg(1500);
 		registroObj.aceptoReglamentoUso();
-		Utilidades.esperaMiliseg(800);
-		Utilidades.tomaEvidencia("Acepto autorizaciones de registro");
+		utilidad.esperaMiliseg(800);
+		utilidad.tomaEvidencia("Acepto autorizaciones de registro");
 		registroObj.clicBtnContinuar();	
-		Utilidades.esperaMiliseg(1500);
+		utilidad.esperaMiliseg(1500);
 		utilidadesTCS.esperarElementVisibility("xpath", RegistroPageObject.CEDULA_TRADICIONAL);
-		Utilidades.esperaMiliseg(800);
+		utilidad.esperaMiliseg(800);
 		utilidadesTCS.clicElement("xpath", RegistroPageObject.CEDULA_TRADICIONAL);
-		Utilidades.esperaMiliseg(1500);
-	}
-	
-	@Step
-	public void aceptarAutorizacionParaRegistro() {
-		Utilidades.esperaMiliseg(1500);
-		registroObj.aceptoReglamentoUso();
-		Utilidades.esperaMiliseg(800);
-		Utilidades.tomaEvidencia("Acepto autorizaciones de registro");
-		registroObj.clicBtnContinuar();	
-		Utilidades.esperaMiliseg(1500);
+		utilidad.esperaMiliseg(1500);
 	}
 	
 	@Step
 	public void validarRegistro() {
-		Utilidades.esperaMiliseg(2000);
-		Utilidades.tomaEvidencia("valide registro exitoso");
+		utilidad.esperaMiliseg(2000);
+		utilidad.tomaEvidencia("valide registro exitoso");
 		//registroObj.validarRegistro();
-		Utilidades.esperaMiliseg(1000);
-		Utilidades.tomaEvidencia("actualización de terminos y condiciones");
+		utilidad.esperaMiliseg(1000);
+		utilidad.tomaEvidencia("actualización de terminos y condiciones");
 		registroObj.aceptarAcualizacionTerminosYCondiciones();
-		Utilidades.esperaMiliseg(5000);
-		Utilidades.tomaEvidencia("registro completado");
+		utilidad.esperaMiliseg(5000);
+		utilidad.tomaEvidencia("registro completado");
 	}
 	
 	@Step("Ingreso a mis datos")
 	public void ingresarMisDatos(String nombre, String dia, String mes, String año, String diaExpedicion, String mesExpedicion, String anioExpedicion, String lugar, String cel, String correo) {
 		
 		boolean estadoVisible = utilidadesTCS.validateElementVisibilityCatch("xpath", RegistroMayoresPageObjects.TXT_VALIDACION_IDENTIDAD_BIO);
-		if(estadoVisible == false) {
+		if(estadoVisible == true) {
 			utilidadesTCS.esperarElementVisibility("xpath", RegistroMayoresPageObjects.TXT_VALIDACION_IDENTIDAD);
 			Utilidades.tomaEvidencia("Valido que me encuentro en la sección validación de identidad.");
 			utilidadesTCS.clicElement("xpath", RegistroMayoresPageObjects.BX_CEDULA_TRADICIONAL);
 			Utilidades.esperaMiliseg(1000);	
+			
 		}
 		registroObj.txtNombreApellido(nombre);
 		registroObj.ingresarDia(dia);
@@ -166,9 +162,9 @@ public class RegistroSteps {
 		registroObj.txtCorreo(correo);
 		utilidadesTCS.clickCoordinates(409,383);		
 		registroObj.txtCorreoConfirmar(correo);
-		Utilidades.esperaMiliseg(2000);
+		utilidad.esperaMiliseg(2000);
 		utilidadesTCS.clickCoordinates(409,383);		
-		Utilidades.tomaEvidencia("Datos diligenciados");
+		utilidad.tomaEvidencia("Datos diligenciados");
 		registroObj.btnContinuar();
 	}
 	

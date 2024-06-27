@@ -1,14 +1,14 @@
 @PasarPlataEnLinea
 Feature: Set de pasar plata en linea
 
-  @CP03600M @Passed
+  @CP03600M @here3
   Scenario Outline: CP03600M_SYS_Validar proceso por la opción a otro banco en línea a un daviplata
     Given obtener numero celular actual en redeban bolsillos <usuario>
     And Consulté saldo disponible en redeban
     And logout redeban al finalizar consulta
     When ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     And ir a la opcion TransfiYA
-    And Realizo flujo pasar plata transfiya <numCelular> <monto>
+    And realizo flujo pedir plata en linea <numCelular> <monto>
     And valido resultado transaccion exitosa
     And validar saldo final
     And obtener numero celular actual en redeban bolsillos <usuario>
@@ -18,11 +18,16 @@ Feature: Set de pasar plata en linea
 
     Examples: 
       | tipoId | usuario    | contrasena | numCelular   | monto   |
-      | "CC"   | "10050066" | "2589"     | "3227680744" | "11000" |
+      | "CC"   | "10050038" | "2589"     | "3227680744" | "11000" |
 
-  @CP03610M @passed
+  @CP03610M @here1
   Scenario Outline: CP03610M_SYS_Validar proceso por la opción a otro banco en línea a un daviplata y realizando aceptacion
-    Given obtener numero celular actual en redeban bolsillos <usuario2>
+    Given ingreso usuario y contrasena sin capturar saldo <tipoId> <usuario> <contrasena>
+    And ir a la opcion TransfiYA
+    And realizo flujo pedir plata en linea <numCelular> <monto>
+    And valido resultado transaccion exitosa
+    And logout app
+    When obtener numero celular actual en redeban bolsillos <usuario2>
     And Consulté saldo disponible en redeban
     Then logout redeban al finalizar consulta
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
@@ -42,19 +47,19 @@ Feature: Set de pasar plata en linea
     And Validar afectacion de saldos en redeban y daviplata
 
     Examples: 
-      | tipoId | usuario    | contrasena | numCelular   | monto  | tipoId2 | usuario2   | contrasena2 |
-      | "CC"   | "10333040" | "1234"     | "3221005049" | "5000" | "CC"    | "10050066" | "2589"      |
+      | tipoId | usuario      | contrasena | numCelular   | monto  | tipoId2 | usuario2     | contrasena2 |
+      | "CC"   | "1020770054" | "1342"     | "3227680768" | "2000" | "CC"    | "1020770068" | "1342"      |
 
   @CP03620M
   Scenario Outline: CP03620M_SYS_Validar proceso por la opción a otro banco en línea a un daviplata con daviplata origen GMF
     Given obtener numero celular actual en redeban <usuario>
     And consultar saldo tarjeta en redeban pasar plata cuenta
     And logout redeban
-    Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
-    And ir a la opcion 'Recibir y Pedir Plata'
-    When realizo flujo pedir plata en linea <numCelular> <monto>
+    When ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
+    And ir a la opcion TransfiYA
+    And realizo flujo pedir plata en linea <numCelular> <monto>
     And valido resultado transaccion exitosa
-    And Regreso al home desde trasnsaccion
+    And validar saldo final
     And obtener numero celular actual en redeban <usuario>
     And consultar saldo tarjeta en redeban pasar plata cuenta
     Then valido afectacion cuenta en redeban GMF <monto>
@@ -103,14 +108,13 @@ Feature: Set de pasar plata en linea
       | tipoId | usuario    | contrasena | numCelular   | monto  |
       | "CC"   | "10050099" | "2589"     | "3227680754" | "2000" |
 
-  @CP03670M @Passed
+  @CP03670M @pasarplata123
   Scenario Outline: CP03670M_SYS_Validar proceso por la opción a otro banco en línea de pedir plata realizando proceso de aceptacion.
-    Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
-    And ir a la opcion 'Recibir y Pedir Plata'
+    Given ingreso usuario y contrasena sin capturar saldo <tipoId> <usuario> <contrasena>
+    And ir a la opcion TransfiYA
     When realizo flujo pedir plata en linea <numCelular> <monto>
     And valido resultado transaccion exitosa
-    And Regreso al home desde trasnsaccion
-    And Salir de la app
+    And logout app
     When obtener numero celular actual en redeban bolsillos <usuario2>
     And Consulté saldo disponible en redeban
     Then logout redeban al finalizar consulta
@@ -128,14 +132,13 @@ Feature: Set de pasar plata en linea
       | tipoId | usuario    | contrasena | numCelular   | monto  | tipoId2 | usuario2   | contrasena2 |
       | "CC"   | "10333040" | "1234"     | "3221005049" | "1000" | "CC"    | "10050066" | "2589"      |
 
-  @CP03680M @Passed
+  @CP03680M @here3
   Scenario Outline: CP03680M_SYS_Validar proceso por la opción a otro banco en línea de pedir plata realizando proceso de rechazo.
-    Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
-    And ir a la opcion 'Recibir y Pedir Plata'
+    Given ingreso usuario y contrasena sin capturar saldo <tipoId> <usuario> <contrasena>
+    And ir a la opcion TransfiYA
     When realizo flujo pedir plata en linea <numCelular> <monto>
     And valido resultado transaccion exitosa
-    And Regreso al home desde trasnsaccion
-    And Salir de la app
+    And logout app
     When obtener numero celular actual en redeban bolsillos <usuario2>
     And Consulté saldo disponible en redeban
     Then logout redeban al finalizar consulta
@@ -147,6 +150,7 @@ Feature: Set de pasar plata en linea
     And obtener numero celular actual en redeban bolsillos <usuario2>
     And Consulté saldo disponible en redeban
     And logout redeban al finalizar consulta
+    And Validar igualdad saldos
 
     Examples: 
       | tipoId | usuario    | contrasena | numCelular   | monto  | tipoId2 | usuario2   | contrasena2 |
@@ -154,12 +158,11 @@ Feature: Set de pasar plata en linea
 
   @CP03690M @pasarplata12
   Scenario Outline: CP03690M_SYS_Validar proceso por la opción a otro banco en línea de pedir plata con cliente origen GMF y realizar rechazo
-    Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
-    And ir a la opcion 'Recibir y Pedir Plata'
+    Given ingreso usuario y contrasena sin capturar saldo <tipoId> <usuario> <contrasena>
+    And ir a la opcion TransfiYA
     When realizo flujo pedir plata en linea <numCelular> <monto>
     And valido resultado transaccion exitosa
-    And Regreso al home desde trasnsaccion
-    And Salir de la app
+    And logout app
     When obtener numero celular actual en redeban bolsillos <usuario2>
     And Consulté saldo disponible en redeban
     Then logout redeban al finalizar consulta
@@ -171,6 +174,7 @@ Feature: Set de pasar plata en linea
     And obtener numero celular actual en redeban bolsillos <usuario2>
     And Consulté saldo disponible en redeban
     And logout redeban al finalizar consulta
+    And Validar igualdad saldos
 
     Examples: 
       | tipoId | usuario      | contrasena | numCelular   | monto  | tipoId2 | usuario2     | contrasena2 |
@@ -178,12 +182,11 @@ Feature: Set de pasar plata en linea
 
   @CP03700M @pasarplata12
   Scenario Outline: CP03700M_SYS_Validar proceso donde el destino cuando se le pide dinero, y el origen no tiene suficiente en el disponible.
-    Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
+    Given ingreso usuario y contrasena sin capturar saldo <tipoId> <usuario> <contrasena>
     And ir a la opcion TransfiYA
     When realizo flujo pedir plata en linea <numCelular> <monto>
     And valido resultado transaccion exitosa
-    And Regreso al home desde trasnsaccion
-    And Salir de la app
+    And logout app
     When obtener numero celular actual en redeban bolsillos <usuario2>
     And Consulté saldo disponible en redeban
     Then logout redeban al finalizar consulta

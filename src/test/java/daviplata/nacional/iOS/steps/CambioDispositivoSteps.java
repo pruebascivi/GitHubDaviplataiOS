@@ -22,7 +22,7 @@ public class CambioDispositivoSteps {
 	public void ingresarUsuario(String tipoDocumento, String usuario) {
 		System.out.println("Ingresando a la app");
 		utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.BOTON_NOTIFICACIONES);
-		loginSteps.verificarVersion();// Version
+		loginSteps.validarVersionApp();// Version
 		utilidadesTCS.seleccionarTipoDocumentoInputHomeDaviplata("xpath",tipoDocumento);
 		utilidadesTCS.writeElement("xpath", LoginRobustoPage.CAMPO_INGRESO_USUARIO, usuario);
 		Utilidades.esperaMiliseg(800);

@@ -47,14 +47,14 @@ public class LoginSteps {
     	Utilidades.esperaMiliseg(1500);
 		utilidadesTCS.clicElement("xpath", AcercaDePageObjects.BOTON_NOTIFICACIONES);
     	Utilidades.esperaMiliseg(2000);
-    	utilidadesTCS.esperarElementVisibility("xpath", AcercaDePageObjects.BOTON_ACERCA_DE);
-		utilidadesTCS.clicElement("xpath", AcercaDePageObjects.BOTON_ACERCA_DE);
+    	utilidadesTCS.esperarElementVisibility("name", AcercaDePageObjects.BOTON_ACERCA_DE);
+		utilidadesTCS.clicElement("name", AcercaDePageObjects.BOTON_ACERCA_DE);
 		Utilidades.esperaMiliseg(2000);
 		String versionAppDaviplata = utilidadesTCS.obtenerTexto("xpath", AcercaDePageObjects.LABEL_VERSION);
 		BaseUtil.versionApp = versionAppDaviplata;
 		System.out.println("Esta es la version de la app: " + versionAppDaviplata);
 		Utilidades.tomaEvidencia("Esta es la versión de la app" + versionAppDaviplata);
-		utilidadesTCS.clicElement("xpath", AcercaDePageObjects.BOTON_REGRESAR);
+		utilidadesTCS.clicElement("name", AcercaDePageObjects.BOTON_REGRESAR);
 	}
 
 	@Step
@@ -69,7 +69,6 @@ public class LoginSteps {
 		Utilidades.esperaMiliseg(800);
 		Utilidades.tomaEvidencia("Selecciono tipo de usurio: " + tipoDocumento + " e ingreso usuario: " + usuario);
 		utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_INGRESAR);
-		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 120);
 		boolean estadoVisibilidadPopUP = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.POP_UP_CAMBIAR_DISPOSITIVO);
 		if (estadoVisibilidadPopUP == true) {
 			utilidadesTCS.clicElement("xpath", LoginRobustoPage.CONTINUAR_POP_UP_CAMBIAR_DISPOSITIVO);
@@ -140,7 +139,6 @@ public class LoginSteps {
 			pageLogin.darClicBotonIngresar();
 			Utilidades.esperaMiliseg(500);
 			pageLogin.darClicBotonIngresar();
-			utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 120);
 		}
 
 		boolean estadoVisible = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.POP_UP_INVITE_AMIGOS);
@@ -187,35 +185,37 @@ public class LoginSteps {
 	public void ingresarAAppSinCapturaSaldo(String tipoDocumento, String usuario, String contrasena) {
 		System.out.println("Ingresando a la app");
 		Utilidades.esperaMiliseg(500);
-		verificarVersion();
+		validarVersionApp();// Version
 		utilidadesTCS.seleccionarTipoDocumentoInputHomeDaviplata("xpath",tipoDocumento);
 		utilidadesTCS.writeElement("xpath", LoginRobustoPage.CAMPO_INGRESO_USUARIO, usuario);
 		Utilidades.esperaMiliseg(800);
 		Utilidades.tomaEvidencia("Se diligencia tipo de documento y usuario");
 		utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_INGRESAR);
 		Utilidades.tomaEvidencia("Ingreso a Daviplata");
+		/*boolean flag = pageLogin.activarDaviplata(usuario, contrasena);
+		if (flag) {
+			boolean clienteRegistrado = pageLogin.verificoSiEstaRegistrado();
+			if (!clienteRegistrado) {
+				System.out.println("Cliente no registrado en el dispositivo!!");
+				registroOTP(contrasena);
+			} else {
+				pageLogin.ingresarContrasena(contrasena);
+				utilidad.tomaEvidencia("Diligencio usuario " + usuario + " contraseña " + contrasena);
+				pageLogin.darClicBotonIngresar();
+				utilidad.esperaMiliseg(5000);
+				pageLogin.darClicBotonIngresar();
+			}
+		}*/
+        
         pageLogin.ingresarContrasena(contrasena);
         Utilidades.tomaEvidencia("Diligencio usuario " + usuario + " contraseña " + contrasena);
         pageLogin.darClicBotonIngresar();
-		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
-        Utilidades.esperaMiliseg(1500);
-        pageLogin.darClicBotonIngresar();
         Utilidades.esperaMiliseg(5000);
-		boolean estadoVisiblePopUpAmigos = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.POP_UP_INVITE_AMIGOS);
-		if(estadoVisiblePopUpAmigos == true) {
-			
-			Utilidades.esperaMiliseg(1500);
-			utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_CLOSE);
-		}
-		boolean estadoVisiblePopUpSolicitud = utilidadesTCS.validateElementVisibilityCatch("xpath", PasarPlataPageObjects.POPUP_SOLICITUD_PENDIENTE);
-		if(estadoVisiblePopUpSolicitud == true) {
-			Utilidades.esperaMiliseg(1500);
-			Utilidades.tomaEvidencia("Valido presencia de una solicitud de dinero");
-			utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_CLOSE);
-		}
+        pageLogin.darClicBotonIngresar();
+
 		Utilidades.esperaMiliseg(5000);
-		pageLogin.capturarSaldo();
-		//pageLogin.cerrarMensajeTopes();
+		Utilidades.tomaEvidencia("Saldo inicial del Daviplata");
+		pageLogin.cerrarMensajeTopes();
 	}
 	
 	
@@ -343,12 +343,12 @@ public class LoginSteps {
 		pageLogin.darClicBotonIngresar();
 		Utilidades.esperaMiliseg(500);
 		pageLogin.darClicBotonIngresar();
+		
 	}
-	
 	public void ingresarAAppNuevaContraseniaDespuesCambio(String tipoDocumento, String usuario, String claveNueva) {
 		System.out.println("Ingresando a la app");
-		Utilidades.esperaMiliseg(500);
-		verificarVersion();
+		Utilidades.esperaMiliseg(2000);
+		validarVersionApp();// Version
 		utilidadesTCS.seleccionarTipoDocumentoInputHomeDaviplata("xpath",tipoDocumento);
 		utilidadesTCS.writeElement("xpath", LoginRobustoPage.CAMPO_INGRESO_USUARIO, usuario);
 		Utilidades.esperaMiliseg(800);
@@ -361,12 +361,6 @@ public class LoginSteps {
 		Utilidades.esperaMiliseg(500);
 		pageLogin.darClicBotonIngresar();
 		Utilidades.esperaMiliseg(4000);
-		boolean estadoVisiblePopUpAmigos = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.POP_UP_INVITE_AMIGOS);
-		if(estadoVisiblePopUpAmigos == true) {
-			
-			Utilidades.esperaMiliseg(1500);
-			utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_CLOSE);
-		}
 		Utilidades.tomaEvidencia("Ingreso a la app correctamente");
 	}
 	
@@ -375,7 +369,7 @@ public class LoginSteps {
 		System.out.println("Ingresando a la app");
 		Utilidades.esperaMiliseg(2000);
 		pageLogin.popUpReinicio();
-		verificarVersion();// Version
+		validarVersionApp();// Version
 		pageAcercaDe.btn_ContinuarintroduccionApp();		
 		pageLogin.sliderRegistroAcercaDaviplata();
 		utilidadesTCS.seleccionarTipoDocumentoInputHomeDaviplata("xpath",tipoDocumento);
@@ -390,7 +384,7 @@ public class LoginSteps {
 	public void ingresarLongitudSuperiorQuince(String tipoDocumento, String usuario) {
 		System.out.println("Ingresando a la app");
 		Utilidades.esperaMiliseg(2000);
-		verificarVersion();// Version
+		validarVersionApp();// Version
 		utilidadesTCS.seleccionarTipoDocumentoInputHomeDaviplata("xpath",tipoDocumento);
 		utilidadesTCS.writeElement("xpath", LoginRobustoPage.CAMPO_INGRESO_USUARIO, usuario);
 		Utilidades.esperaMiliseg(800);
@@ -416,7 +410,7 @@ public class LoginSteps {
 	@Step
 	public void ingresarAAppContraInco(String usuario, String contrasena) {
 		System.out.println("Ingresando a la app");
-		verificarVersion();// Version
+		validarVersionApp();// Version
 		pageLogin.clickBtnPopUpHuella();
 		pageLogin.ingresarUsuario(usuario);
 		Utilidades.tomaEvidencia("Ingreso a Daviplata");
@@ -438,7 +432,7 @@ public class LoginSteps {
 	@Step
 	public void ingresarAAppSinClave(String usuario) {
 		System.out.println("Ingresando a la app");
-		verificarVersion();// Version
+		validarVersionApp();// Version
 		pageLogin.ingresarUsuario(usuario);
 		Utilidades.tomaEvidencia("Ingreso a Daviplata");
 		utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_INGRESAR);
@@ -448,14 +442,14 @@ public class LoginSteps {
 	@Step
 	public void ingresarAAppSinCredenciales() {
 		System.out.println("Ingresando a la app");
-		verificarVersion();// Version
+		validarVersionApp();// Version
 		Utilidades.tomaEvidencia("Ingreso a Daviplata");
 	}
 	
 	@Step
 	public void ingresarAAppCambioDispositivo(String tipoDocumento, String usuario, String contrasena) {
 		System.out.println("Ingresando a la app");
-		verificarVersion();// Version
+		validarVersionApp();// Version
 		Utilidades.tomaEvidencia("Ingreso a Daviplata");
 		utilidadesTCS.seleccionarTipoDocumentoInputHomeDaviplata("xpath",tipoDocumento);
 		utilidadesTCS.writeElement("xpath", LoginRobustoPage.CAMPO_INGRESO_USUARIO, usuario);
@@ -826,7 +820,7 @@ public class LoginSteps {
 
 		System.out.println("Ingresando a la app");
 		Utilidades.esperaMiliseg(2000);
-		verificarVersion();// Version
+		validarVersionApp();// Version
 		utilidadesTCS.seleccionarTipoDocumentoInputHomeDaviplata("xpath",tipoDocumento);
 		utilidadesTCS.writeElement("xpath", LoginRobustoPage.CAMPO_INGRESO_USUARIO, usuario);
 		Utilidades.esperaMiliseg(800);
@@ -869,7 +863,7 @@ public class LoginSteps {
 		System.out.println("Ingresando a la app");
 		Utilidades.esperaMiliseg(2000);
 		pageLogin.popUpReinicio();
-		verificarVersion();// Version
+		validarVersionApp();// Version
 		pageLogin.popUpReinicio();
 		pageAcercaDe.btn_ContinuarintroduccionApp();
 		pageLogin.sliderRegistroAcercaDaviplata();
@@ -894,7 +888,7 @@ public class LoginSteps {
 	public void ingresarALaAppParaLookAndFeel(String tipoDocumento, String usuario) {
 		System.out.println("Ingresando a la app");
 		Utilidades.esperaMiliseg(2000);
-		verificarVersion();// Version
+		validarVersionApp();// Version
 		pageAcercaDe.btn_ContinuarintroduccionApp();		
 		pageLogin.sliderRegistroAcercaDaviplata();
 		utilidadesTCS.seleccionarTipoDocumentoInputHomeDaviplata("xpath",tipoDocumento);
@@ -945,7 +939,7 @@ public class LoginSteps {
         System.out.println("Ingresando a la app");
         Utilidades.esperaMiliseg(2000);
         pageLogin.popUpReinicio();
-        verificarVersion();// Version
+        validarVersionApp();// Version
         pageLogin.popUpReinicio();
         pageAcercaDe.btn_ContinuarintroduccionApp();
         pageLogin.sliderRegistroAcercaDaviplata();
@@ -970,17 +964,16 @@ public class LoginSteps {
         Utilidades.tomaEvidencia("Ingreso a Daviplata");
     }
 	
-	@Step
 	public void verificarVersion() {
+
 		try {
-			Utilidades.esperaMiliseg(1500);
-			utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.MENU_TRES_PUNTOS);
-			utilidadesTCS.clicElement("xpath", LoginRobustoPage.MENU_TRES_PUNTOS);
+			
+			utilidadesTCS.clicElement("name", LoginRobustoPage.MENU_TRES_PUNTOS);
 			Utilidades.tomaEvidencia("Menu tres puntos");
 		} catch(Exception e) {
 			
 			System.out.println("No se pudo interactuar con el elemento debido a: " + e.getMessage().toString());
-			assert utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.MENU_TRES_PUNTOS) : "No se pudo interactuar con el elemento." + LoginRobustoPage.MENU_TRES_PUNTOS;
+			assert utilidadesTCS.validateElementVisibilityCatch("name", LoginRobustoPage.MENU_TRES_PUNTOS) : "No se pudo interactuar con el elemento." + LoginRobustoPage.MENU_TRES_PUNTOS;
 		}
 		try {
 			Utilidades.esperaMiliseg(2000);

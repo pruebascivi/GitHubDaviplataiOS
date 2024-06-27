@@ -684,7 +684,7 @@ public class Utilidades {
     	} while (count < repes);
 	}
 
-	public static String numAleatorio(int limSuperior, int limInferior) {
+	public String numAleatorio(int limSuperior, int limInferior) {
 
 		Random numAleatorio = new Random();
 		int n = (numAleatorio.nextInt(limSuperior - limInferior + 1) + limInferior);
@@ -762,7 +762,7 @@ public class Utilidades {
 
 	}
 
-	//Press by coordinates
+//Press by coordinates
 	public void pressByCoordinates(int x, int y, long seconds) {
 		new TouchAction(driver).press(point(x, y)).waitAction(waitOptions(ofSeconds(seconds))).release().perform();
 	}

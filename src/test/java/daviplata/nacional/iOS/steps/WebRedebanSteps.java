@@ -33,29 +33,30 @@ public class WebRedebanSteps {
 	Utilidades Utilidades;
 	static String numeroTarjetaDestino = "";
 	UtilidadesTCS utilidadesTCS;
-	WebRedebanPageObjects webRedebanPageObjects = new WebRedebanPageObjects();
+
+	public static WebRedebanPageObjects webRedebanPageObjects;
 
 	public String consultaDiaria(String numeroID, String autorizador) {
 		String valor = null;
 		try {
 			WebRedebanPageObjects.abrirWebRedeban();
 //			webRedebanPageObjects.clicBtnContinuar();
-			WebRedebanPageObjects.sendKeysInputUsuario();
-			WebRedebanPageObjects.sendKeysInputPass();
-			WebRedebanPageObjects.clicBtnEnvia();
-			WebRedebanPageObjects.clicBtnDebitoPrepago();
-			WebRedebanPageObjects.clicBtnConsultaClientes();
-			WebRedebanPageObjects.clicChkNumeroID();
-			WebRedebanPageObjects.sendKeysInputNumeroID(numeroID);
+			webRedebanPageObjects.sendKeysInputUsuario();
+			webRedebanPageObjects.sendKeysInputPass();
+			webRedebanPageObjects.clicBtnEnvia();
+			webRedebanPageObjects.clicBtnDebitoPrepago();
+			webRedebanPageObjects.clicBtnConsultaClientes();
+			webRedebanPageObjects.clicChkNumeroID();
+			webRedebanPageObjects.sendKeysInputNumeroID(numeroID);
 			utilidad.tomaEvidenciaPantalla("web-Ingreso cliente de DaviPlata");
-			WebRedebanPageObjects.clicBtnEnviar();
-			String tarjeta = WebRedebanPageObjects.returnNumeroTarjetaNor();
+			webRedebanPageObjects.clicBtnEnviar();
+			String tarjeta = webRedebanPageObjects.returnNumeroTarjetaNor();
 			utilidad.tomaEvidenciaPantalla("web-Guardo el numero de tarjeta");
 			System.out.println(tarjeta);
-			WebRedebanPageObjects.clicBtnAutorizador();
+			webRedebanPageObjects.clicBtnAutorizador();
 			webRedebanPageObjects.clicBtnConsultas();
-			WebRedebanPageObjects.clicBtnMovimientoDiario();
-			WebRedebanPageObjects.sendKeysInputTarjeta(tarjeta);
+			webRedebanPageObjects.clicBtnMovimientoDiario();
+			webRedebanPageObjects.sendKeysInputTarjeta(tarjeta);
 			utilidad.tomaEvidenciaPantalla("web-Ingreso numero tarjeta");
 			Date date = new Date();
 			try {
@@ -327,6 +328,7 @@ public class WebRedebanSteps {
 		System.out.println("numero Celular: " + numeroCelular);
 		Serenity.setSessionVariable("numeroCelularRedeban").to(numeroCelular);
 		return numeroCelular;
+
 	}
 
 	public String consultaEstadoExcepcion(String cliente) {
@@ -508,8 +510,6 @@ public class WebRedebanSteps {
 	}
 
 	public void buscarPorTarjeta(String tarjeta) {
-        webRedebanPageObjects.clicBtnAutorizador();
-        webRedebanPageObjects.clicBtnConsultas();
         webRedebanPageObjects.clicBtnConsultaCuposTarjeta();
         String auxiliar;
         int contador = 0;
@@ -517,12 +517,13 @@ public class WebRedebanSteps {
             auxiliar = "";
             webRedebanPageObjects.clicChkTarjetaID();
             webRedebanPageObjects.sendKeysInputTarjetaID(tarjeta);
-            Utilidades.esperaMiliseg(4000);
+            Utilidades.esperaMiliseg(500);
             webRedebanPageObjects.clicBtnEnviar();
             auxiliar = webRedebanPageObjects.clicRadioBtnConsulta3();
             contador++;
             System.out.println("contador buscarPorTarjeta vale: " + contador);
         } while (auxiliar.equals("") && contador <= 3);
+        utilidad.esperaMiliseg(4000);
         webRedebanPageObjects.clicBtnConsultaDatos();
         System.out.println("Finalicé con éxito buscarPorTarjeta");
     }
@@ -1048,46 +1049,4 @@ public class WebRedebanSteps {
             fail("Se produjo un error no esperado: " + e.getMessage());
         }
     }
-	
-	@Step
-	public String consultaNumeroCelularConEstadoDiferente(String cliente, String estadoRedeban) {
-	        String numeroCelular = null;
-	        try {
-	            loginWebRedeban();
-	            webRedebanPageObjects.clicBtnDebitoPrepago();
-	            webRedebanPageObjects.clicBtnConsultaClientes();
-	            webRedebanPageObjects.clicChkNumeroID(2);
-	            webRedebanPageObjects.sendKeysInputNumeroID(cliente);
-	            webRedebanPageObjects.clicBtnEnviar();
-	            Utilidades.esperaMiliseg(1500);
-	            Utilidades.esperaMiliseg(6000);
-	            utilidad.tomaEvidenciaPantalla("Consulta Numero Tarjeta web Redeban");
-	            int row = webRedebanPageObjects.returnEstadoDiferente(estadoRedeban);
-	            System.out.println("row: " + row);
-	            String numeroBin = webRedebanPageObjects.returnNumeroBin(row);
-	            System.out.println("num: " + numeroBin);
-	            if (numeroBin.length() != 0) {
-	                numeroTarjeta = webRedebanPageObjects.returnNumeroTarjeta(row);
-	                Serenity.setSessionVariable("numeroTarjeta").to(numeroTarjeta);
-	                System.out.println("Numero Tarjeta: " + numeroTarjeta);
-	                numeroCelular = numeroTarjeta.split(numeroBin)[1];
-	            } else {
-	                logOut("//img[@src='/ASDebitMonWeb/images/pages/logout.gif']");
-	            }
-	            System.out.println("numero Celular: " + numeroCelular);
-	            Serenity.setSessionVariable("numeroCelularRedeban").to(numeroCelular);
-	            BaseUtil.numero = numeroCelular;
-	            return numeroCelular;
-	        } catch (TimeoutException e) {
-	            logOut("//img[contains(@src, 'logout.gif')]");
-	            fail("Tiempo de espera excedido: " + e.getMessage());
-	        } catch (WebDriverException e) {
-	            logOut("//img[contains(@src, 'logout.gif')]");
-	            fail("Error en WebDriver: " + e.getMessage());
-	        } catch (Exception e) {
-	            logOut("//img[contains(@src, 'logout.gif')]");
-	            fail("Se produjo un error no esperado: " + e.getMessage());
-	        }
-	        return numeroCelular;
-	    }
 }

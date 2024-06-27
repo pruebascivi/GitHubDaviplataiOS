@@ -518,8 +518,8 @@ public class WebRedebanPageObjects {
 
 	public static void clicBtnDebitoPrepago() {
 //		base.base.chromeDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		System.out.println(BaseUtil.chromeDriver.getWindowHandles());
-		System.out.println(BaseUtil.chromeDriver.getTitle());
+		System.out.println(base.chromeDriver.getWindowHandles());
+		System.out.println(base.chromeDriver.getTitle());
 		for (String handles : base.chromeDriver.getWindowHandles()) {
 			if (!base.chromeDriver.getWindowHandle().equals(handles)) {
 				base.chromeDriver.switchTo().window(handles);
@@ -546,16 +546,29 @@ public class WebRedebanPageObjects {
 		element.click();
 	}
 
-	public void clicBtnConsultaCuposTarjeta() {
-        WebElement element = wait
-                .until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnConsultaCuposTarjeta)));
-        element.click();
-    }
+	public static void clicBtnConsultaCuposTarjeta() {
+		Utilidades.esperaMiliseg(1500);
+		try {
+			WebElement element = base.chromeDriver.findElement(By.xpath(btnConsultaCuposTarjeta));
+			element.click();
+		} catch (Exception e) {
+			clicBtnConsultas();
+			WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(btnConsultaCuposTarjeta)));
+			element.click();
+		}
+	}
 
-	public void clicBtnConsultas() {
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(WebRedebanPageObjects.btnConsultas)));
-        element.click();
-    }
+	public static void clicBtnConsultas() {
+		utilidad.esperaMiliseg(1500);
+		try {
+			WebElement element = base.chromeDriver.findElement(By.xpath(btnConsultas));
+			element.click();
+		} catch (Exception e) {
+			clicBtnAutorizador();
+			WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(btnConsultas)));
+			element.click();
+		}
+	}
 
 	public static void clicChkNumeroID() {
 		try {
@@ -577,60 +590,6 @@ public class WebRedebanPageObjects {
 			contador = 0;
 		}
 	}
-	
-	public void clicChkNumeroID(int contar) {
-        try {
-            contador++;
-            for (int i = 0; i < contar; i++) {
-                WebElement element = wait
-                        .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(this.chkNumeroID)));
-                if (!(element.isSelected())) {
-                    element.click();
-                } else {
-                    System.out.println("El check de Numero ID ya esta checkeado");
-                }
-            }
-
-        } catch (Exception e) {
-            if (!(contador == 20)) {
-                Utilidades.esperaMiliseg(2000);
-                clicChkNumeroID(contar);
-            } else {
-                fail("No se pudo dar clic en el Check Número ID de redeban " + this.chkNumeroID + " debido a: "
-                        + e.getMessage());
-            }
-        } finally {
-            contador = 0;
-        }
-    }
-	
-	public int returnEstadoDiferente(String estadoRedeban) {
-        boolean flag = false;
-        WebElement element = null;
-        int conta = 3; // el xpath revisa desde el tr3 de la tabla en redeban
-        WebElement table = wait
-                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@class='table1']")));
-        List<WebElement> TotalRowsList = table.findElements(By.tagName("tr"));
-        for (int i = 1; i <= TotalRowsList.size() - 8; i++) {
-            element = BaseUtil.chromeDriver
-                    .findElement(By.xpath("//*[@id='generalForm']/table[2]/tbody/tr[" + conta + "]/td[11]"));
-            String estadoDaviplata = element.getText();
-            if (estadoDaviplata.equalsIgnoreCase(estadoRedeban.trim())) {
-                i = TotalRowsList.size();
-                flag = true;
-            } else {
-                conta++;
-                clicBtnSalir("//img[contains(@src, 'logout.gif')]");
-                cerrarWebRedeban();
-                System.out.println("Cerré Redeban Correctamente");
-                fail("El estado de la cuenta del Daviplata debe estar en estado 'NOR' y no en: " + estadoDaviplata);
-            }
-        }
-        if (flag)
-            return conta;
-        else
-            return 0;
-    }
 
 	public static void clicChkTarjetaID() {
 		try {
@@ -1045,7 +1004,7 @@ public class WebRedebanPageObjects {
 			return 0;
 	}
 	
-	public int validarEstadoUsuarios(String estado) {
+	public static int validarEstadoUsuarios(String estado) {
         boolean flag = false;
         WebElement element = null;
         int conta = 3; // el xpath revisa desde el tr3 de la tabla en redeban
@@ -1055,7 +1014,7 @@ public class WebRedebanPageObjects {
             element = BaseUtil.chromeDriver
                     .findElement(By.xpath("//*[@id='generalForm']/table[2]/tbody/tr[" + conta + "]/td[11]"));
             System.out.println("Element:" + element.getText());
-            if (element.getText().equalsIgnoreCase(estado)) {
+			if (element.getText().equalsIgnoreCase(estado)) {
                 i = TotalRowsList.size();
                 flag = true;
             } else {

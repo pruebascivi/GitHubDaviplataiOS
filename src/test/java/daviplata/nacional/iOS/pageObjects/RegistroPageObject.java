@@ -147,7 +147,7 @@ public class RegistroPageObject extends PageObject {
 	public static String CHECK_BOX_REGLAMENTO_USO = "(//XCUIElementTypeOther[2]/XCUIElementTypeButton)[1] | //XCUIElementTypeButton[@name='ic ui checkbox empty 2@2x']";
 	public static String CHECK_BOX_DATOS_PERSONALES = "(//XCUIElementTypeOther[4]/XCUIElementTypeButton)[1]";
 	public static String CHECK_BOX_REGLAMENTO_CONSULTA = "(//XCUIElementTypeOther[6]/XCUIElementTypeButton)[1]";
-	public static String BTN_ACEPTAR = "//XCUIElementTypeButton[@name='Done' or @name='Aceptar'] | //XCUIElementTypeStaticText[@name='Continuar'] | //XCUIElementTypeButton[@name='Continuar']";
+	public static String BTN_ACEPTAR = "//XCUIElementTypeButton[@name='Done' or @name='Aceptar']";
 
 	
 	public void btnTomarFoto() {
@@ -217,6 +217,9 @@ public class RegistroPageObject extends PageObject {
 		//utilidad.moverPantalla(734, 1597, 723, 1927);
 		//utilidad.moverPantalla(734, 1597, 723, 1927);
 		//utilidad.moverPantalla(734, 1597, 723, 1927);
+
+
+	
 	}
 	
 	public void txtLugarExp(String lugar) {
@@ -246,7 +249,7 @@ public class RegistroPageObject extends PageObject {
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnContinuarTeclado)));
 		driver.findElement(By.xpath(this.btnContinuarTeclado)).click();
 		
-		Utilidades.tomaEvidencia("Ingreso los ultimos datos");
+		utilidad.tomaEvidencia("Ingreso los ultimos datos");
 	}
 	
 	public void txtCorreoConfirmar(String correo) {
@@ -258,7 +261,7 @@ public class RegistroPageObject extends PageObject {
 	}
 	
 	public void btnContinuar() {
-		Utilidades.tomaEvidencia("Continuar");
+		utilidad.tomaEvidencia("Continuar");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnContinuar)));
 		driver.findElement(By.xpath(this.btnContinuar)).click();
 	}
@@ -301,7 +304,7 @@ public class RegistroPageObject extends PageObject {
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//XCUIElementTypeButton[@name='Continuar']")));
 		driver.findElement(By.xpath("//XCUIElementTypeButton[@name='Continuar']")).click();
 		
-		Utilidades.tomaEvidencia("Ingreso la clave y continuar");
+		utilidad.tomaEvidencia("Ingreso la clave y continuar");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnContinuarClave)));
 		driver.findElement(By.xpath(this.btnContinuarClave)).click();
 		
@@ -324,7 +327,12 @@ public class RegistroPageObject extends PageObject {
 		driver.findElement(By.xpath("//XCUIElementTypeButton[@name='Continuar']")).click();
 		
 	}
-
+	
+	
+	
+	
+	
+	
 	public void btnPersona() {
 		/*MobileElement element = (MobileElement) wait
 				.until(ExpectedConditions.elementToBeClickable(By.id(this.btnPersona)));
@@ -333,7 +341,7 @@ public class RegistroPageObject extends PageObject {
 		
 		MobileElement element2 = (MobileElement) wait
 				.until(ExpectedConditions.elementToBeClickable(By.id(this.btnCrearPersona)));
-		Utilidades.tomaEvidencia("Crear persona");
+		utilidad.tomaEvidencia("Crear persona");
 		element2.click();
 	
 	}
@@ -399,7 +407,7 @@ public class RegistroPageObject extends PageObject {
 		
 		MobileElement element3 = (MobileElement) wait
 				.until(ExpectedConditions.elementToBeClickable(By.id(this.btnContinuarClave)));
-		Utilidades.tomaEvidencia("Ingreso la clave y continuar");
+		utilidad.tomaEvidencia("Ingreso la clave y continuar");
 		element3.click();
 		
 	}
@@ -416,7 +424,7 @@ public class RegistroPageObject extends PageObject {
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(this.btnContinuar)));
 		driver.findElement(By.xpath(this.btnContinuar)).click();
 		
-		Utilidades.tomaEvidencia("Ingreso la otp invalida");
+		utilidad.tomaEvidencia("Ingreso la otp invalida");
 	
 	}
 
@@ -433,7 +441,7 @@ public class RegistroPageObject extends PageObject {
 			driver.findElement(By.xpath(this.checkBoxReglamentoUso)).click();
 		}catch(Exception e) {
 		    if(!(contador==5)) {
-		    	Utilidades.esperaMiliseg(2000);
+		    	utilidad.esperaMiliseg(2000);
 		    	aceptoReglamentoUso();
 		    }else {
 		    	fail("No se encontró checkBox de reglamento de uso en registro de usuarios, debido a: " + e.getMessage());
@@ -449,7 +457,7 @@ public class RegistroPageObject extends PageObject {
 			driver.findElement(By.xpath(this.checkBoxReglamentoDatosPersonales)).click();
 		}catch(Exception e) {
 		    if(!(contador==5)) {
-		    	Utilidades.esperaMiliseg(2000);
+		    	utilidad.esperaMiliseg(2000);
 		    	aceptoReglamentoDatosPersonales();
 		    }else {
 		    	fail("No se encontró checkBox de reglamento de datos personales en registro de usuarios, debido a: " + e.getMessage());
@@ -465,7 +473,7 @@ public class RegistroPageObject extends PageObject {
 			driver.findElement(By.xpath(this.checkBoxReglamentoConsultaInformacion)).click();
 		}catch(Exception e) {
 		    if(!(contador==5)) {
-		    	Utilidades.esperaMiliseg(2000);
+		    	utilidad.esperaMiliseg(2000);
 		    	aceptoReglamentoConsultaInformacion();
 		    }else {
 		    	fail("No se encontró checkBox de reglamento de consulta de informacion personal en registro de usuarios, debido a: " + e.getMessage());
@@ -481,7 +489,7 @@ public class RegistroPageObject extends PageObject {
 			driver.findElement(By.xpath(this.btnContinuarAutorizaciones)).click();
 		}catch(Exception e) {
 		    if(!(contador==5)) {
-		    	Utilidades.esperaMiliseg(2000);
+		    	utilidad.esperaMiliseg(2000);
 		    	clicBtnContinuar();
 		    }else {
 		    	fail("No se encontró botón 'Continuar' en registro de usuarios, debido a: " + e.getMessage());
@@ -502,7 +510,7 @@ public class RegistroPageObject extends PageObject {
 			driver.findElement(By.xpath(this.btnMiDaviplata)).click();
 		}catch(Exception e) {
 		    if(!(contador==5)) {
-		    	Utilidades.esperaMiliseg(2000);
+		    	utilidad.esperaMiliseg(2000);
 		    	validarRegistro();
 		    }else {
 		    	fail("No se encontró botón 'Continuar' en registro de usuarios, debido a: " + e.getMessage());
@@ -544,7 +552,7 @@ public class RegistroPageObject extends PageObject {
 			
 		}catch(Exception e) {
 		    if(!(contador==5)) {
-		    	Utilidades.esperaMiliseg(2000);
+		    	utilidad.esperaMiliseg(2000);
 		    	aceptarAcualizacionTerminosYCondiciones();
 		    }else {
 		    	fail("No se encontró botón 'Continuar' en registro de usuarios, debido a: " + e.getMessage());
@@ -558,11 +566,11 @@ public class RegistroPageObject extends PageObject {
 		    contador++;
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnDia)));
 			driver.findElement(By.xpath(this.btnDia)).click();
-			Utilidades.esperaMiliseg(1000);
+			utilidad.esperaMiliseg(1000);
 			driver.findElement(By.xpath("//XCUIElementTypeStaticText[@name='"+ dia +"']")).click();
 		}catch(Exception e) {
 		    if(!(contador==5)) {
-		    	Utilidades.esperaMiliseg(2000);
+		    	utilidad.esperaMiliseg(2000);
 		    	ingresarDia(dia);
 		    }else {
 		    	fail("No se encontró btn 'Día' en registro, debido a: " + e.getMessage());
@@ -574,11 +582,11 @@ public class RegistroPageObject extends PageObject {
 		try {
 		    contador++;
 			driver.findElement(By.xpath(this.btnMes)).click();
-			Utilidades.esperaMiliseg(1000);
+			utilidad.esperaMiliseg(1000);
 			driver.findElement(By.xpath("//XCUIElementTypeStaticText[@name='"+ mes +"']")).click();
 		}catch(Exception e) {
 		    if(!(contador==5)) {
-		    	Utilidades.esperaMiliseg(2000);
+		    	utilidad.esperaMiliseg(2000);
 		    	ingresarMes(mes);
 		    }else {
 		    	fail("No se encontró btn 'Mes' en registro, debido a: " + e.getMessage());
@@ -590,15 +598,15 @@ public class RegistroPageObject extends PageObject {
 	public void ingresarAño(String año) {
 		System.out.println("ingresando año");
 		try {
-			Utilidades.esperaMiliseg(4000);
+			utilidad.esperaMiliseg(4000);
 		    contador++;
 			driver.findElement(By.xpath(this.btnAño)).click();
 			
-			Utilidades.esperaMiliseg(1000);
+			utilidad.esperaMiliseg(1000);
 			driver.findElement(By.xpath("//XCUIElementTypeStaticText[@name='"+ año +"']")).click();
 		}catch(Exception e) {
 		    if(!(contador==5)) {
-		    	Utilidades.esperaMiliseg(2000);
+		    	utilidad.esperaMiliseg(2000);
 		    	ingresarAño(año);
 		    }else {
 		    	fail("No se encontró btn 'Año' en registro, debido a: " + e.getMessage());
@@ -620,11 +628,11 @@ public class RegistroPageObject extends PageObject {
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnDiaExpedicion)));
 			driver.findElement(By.xpath(this.btnAño)).click();
 			
-			Utilidades.esperaMiliseg(1000);
+			utilidad.esperaMiliseg(1000);
 			driver.findElement(By.xpath("//XCUIElementTypeStaticText[@name='"+ diaExpedicion +"']")).click();
 		}catch(Exception e) {
 		    if(!(contador==5)) {
-		    	Utilidades.esperaMiliseg(2000);
+		    	utilidad.esperaMiliseg(2000);
 		    	ingresarDiaExpedicion(diaExpedicion);
 		    }else {
 		    	fail("No se encontró botón 'Dia' de expedición del documento en registro, debido a: " + e.getMessage());
@@ -640,16 +648,17 @@ public class RegistroPageObject extends PageObject {
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnMesExpedicion)));
 			driver.findElement(By.xpath(this.btnMesExpedicion)).click();
 			
-			Utilidades.esperaMiliseg(1000);
+			utilidad.esperaMiliseg(1000);
 			driver.findElement(By.xpath("//XCUIElementTypeStaticText[@name='"+ mesExpedicion +"']")).click();
 		}catch(Exception e) {
 		    if(!(contador==5)) {
-		    	Utilidades.esperaMiliseg(2000);
+		    	utilidad.esperaMiliseg(2000);
 		    	ingresarMesExpedicion(mesExpedicion);
 		    }else {
 		    	fail("No se encontró botón 'Mes' de expedición del documento en registro, debido a: " + e.getMessage());
 		    }
 		}finally {contador=0;}
+		
 	}
 	
 	public void ingresarAnioExpedicion(String anioExpedicion) {
@@ -658,16 +667,17 @@ public class RegistroPageObject extends PageObject {
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnAnioExpedicion)));
 			driver.findElement(By.xpath(this.btnAnioExpedicion)).click();
 			
-			Utilidades.esperaMiliseg(1000);
+			utilidad.esperaMiliseg(1000);
 			driver.findElement(By.xpath("//XCUIElementTypeStaticText[@name='"+ anioExpedicion +"']")).click();
 		}catch(Exception e) {
 		    if(!(contador==5)) {
-		    	Utilidades.esperaMiliseg(2000);
+		    	utilidad.esperaMiliseg(2000);
 		    	ingresarAnioExpedicion(anioExpedicion);
 		    }else {
 		    	fail("No se encontró botón 'Año' de expedición del documento en registro, debido a: " + e.getMessage());
 		    }
 		}finally {contador=0;}
+		
 	}
 	
 	
@@ -682,11 +692,18 @@ public class RegistroPageObject extends PageObject {
 			driver.findElement(By.xpath(this.ciudadEncontrada)).click();
 		}catch(Exception e) {
 		    if(!(contador==5)) {
-		    	Utilidades.esperaMiliseg(2000);
+		    	utilidad.esperaMiliseg(2000);
 		    	ingresarLugarExp(lugar);
 		    }else {
 		    	fail("No se encontró botón desplegable de 'Ciudad de expedicion del documento', debido a: " + e.getMessage());
 		    }
 		}finally {contador=0;}
+		
 	}
+	
+	
+
+
+
+
 }

@@ -162,7 +162,7 @@ Feature: Pruebas en la funcionalidad de perfil negocio de la app Daviplata.
       | tipoId | usuario      | contrasena |
       | "CC"   | "1020770002" | "1234"     |
 
-  @CP02691M @Passed @defectoQr
+  @CP02691M @defectoQr
   Scenario Outline: CP02691M_SYS_Validar la creación de código QR sin valor
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     When Ingreso a perfil negocio
@@ -393,7 +393,7 @@ Feature: Pruebas en la funcionalidad de perfil negocio de la app Daviplata.
       | tipoId | usuario      | contrasena | nombreCatalogo | nombreCategoria | nombreProducto | nombreContacto | numeroContacto | unidadesDisponibles | valorProducto |
       | "CC"   | "1020770002" | "1234"     | "Mouse"        | "Grandes"       | "Mouse Gamer"  | "Camila"       | "3213702171"   | "2"                 | "40000"       |
 
-  @CP02702M @Defecto
+  @CP02702M @defecto
   Scenario Outline: CP02702M_SYS_Validar funcionalidad de pasar plata (a otro banco), desde botón de home desde perfil negocio.
     Given obtener numero celular actual en redeban bolsillos <usuario>
     And Consulté saldo disponible en redeban
@@ -414,7 +414,7 @@ Feature: Pruebas en la funcionalidad de perfil negocio de la app Daviplata.
       | tipoId | usuario      | contrasena | numeroProducto | numId     | montoAPasar | motivoPasarPlata |
       | "CC"   | "1020770004" | "1234"     | "123456789"    | "1007716" | "10000"     | "Test"           |
 
-  @CP02703M @Defecto
+  @CP02703M
   Scenario Outline: CP02703M_SYS_Validar funcionalidad de pasar plata (a otro banco en línea), desde botón de home desde perfil negocio.
     Given obtener numero celular actual en redeban bolsillos <usuario>
     And Consulté saldo disponible en redeban

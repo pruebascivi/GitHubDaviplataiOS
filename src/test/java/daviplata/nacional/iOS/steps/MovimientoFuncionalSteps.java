@@ -11,7 +11,6 @@ import java.util.Random;
 import daviplata.nacional.iOS.pageObjects.AumentoDeTopesPageObjects;
 import daviplata.nacional.iOS.pageObjects.LoginRobustoPage;
 import daviplata.nacional.iOS.pageObjects.MovimientoFuncionalPageObjects;
-import daviplata.nacional.iOS.pageObjects.PasarPlataPageObjects;
 import daviplata.nacional.iOS.utilidades.Utilidades;
 import daviplata.nacional.iOS.utilidades.UtilidadesTCS;
 import net.thucydides.core.annotations.Step;
@@ -69,12 +68,10 @@ public class MovimientoFuncionalSteps {
 		if(estadoVisible == true) {
 			utilidadesTcs.clicElement("xpath", LoginRobustoPage.BOTON_CLOSE);
 		}
-        utilidadesTcs.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
-		Utilidades.esperaMiliseg(1500);
-        utilidadesTcs.esperarElementVisibility("xpath", MovimientoFuncionalPageObjects.VER_TODOS_MOV_BTN);
         utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.VER_TODOS_MOV_BTN);
-		Utilidades.esperaMiliseg(2000);
+		Utilidades.esperaMiliseg(1500);
         Utilidades.tomaEvidencia("Ingreso al botón movimientos");
+        
 		boolean defectoVisible = utilidadesTcs.validateElementVisibilityCatch("xpath", MovimientoFuncionalPageObjects.POPUP_LO_SENTIMOS_DEFECTO);
 		if(defectoVisible == true) {
 			Utilidades.esperaMiliseg(800);
@@ -83,70 +80,10 @@ public class MovimientoFuncionalSteps {
 			fail("Se presenta Pop Up de error, '¡Lo sentimos! En este momento no podemos cargar su información.'");
 		}
     }
-	
-	@Step
-	public void validarMovimientosOpcionPlataQueHaRecibido() {
-		desplegarListaFiltroMovimientos();
-	    Utilidades.tomaEvidencia("Escoger opcion plata que ha recibido");
-	    utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.OPCION_FILTRO_PLATA_QUE_HA_RECIBIDO);
-		Utilidades.esperaMiliseg(1500);
-	    int cantidad = utilidadesTcs.extractQuantityOfElements("xpath", MovimientoFuncionalPageObjects.LISTA_MOVIMIENTOS);
-        boolean estado = utilidadesTcs.comparadorCantidades("mayor o igual", cantidad, 0);
-        utilidadesTcs.validateStatusElement(estado);
-        Utilidades.tomaEvidencia("Validar cuando el cliente seleccione la opcion Plata que ha recibido, "
-        		+ "los movimientos se deben filtrar por las transacciones que son ingresos al DaviPlata.");
-	}
-	
-	@Step
-	public void validarMovimientosOpcionPlataQueHaGastado() {
-        desplegarListaFiltroMovimientos();
-        Utilidades.tomaEvidencia("Escoger opcion plata que ha gastado");
-		Utilidades.esperaMiliseg(1500);
-        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.OPCION_FILTRO_PLATA_QUE_HA_GASTADO);
-		Utilidades.esperaMiliseg(1500);
-        int cantidad = utilidadesTcs.extractQuantityOfElements("xpath", MovimientoFuncionalPageObjects.LISTA_MOVIMIENTOS);
-        boolean estado = utilidadesTcs.comparadorCantidades("mayor o igual", cantidad, 0);
-        utilidadesTcs.validateStatusElement(estado);
-        Utilidades.tomaEvidencia("Validar cuando el cliente seleccione la opcion Plata que ha gastado, "
-        		+ "los movimientos se deben filtrar por las transacciones que son salidas (movimientos débito) del DaviPlata.");
-    }
-	
-	@Step
-    public void validarMovimientosOpcionServiciosQueHaPagado() {
-        desplegarListaFiltroMovimientos();
-        //utilidadesTcs.scrollBackground("xpath", MovimientoFuncionalPageObjects.DESLIZABLE, 0, -10);
-        utilidadesTcs.clickCoordinates(400, 150);
-        Utilidades.tomaEvidencia("Escoger opcion Servicios que ha pagado");
-        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.OPCION_FILTRO_SERVICIOS_QUE_HA_PAGADO);
-		Utilidades.esperaMiliseg(1500);
-        int cantidad = utilidadesTcs.extractQuantityOfElements("xpath", MovimientoFuncionalPageObjects.LISTA_MOVIMIENTOS);
-        boolean estado = utilidadesTcs.comparadorCantidades("mayor o igual", cantidad, 0);
-        utilidadesTcs.validateStatusElement(estado);
-        Utilidades.tomaEvidencia("Validar cuando el cliente seleccione la opcion Servicios que ha pagado, "
-        		+ "los movimientos se deben filtrar por las transacciones que son pagos de Servicios.");
-    }
     
 	@Step
-	public void validarMovimientosOpcionTodosLosMovimientos() {
-		Utilidades.esperaMiliseg(1500);
-        Utilidades.tomaEvidencia("Valido todos los movimientos");
-		Utilidades.esperaMiliseg(1500);
-        int cantidad = utilidadesTcs.extractQuantityOfElements("xpath", MovimientoFuncionalPageObjects.LISTA_MOVIMIENTOS);
-        boolean estado = utilidadesTcs.comparadorCantidades("mayor o igual", cantidad, 0);
-        utilidadesTcs.validateStatusElement(estado);
-        Utilidades.tomaEvidencia("Validar cuando el cliente seleccione la opcion Todos los movimientos, se deben mostrar todos los movimientos debe cargar los 20 movimientos más recientes sin filtros del más reciente al más antiguo separado por días.");
-    }
-	
-	@Step
-    public void desplegarListaFiltroMovimientos() {
-		Utilidades.esperaMiliseg(1500);
-        utilidadesTcs.esperarElementVisibility("xpath", MovimientoFuncionalPageObjects.DESPLEGABLE_FILTROS_MOVIMIENTOS);
-        Utilidades.tomaEvidencia("Hacer clic desplegable movimientos");
-        utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.DESPLEGABLE_FILTROS_MOVIMIENTOS);
-    }
-	
-	@Step
     public void validarBotonAtrasModuloMovimientos() {
+		
 		try {
 			Utilidades.esperaMiliseg(800);
 	        utilidadesTcs.esperarElementVisibility("xpath", MovimientoFuncionalPageObjects.MODULO_MOVIMIENTOS_TXT);
@@ -160,6 +97,7 @@ public class MovimientoFuncionalSteps {
     
 	@Step
     public void hacerClicEnElBotonAtras() {
+		
 		try {
 			Utilidades.esperaMiliseg(1000);
 	        utilidadesTcs.esperarElementVisibility("xpath", MovimientoFuncionalPageObjects.BOTON_ATRAS_MOVIMIENTOS);
@@ -185,6 +123,7 @@ public class MovimientoFuncionalSteps {
     
 	@Step
     public void validarHeaderSaldos() {
+		
 		try {
 	        boolean visibilidad = utilidadesTcs.validateElementVisibility("xpath", MovimientoFuncionalPageObjects.TEXTO_CUANTO_TENGO_DETALLE_SALDO);
 	        utilidadesTcs.validateStatusElement(visibilidad);
@@ -200,6 +139,7 @@ public class MovimientoFuncionalSteps {
     
     @Step
     public void validarTituloDelModuloMovimientos() {
+    	
     	try {
     		String texto = utilidadesTcs.obtenerTexto("xpath", MovimientoFuncionalPageObjects.TEXTO_MODULO_MOVIMIENTOS);
             utilidadesTcs.validateTextContainsString(texto, "Movimientos");
@@ -213,6 +153,7 @@ public class MovimientoFuncionalSteps {
     
     @Step
     public void validarEquisDeMovimientos() {
+    	
     	try {
     		boolean visibilidad = utilidadesTcs.validateElementVisibility("xpath", MovimientoFuncionalPageObjects.BOTON_EQUIS_MOVIMIENTOS);
     		utilidadesTcs.validateStatusElement(visibilidad);

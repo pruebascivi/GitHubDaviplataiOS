@@ -206,8 +206,8 @@ Feature: Modulo Olvido Clave
   #  When flujo olvido su clave otp <tipoDocumento> <NumeroDocumento> <claveNueva>
   # Examples:
   #  | tipoDocumento           | NumeroDocumento   | claveNueva |
-  #  | "Cédula de extranjeria" | "9876511" | "4321"     |
-  
+  ##@externaldata@D:/ArchivosRobotMovil/OlvidoClave/OlvidoClave.xlsx@CP1237M
+  # | "Cédula de extranjeria" | "9876511" | "4321"     |
   @CP1238M
   Scenario Outline: CP1238M_SYS_Validar proceso de olvido de clave para tipo documental PEP ingresando confirmación erronea de la clave
     Given consultar correo actual en redeban <NumeroDocumento>
@@ -245,6 +245,7 @@ Feature: Modulo Olvido Clave
     Examples: 
       | tipoDocumento          | NumeroDocumento | claveNueva |
       | "Cédula de ciudadanía" | "10333038"      | "2580"     |
+      
       
   @CP13002M @Passed
   Scenario Outline: CP13002M_SYS_Validar opciones del pop up olvido clave con tipo de documento TI y CE

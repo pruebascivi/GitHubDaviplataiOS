@@ -468,14 +468,6 @@ public class UtilidadesTCS extends PageObject {
 	public void validateStatusElement(boolean estado) {
 		assertThat(estado, is(true));
 	}
-	
-	/**
-	 * 
-	 * @param estado
-	 */
-	public void validateStatusElementFalse(boolean estado) {
-        assertThat(estado, is(false));
-    }
 
 	/**
 	 * 
@@ -993,61 +985,6 @@ public class UtilidadesTCS extends PageObject {
         }
     }
 	
-	public void seleccionarTipoDocumentoNegocio(String locatorType, String tipoDocumento) {
-        BaseUtil.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        String getLocator = "";
-        String textoDocumento = "";
-        By by = null;
-        switch (tipoDocumento) {
-            case "TI":
-                getLocator = negocioPageObjects.OPCION_TARJETA_IDENTIDAD;
-                textoDocumento = "Tarjeta de Identidad";
-                break;
-            case "CC":
-                getLocator = negocioPageObjects.OPCION_CEDULA;
-                textoDocumento = "Cédula de Ciudadanía";
-                break;
-            case "CE":
-                getLocator = negocioPageObjects.OPCION_EXTRANJERIA;
-                textoDocumento = "Cédula de Extranjería";
-                break;
-            case "PEP":
-                getLocator = negocioPageObjects.OPCION_EXTRANJERIA;
-                textoDocumento = "Cédula de Extranjería";
-                break;
-            case "PASAPORTE":
-                getLocator = negocioPageObjects.OPCION_PASAPORTE;
-                textoDocumento = "Pasaporte";
-                break;
-            case "PERMISO DE PERMANENCIA":
-                getLocator = negocioPageObjects.OPCION_PERMANENCIA;
-                textoDocumento = "Permiso Especial de permanencia";
-                break;
-            default:
-                throw new IllegalArgumentException("Tipo de documento no válido: " + tipoDocumento);
-        }
-        switch (locatorType) {
-            case "name":
-                by = By.name(getLocator);
-                break;
-            case "id":
-                by = By.id(getLocator);
-                break;
-            case "xpath":
-                by = By.xpath(getLocator);
-                break;
-            default:
-                throw new IllegalArgumentException("Tipo de localizador no válido: " + locatorType);
-        }
-        try {
-            BaseUtil.driver.findElement(by).click();
-            System.out.println("Se hizo clic en " + tipoDocumento + " del elemento " + getLocator);
-
-        } catch (Exception e) {
-            fail("No se pudo interactuar con el elemento: " + getLocator);
-        }
-    }
-	
 	/**
 	 * 
 	 * @param locatorType : Tipo de localizador utilizado para identificar el elemento (por ejemplo, "name", "id" o "xpath").
@@ -1264,7 +1201,6 @@ public class UtilidadesTCS extends PageObject {
             
             if(!isElementProgressBarVisible) {
                 elementVisible = false;
-                Utilidades.esperaMiliseg(5000);
                 System.out.println("Terminó espera de elemento.");
                 
             } else if(timeCont == maxWait) {
@@ -1309,7 +1245,7 @@ public class UtilidadesTCS extends PageObject {
      * @param yOffset Cantidad entera de scroll en Y
      */
     public void scrollBackground(String locatorType, String locator, int xOffset, int yOffset) {
-         BaseUtil.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+         base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
          boolean check = false;
          By by = null;
 
@@ -1344,7 +1280,6 @@ public class UtilidadesTCS extends PageObject {
                 .findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true))"
                         + ".scrollIntoView(new UiSelector().text(\"" + elemento + "\"))"));
     }
-    
     
     /**
      * Método que permite seleccionar un elemento de cualquier lista

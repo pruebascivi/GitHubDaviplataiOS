@@ -1,7 +1,7 @@
 @MovimientoFuncional
 Feature: Movimientos Funcionales
 
-	@CP031100M @Passed
+@CP031100M
   Scenario Outline: CP031100M_SYS_Validaciones del header
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     When Ingreso al detalle del saldo en el home
@@ -29,11 +29,13 @@ Feature: Movimientos Funcionales
       | tipoId | usuario    | contrasena | montoATransar |
       | "CC"   | "10050064" | "2589"     | "20000"       |
       
-  @CP031101M @Passed
+      
+  @CP031101M
   Scenario Outline: CP031101M_SYS_Validaciones movimientos en pasar plata
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     When seleccionar pasar plata Home
     And pasar plata a otro Daviplata <cuentaNum>
+    #And validar transaccion exitosa
     And Entro al modulo de movimientos
     And Ingreso al detalle del movimiento en el pasar plata
     And Valido nombre y numero de la transaccion en los movimientos

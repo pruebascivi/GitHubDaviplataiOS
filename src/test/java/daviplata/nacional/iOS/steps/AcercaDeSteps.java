@@ -128,10 +128,11 @@ public class AcercaDeSteps {
 	@Step
 	public void ingresoALaOpcionAyudaEnLinea() {
 		utilidad.esperaMiliseg(5000);
-		//loginSteps.verificarVersion();// Version
+		//loginSteps.validarVersionApp();// Version
 		utilidad.esperaMiliseg(10000);
 		utilidad.tomaEvidencia("Ingreso a la Aplicacion");
 		pageAcercaDe.darClickEnOpcionAyudaEnLinea();
+
 	}
 	
 	@Step

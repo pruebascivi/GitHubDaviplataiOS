@@ -70,8 +70,8 @@ public class NanocreditoPageObjects extends PageObject {
 	public static final String POP_UP_NANOCREDITO = "//XCUIElementTypeStaticText[contains(@value, 'Conozca el Nanocrédito')] | //XCUIElementTypeStaticText[contains(@name, 'Conozca el Nanocrédito')]";
 	public static final String BNT_NO_ME_INTERESA = "//XCUIElementTypeStaticText[@name='No me interesa']";
 	public static final String BTN_CAJA_NANOCREDITO = "//XCUIElementTypeStaticText[contains(@value, 'Nanocrédito')]";
-	public static final String GLOBO_HOME_DAVIPLATA = "//XCUIElementTypeStaticText[contains(@label, '¿Cuánto tengo?')]/following-sibling::XCUIElementTypeOther";
-	public static final String DESLIZABLE = "//XCUIElementTypeOther[@name='card-product-3']";
+	
+	
 	
 	public void esperoAQueAparezcaAutorizoNanoCredito() {
 		try {

@@ -40,7 +40,6 @@ import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.pages.PageObject;
-import net.thucydides.core.annotations.Step;
 
 public class PasarPlataPageObjects extends PageObject {
 	
@@ -48,7 +47,8 @@ public class PasarPlataPageObjects extends PageObject {
 	//private WebDriverWait wait = Hooks.getDriverWait();
 	WebDriverWait wait = new WebDriverWait(driver,10);
 	BaseUtil base;
-	Utilidades utilidades;
+	Utilidades utilidad;
+	Utilidades Utilidades;
 	private static String valorAConsignar = "";
 	private static String numCelular = "";
 	private static String numTarjeta = "";
@@ -61,16 +61,40 @@ public class PasarPlataPageObjects extends PageObject {
 	LoginPageObjects loginPageObject;
 	
 	private String txtSaldoDaviPlata = "//XCUIElementTypeStaticText[contains(@label, '¿Cuánto tengo?')]/following-sibling::XCUIElementTypeOther";
+	private String resultadosTransaccionNoExitosa = "(//*[@class='android.widget.TextView'])[1]";
 	private String resultadosTransaccionExitosa = "//XCUIElementTypeStaticText[@name='Transacción exitosa' or @name='Transaccion exitosa']";
 	// --------------Pasar Plata Ya----------------
+	private String chkPasarPlataYa = "//XCUIElementTypeButton[@name=\"Transferencias Inmediatas casilla de verificación\"]";
+	private String btnPasarPlataLinea = "//XCUIElementTypeButton[@name=\"Pasar plata en Línea\"]";
+	private String btnPedirPlataLinea = "//XCUIElementTypeButton[@name=\"Pedir plata en Línea\"]";
+	private String inpCelularPasar = "//XCUIElementTypeOther[@name=\"ACHenLinea\"]/XCUIElementTypeOther[11]/XCUIElementTypeTextField";
+	private String inpCuantaPlataPasar = "//XCUIElementTypeOther[@name=\"ACHenLinea\"]/XCUIElementTypeOther[15]/XCUIElementTypeTextField";
+	private String inpMsjPasar = "//XCUIElementTypeOther[@name=\"ACHenLinea\"]/XCUIElementTypeOther[17]/XCUIElementTypeTextField";
 	private String btnContinuar2 = "(//XCUIElementTypeButton[@name=\"Continuar\"])[1]";
+	private String lblValorComision = "//XCUIElementTypeOther[@name=\"ACHenLinea\"]/XCUIElementTypeOther[23]/XCUIElementTypeStaticText[1]";
+	private String btnContinuar3 = "(//XCUIElementTypeButton[@name=\"Continuar\"])[3]";
+	private String lblTransExitosaPasarPlataYa = "(//XCUIElementTypeStaticText[@name=\"Transacción exitosa\"])[4]";
+	private String lblNumeroConfirmacionACHPasar = "//XCUIElementTypeOther[@name=\"ACHenLinea\"]/XCUIElementTypeOther[56]/XCUIElementTypeStaticText[1]";
+	private String lblNumeroAutorizacionPasar = "//XCUIElementTypeOther[@name=\"ACHenLinea\"]/XCUIElementTypeOther[58]/XCUIElementTypeStaticText[1]";
+	private String btnFinalizar4 = "(//XCUIElementTypeButton[@name=\"Finalizar\"])[4]";
+	private String btnNuevaSolicitud = "(//XCUIElementTypeButton[@name=\"Nueva Solicitud\"])[2]";
+	private String inpCelularPedir = "//XCUIElementTypeOther[@name=\"ACHenLinea\"]/XCUIElementTypeOther[20]/XCUIElementTypeTextField";
+	private String inpCuantoPlataPedir = "//XCUIElementTypeOther[@name=\"ACHenLinea\"]/XCUIElementTypeOther[24]/XCUIElementTypeTextField";
+	private String inpMsjPedir = "//XCUIElementTypeOther[@name=\"ACHenLinea\"]/XCUIElementTypeOther[26]/XCUIElementTypeTextField";
+	private String lblNumeroConfirmacionACHPedir = "//XCUIElementTypeOther[@name=\"ACHenLinea\"]/XCUIElementTypeOther[63]";
+	private String btnFinalizar5 = "(//XCUIElementTypeButton[@name=\"Finalizar\"])[5]";
+	private String lblTransaccionRechazadaPasar = "(//XCUIElementTypeStaticText[@name=\"Transacción rechazada\"])[4]";
+	private String lblNoSePuedeAtenderSolicitudPasar = "(//XCUIElementTypeStaticText[@name=\"En estos momentos no podemos atender su solicitud. Por favor intente más tarde.\"])[4]";
+	private String pasarPlataCuentasUsada = "(//XCUIElementTypeButton[@name=\"Pasar Plata\"])[1]";
 	//**********
 	private String labelSaldo = "(//XCUIElementTypeStaticText)[6]";
 	//private String btnPasarPlata = "com.davivienda.daviplataapp.lab:id/passarPlata";
-	private String btnPasarPlata = "//XCUIElementTypeOther[@name='btn-my-movements-1'] | //XCUIElementTypeOther[@name='Pasar Plata botón Pasar Plata'] | (//XCUIElementTypeOther[contains(@label, 'Pasar plata botón')])[11] | //XCUIElementTypeOther[@name='btn-circle-button-2']";
+	private String btnPasarPlata = "//XCUIElementTypeOther[@name='Pasar Plata botón Pasar Plata']";
 	private String btnPasarPlata2 = "//XCUIElementTypeButton[@name='Pasar Plata']";
 	private String selectTipoCuenta = "com.davivienda.daviplataapp.lab:id/pasarplata_paso01_btnOp2";
+	private String btnCalificacion = "";
 	private String selectNumCuenta = "com.davivienda.daviplataapp.lab:id/pasarplata_paso00_btnOp2";
+	private String btnOpcionCuentasDavivienda = "com.davivienda.daviplataapp.lab:id/tvOtherAccounts";
 	private String btnSeleccioneACuentasDavivienda = "//XCUIElementTypeStaticText[@name='A cuentas Davivienda']";
 	private String btnOpcionOtrosBancos = "//XCUIElementTypeStaticText[contains(@value, 'A otros bancos')]/following-sibling::XCUIElementTypeImage[2]";
 	private String btnSeleccioneTipoCuenta = "//XCUIElementTypeOther[2]/XCUIElementTypeOther[1]";
@@ -78,10 +102,12 @@ public class PasarPlataPageObjects extends PageObject {
 	private String discoCorrienteDavivienda = "//XCUIElementTypeStaticText[@name='Corriente davivienda' or @name='Corriente Davivienda']";
 	private String inputNumeroCuenta = "(//XCUIElementTypeTextField)[1]";
 	private String inputMontoCuenta = "(//XCUIElementTypeTextField[2])";
+	private String inputMontoAPasar = "//XCUIElementTypeTextField[@value ='Ingrese un valor']"; 
 	private String btnContinuarPasarP = "//XCUIElementTypeButton[@name=\"Continuar\"]";
 	private String btnPasarP = "//XCUIElementTypeButton[@name='Pasar Plata' or @name='Continuar']";
 	private String nombreContactoPasarP = "//XCUIElementTypeTextField[1]";
 	private String seleccioneBancoPasarP = "//XCUIElementTypeImage[@name='Botón Desplegable Seleccione un banco'] | (//XCUIElementTypeImage[@name='icon_arrow_down'])[1] | //XCUIElementTypeImage[contains(@label, 'Botón Desplegable Seleccione un banco')]";
+	private String discoBancoPasarP = "//android.widget.ListView/android.widget.TextView";
 	private String bancoAgrario = "//XCUIElementTypeScrollView[2]/XCUIElementTypeOther[13]";
 	private String bancoBogota = "//XCUIElementTypeScrollView[2]/XCUIElementTypeOther[1]";
 	private String btnTipoCuentaBancoPasarP = "//XCUIElementTypeStaticText[contains(@value, 'Seleccione tipo de cuenta')] | (//XCUIElementTypeImage[@name='icon_arrow_down'])[2] | (//XCUIElementTypeImage[contains(@label, 'lista desplegable - Boton')])[2]";
@@ -106,9 +132,11 @@ public class PasarPlataPageObjects extends PageObject {
 	private String txtTransferenciaFallida = "";
 	private String opcionCedulaCiudadania = "//XCUIElementTypeStaticText[@name='Cédula de Ciudadanía']";
 	private String opcionCedulaExtranjeria = "//XCUIElementTypeStaticText[@name='Cédula de Extranjería']";
-	private String txtTransaccion = "//XCUIElementTypeStaticText[@name='Transacción exitosa'] | //*[contains(@value,'Transacción exitosa')] | //XCUIElementTypeStaticText[@name='Transacción rechazada'] | //*[contains(@value,'Transacción rechazada')]";
+	private String txtTransaccion = "//XCUIElementTypeStaticText[@name='Transacción exitosa'] | //*[contains(@value,'Transacción exitosa')]";
 	private String txtTransaccionFallida = "//XCUIElementTypeStaticText[@name='Valor inferior al permitido']";
+	private String resultadosTransaccion = "com.davivienda.daviplataapp.lab:id/tvVerifyInfoEnter";
 	private String resultadosTransaccionBolsillo = "//*[@class='android.widget.TextView']";
+	private String txtTransaccionRealizada = "//XCUIElementTypeOther[@name='Transacción exitosa']";
 	//private String btnFinalizar = "//*[@text='Finalizar']";
 	private String btnFinalizar = "//XCUIElementTypeButton[@name='Finalizar']";
 	private String txtMonto  = "(//XCUIElementTypeStaticText[contains(@name,'$')])[1]";
@@ -118,9 +146,15 @@ public class PasarPlataPageObjects extends PageObject {
 	private String btnRecargar = "com.davivienda.daviplataapp.lab:id/recarga_prepago_btn_continuar";
 	private String selectCuentaNoInscrita = "com.davivienda.daviplataapp.lab:id/btn_cuentas_no_inscritas";
 	private String selectCuentaInscrita = "com.davivienda.daviplataapp.lab:id/btn_selecionar_cuenta";
+	private String desplegableBancos = "com.davivienda.daviplataapp.lab:id/dropdown_banco";
 	private String selectBancoDestino = "//*[@class='android.widget.ListView']/*[#]";
+	private String desplegableTipoProducto = "com.davivienda.daviplataapp.lab:id/dropdown_tipo_de_producto";
 	private String selectTipoProducto = "//*[@text='#']";
+	private String inputNumCuentaOtroBanco = "com.davivienda.daviplataapp.lab:id/register_numero_de_la_cuenta";
+	private String desplegableTipoId = "com.davivienda.daviplataapp.lab:id/dropdown_tipo_de_identificacion";
 	private String selectTipoIndentificacion = "//*[@text='Cédula de Ciudadanía']";
+	private String selectCedulaE = "//*[@text='Cédula de Extranjería']";
+	private String inputNumDocumento = "com.davivienda.daviplataapp.lab:id/register_identificacion_titular_de_la_cuenta";
 	private String inputValorAPasarOtrosBancos = "com.davivienda.daviplataapp.lab:id/register_valor_plata";
 	private String inputDescripcion = "com.davivienda.daviplataapp.lab:id/etReason";
 	private String labelBancoDestino = "com.davivienda.daviplataapp.lab:id/tv_pp_bank";
@@ -157,7 +191,7 @@ public class PasarPlataPageObjects extends PageObject {
 	private String txtRechazada = "//*[@text='Transacción rechazada']";
 	private String btnVerificar = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.RelativeLayout/android.widget.LinearLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]";
 	private String pasarPlataAOtroDaviplata = "(//XCUIElementTypeImage[@name='flecha_derecha'])[1]";
-	private String pasarPlataTransfiYa = "(//XCUIElementTypeImage[@name='flecha_derecha'])[3]";
+	private String pasarPlataTransfiYa = "(//XCUIElementTypeImage[@name=\"flecha_derecha\"])[3]";
 	private String checkTerminosCondicionesTransfiYa = "//android.view.View[1]/android.view.View[4]/android.view.View/android.view.View[2]";
 	private String btnContinuarTransfiYa = "//XCUIElementTypeButton[@name='Aceptar']";
 	private String btnPlataTransfiYa = "//XCUIElementTypeButton[@name='Pasar plata en Línea']";
@@ -169,8 +203,10 @@ public class PasarPlataPageObjects extends PageObject {
 	private String btnContinuarTransfiYaFormulario = "(//XCUIElementTypeButton[@name='Continuar'])";
 	private String btnMeterPlata = "//XCUIElementTypeStaticText[@name='Meter plata']";
 	private String btnAbonosFrecuentes = "//XCUIElementTypeButton[@name='Abonos Frecuentes']";
+	private String pasarPlataAotroDaviplataNumero = "com.davivienda.daviplataapp.lab:id/etTypeNumberDaviPlata";
 	private String txtPasarPlataAOtroDaviplataNumero ="//*[@name='¿A qué número quiere pasar plata?']//following-sibling::XCUIElementTypeTextField[1]";
     private String pasarPlataAOtroDaviplataCantidad = "//XCUIElementTypeTextField[2]";
+	private String txtpasarPlataAOtroDaviplataCantidad = "com.davivienda.daviplataapp.lab:id/etHowMuchMoneyTransfer";
 	private String txtPasarPlataAOtroDaviplataEscribirCantidad ="com.davivienda.daviplataapp.lab:id/etHowMuchMoneyTransferDavivienda";
 	private String labelNumeroDiferenteTres = "//XCUIElementTypeStaticText[@name='El contacto debe iniciar con el número 3']";
 	private String btnCuentaCorriente = "com.davivienda.daviplataapp.lab:id/pasarplata_paso01_btnOp3";
@@ -179,6 +215,8 @@ public class PasarPlataPageObjects extends PageObject {
 	private String btnPasarPlataa = "//*[@text='Pasar Plata']";
 	private String txtAutorizador = "//*[@name='Número de aprobación']//following-sibling::XCUIElementTypeStaticText";
 	private String txtAutorizadorOtrosBancos = "(//XCUIElementTypeStaticText)[21]";
+	private String txtAutorizador1 = "com.davivienda.daviplataapp.lab:id/tv_pp_authorization_number";
+	private String txtAutorizadorRecargas = "com.davivienda.daviplataapp.lab:id/tv_recarga_prepago_complete_op4";
 	// Bolsillos
 	private String btnBolsillos = "//XCUIElementTypeStaticText[contains(@value,'Mis bolsillos')]";
 	private String btnMeterPlataBolsillo = "Meter plata bolsillo";
@@ -205,6 +243,17 @@ public class PasarPlataPageObjects extends PageObject {
 	private String inputPasswordAccount = "//*[@resource-id='txtPassword']";
 	private String btnPay = "//*[@resource-id='btnPay']";
 	private String mensajeTransaccionPse = "//*[@text='Transacción exitosa']";
+	private String mensajeInferior = "//*[@text='El valor ingresado es menor al monto mínimo permitido.']";
+	private String mensajeSuperior = "//*[@text='El valor ingresado supera el monto máximo permitido.']";
+	private String mensajeTransaccionCero = "(//android.widget.TextView)[4]";
+	private String btnCompartirMeterPlata = "//*[@text='Compartir']";
+	private String btnDescargarMeterPlata = "//*[@text='Descargar']";
+	private String listaBancos = "//*[@resource-id='android:id/text1']";
+	private String mensajeNumeroDiferentes = "//*[@text='Los datos del número de celular no coinciden.']";
+	private String btnContinuarRegistro = "//*[@text='Continuar']";
+	private String txtAutorizadorPasarPlataCuenta = "com.davivienda.daviplataapp.lab:id/tvTransferMoneyApproval";
+	private String btnPasar = "com.davivienda.daviplataapp.lab:id/btTransferMoneyVerify";
+	private String mensajeTransaccionNegada = "com.davivienda.daviplataapp.lab:id/TvPopupTitle";
 	private String txtFondosInsuBolsillo = "//XCUIElementTypeStaticText[@name='Fondos insuficientes']";
 	private String txtFondosInsuficientesBolsillo = "//XCUIElementTypeStaticText[@name='Exitosa, bols. sin saldo por fondos insuficientes']";
 	private String txtFondosInsuficientesTransfiYa = "//XCUIElementTypeStaticText[@name='Ingrese un monto que se ajuste a su saldo disponible']";
@@ -217,7 +266,6 @@ public class PasarPlataPageObjects extends PageObject {
 	private String textoValorInferior="//*[@name='Valor inferior al permitido']";
 	private String btnVerMasHomeDaviplata = "//XCUIElementTypeOther[@name='btn-my-movements-3'] | (//XCUIElementTypeOther[contains(@label, 'Más botón')])[13]";
 	private String btnMarketPlace = "(//XCUIElementTypeOther[@name='Tienda Virtual'])[2]";
-	
 	public static final String CODIGO_AUTORIZACION = "(//XCUIElementTypeStaticText)[15]";
 	public static final String TXT_ANTES_FINALIZAR = "//XCUIElementTypeStaticText[@name='Antes de finalizar']";
 	public static final String CONTINUAR_POPUP_ANTES_FINALIZAR_BTN = "//XCUIElementTypeStaticText[@name='Continuar']";
@@ -244,11 +292,6 @@ public class PasarPlataPageObjects extends PageObject {
 	public static final String TXT_COMPLETAR_INFO = "//XCUIElementTypeStaticText[contains(@name,'Complete la información')]";
 	public static final String BTN_RECIBIR_PEDIR_PLATA = "//XCUIElementTypeOther[@name='circle-button-6'] | (//XCUIElementTypeOther[contains(@label, 'Recibir y pedir plata')])[10] | //XCUIElementTypeStaticText[@value= 'Recibir y Pedir Plata']";
 	public static final String ACEPTO_TERM_COND = "//XCUIElementTypeOther[@name='ACHenLinea']/XCUIElementTypeOther[6] | //XCUIElementTypeOther[@name='ACHenLinea']/XCUIElementTypeOther[6]/XCUIElementTypeSwitch";
-	public static final String BTN_CONTINUAR = "//XCUIElementTypeButton[contains(@name, 'Continuar')] | //XCUIElementTypeButton[contains(@label, 'Continuar')]";
-	public static final String BTN_PEDIR_PLATA_ENLINEA = "//XCUIElementTypeButton[@name='Pedir plata en Línea']";
-	public static final String TXT_USUARIO_ENMASCARADO = "(//XCUIElementTypeStaticText[contains(@value, '*****')])[1]";
-	public static final String TXT_PRIMER_MOVIMIENTO = "//XCUIElementTypeOther[@name='Hoy']/following-sibling::XCUIElementTypeOther[1]";
-	public static final String TXT_FECHA_HORA_TRANS = "//XCUIElementTypeOther[contains(@name, 'Fecha y hora')]/following-sibling::XCUIElementTypeOther[1]";
 	public static final String TXT_NO_TIENE_MOVIMIENTOS = "//XCUIElementTypeStaticText[contains(@value, 'Aún no tiene movimientos')]";
 	public static final String BTN_POR_TRANSFIYA = "//XCUIElementTypeStaticText[@name='Por Transfiya'] | //XCUIElementTypeButton[@name='Por Transfiya']";
 	public static final String TXT_NO_TIENE_SOLICITUDES = "//XCUIElementTypeStaticText[contains(@name, 'No tiene solicitudes de plata')]";
@@ -259,7 +302,6 @@ public class PasarPlataPageObjects extends PageObject {
 	public static final String BTN_DONE = "//XCUIElementTypeButton[@name='Done']";
 	public static final String POPUP_SOLICITUD_PENDIENTE = "//XCUIElementTypeTextView[contains(@value , 'Recuerde que tiene hasta 12 horas')] | //XCUIElementTypeTextView | //XCUIElementTypeTextView[contains(@value, '12 horas')]";
 	public static final String POPUP_COBRO_RECHAZADO = "//XCUIElementTypeStaticText[@name='El cobro ha sido rechazado']";
-	public static final String BTN_ACEPTAR_COBRO = "//XCUIElementTypeButton[@name='Aceptar']";
 	public static final String CAMPO_MONTO = "//XCUIElementTypeTextField[contains(@name, 'Ingrese un valor')] | //XCUIElementTypeOther[contains(@name, 'Cuánta plata quiere pedir')]/following-sibling::XCUIElementTypeTextField";
 	public static final String TXT_POR_SU_SEGURIDAD = "//XCUIElementTypeStaticText[contains(@name, 'Por su seguridad se ha cerrado la sesión')]";
 	public static final String BOTON_ATRAS = "//XCUIElementTypeButton[@name='Atrás Botón'] | //XCUIElementTypeButton[contains(@name, 'Regresar')] | //XCUIElementTypeOther[contains(@name, 'left')]";
@@ -271,16 +313,10 @@ public class PasarPlataPageObjects extends PageObject {
 		Utilidades.tomaEvidencia("Ingreso a Bolsillos");
 		element.click();
 	}
-
-	public void btnMeterPlataBolsillo() {
 		MobileElement element = (MobileElement) wait
 				.until(ExpectedConditions.elementToBeClickable(By.name(this.btnMeterPlataBolsillo)));
 		Utilidades.tomaEvidencia("Ingreso a Meter plata bolsillos");
-		element.click();
 	}
-
-	public void btnSeleccionarBolsillo() {
-		MobileElement element = (MobileElement) wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnSeleccionarBolsillo)));
 		Utilidades.tomaEvidencia("Selecciono un bolsillo");
 		element.click();
@@ -290,8 +326,8 @@ public class PasarPlataPageObjects extends PageObject {
 		MobileElement element = (MobileElement) wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath(this.txtCuantaPlata)));
 		element.sendKeys(valor);
-		BaseUtil.montoTransado = new BigDecimal(valor);
-		BaseUtil.monto = valor;
+		base.montoTransado = new BigDecimal(valor);
+		base.monto = valor;
 	}
 
 	public void btnContinuarBolsillo() {
@@ -299,7 +335,7 @@ public class PasarPlataPageObjects extends PageObject {
 				.until(ExpectedConditions.elementToBeClickable(By.name(this.btnContinuarBolsillo)));
 		Utilidades.tomaEvidencia("Ingreso el monto y continuar");
 		element.click();
-		Utilidades.esperaMiliseg(500);
+		utilidad.esperaMiliseg(500);
 		MobileElement element2 = (MobileElement) wait
 				.until(ExpectedConditions.elementToBeClickable(By.name(this.btnContinuarBolsillo)));
 		Utilidades.tomaEvidencia("Ingreso el monto y continuar");
@@ -316,7 +352,7 @@ public class PasarPlataPageObjects extends PageObject {
 		System.out.println("Autorizador " + auto);
 		
 		if (auto.length() == 6) {
-			BaseUtil.Autorizador = txtAutorizador1.getText();
+			base.Autorizador = txtAutorizador1.getText();
 		} else {
 			quitarCerosIzquierda(auto);
 		}
@@ -328,10 +364,10 @@ public class PasarPlataPageObjects extends PageObject {
 			contador++;
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnVolver)));
 			driver.findElement(By.xpath(this.btnVolver)).click();
-			Utilidades.tomaEvidencia("Volver atras");
+			utilidad.tomaEvidencia("Volver atras");
 		} catch (Exception e) {
 			if(!(contador==5)) {
-				Utilidades.esperaMiliseg(500);
+				utilidad.esperaMiliseg(500);
 				btnVolver();
 				
 			}else {
@@ -355,7 +391,7 @@ public class PasarPlataPageObjects extends PageObject {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(this.txtAutorizador)));
 			String auto = driver.findElement(By.xpath(this.txtAutorizador)).getText();
 			if (auto.length() == 6) {
-				BaseUtil.Autorizador = auto;
+				base.Autorizador = auto;
 				System.out.println("Numero autorizacion: " + auto);
 				Utilidades.tomaEvidencia("Transacción Exitosa");
 			} else {
@@ -364,7 +400,7 @@ public class PasarPlataPageObjects extends PageObject {
 
 		} catch (Exception e) {
 			if(!(contador==5)) {
-				Utilidades.esperaMiliseg(500);
+				utilidad.esperaMiliseg(500);
 				txtAutorizador();
 			}else {
 				fail("No se encontró otp de autorizacion para buscar transacción, debido a: "+ e.getMessage());
@@ -377,7 +413,7 @@ public class PasarPlataPageObjects extends PageObject {
 		try {
 			contador++;
 			String txtTransaccion = driver.findElement(By.xpath(this.txtTransaccion)).getText();
-			assertTrue(txtTransaccion.contains("Transacción exitosa") || txtTransaccion.contains("Transacción rechazada"));
+			assertThat(txtTransaccion, containsString("Transacción exitosa"));
 		}catch(Exception e) {
 			if(!(contador==5)) {
 				Utilidades.esperaMiliseg(500);
@@ -390,7 +426,7 @@ public class PasarPlataPageObjects extends PageObject {
 
 	public void quitarCerosIzquierda(String numero) {
 		long p = Long.parseLong(numero);
-		BaseUtil.Autorizador = Long.toString(p);
+		base.Autorizador = Long.toString(p);
 		System.out.println("Numero autorizacion: " + Long.toString(p));
 	}
 
@@ -417,7 +453,7 @@ public class PasarPlataPageObjects extends PageObject {
 		int numero = cantidad - 2;
 		subSaldo = subSaldo.substring(0, numero);
 		System.out.println(subSaldo);
-		BaseUtil.saldo = new BigDecimal(subSaldo);
+		base.saldo = new BigDecimal(subSaldo);
 	}
 
 	public void pasarPlataAOtroDaviplata() {
@@ -425,15 +461,17 @@ public class PasarPlataPageObjects extends PageObject {
 			contador++;
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(this.pasarPlataAOtroDaviplata)));
 			driver.findElement(By.xpath(this.pasarPlataAOtroDaviplata)).click();
-		} catch(Exception e) {
+		}catch(Exception e) {
 			if(!(contador==5)) {
 				Utilidades.esperaMiliseg(500);
 				pasarPlataAOtroDaviplata();
 			}else {
 				fail("No se encontró opción 'A otro Daviplata' en pasar plata, debido a: " + e.getMessage());
 			}
-		} finally {contador=0;}
+		}finally {contador=0;}
 	}
+	
+	
 	
 	public void irAOpcionTransfiYa() {
 		
@@ -444,7 +482,7 @@ public class PasarPlataPageObjects extends PageObject {
 			contador++;
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(this.txtPasarPlataAOtroDaviplataNumero)));
 			driver.findElement(By.xpath(this.txtPasarPlataAOtroDaviplataNumero)).sendKeys(numero);
-			BaseUtil.cuentaONumero = numero;
+			base.cuentaONumero = numero;
 		}catch(Exception e) {
 			if(!(contador==5)) {
 				Utilidades.esperaMiliseg(500);
@@ -463,25 +501,25 @@ public class PasarPlataPageObjects extends PageObject {
 
 	public void pasarPlataAOtroDaviplataCantidad() {
 		driver.findElement(By.xpath(this.pasarPlataAOtroDaviplataCantidad)).sendKeys("5000");
-		BaseUtil.montoTransado = new BigDecimal(5000);
-		BaseUtil.monto = "5000";
+		base.montoTransado = new BigDecimal(5000);
+		base.monto = "5000";
 	}
 	
 	public void ingresarMontoAOtroDaviplata(String monto) {
 		driver.findElement(By.xpath(this.pasarPlataAOtroDaviplataCantidad)).sendKeys(monto);
-		BaseUtil.montoTransado = new BigDecimal(monto);
+		base.montoTransado = new BigDecimal(monto);
 	}
 
 	public void pasarPlataAOtroDaviplataCantidad1() {
 		driver.findElement(By.xpath(this.pasarPlataAOtroDaviplataCantidad)).sendKeys("1");
-		BaseUtil.montoTransado = new BigDecimal(1);
-		BaseUtil.monto = "1";
+		base.montoTransado = new BigDecimal(1);
+		base.monto = "1";
 	}
 	
 	public void pasarPlataAOtroDaviplataCantidadTopeDebito() {
-		String valorTransar = Integer.toString(BaseUtil.sumaDebito);
+		String valorTransar = Integer.toString(base.sumaDebito);
 		driver.findElement(By.xpath(this.pasarPlataAOtroDaviplataCantidad)).sendKeys(valorTransar);
-		BaseUtil.montoTransado = new BigDecimal(valorTransar);
+		base.montoTransado = new BigDecimal(valorTransar);
 	}
 
 	public void pasarPlataAOtroDaviplataEscribirCantidad(String monto) {        
@@ -489,12 +527,12 @@ public class PasarPlataPageObjects extends PageObject {
 				ExpectedConditions.elementToBeClickable(By.id(this.inputMontoCuenta)));
 		txtPasarPlataAOtroDaviplataEscribirCantidad.sendKeys(monto);
 		System.out.println("el valor ingresado es "+ monto);	
-		BaseUtil.montoTransado = new BigDecimal(monto);
+		base.montoTransado = new BigDecimal(monto);
 	}
 	
 	public void pasarPlataAOtroDaviplataEscribirCantidadCero(String monto) {        
 		driver.findElement(By.xpath(this.pasarPlataAOtroDaviplataCantidad)).sendKeys(monto);
-		BaseUtil.montoTransado = new BigDecimal(monto);
+		base.montoTransado = new BigDecimal(monto);
 		System.out.println("el valor ingresado es "+ monto);
 	}
 
@@ -515,8 +553,8 @@ public class PasarPlataPageObjects extends PageObject {
 
 		MobileElement txtPasarPlataAOtroDaviplataEscribirCantidad = (MobileElement) wait.until(
 				ExpectedConditions.elementToBeClickable(By.id(this.txtPasarPlataAOtroDaviplataEscribirCantidad)));
-		BaseUtil.saldoSinDecimal = BaseUtil.saldoSinDecimal.add(new BigDecimal(20000));
-		txtPasarPlataAOtroDaviplataEscribirCantidad.sendKeys(BaseUtil.saldoSinDecimal.toString());
+		base.saldoSinDecimal = base.saldoSinDecimal.add(new BigDecimal(20000));
+		txtPasarPlataAOtroDaviplataEscribirCantidad.sendKeys(base.saldoSinDecimal.toString());
 	}
 
 	public void darClickEnOpcionPasarPlata() {
@@ -542,7 +580,7 @@ public class PasarPlataPageObjects extends PageObject {
 			driver.findElement(By.xpath(this.btnMarketPlace)).click();
 		} catch (Exception e) {
 			if (!(contador == 10)) {
-				Utilidades.esperaMiliseg(500);
+				utilidad.esperaMiliseg(500);
 				btnMarketPlace();
 			} else {
 				fail("No se pudo encontrar botón 'Tienda Virtual' en sección 'Ver más' de perfil persona, debido a: "
@@ -723,7 +761,7 @@ public class PasarPlataPageObjects extends PageObject {
 		boolean aux=false;
         int cont = 0;
         while((!aux) && (cont<5)) {
-            try {BaseUtil.driver.findElement(By.id(this.checkTerminosCondicionesTransfiYa));aux=true;
+            try {base.driver.findElement(By.id(this.checkTerminosCondicionesTransfiYa));aux=true;
             }catch (Exception e) {aux=false;}
             Utilidades.esperaMiliseg(2000);
             cont++;
@@ -735,7 +773,7 @@ public class PasarPlataPageObjects extends PageObject {
 		boolean aux=false;
         int cont = 0;
         while((!aux) && (cont<2)) {
-            try {BaseUtil.driver.findElement(By.id(this.btnContinuarTransfiYaFormulario));aux=true;
+            try {base.driver.findElement(By.id(this.btnContinuarTransfiYaFormulario));aux=true;
             }catch (Exception e) {aux=false;}
             Utilidades.esperaMiliseg(2000);
             cont++;
@@ -760,7 +798,13 @@ public class PasarPlataPageObjects extends PageObject {
 					.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnContinuarTransfiYaFormulario)));
 			btnContinuarTransfiYaFormulario.click();
         }  
+
 	}
+	
+	
+	
+		
+		
 	
 	public void clicBtnContinuarTransfiYa() {
 		MobileElement btnAceptar = driver.findElement(By.xpath(this.btnContinuarTransfiYa));
@@ -1016,16 +1060,18 @@ public class PasarPlataPageObjects extends PageObject {
 			String resultadoTx = driver.findElement(By.xpath(this.resultadoTx)).getText();
 			assertThat(resultadoTx, containsString("Transacción rechazada"));
 			System.out.println("La transacción fue: " + resultadoTx);
-		} catch(Exception e) {
+		}catch(Exception e) {
 			if(!(contador==7)) {
 				Utilidades.esperaMiliseg(2000);
 				validarResultadoTransaccionRechazada();
-			} else {
+			}else {
 				fail("No se encontró txt Transacción rechazada debido a: " + e.getMessage());
 			}
-		} finally {contador=0;}
+		}finally {contador=0;}
+					
 	}	
 	
+
 	public void btnVerificarSolicitud() {
 		MobileElement btnVerificar = (MobileElement) wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnVerificar)));
@@ -1137,7 +1183,7 @@ public class PasarPlataPageObjects extends PageObject {
 			try {
 				MobileElement inputCuentaMonto = driver.findElement(By.xpath(this.inputMontoCuenta));
 				inputCuentaMonto.sendKeys(monto);
-				BaseUtil.montoTransado = new BigDecimal(monto);
+				base.montoTransado = new BigDecimal(monto);
 			} catch (Exception e) {
 				System.out.println("No pude ingresar el monto cuenta debido a: " + e.getMessage() );
 			}
@@ -1223,7 +1269,7 @@ public class PasarPlataPageObjects extends PageObject {
 		}
 		
 		public void scrollHastaBtnContinuarPasarPlataOtrosBancos() {
-			BaseUtil.driver.findElement(MobileBy.AndroidUIAutomator(
+			base.driver.findElement(MobileBy.AndroidUIAutomator(
 			        "new UiScrollable(new UiSelector().scrollable(true))" +
 			         ".scrollIntoView(new UiSelector().text(\"Continuar\"))"));
 		}
@@ -1244,6 +1290,7 @@ public class PasarPlataPageObjects extends PageObject {
 					driver.findElement(By.xpath(this.opcionCedulaExtranjeria)).click();
 					break;			
 			}
+			
 		}
 		
 		public void numeroIdentificacion(String numId) {
@@ -1295,7 +1342,7 @@ public class PasarPlataPageObjects extends PageObject {
 				driver.findElement(By.xpath(this.btnVerMasHomeDaviplata)).click();
 			} catch (Exception e) {
 				if (!(contador == 5)) {
-					Utilidades.esperaMiliseg(2000);
+					utilidad.esperaMiliseg(2000);
 					clickBtnMas();
 				} else {
 					fail("No se pudo encontrar botón más debido a: " + e.getMessage());
@@ -1310,7 +1357,7 @@ public class PasarPlataPageObjects extends PageObject {
 			driver.findElement(By.xpath(this.inputMontoPasarP)).sendKeys(valorAPasar.replace("\"", ""));
 			
 			cerrarTeclado();
-			BaseUtil.montoTransado = new BigDecimal(valorAPasar.replace("\"", ""));
+			base.montoTransado = new BigDecimal(valorAPasar.replace("\"", ""));
 		}
 		
 		public void btnCerrarPopPup() {
@@ -1459,7 +1506,7 @@ public class PasarPlataPageObjects extends PageObject {
 		
 		MobileElement txtPasarPlata = (MobileElement) wait
 				.until(ExpectedConditions.elementToBeClickable(By.id(this.txtPasarPlata)));
-		txtPasarPlata.sendKeys(BaseUtil.saldoSinDecimal.add(new BigDecimal(-130000)).toString());
+		txtPasarPlata.sendKeys(base.saldoSinDecimal.add(new BigDecimal(-130000)).toString());
 		
 		
 		MobileElement btnAceptarCuantaPlataQuierePasar = (MobileElement) wait
@@ -1519,7 +1566,7 @@ public class PasarPlataPageObjects extends PageObject {
 	public void atras() {
 		try {
 			contador++;
-			BaseUtil.driver.findElement(By.xpath(this.btnAtras)).click();
+			base.driver.findElement(By.xpath(this.btnAtras)).click();
 		}catch (Exception e) {
 			if(!(contador==5)) {Utilidades.esperaMiliseg(2000);atras();
 			}else {fail("No se pudo dar clic en boton atras debido a: " + e.getMessage());}
@@ -1578,9 +1625,9 @@ public class PasarPlataPageObjects extends PageObject {
 		this.selectMonto = this.selectMonto.replace("#", Utilidades.numAleatorio(4, 1));
 		MobileElement selectMonto = (MobileElement) wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath(this.selectMonto)));
-		BaseUtil.montoTransado = new BigDecimal(selectMonto.getText().replace("$", "").replace(".", ""));
-		System.out.println(BaseUtil.montoTransado);
-		valorAConsignar = BaseUtil.montoTransado.toString();
+		base.montoTransado = new BigDecimal(selectMonto.getText().replace("$", "").replace(".", ""));
+		System.out.println(base.montoTransado);
+		valorAConsignar = base.montoTransado.toString();
 		selectMonto.click();
 		Utilidades.esperaMiliseg(1000);
 	}
@@ -1589,15 +1636,15 @@ public class PasarPlataPageObjects extends PageObject {
 
 		MobileElement inputOtroMonto = (MobileElement) wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath(this.inputOtroMonto)));
-		inputOtroMonto.sendKeys(verificarScenario(BaseUtil.scenario));
+		inputOtroMonto.sendKeys(verificarScenario(base.scenario));
 		Utilidades.esperaMiliseg(1000);
 	}
 
 	public void ingresarMontoMayorSaldo() {
-		BaseUtil.saldo = BaseUtil.saldo.add(new BigDecimal("15000.00"));
+		base.saldo = base.saldo.add(new BigDecimal("15000.00"));
 		MobileElement inputOtroMonto = (MobileElement) wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath(this.inputOtroMonto)));
-		inputOtroMonto.sendKeys(String.valueOf(BaseUtil.saldo));
+		inputOtroMonto.sendKeys(String.valueOf(base.saldo));
 		Utilidades.esperaMiliseg(1000);
 	}
 
@@ -1606,7 +1653,7 @@ public class PasarPlataPageObjects extends PageObject {
 			contador++;
 			MobileElement inputOtroMonto = (MobileElement) wait
 					.until(ExpectedConditions.elementToBeClickable(By.xpath(this.pasarPlataAOtroDaviplataCantidad)));
-			BaseUtil.montoTransado = new BigDecimal(monto);
+			base.montoTransado = new BigDecimal(monto);
 			inputOtroMonto.sendKeys(monto);
 		}catch (Exception e) {
 			if(!(contador==5)) {Utilidades.esperaMiliseg(2000);ingresarMonto(monto);
@@ -1618,7 +1665,7 @@ public class PasarPlataPageObjects extends PageObject {
 		try {
 			Utilidades.esperaMiliseg(1000);
 			MobileElement btnAceptar = btnAceptar = driver.findElement(By.xpath(this.btnAceptar));
-			Utilidades.tomaEvidencia("Datos de Destino procesados");
+			utilidad.tomaEvidencia("Datos de Destino procesados");
 			btnAceptar.click();
 		} catch (Exception e) {
 			System.out.println("No pude dar clic en el boton aceptar debido a: " + e.getMessage() );
@@ -1659,9 +1706,9 @@ public class PasarPlataPageObjects extends PageObject {
 
 	public void verificoMonto() {
 		boolean validacion = true;
-		String monto1 = BaseUtil.montoTransado.toString();
+		String monto1 = base.montoTransado.toString();
 		
-		String monto2 = BaseUtil.montoTrasadoRedeban;
+		String monto2 = base.montoTrasadoRedeban;
 		System.out.println(monto1);
 		System.out.println(monto2);
 		
@@ -1675,7 +1722,7 @@ public class PasarPlataPageObjects extends PageObject {
 	}
 	public void obtenerMontoTransado() {
 		String monto = driver.findElement(By.xpath(this.txtMonto)).getText().replaceAll("[^0-9]", "");
-		BaseUtil.montoTransado = new BigDecimal(monto);
+		base.montoTransado = new BigDecimal(monto);
 	}
 	
 	public void darClickEnFinalizarTransaccionRechazada() {
@@ -1692,9 +1739,9 @@ public class PasarPlataPageObjects extends PageObject {
 					.until(ExpectedConditions.presenceOfElementLocated(By.xpath(this.txtAutorizador)));
 			String auto = txtAutorizadorOtrosBan.getText();
 			if (auto.length() == 6) {
-				BaseUtil.Autorizador = auto;
+				base.Autorizador = auto;
 				System.out.println("Numero autorizacion: " + auto);
-				Utilidades.tomaEvidencia("Numero autorización " + auto);
+				utilidad.tomaEvidencia("Numero autorización " + auto);
 			} else {
 				quitarCerosIzquierda(auto);
 			}
@@ -1765,9 +1812,9 @@ public class PasarPlataPageObjects extends PageObject {
 	public void ingresarNumCuentaOtrosBancos() {
 		MobileElement inputNumCuentaOtroBanco = (MobileElement) wait
 				.until(ExpectedConditions.elementToBeClickable(By.id(this.inputNumeroCuentaBancoPasarP)));
-		String cuenta = utilidades.generarCuentaAleatoria();
+		String cuenta = Utilidades.generarCuentaAleatoria();
 		inputNumCuentaOtroBanco.sendKeys(cuenta);
-		BaseUtil.cuentaONumero = cuenta;
+		base.cuentaONumero = cuenta;
 	}
 
 	public void darClickDesplegableTipoIndntificacion() {
@@ -1785,19 +1832,19 @@ public class PasarPlataPageObjects extends PageObject {
 	public void ingresarNumDocumento() {
 		MobileElement inputNumDocumento = (MobileElement) wait
 				.until(ExpectedConditions.elementToBeClickable(By.id(this.inputNumIdentificacionPasarP)));
-		inputNumDocumento.sendKeys(utilidades.generarCuentaAleatoria());
+		inputNumDocumento.sendKeys(Utilidades.generarCuentaAleatoria());
 	}
 
 	public void ingresarValorAPasarOtrosBancos() {
 		MobileElement inputValorAPasarOtrosBancos = (MobileElement) wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath(this.inputValorAPasarOtrosBancos)));
-		inputValorAPasarOtrosBancos.sendKeys(verificarScenario(BaseUtil.scenario));
+		inputValorAPasarOtrosBancos.sendKeys(verificarScenario(base.scenario));
 	}
 
 	public void ingresarValorAPasarOtrosBanco() {
 		MobileElement inputValorAPasarOtrosBancos = (MobileElement) wait
 				.until(ExpectedConditions.elementToBeClickable(By.id(this.inputValorAPasarOtrosBancos)));
-		inputValorAPasarOtrosBancos.sendKeys(BaseUtil.saldoSinDecimal.add(new BigDecimal("15000")).toString());
+		inputValorAPasarOtrosBancos.sendKeys(base.saldoSinDecimal.add(new BigDecimal("15000")).toString());
 	}
 
 	public void ingresarValorAPasarOtrosBancoMenor() {
@@ -1807,25 +1854,25 @@ public class PasarPlataPageObjects extends PageObject {
 	}
 
 	public void ingresarValorAPasarOtrosBancoBasico() {
-		if (BaseUtil.scenario.getName().contains("mayor")) {// si el caso es con monto superior al DaviPlata
+		if (base.scenario.getName().contains("mayor")) {// si el caso es con monto superior al DaviPlata
 			MobileElement inputValorAPasarOtrosBancos = (MobileElement) wait
 					.until(ExpectedConditions.elementToBeClickable(By.id(this.inputValorAPasarOtrosBancos)));
-			BaseUtil.saldoSinDecimal = BaseUtil.saldoSinDecimal.add(new BigDecimal(20000));
-			inputValorAPasarOtrosBancos.sendKeys(BaseUtil.saldoSinDecimal.toString());
-			BaseUtil.monto = BaseUtil.saldoSinDecimal.toString();
-			BaseUtil.montoTransado = BaseUtil.saldoSinDecimal;
-		} else if (BaseUtil.scenario.getName().contains("menor")) {// si el caso es con monto superior al DaviPlata
+			base.saldoSinDecimal = base.saldoSinDecimal.add(new BigDecimal(20000));
+			inputValorAPasarOtrosBancos.sendKeys(base.saldoSinDecimal.toString());
+			base.monto = base.saldoSinDecimal.toString();
+			base.montoTransado = base.saldoSinDecimal;
+		} else if (base.scenario.getName().contains("menor")) {// si el caso es con monto superior al DaviPlata
 			MobileElement inputValorAPasarOtrosBancos = (MobileElement) wait
 					.until(ExpectedConditions.elementToBeClickable(By.id(this.inputValorAPasarOtrosBancos)));
 			inputValorAPasarOtrosBancos.sendKeys("2000");
-			BaseUtil.monto = "2000";
+			base.monto = "2000";
 		} else {
 			MobileElement inputValorAPasarOtrosBancos = (MobileElement) wait
 					.until(ExpectedConditions.elementToBeClickable(By.id(this.inputValorAPasarOtrosBancos)));
-			// BaseUtil.saldoSinDecimal=BaseUtil.saldoSinDecimal.add(new BigDecimal(20000));
+			// base.saldoSinDecimal=base.saldoSinDecimal.add(new BigDecimal(20000));
 			inputValorAPasarOtrosBancos.sendKeys("20000");
-			BaseUtil.monto = "20000";
-			BaseUtil.montoTransado = new BigDecimal(20000);
+			base.monto = "20000";
+			base.montoTransado = new BigDecimal(20000);
 		}
 
 	}
@@ -1845,15 +1892,15 @@ public class PasarPlataPageObjects extends PageObject {
 
 	public String verificarScenario(Scenario scenario) {
 
-		System.out.println(BaseUtil.saldo);
+		System.out.println(base.saldo);
 		if (scenario.getName().contains("valor mayor saldo")) {
-			BigDecimal valorConsignar = BaseUtil.saldo.add(new BigDecimal("15000.00"));
+			BigDecimal valorConsignar = base.saldo.add(new BigDecimal("15000.00"));
 			valorAConsignar = String.valueOf(valorConsignar).split("\\.")[0];
 		} else if (scenario.getName().contains("un valor menor"))
 			valorAConsignar = "1000";
 		else
-			valorAConsignar = utilidades.generarMontoTransaccional();
-		BaseUtil.montoTransado = new BigDecimal(valorAConsignar);
+			valorAConsignar = Utilidades.generarMontoTransaccional();
+		base.montoTransado = new BigDecimal(valorAConsignar);
 		return valorAConsignar;
 	}
 
@@ -1891,8 +1938,8 @@ public class PasarPlataPageObjects extends PageObject {
 		MobileElement labelCostoTransaccion = (MobileElement) wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath(this.labelCostoTransaccion)));
 
-		BaseUtil.comision = new BigDecimal(labelCostoTransaccion.getText().replace("$", "").replace(".", "").trim());
-		System.out.println("Comision" + BaseUtil.comision);
+		base.comision = new BigDecimal(labelCostoTransaccion.getText().replace("$", "").replace(".", "").trim());
+		System.out.println("Comision" + base.comision);
 		datosValidar.add(labelBancoDestino.getText());
 		datosValidar.add(labelTipoProductoDestino.getText());
 		datosValidar.add(labelValorTotalAPasar.getText());
@@ -1909,8 +1956,8 @@ public class PasarPlataPageObjects extends PageObject {
 	}
 
 	public void validarDatosTransaccion(List<String> datosTransaccion, String tipoCuenta) {
-		if (!(BaseUtil.scenario.getName().contains("valor mayor saldo")
-				|| BaseUtil.scenario.getName().contains("un valor menor"))) {
+		if (!(base.scenario.getName().contains("valor mayor saldo")
+				|| base.scenario.getName().contains("un valor menor"))) {
 			String validacionBanco = "No se encuentra Banco";
 			String validacionMonto = "Monto Incorrecto";
 			List<MobileElement> resultadoTransaccion = capturaResultadoTransaccion();
@@ -2000,7 +2047,7 @@ public class PasarPlataPageObjects extends PageObject {
 
 		try {
 			String aceptardis = "com.davivienda.daviplataapp.lab:id/pasarplata_paso03_btn_continuar";
-			MobileElement element = BaseUtil.driver.findElement(By.id(aceptardis));
+			MobileElement element = this.base.driver.findElement(By.id(aceptardis));
 			assertFalse(element.isSelected());
 		} catch (Exception e) {
 			System.out.println("Fallo Validacion monto Cero");
@@ -2009,12 +2056,12 @@ public class PasarPlataPageObjects extends PageObject {
 	}
 	
 	public void validarHabilitacionBotonContinuarPasarPlata() {
-		boolean isEnabled = BaseUtil.driver.findElement(By.name(this.btnContinuar)).isEnabled();
+		boolean isEnabled = base.driver.findElement(By.name(this.btnContinuar)).isEnabled();
         assertThat(isEnabled, is(equalTo(false)));	    
 	}
 	
 	public void volverAtras() {
-		BaseUtil.driver.findElement(By.xpath(this.btnVolver2)).click();
+		base.driver.findElement(By.xpath(this.btnVolver2)).click();
 	}
 
 	public void darClickEnActualizarSaldo() {
@@ -2039,17 +2086,17 @@ public class PasarPlataPageObjects extends PageObject {
 			contador++;
 			String subSaldo;
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(this.txtSaldoDaviPlata)));
-			subSaldo = BaseUtil.driver.findElement(By.xpath(this.txtSaldoDaviPlata)).getText();
+			subSaldo = base.driver.findElement(By.xpath(this.txtSaldoDaviPlata)).getText();
 			System.out.println(subSaldo);
 			subSaldo = subSaldo.replaceAll("[^0-9]", "");
 			
 			BigDecimal saldoInicial = new BigDecimal(subSaldo); 
-			BaseUtil.saldoInicial = saldoInicial;
+			base.saldoInicial = saldoInicial;
 			int longitud = subSaldo.length();
 			int numero = longitud - 2;
 			subSaldo = subSaldo.substring(0, numero); 
-			BaseUtil.saldoFinal = new BigDecimal(subSaldo);
-			BaseUtil.saldoFin = subSaldo;
+			base.saldoFinal = new BigDecimal(subSaldo);
+			base.saldoFin = subSaldo;
 		}catch (Exception e) {
 			if(!(contador==20)) {Utilidades.esperaMiliseg(5000);capturarSaldoFinal();
 			}else {fail("No se pudo realizar captura de saldo final debido a: " + e.getMessage());}
@@ -2069,13 +2116,16 @@ public class PasarPlataPageObjects extends PageObject {
 	}
 
 	public void BtnAceptar() {
-		try {
-			MobileElement btnAceptar = (MobileElement) wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnAceptar)));
-			btnAceptar.click();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+
+		
+				try {
+					MobileElement btnAceptar = (MobileElement) wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.btnAceptar)));
+					btnAceptar.click();
+					
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+				
 	}
 
 	public void validoLblFondosInsuficientes() {
@@ -2107,7 +2157,7 @@ public class PasarPlataPageObjects extends PageObject {
 			}
 			Utilidades.tomaEvidencia("Valido mensaje de fondos insuficientes");
 			Utilidades.esperaMiliseg(2000);
-			BaseUtil.montoTransado = new BigDecimal(0);
+			base.montoTransado = new BigDecimal(0);
 		}catch (Exception e) {
 			if(!(contador==20)) {Utilidades.esperaMiliseg(2000);validoLblFondosInsuficientesBolsillos();
 			}else {fail("No se pudo vaidar el mensaje de fondos insuficientes desde bolsillos debido a: " + e.getMessage());}
@@ -2124,7 +2174,7 @@ public class PasarPlataPageObjects extends PageObject {
 //		    assertEquals("FONDOS INSUFICIENTES", lblExcedeCupo.getText());
 			utilidad.tomaEvidencia("Valido mensaje de fondos insuficientes");
 			utilidad.esperaMiliseg(2000);
-			BaseUtil.montoTransado = new BigDecimal(0);
+			base.montoTransado = new BigDecimal(0);
 			//lblExcedeCupo.click();
 		} catch (Exception e) {
 			MobileElement aceptarPasarPlata = (MobileElement) wait
@@ -2146,7 +2196,7 @@ public class PasarPlataPageObjects extends PageObject {
 //		assertEquals("FONDOS INSUFICIENTES", lblExcedeCupo.getText());
 			utilidad.tomaEvidencia("Valido mensaje de fondos insuficientes");
 			utilidad.esperaMiliseg(2000);
-			BaseUtil.montoTransado = new BigDecimal(0);
+			base.montoTransado = new BigDecimal(0);
 			lblExcedeCupo.click();
 		}*/
 	}
@@ -2162,7 +2212,7 @@ public class PasarPlataPageObjects extends PageObject {
 				assertEquals(true, false);
 			}
 			Utilidades.tomaEvidencia("Valido mensaje de fondos insuficientes");
-			BaseUtil.montoTransado = new BigDecimal(0);
+			base.montoTransado = new BigDecimal(0);
 		}catch (Exception e) {
 			if(!(contador==5)) {Utilidades.esperaMiliseg(2000);validoLblExcedeCupo();
 			}else {fail("No se pudo validar el mensaje de fondos insuficientes debido a: " + e.getMessage());}
@@ -2175,7 +2225,7 @@ public class PasarPlataPageObjects extends PageObject {
 			utilidad.esperaMiliseg(6000);
 			utilidad.tomaEvidencia("Valido mensaje excede cupo");
 			utilidad.esperaMiliseg(6000);
-			BaseUtil.montoTransado = new BigDecimal(0);
+			base.montoTransado = new BigDecimal(0);
 			lblExcedeCupo.click();
 		} catch (Exception e) {
 			MobileElement aceptarPasarPlata = (MobileElement) wait
@@ -2190,7 +2240,7 @@ public class PasarPlataPageObjects extends PageObject {
 			utilidad.esperaMiliseg(6000);
 			utilidad.tomaEvidencia("Valido mensaje excede cupo");
 			utilidad.esperaMiliseg(6000);
-			BaseUtil.montoTransado = new BigDecimal(0);
+			base.montoTransado = new BigDecimal(0);
 			lblExcedeCupo.click();
 		}*/
 	}
@@ -2202,7 +2252,7 @@ public class PasarPlataPageObjects extends PageObject {
 		Utilidades.esperaMiliseg(6000);
 		Utilidades.tomaEvidencia("Valido mensaje de transaccion invalida");
 		Utilidades.esperaMiliseg(6000);
-		BaseUtil.montoTransado = new BigDecimal(0);
+		base.montoTransado = new BigDecimal(0);
 		lblExcedeCupo.click();
 	}
 	
@@ -2241,11 +2291,11 @@ public class PasarPlataPageObjects extends PageObject {
 	public void validoLblBolsilloNoSaldoDisponible() {
 		try {
 			contador++;
-			Utilidades.esperaMiliseg(3000);
+			utilidad.esperaMiliseg(3000);
 			MobileElement lblExcedeCupo = driver.findElement(By.xpath(this.labelCuentaNoExiste ));
 			assertEquals("Bolsillo no tiene saldo disponible", lblExcedeCupo.getText());
 			Utilidades.tomaEvidencia("Valido mensaje de bolsillo no tiene saldo disponible");
-			BaseUtil.montoTransado = new BigDecimal(0);
+			base.montoTransado = new BigDecimal(0);
 			lblExcedeCupo.click();
 		}catch(Exception e) {
 			if(!(contador==5)) {
@@ -2264,7 +2314,7 @@ public class PasarPlataPageObjects extends PageObject {
 		assertEquals("Valor inicial de bolsillo es invalido", lblExcedeCupo.getText());
 		Utilidades.tomaEvidencia("Valido mensaje de Valor inicial de bolsillo es invalido");
 		Utilidades.esperaMiliseg(2000);
-		BaseUtil.montoTransado = new BigDecimal(0);
+		base.montoTransado = new BigDecimal(0);
 		lblExcedeCupo.click();
 	}
 
@@ -2276,11 +2326,11 @@ public class PasarPlataPageObjects extends PageObject {
 			assertEquals("Exitosa, bols. sin saldo por fondos insuficientes", lblExcedeCupo.getText());
 			Utilidades.tomaEvidencia("Valido mensaje de Exitosa, bols. sin saldo por fondos insuficientes");
 			Utilidades.esperaMiliseg(2000);
-			BaseUtil.montoTransado = new BigDecimal(0);
+			base.montoTransado = new BigDecimal(0);
 			lblExcedeCupo.click();
 		}catch(Exception e) {
 			if(!(contador==5)) {
-				Utilidades.esperaMiliseg(2000);
+				utilidad.esperaMiliseg(2000);
 				validoLblValorInicialInvalido();
 			}else {
 				fail("No se encontro texto de fondos insuficientes en creacion de bolsillo, debido a: " +e.getMessage());
@@ -2296,7 +2346,7 @@ public class PasarPlataPageObjects extends PageObject {
 		assertEquals("Exitosa, bols. sin saldo por fondos insuficientes", lblExcedeCupo.getText());
 		Utilidades.tomaEvidencia("Valido mensaje de Valor inicial de bolsillo es invalido");
 		Utilidades.esperaMiliseg(2000);
-		BaseUtil.montoTransado = new BigDecimal(0);
+		base.montoTransado = new BigDecimal(0);
 		lblExcedeCupo.click();
 	}
 
@@ -2307,7 +2357,7 @@ public class PasarPlataPageObjects extends PageObject {
 		assertEquals("TRANSACCION DECLINADA", lblExcedeCupo.getText());
 		Utilidades.tomaEvidencia("Valido mensaje de transaccion declinada");
 		Utilidades.esperaMiliseg(2000);
-		BaseUtil.montoTransado = new BigDecimal(0);
+		base.montoTransado = new BigDecimal(0);
 		lblExcedeCupo.click();
 	}
 
@@ -2318,7 +2368,7 @@ public class PasarPlataPageObjects extends PageObject {
 		assertEquals("RECHAZADA POR FONDOS INSUFICIENTES", lblExcedeCupo.getText());
 		Utilidades.tomaEvidencia("Valido mensaje de transaccion declinada");
 		Utilidades.esperaMiliseg(2000);
-		BaseUtil.montoTransado = new BigDecimal(0);
+		base.montoTransado = new BigDecimal(0);
 		lblExcedeCupo.click();
 	}
 
@@ -2334,14 +2384,14 @@ public class PasarPlataPageObjects extends PageObject {
 					.until(ExpectedConditions.elementToBeClickable(By.id(this.labelCuentaNoExiste)));
 			assertEquals("Valor superior al permitido", lblExcedeCupo.getText());
 			Utilidades.tomaEvidencia("Valido mensaje de transaccion declinada");
-			BaseUtil.montoTransado = new BigDecimal(0);
+			base.montoTransado = new BigDecimal(0);
 			lblExcedeCupo.click();
 		} catch (Exception e) {
 			MobileElement lblExcedeCupo = (MobileElement) wait
 					.until(ExpectedConditions.elementToBeClickable(By.id(this.labelCuentaNoExiste)));
 			assertEquals("Valor superior al permitido", lblExcedeCupo.getText());
 			Utilidades.tomaEvidencia("Valido mensaje de transaccion declinada");
-			BaseUtil.montoTransado = new BigDecimal(0);
+			base.montoTransado = new BigDecimal(0);
 			lblExcedeCupo.click();
 		}
 
@@ -2426,7 +2476,7 @@ public class PasarPlataPageObjects extends PageObject {
 			contador++;
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(this.inputMontoCuenta)));
 			driver.findElement(By.xpath(this.inputMontoCuenta)).sendKeys(monto);
-			BaseUtil.montoTransado = new BigDecimal(0);
+			base.montoTransado = new BigDecimal(0);
 		}catch (Exception e) {
 			if(!(contador==3)) {Utilidades.esperaMiliseg(500);ingresarMontoBancos(monto);
 			}else {fail("No se pudo ingresar monto de tranferencia debido a: " + e.getMessage());}
@@ -2503,14 +2553,13 @@ public class PasarPlataPageObjects extends PageObject {
 				assertEquals(true, false);
 			}
 			Utilidades.tomaEvidencia("Valido mensaje de fondos insuficientes");
-			BaseUtil.montoTransado = new BigDecimal(0);
+			base.montoTransado = new BigDecimal(0);
 		}catch (Exception e) {
 			if(!(contador==20)) {Utilidades.esperaMiliseg(2000);validoLblRechazoFondosInsuficientesAOtros();
 			}else {fail("No se pudo validar el mensaje de fondos insuficientes a otros bancos debido a: " + e.getMessage());}
 		}finally {contador = 0;}
 	}
 	
-	@Step
 	public void validarTransaccion() {
 		try {
 			contador++;
@@ -2528,7 +2577,6 @@ public class PasarPlataPageObjects extends PageObject {
 
 	}
 	
-	@Step
 	public void validarTransaccionFallida() {
 		try {
 			contador++;
@@ -2546,7 +2594,6 @@ public class PasarPlataPageObjects extends PageObject {
 
 	}
 
-	@Step
 	public void txtAutorizadorOtrosBancos() {
 		try {
 			contador++;
@@ -2556,7 +2603,7 @@ public class PasarPlataPageObjects extends PageObject {
 			String auto = txtTransaccion;
 			
 			if (auto.length() == 6) {
-				BaseUtil.Autorizador = auto;
+				base.Autorizador = auto;
 				System.out.println("Numero autorizacion: " + auto);
 				Utilidades.tomaEvidencia("Transacción Exitosa");
 			} else {
@@ -2570,9 +2617,9 @@ public class PasarPlataPageObjects extends PageObject {
 				fail("No se pudo capturar autorizador de transacción debido a: " + e.getMessage());
 			}
 		}finally {contador=0;}
+
 	}
 
-	@Step
 	public void darClickEnFinalizarTransaccionOtrosBancos() {
 		try {
 			contador++;
@@ -2591,12 +2638,10 @@ public class PasarPlataPageObjects extends PageObject {
 
 	}
 	
-	@Step
 	public void scrollHastaBotonContinuar() {
 		Utilidades.scrollHastaElemento("Continuar");
 	}
 
-	@Step
 	public void btnContinue() {
 		try {
 			contador++;
@@ -2608,7 +2653,8 @@ public class PasarPlataPageObjects extends PageObject {
 		}finally {contador = 0;}
 	}
 	
-	@Step
+	
+	
 	public void darClickBtnSolicitudPendiente() {
 		try {
 			contador++;
@@ -2621,7 +2667,6 @@ public class PasarPlataPageObjects extends PageObject {
 		}finally {contador = 0;}
 	}
 	
-	@Step
 	public void validarMontoSolicitud(String monto) {
 		try {
 			contador++;
@@ -2636,7 +2681,10 @@ public class PasarPlataPageObjects extends PageObject {
 		}finally {contador = 0;}
 	}
 	
-	@Step
+	
+	
+	
+	
 	public void clickAceptarSolicitud() {
 		try {
 			contador++;
@@ -2649,7 +2697,7 @@ public class PasarPlataPageObjects extends PageObject {
 		}finally {contador = 0;}
 	}
 	
-	@Step
+	
 	public void clickRechazarSolicitud() {
 		try {
 			contador++;
@@ -2663,7 +2711,8 @@ public class PasarPlataPageObjects extends PageObject {
 		}finally {contador = 0;}
 	}
 	
-	@Step
+	
+	
 	public void clickConfirmarRechazarSolicitud() {
 		try {
 			contador++;
@@ -2676,7 +2725,6 @@ public class PasarPlataPageObjects extends PageObject {
 		}finally {contador = 0;}
 	}
 	
-	@Step
 	public void clickContinuarRechazarSolicitud() {
 		try {
 			contador++;
@@ -2689,7 +2737,7 @@ public class PasarPlataPageObjects extends PageObject {
 		}finally {contador = 0;}
 	}
 	
-	@Step
+	
 	public void validarClienteGMF(String estadoExenta) {
 		try {
 			contador++;
@@ -2701,7 +2749,6 @@ public class PasarPlataPageObjects extends PageObject {
 		}finally {contador = 0;}
 	}
 	
-	@Step
 	public void validarMontoEsMayorATopeCredito(String monto) {
 		try {
 			contador++;
@@ -2714,7 +2761,6 @@ public class PasarPlataPageObjects extends PageObject {
 		}finally {contador = 0;}
 	}
 	
-	@Step
 	public void validarMontoEsMayorATopeDebito(String monto) {
 		try {
 			contador++;
@@ -2727,7 +2773,6 @@ public class PasarPlataPageObjects extends PageObject {
 		}finally {contador = 0;}
 	}
 	
-	@Step
 	public void clicBtnContinuarPasarPlataLinea() {
 		try {
 			contador++;
@@ -2745,7 +2790,6 @@ public class PasarPlataPageObjects extends PageObject {
 					
 	}
 	
-	@Step
 	public void validarOpcionMeterPlataHomeDavi() {
 		try {
 			contador++;
@@ -2755,7 +2799,7 @@ public class PasarPlataPageObjects extends PageObject {
 			assertThat(txtMeterPlata, containsString("Meter plata"));		
 		}catch(Exception e) {
 			if(!(contador==5)) {
-				Utilidades.esperaMiliseg(2000);
+				utilidad.esperaMiliseg(2000);
 				validarOpcionMeterPlataHomeDavi();
 			}else {
 				fail("No se encontró botón 'Meter Plata' en el home Daviplata, debido a: " + e.getMessage());
@@ -2764,7 +2808,6 @@ public class PasarPlataPageObjects extends PageObject {
 					
 	}
 	
-	@Step
 	public void validarVisibilidadFormularioPse() {
 		try {
 			contador++;
@@ -2772,15 +2815,15 @@ public class PasarPlataPageObjects extends PageObject {
 					.until(ExpectedConditions.elementToBeClickable(By.xpath(this.inputAgenciaCuentas)));		
 		}catch(Exception e) {
 			if(!(contador==30)) {
-				Utilidades.esperaMiliseg(2000);
+				utilidad.esperaMiliseg(2000);
 				validarVisibilidadFormularioPse();
 			}else {
 				fail("No se encontró input 'Accounbt Agency' en el banco pse, debido a: " + e.getMessage());
 			}
 		}finally {contador=0;}
+					
 	}
 	
-	@Step
 	public void inputNumeroCuenta(String numeroCuenta) {
 		try {
 			contador++;
@@ -2789,7 +2832,7 @@ public class PasarPlataPageObjects extends PageObject {
 			element.sendKeys(numeroCuenta);		
 		}catch(Exception e) {
 			if(!(contador==5)) {
-				Utilidades.esperaMiliseg(2000);
+				utilidad.esperaMiliseg(2000);
 				inputNumeroCuenta(numeroCuenta);
 			}else {
 				fail("No se encontró input 'Account Number' en el banco pse, debido a: " + e.getMessage());
@@ -2798,7 +2841,6 @@ public class PasarPlataPageObjects extends PageObject {
 					
 	}
 	
-	@Step
 	public void inputPasswordCuenta(String password) {
 		try {
 			contador++;
@@ -2807,15 +2849,15 @@ public class PasarPlataPageObjects extends PageObject {
 			element.sendKeys(password);		
 		}catch(Exception e) {
 			if(!(contador==5)) {
-				Utilidades.esperaMiliseg(2000);
+				utilidad.esperaMiliseg(2000);
 				inputPasswordCuenta(password);
 			}else {
 				fail("No se encontró input 'Password' en el banco pse, debido a: " + e.getMessage());
 			}
 		}finally {contador=0;}
+					
 	}
 	
-	@Step
 	public void clicBtnPay() {
 		try {
 			contador++;
@@ -2824,15 +2866,15 @@ public class PasarPlataPageObjects extends PageObject {
 			element.click();	
 		}catch(Exception e) {
 			if(!(contador==5)) {
-				Utilidades.esperaMiliseg(2000);
+				utilidad.esperaMiliseg(2000);
 				clicBtnPay();
 			}else {
 				fail("No se encontró botón 'Pay' en el banco pse, debido a: " + e.getMessage());
 			}
 		}finally {contador=0;}
+					
 	}
 	
-	@Step
 	public void validarTransaccionPseBanco() {
 		try {
 			contador++;
@@ -2841,24 +2883,8 @@ public class PasarPlataPageObjects extends PageObject {
 			assertThat(element.getText(), containsString("Transacción exitosa"));
 		}catch(Exception e) {
 			if(!(contador==5)) {
-				Utilidades.esperaMiliseg(2000);
+				utilidad.esperaMiliseg(2000);
 				validarTransaccionPseBanco();
-			}else {
-				fail("No se encontró mensaje de transacción de pse, debido a: " + e.getMessage());
-			}
-		}finally {contador=0;}
-	}
-	
-	@Step
-	public void validarAparezcaTransaccionPseBanco() {
-		try {
-			contador++;
-			MobileElement element = (MobileElement) wait
-					.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(this.mensajeTransaccionPse)));
-		}catch(Exception e) {
-			if(!(contador==30)) {
-				Utilidades.esperaMiliseg(2000);
-				validarAparezcaTransaccionPseBanco();
 			}else {
 				fail("No se encontró mensaje de transacción de pse, debido a: " + e.getMessage());
 			}
@@ -2866,7 +2892,21 @@ public class PasarPlataPageObjects extends PageObject {
 					
 	}
 	
-	@Step
+	public void validarAparezcaTransaccionPseBanco() {
+		try {
+			contador++;
+			MobileElement element = (MobileElement) wait
+					.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(this.mensajeTransaccionPse)));
+		}catch(Exception e) {
+			if(!(contador==30)) {
+				utilidad.esperaMiliseg(2000);
+				validarAparezcaTransaccionPseBanco();
+			}else {
+				fail("No se encontró mensaje de transacción de pse, debido a: " + e.getMessage());
+			}
+		}finally {contador=0;}
+					
+	}
 	public void inputAgenciaCuentas(String agenciaCuentas) {
 		try {
 			contador++;
@@ -2875,7 +2915,7 @@ public class PasarPlataPageObjects extends PageObject {
 			element.sendKeys(agenciaCuentas);		
 		}catch(Exception e) {
 			if(!(contador==5)) {
-				Utilidades.esperaMiliseg(2000);
+				utilidad.esperaMiliseg(2000);
 				inputAgenciaCuentas(agenciaCuentas);
 			}else {
 				fail("No se encontró input 'Accounbt Agency' en el banco pse, debido a: " + e.getMessage());
@@ -2884,12 +2924,14 @@ public class PasarPlataPageObjects extends PageObject {
 					
 	}
 
-	@Step
+
+
+
 	public void clicContinuar(int repeticion) {
 		try {
 			contador++;
 			for(int i = 0; i<repeticion; i++){
-				BaseUtil.driver.findElement(By.name(this.btnContinuar)).click();
+				base.driver.findElement(By.name(this.btnContinuar)).click();
 			}
 		} catch (Exception e) {
 			if (!(contador == 5)) {
@@ -2903,16 +2945,15 @@ public class PasarPlataPageObjects extends PageObject {
 		}
 	}
 	
-	@Step
 	public void validoLblBolsilloFondosInsuficientes() {
 		try {
 			contador++;
 			MobileElement lblExcedeCupo = (MobileElement) wait
 					.until(ExpectedConditions.presenceOfElementLocated(By.xpath(this.txtFondosInsuBolsillo)));
 			assertEquals("FONDOS INSUFICIENTES", lblExcedeCupo.getText().toUpperCase());
-			Utilidades.tomaEvidencia("Valido mensaje de bolsillo Fondos Inuficientes");
-			Utilidades.esperaMiliseg(2000);
-			BaseUtil.montoTransado = new BigDecimal(0);
+			utilidad.tomaEvidencia("Valido mensaje de bolsillo Fondos Inuficientes");
+			utilidad.esperaMiliseg(2000);
+			base.montoTransado = new BigDecimal(0);
 			lblExcedeCupo.click();
 		}catch(Exception e) {
 			if(!(contador==5)) {
@@ -2923,20 +2964,18 @@ public class PasarPlataPageObjects extends PageObject {
 			}
 		}finally {contador=0;}
 	}
-	
-	@Step
 	public void capturarSaldoInicialDaviplata() {
 		try {
 			contador++;
 			String subSaldo;
 			Utilidades.esperaMiliseg(3000);
 			
-			subSaldo = BaseUtil.driver.findElement(By.xpath(this.txtSaldoDaviPlata)).getText();
+			subSaldo = base.driver.findElement(By.xpath(this.txtSaldoDaviPlata)).getText();
 			System.out.println(subSaldo);
 			subSaldo = subSaldo.replaceAll("[^0-9]", "");
 			
 			BigDecimal saldoInicial = new BigDecimal(subSaldo); 
-			BaseUtil.saldoInicial = saldoInicial;
+			base.saldoInicial = saldoInicial;
 			int longitud = subSaldo.length();
 			int numero = longitud - 2;
 			subSaldo = subSaldo.substring(0, numero); 
@@ -2954,18 +2993,15 @@ public class PasarPlataPageObjects extends PageObject {
 		}
 	}
 	
-	@Step
 	public void validarIgualdadSaldosInicialesGmf() {
 		assertThat(Serenity.sessionVariableCalled("saldoInicial"), equalTo(Serenity.sessionVariableCalled("saldoRealGmf")));
 
 	}
 	
-	@Step
 	public void validarIgualdadSaldosIniciales() {
 		assertThat(Serenity.sessionVariableCalled("saldoInicial"), equalTo(Serenity.sessionVariableCalled("saldoReal")));
 	}
 	
-	@Step
 	public void  esperarVisibilidadMensajeTransaccion() {
 		try {
 			contador++;
@@ -2981,7 +3017,7 @@ public class PasarPlataPageObjects extends PageObject {
 				Utilidades.esperaMiliseg(2000);
 				esperarVisibilidadMensajeTransaccion();
 			} else {
-				Utilidades.tomaEvidencia("Se presentó error de transaccion");
+				utilidad.tomaEvidencia("Se presentó error de transaccion");
 				fail("No se pudo obtener mensaje de validación de transacción exitosa, debido a: " + e.getMessage());
 			}
 		} finally {
@@ -2989,18 +3025,17 @@ public class PasarPlataPageObjects extends PageObject {
 		}
 	}
 	
-	@Step
 	public void ingresarMontoCuentaTopeDebitos() {
 		try {
 			contador++;
 
-			String valorAPasar = String.valueOf(BaseUtil.sumaDebito);
+			String valorAPasar = String.valueOf(base.sumaDebito);
 			//
-			BaseUtil.driver.findElement(By.xpath(this.inputMontoCuenta)).sendKeys(valorAPasar);
+			base.driver.findElement(By.xpath(this.inputMontoCuenta)).sendKeys(valorAPasar);
 					
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				Utilidades.esperaMiliseg(2000);
+				utilidad.esperaMiliseg(2000);
 				ingresarMontoCuentaTopeDebitos();
 			} else {
 				fail("No se encontró input 'Ingrese un valor' en pasar plata a cuentas davivienda, debido a: "
@@ -3009,16 +3044,16 @@ public class PasarPlataPageObjects extends PageObject {
 		} finally {
 			contador = 0;
 		}
+
 	}
 	
-	@Step
 	public void clicBotonContinuar() {
 		try {
 			contador++;
-			BaseUtil.driver.findElement(By.xpath(this.btnContinuar2)).click();
+			base.driver.findElement(By.xpath(this.btnContinuar2)).click();
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				Utilidades.esperaMiliseg(2000);
+				utilidad.esperaMiliseg(2000);
 				clicBotonContinuar();
 			} else {
 				fail("No se encontró botón 'Continuar' en pasar plata a cuentas Davivienda, debido a: "
@@ -3027,16 +3062,15 @@ public class PasarPlataPageObjects extends PageObject {
 		} finally {
 			contador = 0;
 		}
+
 	}
-	
-	@Step
 	public void darClickBotonMasHome() {
 		try {
 			contador++;
-			BaseUtil.driver.findElement(By.xpath(this.btnMasHome)).click();			
+			base.driver.findElement(By.xpath(this.btnMasHome)).click();			
 		}catch(Exception e) {
 			if(!(contador == 5)) {
-				Utilidades.esperaMiliseg(2000);
+				utilidad.esperaMiliseg(2000);
 				darClickBotonMasHome();
 			}else {
 				fail("No se encontró botón 'Más' del home daviplata, debido a: " + e.getMessage());
@@ -3045,14 +3079,13 @@ public class PasarPlataPageObjects extends PageObject {
 		
 	}
 	
-	@Step
 	public void validarBotonContinuarPasarPlataInhabilitado() {
 		try {
 			contador++;
-			assertThat(BaseUtil.driver.findElement(By.xpath(this.btnPasarP)).isEnabled(), is(false));
+			assertThat(base.driver.findElement(By.xpath(this.btnPasarP)).isEnabled(), is(false));
 		} catch (Exception e) {
 			if (!(contador == 5)) {
-				Utilidades.esperaMiliseg(2000);
+				utilidad.esperaMiliseg(2000);
 				validarBotonContinuarPasarPlataInhabilitado();
 			} else {
 				fail("No se encontró boton continuar en pasar plata, debido a: " + e.getMessage());
@@ -3063,7 +3096,6 @@ public class PasarPlataPageObjects extends PageObject {
 
 	}
 	
-	@Step
 	public void cerrarPasarPlataRedesSociales() {
 		try {
 			contador++;
@@ -3072,22 +3104,22 @@ public class PasarPlataPageObjects extends PageObject {
 			//element.click();			
 		}catch(Exception e) {
 			if(!(contador == 5)) {
-				Utilidades.esperaMiliseg(2000);
+				utilidad.esperaMiliseg(2000);
 				cerrarPasarPlataRedesSociales();
 			}else {
 				fail("No se encontró botón 'Cerrar' de redes sociales del home daviplata, debido a: " + e.getMessage());
 			}
 		}finally {contador=0;}
+		
 	}
 	
-	@Step
 	public void clicBotonFavoritosCuentaInscritas() {
 		try {
 			contador++;
 			driver.findElement(By.xpath(this.btnFavoritos)).click();
 		}catch(Exception e) {
 			if(!(contador == 5)) {
-				Utilidades.esperaMiliseg(2000);
+				utilidad.esperaMiliseg(2000);
 				clicBotonFavoritosCuentaInscritas();
 			}else {
 				fail("No se encontró botón 'Favoritos' en pasar plata, debido a: " + e.getMessage());
@@ -3096,14 +3128,13 @@ public class PasarPlataPageObjects extends PageObject {
 		
 	}
 	
-	@Step
 	public void clicCuentaInscritas() {
 		try {
 			contador++;
 			driver.findElement(By.xpath(this.btnFavoritos)).click();
 		}catch(Exception e) {
 			if(!(contador == 5)) {
-				Utilidades.esperaMiliseg(2000);
+				utilidad.esperaMiliseg(2000);
 				clicBotonFavoritosCuentaInscritas();
 			}else {
 				fail("No se encontró botón 'Favoritos' en pasar plata, debido a: " + e.getMessage());
@@ -3112,22 +3143,23 @@ public class PasarPlataPageObjects extends PageObject {
 		
 	}
 	
-	@Step
 	public void clicBotonCuentaFav() {
 		try {
 			contador++;
 			driver.findElement(By.xpath(this.btnCuentaFavorita)).click();
 		}catch(Exception e) {
 			if(!(contador == 5)) {
-				Utilidades.esperaMiliseg(2000);
+				utilidad.esperaMiliseg(2000);
 				clicBotonCuentaFav();
 			}else {
 				fail("No se encontró botón 'Favoritos' en pasar plata, debido a: " + e.getMessage());
 			}
-		} finally {contador=0;}
+		}finally {contador=0;}
+		
+		
+		
 	}
 
-	@Step
 	public void validarMensajeMontoSuperiorSaldoDisponible() {
 		try {
 			contador++;
@@ -3135,19 +3167,19 @@ public class PasarPlataPageObjects extends PageObject {
 			assertThat(label, containsString("Ingrese un monto que se ajuste a su saldo disponible"));			
 		}catch(Exception e) {
 			if(!(contador == 5)) {
-				Utilidades.esperaMiliseg(2000);
+				utilidad.esperaMiliseg(2000);
 				validarMensajeMontoSuperiorSaldoDisponible();
 			}else {
 				fail("No se encontró mensaje del monto ajustable al disponible en el monedero en pasar plata, debido a: " + e.getMessage());
 			}
 		}finally {contador=0;}
+		
 	}
 
-	@Step
 	public void validarTopesDebitoDestino(String topeDebitos) {
-        String debitoMensual = BaseUtil.topeDebitos;
-        BaseUtil.topeDebitosActual = topeDebitos;
-        int num1 = Integer.parseInt(BaseUtil.topeDebitosActual);
+        String debitoMensual = base.topeDebitos;
+        base.topeDebitosActual = topeDebitos;
+        int num1 = Integer.parseInt(base.topeDebitosActual);
         int num2 = Integer.parseInt(debitoMensual);
         if (num2 >= num1) {
             System.out.println("***El tope debito del daviplata se encuentra en el rango actual de topes***");
@@ -3155,12 +3187,10 @@ public class PasarPlataPageObjects extends PageObject {
             System.out.println("***El tope debito del daviplata no se encuentra en el rango actual de topes***");
         }
     }
-	
-	@Step
 	public void ingresarMontoMayor() {
 		try {
 			contador++;
-			BigDecimal monto = BaseUtil.saldoInicial;
+			BigDecimal monto = base.saldoInicial;
 			int montoInt = monto.intValue();
 			int suma = montoInt + 5000;
 			String saldoSuperior = String.valueOf(suma);
@@ -3178,7 +3208,6 @@ public class PasarPlataPageObjects extends PageObject {
 		}
 	}
 	
-	@Step
 	public void esperarVisibilidadPantallaTransfiYa() {
 		try {
 			contador++;
@@ -3195,7 +3224,6 @@ public class PasarPlataPageObjects extends PageObject {
 		}
 	}
 	
-	@Step
 	public void validarFondosInsuficientes() {
 		try {
 			contador++;
@@ -3214,7 +3242,6 @@ public class PasarPlataPageObjects extends PageObject {
 		}
 	}
 	
-	@Step
 	public void inputMontoFondosInsuficientes() {
 		BigDecimal saldoTotal = Serenity.sessionVariableCalled("saldoReal");
         int suma = saldoTotal.intValue() + 1000;
@@ -3222,11 +3249,11 @@ public class PasarPlataPageObjects extends PageObject {
        
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(this.inputMontoPasarP)));
 		driver.findElement(By.xpath(this.inputMontoPasarP)).sendKeys(valorSuperior);
-		BaseUtil.montoTransado = new BigDecimal(valorSuperior);
+		base.montoTransado = new BigDecimal(valorSuperior);
 		cerrarTeclado();
+		
 	}
 	
-	@Step
 	public void validarValorInferiorOtrosBancos() {
 		try {
 			contador++;

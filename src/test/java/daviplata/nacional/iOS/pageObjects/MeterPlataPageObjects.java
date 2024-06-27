@@ -4,11 +4,11 @@ import net.serenitybdd.core.pages.PageObject;
 
 public class MeterPlataPageObjects extends PageObject {
 	
-	public static final String BOTON_METER_PLATA = "//XCUIElementTypeStaticText[@name='Meter plata'] | //XCUIElementTypeOther[contains(@name,'btn-my-movements-0') or contains(@name, 'Meter Plata botón')]";
+	public static final String BOTON_METER_PLATA = "//XCUIElementTypeStaticText[@name='Meter plata']";
 	public static final String BOTON_METER_PLATA_MH = "//XCUIElementTypeStaticText[@name='Meter Plata']";
 	public static final String BOTON_MENU_HAMBURGUESA = "//*[@name='Menú DaviPlata botón']";
 	public static final String BOTON_USAR_PLATA_MH = "//*[@value='Usar Plata']";
-	public static final String BOTON_METER_PLATA_HOME = "//XCUIElementTypeOther[contains(@name,'btn-my-movements-0') or contains(@name, 'Meter Plata botón')] | //XCUIElementTypeStaticText[@name='Meter plata'] | //XCUIElementTypeOther[contains(@name,'btn-my-movements-0') or contains(@name, 'Meter Plata botón')]";	
+	public static final String BOTON_METER_PLATA_HOME = "//XCUIElementTypeOther[contains(@name,'btn-my-movements-0') or contains(@name, 'Meter Plata botón')]";	
 	public static final String TXT_DESDE_DONDE_METER_PLATA = "//*[@name='Seleccione desde dónde quiere Meter Plata']";
 	public static final String BOTON_REGRESO_HOME = "//*[@name='atrás Botón']";
 	public static final String TXT_DESDE_DONDE_METER_PLATA_HM = "//*[@name='Seleccione desde dónde quiere Meter Plata']";
@@ -17,7 +17,7 @@ public class MeterPlataPageObjects extends PageObject {
 	public static final String BTN_REGRESO_DONDE_METER_PLATA = "//*[@name='Atras']";
 	public static final String BTN_METER_PLATA_EN_EFECTIVO = "//*[@name='En efectivo']";
 	public static final String MENSAJE_POP_UP = "//XCUIElementTypeStaticText[contains(@name,'Está llegando al tope mensual')]";
-	public static final String BTN_REGRESO_MODULO_DONDE_METER_PLATA = "//*[@name='icon back button'] | //XCUIElementTypeButton[contains(@name,'Atras')] | //XCUIElementTypeButton[contains(@name, 'Regresar')] | //XCUIElementTypeButton[contains(@label, 'Regresar')] | //XCUIElementTypeButton[contains(@name, 'Botón atrás')] | //XCUIElementTypeButton[contains(@name,'Botón atrás')] | //*[contains(@name,'ic arrow left')] | //*[contains(@name, 'Regresar')] | //XCUIElementTypeButton[contains(@name, 'icon back button')] | //XCUIElementTypeOther[@name='image-header-0']/XCUIElementTypeImage | //XCUIElementTypeButton[@name='Atrás Botón']";
+	public static final String BTN_REGRESO_MODULO_DONDE_METER_PLATA = "//*[@name='icon back button']";
 	public static final String CAMPO_INGRESO_NUMERO_CEL = "(//*[@name='main'])[2]/XCUIElementTypeOther[2]/XCUIElementTypeTextField[1]";
 	public static final String CAMPO_CONFIRMACION_INGRESO_NUMERO_CEL = "//XCUIElementTypeTextField[contains(@value, 'Confirme el número')] | (//XCUIElementTypeOther[@name='main'])[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/following-sibling::XCUIElementTypeTextField[1]";
 	public static final String POP_UP_METER_PLATA_EFECTIVO = "//*[@name='¿Cómo Meter Plata en Efectivo?']";
@@ -47,7 +47,6 @@ public class MeterPlataPageObjects extends PageObject {
 	public static final String INPUT_INGRESE_UN_VALOR = "//XCUIElementTypeTextField[contains(@name,'¿Cuánta plata quiere meter?')] | //XCUIElementTypeTextField[@name='¿Cuánta plata quiere meter?']";
 	public static final String INPUT_INGRESE_UN_NUMERO = "//XCUIElementTypeTextField[@name='¿A qué número quiere meter plata?']";
 	public static final String BOTON_CONTINUAR = "//XCUIElementTypeButton[contains(@name,'Continuar')] | //XCUIElementTypeButton[label='Continuar']";
-	public static final String BTN_FINALIZAR = "//XCUIElementTypeButton[@name='Finalizar']";
 	public static final String BOTON_CONTINUAR_VERIFICAR_INFO = "//XCUIElementTypeButton[@name='Continuar']";
 	public static final String TEXTO_INFORMACION_INGRESADA = "//XCUIElementTypeStaticText[@name='El valor a cargar en DaviPlata se descontará del banco Davivienda a través de PSE']";
 	public static final String BOTON_REGRESAR_FORMULARIO = "//*[@name='icon back button'] | //XCUIElementTypeButton[contains(@name,'Atras')] | //XCUIElementTypeButton[contains(@name, 'Regresar')] | //XCUIElementTypeButton[contains(@label, 'Regresar')] | //XCUIElementTypeButton[contains(@name, 'Botón atrás')] | //XCUIElementTypeButton[contains(@name,'Botón atrás')] | //*[contains(@name,'ic arrow left')] | //*[contains(@name, 'Regresar')] | //XCUIElementTypeButton[contains(@name, 'icon back button')] | //XCUIElementTypeOther[@name='image-header-0']/XCUIElementTypeImage | //XCUIElementTypeButton[@name='Atrás Botón']";
@@ -58,7 +57,7 @@ public class MeterPlataPageObjects extends PageObject {
 	public static final String BOTON_ACEPTAR_POP_UP_ACEPTAR_DAVIPLATA = "//XCUIElementTypeButton[@name='Aceptar']";
 	public static final String TEXTO_INGRESE_A_SU_DAVIPLATA = "//XCUIElementTypeStaticText[contains(@name,'Ingrese a su Daviplata')]";
 	public static final String OPCION_BANCO_UNION_COLOMBIANO = "//XCUIElementTypeStaticText[@name='BANCO UNION COLOMBIANO']";
-	public static final String TEXTO_COSTO_TRANSACCION = "(//XCUIElementTypeStaticText[contains(@name,'$')])[2] | (//XCUIElementTypeStaticText[contains(@name,'$')])[2]";
+	public static final String TEXTO_COSTO_TRANSACCION = "(//XCUIElementTypeStaticText[contains(@name,'$')])[3]";
 	public static final String CHECK_SWITCH_TRATAMIENTO_DATOS = "(//XCUIElementTypeSwitch)[1]";
 	public static final String CHECK_SWITCH_TYC = "(//XCUIElementTypeSwitch)[2]";
 	public static final String TEXTO_AUTORIZA_PSE = "//XCUIElementTypeStaticText[contains(@name,'Autoriza a PSE')]";
@@ -69,14 +68,14 @@ public class MeterPlataPageObjects extends PageObject {
 	public static final String INPUT_PASSWORD = "//XCUIElementTypeSecureTextField[@name='Format: 6 digits']";
     public static final String BTN_DONE = "//XCUIElementTypeButton[@name='Done']";
 	public static final String BOTON_PAY = "//XCUIElementTypeButton[@name='Pay']";
-	public static final String TEXTO_TRANSACCION_EXITOSA = "//XCUIElementTypeStaticText[contains(@name,'Transacción')] | //XCUIElementTypeStaticText[contains(@name,'exitosa')]";
+	public static final String TEXTO_TRANSACCION_EXITOSA = "//XCUIElementTypeStaticText[contains(@name,'Transacción')] | (//XCUIElementTypeOther)[15]";
 	public static final String CAMPO_FECHA_Y_HORA = "//XCUIElementTypeStaticText[@name='Fecha y hora de la transacción']";
 	public static final String CAMPO_NUMERO_PRODUCTO_DESTINO = "//XCUIElementTypeStaticText[@name='Número al que metió plata']";
 	public static final String CAMPO_CUANTA_PLATA_METIO = "//XCUIElementTypeStaticText[@name='¿Cuánta plata metió?']";
 	public static final String CAMPO_NUMERO_AUTORIZACIÓN = "//XCUIElementTypeStaticText[@name='Número de autorización']";
-	public static final String BOTON_FINALIZAR = "//XCUIElementTypeButton[contains(@name,'Finalizar')] | //XCUIElementTypeButton[@name='Finalizar']";
+	public static final String BOTON_FINALIZAR = "//XCUIElementTypeButton[contains(@name,'Finalizar')]";
 	public static final String BOTON_METER_PLATA_VERIFIQUE_INFORMACION = "//XCUIElementTypeButton[@name='Meter Plata']";
-	public static final String MENSAJE_TRANSACCION_NO_EXITOSA = "//XCUIElementTypeStaticText[contains(@name, 'El DaviPlata destino')] | //XCUIElementTypeStaticText[contains(@name, 'no puede')] | //XCUIElementTypeStaticText[contains(@name, 'no permite')] | //XCUIElementTypeStaticText[@name='Transacción no exitosa'] | //XCUIElementTypeStaticText[contains(@name, 'no exitosa')]";
+	public static final String MENSAJE_TRANSACCION_NO_EXITOSA = "//XCUIElementTypeStaticText[contains(@name,'no permite')] | //XCUIElementTypeStaticText[@name='El DaviPlata destino, se encuentra en un estado que no permite meter plata.'] | ";
 	public static final String BOTON_COMPARTIR_TRANSACCION = "//XCUIElementTypeButton[@name='Compartir Botón']";
 	public static final String LISTA_DESPLEGABLE_BANCOS = "//XCUIElementTypeStaticText[@name='Seleccione el banco'] | //XCUIElementTypeOther[contains(@name, 'Desde qué banco quiere')]/following-sibling::XCUIElementTypeOther";
 	public static final String POPUP_COMUNICACION_NO_DISPONIBLE = "//XCUIElementTypeStaticText[contains(@name, 'Comunicación no disponible')]";

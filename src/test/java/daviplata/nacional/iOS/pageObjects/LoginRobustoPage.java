@@ -50,7 +50,7 @@ public class LoginRobustoPage extends PageObject {
 	public static final String POPUP_CLAVE_INCORRECTA = "//XCUIElementTypeTextView[contains(@value, 'es incorrecta')]";
 	public static final String BOTON_ACEPTAR_TECLADO_IOS = "//XCUIElementTypeButton[contains(@name,'Aceptar')]";
 	public static final String POP_UP_INVITE_AMIGOS = "//XCUIElementTypeStaticText[contains(@name,'Invite a sus amigos')]";
-	public static final String BOTON_CLOSE = "//XCUIElementTypeButton[@name='Close'] | //XCUIElementTypeButton[@name='Aceptar'] | //XCUIElementTypeButton[@name='Imagen cerrar']";
+	public static final String BOTON_CLOSE = "//XCUIElementTypeButton[@name='Close'] | //XCUIElementTypeButton[@name='Aceptar']";
 	public static final String IN_PROGRESS_INDICATOR = "//XCUIElementTypeActivityIndicator[@name='In progress']";
 	public static final String POPUP_APROVECHA_BENEFICIOS = "//XCUIElementTypeStaticText[contains(@name, 'Aproveche los beneficios')] | //XCUIElementTypeStaticText[contains(@name, 'Compre por internet y en datáfonos')]";
 	public static final String BTN_LO_VERÉ_LUEGO_POPUP = "//XCUIElementTypeButton[@name='Lo veré luego']";

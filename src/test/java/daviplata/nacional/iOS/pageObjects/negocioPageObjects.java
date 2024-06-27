@@ -165,7 +165,7 @@ public class negocioPageObjects {
 	private String btnAceptarCondicionesPasarPlata = "//*[@resource-id='submit']";
 	private String btnContinuarInformacionPasarPlata = "//*[@resource-id='submitAddress']";
 	private String lblTransaccionAOtrosBancos = "(//*[@class='android.widget.TextView'])[3]";
-	private String checkAOtrosBancosEnLinea = "//XCUIElementTypeOther[@name='A otro banco en línea']";
+	private String checkAOtrosBancosEnLinea = "//*[@text='A otro banco en línea']";
 	private String btnNuevaSolicitud = "//*[@text='Nueva Solicitud']";
 	private String btnMiDaviplata = "";
 	private String txtingresosNegocio = "//*[@name='Más ingresos para su negocio']";
