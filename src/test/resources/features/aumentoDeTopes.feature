@@ -14,7 +14,7 @@ Feature: casos de aumento de topes
     And obtener topes de credito
     When seleccionar pasar plata Home
     And pasar plata a otro Daviplata escribir <cuentaNum><monto>
-    And logout app
+    And Salir de la app
     And obtener numero celular actual en redeban aumento de topes <usuario>
     And consulté saldo tarjeta en redeban aumento de topes
     And logout redeban al finalizar consulta

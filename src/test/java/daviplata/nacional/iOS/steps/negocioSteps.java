@@ -1,5 +1,7 @@
 package daviplata.nacional.iOS.steps;
 
+import static org.junit.Assert.fail;
+
 import java.math.BigDecimal;
 
 import org.openqa.selenium.By;
@@ -18,7 +20,7 @@ import net.thucydides.core.annotations.Step;
 
 public class negocioSteps {
 
-	 negocioPageObjects negocioPO;
+	 negocioPageObjects negocioPO = new negocioPageObjects();
 	 LoginPageObjects pageLogin;
 	 MarketPlacePageObjects marketObj;
 	 Utilidades utilidad;
@@ -30,16 +32,18 @@ public class negocioSteps {
 	@Step
 	public void IrANegocio() {
 //		pageLogin.validarInicioSesion();
-		Utilidades.esperaMiliseg(10000);
 		utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_IR_NEGOCIO);
-		Utilidades.esperaMiliseg(1500);
+		Utilidades.esperaMiliseg(10000);
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+		Utilidades.esperaMiliseg(10000);
 		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
 		System.out.println("Ingresando a perfil negocio");
-		Utilidades.esperaMiliseg(1500);
-		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
-		Utilidades.esperaMiliseg(1000);
 		Utilidades.tomaEvidencia("Perfil Mi Negocio");
-		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+		boolean estadoVisiblePopUpAmigos = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.TXT_ERROR_SISTEMA);
+		if(estadoVisiblePopUpAmigos == true) {
+			Utilidades.esperaMiliseg(1000);
+			utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_CLOSE);
+		}	
 	}
 	
 	@Step
@@ -185,7 +189,6 @@ public class negocioSteps {
 		Utilidades.tomaEvidencia("Validar Opcion 'Pasar Plata' y 'Sacar Plata' de la opcion 'Usar Plata'");
 	}
 	
-	
 	@Step
 	public void nombrePerfilNegocio() {
 		Utilidades.esperaMiliseg(8000);
@@ -246,6 +249,7 @@ public class negocioSteps {
 		marketObj.clicBtnCrearPerfilNegocio();
 	}
 	
+	@Step
 	public void llenarFormularioCreacionNegocioZonaPublica(String nombre, String monto, String casa, String correo) {
 		marketObj.esperarDesaparezcalogoCarga();
 		utilidad.moverPantallaCorto();
@@ -265,6 +269,7 @@ public class negocioSteps {
 		Utilidades.tomaEvidencia("Completo el formulario requerido");
 	}
 	
+	@Step
 	public void validoBotonIrPerfilUsuario() {
 		negocioPO.validarBotónIrAPerfilPersona();
 		Utilidades.tomaEvidencia("Validar boton ir a perfil persona");
@@ -272,6 +277,7 @@ public class negocioSteps {
 		Utilidades.esperaMiliseg(10000);
 	}
 	
+	@Step
 	public void ingresarOpcionPasarPlataPerfilNegocio() {
 //		utilidad.tomaEvidencia("Clic en opcion usar plata");
 //		negocioPO.clicOpcionUsarPlata();
@@ -279,6 +285,7 @@ public class negocioSteps {
 		negocioPO.clicOpcionPasarPlataPerfilNegocio();
 	}
 	
+	@Step
 	public void ingresarOpcionSacarPlataPerfilNegocio() {
 //		utilidad.tomaEvidencia("Menú hamburguesa");
 //		negocioPO.clicOpcionUsarPlata();
@@ -288,27 +295,29 @@ public class negocioSteps {
 		Utilidades.tomaEvidencia("Clic en opcion sacar plata");
 	}
 	
+	@Step
 	public void ingresarOpcionSacarPlataHomePerfilNegocio() {
 //		negocioPO.esperarCargaPerfilNegocio();
 		Utilidades.tomaEvidencia("Clic en botón sacar plata");
 		negocioPO.clicOpcionSacarPlataPerfilNegocio();
 	}
 	
+	@Step
 	public void ingresarOpcionPasarPlataHomePerfilNegocio() {
 		negocioPO.esperarCargaPerfilNegocio();
 		Utilidades.tomaEvidencia("Clic en botón Pasar plata");
 		negocioPO.clicBotonPasarPlataHomePerfilNegocio();
-		
 	}
 	
+	@Step
 	public void ingresarOpcionAOtroDaviplataPerfilNegocio() {
 		Utilidades.esperaMiliseg(2000);
 		Utilidades.tomaEvidencia("Clic en opcion a otro daviplata");
 		negocioPO.clicBtnAOtroDaviplataPerfilNegocio();
 		negocioPO.clicBtnAceptarPerfilNegocio();
-				
 	}
 	
+	@Step
 	public void flujoPasarPlataAOtroDaviplataPerfilNegocio(String numCelular) {
 		Utilidades.tomaEvidencia("Ingresar numero cuenta: " + numCelular);
 		negocioPO.ingresarNumeroCuentaPerfilNegocio(numCelular);
@@ -322,11 +331,9 @@ public class negocioSteps {
 		Utilidades.tomaEvidencia("Validacion de transaccion");
 		negocioPO.validarTransaccionPerfilNegocio();
 		negocioPO.txtAutorizadorAotroDaviplata();	
-		
-		
-		
 	}
 	
+	@Step
 	public void flujoSacarPlataPerfilNegocio() {
 		negocioPO.escogerMontoPerfilNegocioSacarPlata();
 		Utilidades.tomaEvidencia("Seleccionar monto");
@@ -355,9 +362,9 @@ public class negocioSteps {
 		Utilidades.esperaMiliseg(4000);
 		negocioPO.txtAutorizadorSacarPlataPerfilNegocio();	
 		utilidadesTCS.clicElement("xpath", MenuHamburguesaPageObjects.BOTON_FINALIZAR_MOVIMIENTOS);
-		
 	}
 	
+	@Step
 	public void validacionBtnMasServicios() {
 		negocioPO.validarBtnMasServicios();
 		negocioPO.clicBtnMasServicios();
@@ -430,6 +437,7 @@ public class negocioSteps {
 		}
 	}
 	
+	@Step
 	public void verMovimientosPerfilNegocio() {
 		Utilidades.esperaMiliseg(2000);
 		negocioPO.clicBtnMasServicios();
@@ -440,11 +448,13 @@ public class negocioSteps {
 		Utilidades.tomaEvidencia("Validación movimientos de ventas en el perfil negocio");
 	}
 	
+	@Step
 	public void validarMovimientosPerfilNegocio() {
 		Utilidades.esperaMiliseg(2000);
 		Utilidades.tomaEvidencia("Validación movimientos de ventas en el perfil negocio");
 	}
 	
+	@Step
 	public void actualizacionDatosPerfilNegocio() {
 		negocioPO.clicBtnMasServicios();
 		Utilidades.tomaEvidencia("Ingresar a opcion 'Actualizar datos' desde 'Más Servicios' en el perfil negocio");
@@ -454,6 +464,7 @@ public class negocioSteps {
 		Utilidades.tomaEvidencia("Validación actualizacion de datos en el perfil negocio");
 	}
 	
+	@Step
 	public void actualizarDatosPerfilNegocio() {
 		negocioPO.clicBtnMasServicios();
 		Utilidades.tomaEvidencia("Ingresar a opcion 'Actualizar datos' desde 'Más Servicios' en el perfil negocio");
@@ -461,6 +472,7 @@ public class negocioSteps {
 		Utilidades.esperaMiliseg(15000);
 	}
 	
+	@Step
 	public void actualizarCorreoPerfilNegocio(String correoNuevo) {
 		//negocioPO.ingresarCorreoNuevoPerfilNegocio(correoNuevo);
         utilidadesTCS.clicElement("xpath", negocioPageObjects.CAMPO_CORREO);
@@ -476,6 +488,7 @@ public class negocioSteps {
 		negocioPO.clicGuardarCambiosPerfilNegocio();
 	}
 	
+	@Step
 	public void actualizarNombrePerfilNegocio(String nombreNegocioNuevo) {
 		negocioPO.ingresarNombrePerfilNegocio(nombreNegocioNuevo);
 		Utilidades.tomaEvidencia("Ingresar nombre nuevo en el perfil negocio");
@@ -995,7 +1008,21 @@ public class negocioSteps {
 	
 	public void flujoPasarPlataAOtroBancoEnLineaPerfilNegocio(String numCelular, String monto) {
 		Utilidades.esperaMiliseg(40000);
-		Utilidades.tomaEvidencia("Clic opción pasar plata en linea");
+		utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.DIRIGIENDO_PERFIL_PERSONA_TXT);
+		Utilidades.tomaEvidencia("Esperando a ingresar a la opción pasar plata en linea");
+        int contador = 0;
+        while (contador < 5) {
+            if (utilidadesTCS.validateElementInvisibility("xpath", negocioPageObjects.DIRIGIENDO_PERFIL_PERSONA_TXT)) {
+                // El elemento ya no es visible, salir del bucle
+                break;
+            }
+            System.out.println("Esperando a que termine de cargar el elemento para continuar...");
+            Utilidades.esperaMiliseg(5000); // Espera 5 segundos
+            contador++;
+        }
+        if (contador == 5) {
+            fail("Tiempo de espera excedido. El elemento todavía es visible después de 25 segundos.");
+        }
 		pagePasarPlata.clicBtnPasarPlataLinea();
 		Utilidades.esperaMiliseg(4000);
 		Utilidades.tomaEvidencia("Ingresar a opción nueva solicitud");

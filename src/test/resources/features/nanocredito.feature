@@ -123,6 +123,7 @@ Feature: Agrupoación de casos de Nanocredito
     Then Validar PopUp nanocredito al ingresar al home daviplata
     When Seleccionar opcion no me interesa
     And Validar cajon nanocredito de la barra productos
+   	And Ingresar a nanocredito desde home opcion mas productos
 
     Examples: 
       | tipoId | usuario    | contrasena |

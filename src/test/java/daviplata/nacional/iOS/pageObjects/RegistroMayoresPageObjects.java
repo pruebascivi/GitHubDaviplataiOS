@@ -8,6 +8,7 @@ public class RegistroMayoresPageObjects extends PageObject {
 		public static final String LABEL_INGRESO_DAVIPLATA = "//XCUIElementTypeStaticText[@name='Ingrese a su Daviplata']";
 		public static final String LABEL_DAVIPLATA = "//XCUIElementTypeStaticText[contains(@name, 'Daviplata') or contains(@name, 'DaviPlata')]";
 		public static final String BOTON_CONTINUAR = "//XCUIElementTypeButton[contains(@name, 'Continuar')]";
+		public static final String BOTON_FINALIZAR = "//XCUIElementTypeButton[contains(@name, 'Finalizar')]";
 		public static final String BTN_CONTINUAR_REGISTRARME = "//XCUIElementTypeButton[@name='Continuar boton']";
 		public static final String BTN_INGRESAR = "(//XCUIElementTypeButton[@name='Ingresar'])[2]";
 		public static final String TEXTO_BIENVENIDA = "//*[contains(@name,'bienvenida')]";

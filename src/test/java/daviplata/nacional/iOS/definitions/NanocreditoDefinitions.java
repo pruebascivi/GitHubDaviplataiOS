@@ -88,4 +88,15 @@ public class NanocreditoDefinitions {
     public void validarCajonNanocreditoBarraProductos() throws Exception {
         stepsNanoCredito.validaCajonNanocreditoBarraProductos();
     }
+	
+	@Then("^Validar home daviplata$")
+    public void validarHomeDaviplata() throws Exception {
+        stepsNanoCredito.validarHomeGloboSaldoDaviplata();
+    }
+	
+	@Then("^Ingresar a nanocredito desde home opcion mas productos$")
+    public void ingresarANanocreditoDesdeHomeOpcionMasProductos() throws Exception {
+        stepsNanoCredito.ingresarANanocreditoHome();
+    }
+	
 }

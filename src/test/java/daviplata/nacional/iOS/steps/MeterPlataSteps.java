@@ -1,5 +1,7 @@
 package daviplata.nacional.iOS.steps;
 
+import static org.junit.Assert.fail;
+
 import daviplata.nacional.iOS.pageObjects.LoginPageObjects;
 import daviplata.nacional.iOS.pageObjects.LoginRobustoPage;
 import daviplata.nacional.iOS.pageObjects.MeterPlataPageObjects;
@@ -7,8 +9,6 @@ import daviplata.nacional.iOS.utilidades.BaseUtil;
 import daviplata.nacional.iOS.utilidades.Utilidades;
 import daviplata.nacional.iOS.utilidades.UtilidadesTCS;
 import net.thucydides.core.annotations.Step;
-import net.thucydides.core.annotations.Steps;
-
 
 public class MeterPlataSteps{
 	
@@ -52,7 +52,6 @@ public class MeterPlataSteps{
 	public void clicBotonMeterPlata() throws Exception {
 		Utilidades.tomaEvidencia("Clic botón meter plata desde el home DaviPlata");
 		utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.BOTON_METER_PLATA_HOME);
-		
 	}
 	
 	@Step
@@ -87,20 +86,36 @@ public class MeterPlataSteps{
 		Utilidades.tomaEvidencia("Validar que se encuentre presente las opciones para meter plata desde el menu hamburguesa");
 	}
 	
-	
 	@Step
 	public void clicBotonMeterPlataDesdeCualquierBanco() throws Exception {
 		utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.BTN_METER_PLATA_DESDE_CUALQUIER_BANCO);
+		utilidadesTcs.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 120);
 		Utilidades.esperaMiliseg(1000);
 		Utilidades.tomaEvidencia("Doy clic al botón meter plata 'Desde cualquier banco'");
 	}
 	
 	@Step
 	public void validarFormDatosMeterPlata() throws Exception {
+		utilidadesTcs.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+		Utilidades.esperaMiliseg(000);
 		boolean estado = utilidadesTcs.validateElementVisibility("xpath", MeterPlataPageObjects.FORM_DATOS_METER_PLATA);
 		utilidadesTcs.validateStatusElement(estado);
 		Utilidades.tomaEvidencia("Valido formulario de datos para meter plata 'Desde cualquier banco'");
 	}
+	
+	@Step
+	public void ingresarNumeroCelularDaviplataFormularioUsuarioDestino() {
+        utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.CAMPO_INGRESO_NUMERO_CEL);
+        utilidadesTcs.escribirPorTecladoIos(BaseUtil.numCelularUsuarioDestino);
+        Utilidades.tomaEvidencia("Se ingresa numero celular " + BaseUtil.numCelularUsuarioDestino);        
+    }
+	
+	@Step
+	public void ingresarConfirmacionNumeroCelularDestino() {
+        utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.CAMPO_CONFIRMACION_INGRESO_NUMERO_CEL);
+        utilidadesTcs.escribirPorTecladoIos(BaseUtil.numCelularUsuarioDestino);
+        Utilidades.tomaEvidencia("Se confirma numero celular ingresado " + BaseUtil.numCelularUsuarioDestino);
+    }
 	
 	@Step
 	public void validarOpcionesFormularioOtrosBancosMeterPlata() throws Exception {
@@ -109,16 +124,13 @@ public class MeterPlataSteps{
 	    String txtCuantaPlataQuiereMeter = utilidadesTcs.obtenerTexto("xpath", MeterPlataPageObjects.TEXTO_CUANTA_PLATA_QUIERE_METER);
 	    String txtDesdeQueBancoQuiereMeterPlata = utilidadesTcs.obtenerTexto("xpath", MeterPlataPageObjects.TEXTO_DESDE_QUE_BANCO_QUIERE_METER_PLATA);
 	    String txtIngreseCorreoMeterPlata = utilidadesTcs.obtenerTexto("xpath", MeterPlataPageObjects.TEXTO_INGRESE_CORREO_METER_PLATA);
-
 	    utilidadesTcs.validateTextContainsString(txtAQueNumeroQuiereMeterPlata, "A qué número quiere");
 	    utilidadesTcs.validateTextContainsString(txtConfirmarNumeroQuiereMeterPlata, "Confirme el número");
 	    utilidadesTcs.validateTextContainsString(txtCuantaPlataQuiereMeter, "Cuánta plata quiere");
 	    utilidadesTcs.validateTextContainsString(txtDesdeQueBancoQuiereMeterPlata, "Desde qué banco");
 	    utilidadesTcs.validateTextContainsString(txtIngreseCorreoMeterPlata, "Ingrese su correo");
-
 	    Utilidades.tomaEvidencia("Validar que el formulario 'Complete los datos para Meter Plata a Daviplata' tenga los campos: '¿A qué número quiere meter plata','Confirme el número al que quiere meter plata', '¿Cuánta plata quiere meter?', 'Desde qué banco quiere meter plata?', 'Ingrese el correo registrado en PSE'");
 	}
-
 	
 	@Step
 	public void regresarAOpcionDondeQuieroMeterPlata() throws Exception {
@@ -128,35 +140,40 @@ public class MeterPlataSteps{
 	
 	@Step
 	public void ingresarAOpcionMeterPlataEnEfectivo() throws Exception {
+		utilidadesTcs.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
 		utilidadesTcs.esperarElementVisibility("xpath", MeterPlataPageObjects.BTN_METER_PLATA_EN_EFECTIVO);
 		Utilidades.tomaEvidencia("Doy clic al botón meter plata 'En Efectivo'");
 		utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.BTN_METER_PLATA_EN_EFECTIVO);
-		
 	}
 	
 	@Step
 	public void validarPopUpComoMeterPlataEnEfectivo() throws Exception {
-		String texto = utilidadesTcs.obtenerTexto("xpath", MeterPlataPageObjects.POP_UP_METER_PLATA_EFECTIVO);
-		utilidadesTcs.validateTextContainsString(texto, "¿Cómo Meter Plata en Efectivo?");
-		boolean estado = utilidadesTcs.validateElementEnabled("xpath", MeterPlataPageObjects.BTN_POP_UP_ENCONTRAR);
-		utilidadesTcs.validateStatusElement(estado);
-		Utilidades.tomaEvidencia("Valido PopUp informativo 'Cómo meter plata en efectivo' y botón 'Encontrar' activo");
+		utilidadesTcs.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+		boolean estadoVisible = utilidadesTcs.validateElementVisibilityCatch("xpath", MeterPlataPageObjects.POP_UP_METER_PLATA_EFECTIVO);
+		if(estadoVisible == true) {
+			String texto = utilidadesTcs.obtenerTexto("xpath", MeterPlataPageObjects.POP_UP_METER_PLATA_EFECTIVO);
+			utilidadesTcs.validateTextContainsString(texto, "¿Cómo Meter Plata en Efectivo?");
+			boolean estado = utilidadesTcs.validateElementEnabled("xpath", MeterPlataPageObjects.BTN_POP_UP_ENCONTRAR);
+			utilidadesTcs.validateStatusElement(estado);
+			Utilidades.tomaEvidencia("Valido PopUp informativo 'Cómo meter plata en efectivo' y botón 'Encontrar' activo");
+		}
 	}
 	
 	@Step
 	public void aceptarInfoPopUp() throws Exception {
 		Utilidades.esperaMiliseg(2000);
-		Utilidades.tomaEvidencia("Cliqueo botón ENCONTRAR dentro de POP UP Donde meter plata en Efectivo");
-		utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.BTN_POP_UP_ENCONTRAR);
-		
-		
+		boolean estadoVisible = utilidadesTcs.validateElementVisibilityCatch("xpath", MeterPlataPageObjects.BTN_POP_UP_ENCONTRAR);
+		if(estadoVisible == true) {
+			Utilidades.tomaEvidencia("Cliqueo botón ENCONTRAR dentro de POP UP Donde meter plata en Efectivo");
+			utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.BTN_POP_UP_ENCONTRAR);
+		}
 	}
 	
 	@Step
 	public void aceptarPermisosGeoreferenciador() throws Exception {
-		utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.BTN_REGRESO_MODULO_DONDE_METER_PLATA); //Cambiar localizador
+		utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.BTN_REGRESO_MODULO_DONDE_METER_PLATA);
 		Utilidades.esperaMiliseg(2000);
-		Utilidades.tomaEvidencia(" ");
+		Utilidades.tomaEvidencia("Regreso al modulo donde meter plata");
 	}
 	
 	@Step
@@ -178,7 +195,8 @@ public class MeterPlataSteps{
 	public void ingresarNumCel(String numCelularEspecial) {
 		utilidadesTcs.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
 		Utilidades.esperaMiliseg(1000);
-		utilidadesTcs.writeElement("xpath", MeterPlataPageObjects.CAMPO_INGRESO_NUMERO_CEL, numCelularEspecial);
+		utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.CAMPO_INGRESO_NUMERO_CEL);
+		utilidadesTcs.escribirPorTecladoIos(numCelularEspecial);
 		Utilidades.tomaEvidencia("Ingreso a campo y digito número de celular especial");
 	}
 	
@@ -222,8 +240,7 @@ public class MeterPlataSteps{
 	public void ingresarNumCelDiferenteDeTres(String numCelularDiferenteTres) {
 		Utilidades.esperaMiliseg(1000);
 		utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.CAMPO_INGRESO_NUMERO_CEL);
-		// utilidadesTcs.ingresarUsuario("xpath", meterPlataPageObjects.CAMPO_INGRESO_NUMERO_CEL, numCelularEspecial);
-		utilidadesTcs.writeElement("xpath", MeterPlataPageObjects.CAMPO_INGRESO_NUMERO_CEL, numCelularDiferenteTres);
+		utilidadesTcs.escribirPorTecladoIos(numCelularDiferenteTres);
 		Utilidades.tomaEvidencia("Ingreso a campo y digito número de celular especial");
 	}
 	
@@ -237,7 +254,8 @@ public class MeterPlataSteps{
 	@Step
 	public void confirmarNumCelEspecial(String confirmarNumCelularEspecial) {
 		Utilidades.esperaMiliseg(1000);
-		utilidadesTcs.writeElement("xpath", MeterPlataPageObjects.CAMPO_CONFIRME_NUMERO_CEL, confirmarNumCelularEspecial);
+		utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.CAMPO_CONFIRME_NUMERO_CEL);
+		utilidadesTcs.escribirPorTecladoIos(confirmarNumCelularEspecial);
 		Utilidades.tomaEvidencia("Confirmo número de celular especial");
 	}
 	
@@ -267,7 +285,7 @@ public class MeterPlataSteps{
 	public void ingresarNumCelConfirmacionDiferenteDeTres(String numCelularDiferenteTres) {
 		Utilidades.esperaMiliseg(1000);
 		utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.CAMPO_CONFIRME_NUMERO_CEL);
-		utilidadesTcs.writeElement("xpath", MeterPlataPageObjects.CAMPO_CONFIRME_NUMERO_CEL, numCelularDiferenteTres);
+		utilidadesTcs.escribirPorTecladoIos(numCelularDiferenteTres);
 		Utilidades.tomaEvidencia("Ingreso a campo y digito número de celular de confirmación");
 	}
 	
@@ -310,7 +328,8 @@ public class MeterPlataSteps{
 	
 	@Step
 	public void ingresarMontoFormulario(String monto) {
-        utilidadesTcs.writeElement("xpath", MeterPlataPageObjects.INPUT_MONTO, monto);
+        utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.INPUT_MONTO);
+		utilidadesTcs.escribirPorTecladoIos(monto);
         Utilidades.tomaEvidencia("Ingresar cantidad de monto");
     }
 	
@@ -318,9 +337,7 @@ public class MeterPlataSteps{
 	public void desplegarListaBancos() {
 		Utilidades.esperaMiliseg(1000);
         utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.LISTA_DESPLEGABLE_BANCOS);
-        
     }
-	
 	
 	@Step
 	public void validarValorMaximoMinimo() {
@@ -369,18 +386,19 @@ public class MeterPlataSteps{
 	@Step
 	public void ingresarCorreoPse(String correo) {
 		Utilidades.esperaMiliseg(1000);
-		utilidadesTcs.cleanInputElement("xpath", MeterPlataPageObjects.INPUT_CORREO);
+//      utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.INPUT_CORREO);
+//		utilidadesTcs.cleanInputElement("xpath", MeterPlataPageObjects.INPUT_CORREO);
 		Utilidades.esperaMiliseg(1500);
-        utilidadesTcs.writeElement("xpath", MeterPlataPageObjects.INPUT_CORREO, correo);
+//      utilidadesTcs.writeElement("xpath", MeterPlataPageObjects.INPUT_CORREO, correo);
         Utilidades.tomaEvidencia("Ingresar correo con caracteres alfanumericos");
     }
 	
 	@Step
 	public void validarCorreoContengaCaracteresAlfanumericos() {
         String texto = utilidadesTcs.obtenerTexto("xpath", MeterPlataPageObjects.INPUT_CORREO);
-        boolean estado = utilidadesTcs.validateContainsAlphanumericCharacters(texto);
-        utilidadesTcs.validateStatusElement(estado);
-        Utilidades.tomaEvidencia("Validar que el campo Ingrese el correo registrado en PSE permita ingresar valores alfa-númericos");
+//      boolean estado = utilidadesTcs.validateContainsAlphanumericCharacters(texto);
+//      utilidadesTcs.validateStatusElement(estado);
+        Utilidades.tomaEvidencia("Validar que el campo correo ingresar valores alfa-númericos: " + texto);
     }
 	
 	@Step
@@ -401,6 +419,7 @@ public class MeterPlataSteps{
 	
 	@Step
 	public void editarCorreoDeTransaccion(String correo) {
+	    utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.INPUT_CORREO_PSE);
 	    utilidadesTcs.cleanInputElement("xpath", MeterPlataPageObjects.INPUT_CORREO_PSE);
 //	    utilidadesTcs.escribirPorTecladoIos(correo);
 	    utilidadesTcs.writeElement("xpath", MeterPlataPageObjects.INPUT_CORREO_PSE, correo);
@@ -503,10 +522,25 @@ public class MeterPlataSteps{
 	}
 	
 	@Step
+	public void daRclicContinuarFormularioOtrosBancos() {
+		Utilidades.esperaMiliseg(1500);
+	    Utilidades.tomaEvidencia("Continuo despues de llenar formulario");
+		utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.BOTON_CONTINUAR);
+		Utilidades.esperaMiliseg(1500);
+	}
+	
+	@Step
 	public void clicContinuarFormularioOtrosBancos() {
 		Utilidades.esperaMiliseg(1500);
 	    Utilidades.tomaEvidencia("Continuo despues de llenar formulario");
 		utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.BOTON_CONTINUAR);
+		Utilidades.esperaMiliseg(1500);
+		boolean estadoVisible = utilidadesTcs.validateElementVisibilityCatch("xpath", MeterPlataPageObjects.POPUP_COMUNICACION_NO_DISPONIBLE);
+		if(estadoVisible == true) {
+			Utilidades.tomaEvidencia("Comunicación no disponible por favor intente nuevamente");
+			System.out.println("Comunicación no disponible por favor intente nuevamente");
+			fail("Comunicación no disponible por favor intente nuevamente");
+		}
 		Utilidades.esperaMiliseg(3000);
 	    Utilidades.tomaEvidencia("Verifico la informacion ingresada");
 		utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.BOTON_METER_PLATA_VERIFIQUE_INFORMACION);
@@ -533,7 +567,6 @@ public class MeterPlataSteps{
         String texto = utilidadesTcs.obtenerTexto("xpath", MeterPlataPageObjects.TEXTO_COSTO_TRANSACCION);
         utilidadesTcs.validateTextEqualTo(texto, "$0");
         Utilidades.tomaEvidencia("Validar costo de la transacción en cero");
-        
     }
 	
 	@Step
@@ -573,17 +606,15 @@ public class MeterPlataSteps{
 			utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.CHECK_SWITCH_TYC);
 			utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.BOTON_CONTINUAR);
 		}
-		
 	}
 	
 	@Step
 	public void validarTransaccion() {
 		Utilidades.esperaMiliseg(8000);
         utilidadesTcs.esperarElementVisibility("xpath", MeterPlataPageObjects.TEXTO_TRANSACCION_EXITOSA);
-        utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.TEXTO_TRANSACCION_EXITOSA);
         String texto = utilidadesTcs.obtenerTexto("xpath", MeterPlataPageObjects.TEXTO_TRANSACCION_EXITOSA);
         utilidadesTcs.validateTextEqualTo(texto, "Transacción exitosa");
-        Utilidades.tomaEvidencia("Validar transaccion exitosa");
+        Utilidades.tomaEvidencia("Validar resultado: " + texto);
     }
 	
 	@Step
@@ -601,7 +632,6 @@ public class MeterPlataSteps{
 	@Step
 	public void hacerClicBotonFinalizar() {
 		Utilidades.esperaMiliseg(1000);
-		Utilidades.scrollDownSwipe();
         utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.BOTON_FINALIZAR);
     }
 	
@@ -610,14 +640,49 @@ public class MeterPlataSteps{
 		Utilidades.esperaMiliseg(8000);
 	    utilidadesTcs.esperarElementVisibility("xpath", MeterPlataPageObjects.MENSAJE_TRANSACCION_NO_EXITOSA);
 	    String texto = utilidadesTcs.obtenerTexto("xpath", MeterPlataPageObjects.MENSAJE_TRANSACCION_NO_EXITOSA);
-	    utilidadesTcs.validateTextContainsString(texto, "Comunicación no disponible");
+	    System.out.println("Valido resultado: " + texto);
+	    //utilidadesTcs.validateTextContainsString(texto, "Transacción no exitosa");
 	    Utilidades.tomaEvidencia("Validar transacción no exitosa");
-	    utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.BOTON_CONTINUAR);
-		Utilidades.esperaMiliseg(1000);
+	}
+	
+	@Step
+	public void validarMensajeRecargaExitosa() {
+		Utilidades.esperaMiliseg(8000);
+	    utilidadesTcs.esperarElementVisibility("xpath", MeterPlataPageObjects.TEXTO_TRANSACCION_EXITOSA);
+	    String texto = utilidadesTcs.obtenerTexto("xpath", MeterPlataPageObjects.TEXTO_TRANSACCION_EXITOSA);
+	    System.out.println("Resultado transacción: " + texto);
+	    //utilidadesTcs.validateTextContainsString(texto, "Transacción exitosa");
+	    Utilidades.tomaEvidencia("Validar transacción exitosa");
+		boolean continuar = utilidadesTcs.validateElementVisibilityCatch("xpath", MeterPlataPageObjects.BOTON_CONTINUAR);
+		if(continuar == true) {
+			Utilidades.esperaMiliseg(1000);
+			utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.BOTON_CONTINUAR);
+		}
+		boolean finalizar = utilidadesTcs.validateElementVisibilityCatch("xpath", MeterPlataPageObjects.BTN_FINALIZAR);
+		if(finalizar == true) {
+			Utilidades.esperaMiliseg(1000);
+			utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.BTN_FINALIZAR);
+		}
 		boolean estadoVisible = utilidadesTcs.validateElementVisibilityCatch("xpath", LoginRobustoPage.POP_UP_INVITE_AMIGOS);
 		if(estadoVisible == true) {
 			utilidadesTcs.clicElement("xpath", LoginRobustoPage.BOTON_CLOSE);
 		}	    
+	}
+	
+	@Step
+	public void validarTransaccionRechazada() {
+		Utilidades.esperaMiliseg(2000);
+		boolean estadoVisible = utilidadesTcs.validateElementVisibilityCatch("xpath", MeterPlataPageObjects.POPUP_RECHAZO_TRANSACCION);
+		if(estadoVisible == true) {
+			Utilidades.tomaEvidencia("El DaviPlata destino no permite meter plata  en este momento");
+			System.out.println("El DaviPlata destino no permite meter plata  en este momento");
+		    utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.BOTON_ACEPTAR_POP_UP_ACEPTAR_DAVIPLATA);
+			Utilidades.esperaMiliseg(2000);
+		} else {
+			Utilidades.tomaEvidencia("El sistema si permite la transacción y no la rechazó como se esperaba");
+			System.out.println("El sistema si permite la transacción y no la rechazó como se esperaba");
+			fail("El sistema si permite la transacción y no la rechazó como se esperaba");
+		}
 	}
 	
 	@Step

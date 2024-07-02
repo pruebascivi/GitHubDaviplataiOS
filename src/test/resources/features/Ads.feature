@@ -117,7 +117,7 @@ Feature: Modulo ADS
     And Lleno formulario de informacion Financiera uno <montoGastosMes><montoSumaLoQueTiene>
     And Doy clic en el boton continuar de beneficios
     And Salgo de la app
-    Given Login ADS <tipoId> <usuario> <contrasena>
+    And Login ADS <tipoId> <usuario> <contrasena>
     And Ingreso al pop up de adelanto de sueldo
     And Acepto terminos y condiciones en pantalla de beneficios
     And Doy clic en el boton continuar de beneficios
@@ -147,7 +147,7 @@ Feature: Modulo ADS
     And Lleno formulario de informacion financiera dos <montoSumaLoQueDebe>
     And Doy clic en el boton continuar de beneficios
     And Salgo de la app
-    Given Login ADS <tipoId> <usuario> <contrasena>
+    And Login ADS <tipoId> <usuario> <contrasena>
     And Ingreso al pop up de adelanto de sueldo
     And Acepto terminos y condiciones en pantalla de beneficios
     And Doy clic en el boton continuar de beneficios
@@ -179,7 +179,7 @@ Feature: Modulo ADS
     And Lleno formulario de persona politicamente expuesta
     And Doy clic en el boton continuar de beneficios
     And Salgo de la app
-    Given Login ADS <tipoId> <usuario> <contrasena>
+    And Login ADS <tipoId> <usuario> <contrasena>
     And Ingreso al pop up de adelanto de sueldo
     And Acepto terminos y condiciones en pantalla de beneficios
     And Doy clic en el boton continuar de beneficios
@@ -213,7 +213,7 @@ Feature: Modulo ADS
     And Lleno formulario informacion tributaria
     And Doy clic en el boton continuar de beneficios
     And Salgo de la app
-    Given Login ADS <tipoId> <usuario> <contrasena>
+    And Login ADS <tipoId> <usuario> <contrasena>
     And Ingreso al pop up de adelanto de sueldo
     And Acepto terminos y condiciones en pantalla de beneficios
     And Doy clic en el boton continuar de beneficios
@@ -224,7 +224,7 @@ Feature: Modulo ADS
       | tipoId | usuario   | contrasena | ciudadExpedicionDocumento | paisNacimiento | correoElectronico | tipoCalle | numUnoDireccion | numDosDireccion | numTresDireccion | tipoInmueble | ciudadResidencia | tipoCalleDondeTrabaja | numUnoDireccionDondeTrabaja | numDosDireccionDondeTrabaja | numTresDireccionDondeTrabaja | tipoInmuebleDondeTrabaja | ciudaDeTrabajo | montoGastosMes | montoSumaLoQueTiene | montoSumaLoQueDebe |
       | "CC"   | "1020624" | "1234"     | "Bogo"                    | "Colo"         | "xxx@gmail.com"   | "Calle"   | "51"            | "57"            | "20"             | "Casa"       | "Bogo"           | "Calle"               | "50"                        | "51"                        | "10"                         | "Oficina"                | "Bogo"         | "50000"        | "2000000"           | "1000000"          |
 
-  @CP09009M
+  @CP09009M @Passed
   Scenario Outline: CP09009M_SYS_Validar que si el cliente esta realizando su proceso de vinculacion ADS entre la pantalla de informacion tributaria 1 e indica si en factca y pasa a la pantalla de informacion tributaria 2 y cierre el proceso, en el momento de retomar el sistema deje al usuario en el punto maximo donde dejo diligenciado es decir debe tener toda la informacion de la pantalla tributaria 1.
     Given Login ADS <tipoId> <usuario> <contrasena>
     When Ingreso al pop up de adelanto de sueldo
@@ -246,7 +246,7 @@ Feature: Modulo ADS
     And Lleno formulario informacion tributaria facta
     And Doy clic en el boton continuar de beneficios
     And Salgo de la app
-    Given Login ADS <tipoId> <usuario> <contrasena>
+    And Login ADS <tipoId> <usuario> <contrasena>
     And Ingreso al pop up de adelanto de sueldo
     And Acepto terminos y condiciones en pantalla de beneficios
     And Doy clic en el boton continuar de beneficios
@@ -257,7 +257,7 @@ Feature: Modulo ADS
       | tipoId | usuario   | contrasena | ciudadExpedicionDocumento | paisNacimiento | correoElectronico | tipoCalle | numUnoDireccion | numDosDireccion | numTresDireccion | tipoInmueble | ciudadResidencia | tipoCalleDondeTrabaja | numUnoDireccionDondeTrabaja | numDosDireccionDondeTrabaja | numTresDireccionDondeTrabaja | tipoInmuebleDondeTrabaja | ciudaDeTrabajo | montoGastosMes | montoSumaLoQueTiene | montoSumaLoQueDebe |
       | "CC"   | "1020624" | "1234"     | "Bogo"                    | "Colo"         | "xxx@gmail.com"   | "Calle"   | "51"            | "57"            | "20"             | "Casa"       | "Bogo"           | "Calle"               | "50"                        | "51"                        | "10"                         | "Oficina"                | "Bogo"         | "50000"        | "2000000"           | "1000000"          |
 
-  @CP090010M
+  @CP090010M @Passed
   Scenario Outline: CP090010M_SYS_Validar que si el cliente esta realizando su proceso de vinculacion ADS entre la pantalla de informacion tributaria 2 y pasa a la pantalla de declaracion tributaria y cierre el proceso, en el momento de retomar el sistema deje al usuario en el punto maximo donde dejo diligenciado es decir debe tener toda la informacion de la pantalla tributaria 2.
     Given Login ADS <tipoId> <usuario> <contrasena>
     When Ingreso al pop up de adelanto de sueldo
@@ -281,7 +281,7 @@ Feature: Modulo ADS
     And Lleno formulario de declaracion tributaria facta <nombreDeclaracionImpuestos><direccionResidenciaFacta><ciudad><numeroPostal><numeroSeguroSocial>
     And Doy clic en el boton continuar de beneficios
     And Salgo de la app
-    Given Login ADS <tipoId> <usuario> <contrasena>
+    And Login ADS <tipoId> <usuario> <contrasena>
     And Ingreso al pop up de adelanto de sueldo
     And Acepto terminos y condiciones en pantalla de beneficios
     And Doy clic en el boton continuar de beneficios
@@ -292,7 +292,7 @@ Feature: Modulo ADS
       | tipoId | usuario   | contrasena | ciudadExpedicionDocumento | paisNacimiento | correoElectronico | tipoCalle | numUnoDireccion | numDosDireccion | numTresDireccion | tipoInmueble | ciudadResidencia | tipoCalleDondeTrabaja | numUnoDireccionDondeTrabaja | numDosDireccionDondeTrabaja | numTresDireccionDondeTrabaja | tipoInmuebleDondeTrabaja | ciudaDeTrabajo | montoGastosMes | montoSumaLoQueTiene | montoSumaLoQueDebe | nombreDeclaracionImpuestos | direccionResidenciaFacta        | ciudad   | numeroPostal | numeroSeguroSocial |
       | "CC"   | "1020624" | "1234"     | "Bogo"                    | "Colo"         | "xxx@gmail.com"   | "Calle"   | "51"            | "57"            | "20"             | "Casa"       | "Bogo"           | "Calle"               | "50"                        | "51"                        | "10"                         | "Oficina"                | "Bogo"         | "50000"        | "2000000"           | "1000000"          | "Jaime Antonio Velez"      | "Carrera 45 # 56 - 77, Apto 4"  | "Bogota" | "114111"     | "263626272"        |
 
-  @CP090011M
+  @CP090011M @Passed
   Scenario Outline: CP090011M_SYS_Validar que si el cliente esta realizando su proceso de vinculacion ADS entre la pantalla de informacion declaraciones tributarias y pasa al proceso de Apertura y cierre el proceso, en el momento de retomar el sistema deje al usuario en el punto maximo donde dejo diligenciado es decir debe tener toda la informacion de la pantalla declaracion tributaria.
     Given Login ADS <tipoId> <usuario> <contrasena>
     When Ingreso al pop up de adelanto de sueldo
@@ -319,7 +319,7 @@ Feature: Modulo ADS
     And Doy clic en el boton continuar de beneficios
     And Acepto autorizaciones finales
     And Salgo de la app
-    Given Login ADS <tipoId> <usuario> <contrasena>
+    And Login ADS <tipoId> <usuario> <contrasena>
     And Ingreso al pop up de adelanto de sueldo
     And Acepto terminos y condiciones en pantalla de beneficios
     And Doy clic en el boton continuar de beneficios

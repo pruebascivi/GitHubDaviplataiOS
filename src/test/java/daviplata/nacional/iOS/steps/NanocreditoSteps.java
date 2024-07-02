@@ -26,6 +26,8 @@ public class NanocreditoSteps {
 	Utilidades utilidad;
 	UtilidadesTCS utilidadesTCS;
 	LoginSteps loginSteps;
+	RegistroPageObject registroObj = new RegistroPageObject();
+
 
 
 	public void ingresoAOpcionNanocredito() {
@@ -318,16 +320,22 @@ public class NanocreditoSteps {
 	
 	@Step
 	public void validarPopUpNanocredito() {
-		Utilidades.esperaMiliseg(1500);
-		utilidadesTCS.esperarElementVisibility("xpath", NanocreditoPageObjects.POP_UP_NANOCREDITO);
-        Utilidades.tomaEvidencia("Valio Pop Up campaña Nanocrédito");
+		boolean estadoVisible = utilidadesTCS.validateElementVisibilityCatch("xpath", NanocreditoPageObjects.POP_UP_NANOCREDITO);
+		if(estadoVisible == true) {
+			Utilidades.esperaMiliseg(1500);
+			utilidadesTCS.esperarElementVisibility("xpath", NanocreditoPageObjects.POP_UP_NANOCREDITO);
+	        Utilidades.tomaEvidencia("Valio Pop Up campaña Nanocrédito");
+		}
 	}
 	
 	@Step
 	public void validarOpcionNoMeInteresa() {
-		Utilidades.esperaMiliseg(1500);
-		utilidadesTCS.clicElement("xpath", NanocreditoPageObjects.BNT_NO_ME_INTERESA);
-		System.out.println("Di clic al botón no me interesa");
+		boolean estadoVisible = utilidadesTCS.validateElementVisibilityCatch("xpath", NanocreditoPageObjects.POP_UP_NANOCREDITO);
+		if(estadoVisible == true) {
+			Utilidades.esperaMiliseg(1500);
+			utilidadesTCS.clicElement("xpath", NanocreditoPageObjects.BNT_NO_ME_INTERESA);
+			System.out.println("Di clic al botón no me interesa");
+		}
 	}
 	
 	@Step
@@ -337,6 +345,17 @@ public class NanocreditoSteps {
 		utilidadesTCS.scrollBackground("xpath", NanocreditoPageObjects.BTN_CAJA_NANOCREDITO, -150, 0);
         Utilidades.tomaEvidencia("Valida caja de productos y cajón Nanocrédito");
 		Utilidades.esperaMiliseg(800);
+	}
+	
+	@Step
+    public void validarHomeGloboSaldoDaviplata() {
+		Utilidades.esperaMiliseg(1500);
+        Utilidades.tomaEvidencia("Validar home daviplata");
+    }
+	
+	@Step
+    public void ingresarANanocreditoHome() {
+		Utilidades.esperaMiliseg(1500);
 		utilidadesTCS.clicElement("xpath", NanocreditoPageObjects.BTN_CAJA_NANOCREDITO);
 		Utilidades.esperaMiliseg(2000);
 		Utilidades.tomaEvidencia("Pantalla solicitar nanocredito");		

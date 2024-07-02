@@ -110,6 +110,11 @@ public class RegistroMayoresDefinitions {
 		registroMayoresSteps.hacerClicEnElBotonContinuar();
 	}
 	
+	@When("^Doy clic en el boton finalizar$")
+	public void doyClicEnElBotonFinalizar() throws Exception {
+		registroMayoresSteps.hacerClicEnElBotonFinalizar();
+	}
+	
 	@When("^Valido pop up del usuario previamente registrado$")
 	public void validoPopUpDelUsuarioPreviamenteRegistrado() throws Exception {
 		registroMayoresSteps.validarPopUpUsuarioExistente();

@@ -267,7 +267,7 @@ Feature: Grupo de casos pasar plata a cuenta
       | tipoId | usuario    | contrasena | tipoCuenta | cuentaNum     | topeDebito | subtipo |
       | "CC"   | "52546863" | "1234"     | "Ahorros"  | "98170019255" | "9280000"  | "RAP"   |
 
-  @CP02471M
+	@CP02471M
   Scenario Outline: CP02471M_SYS_Validar proceso de pasar plata a cuenta ahorros desde el home seleccionando cuentas inscritas
     Given obtener numero celular actual en redeban bolsillos <usuario>
     And Consulté saldo disponible en redeban
@@ -282,11 +282,11 @@ Feature: Grupo de casos pasar plata a cuenta
     And Validar en redeban la transansaccion<usuario>
     And logout redeban
     And Validar afectacion de saldos en redeban y daviplata
-
+    
     Examples: 
       | tipoId | usuario    | contrasena | monto   |
       | "CC"   | "10050038" | "2589"     | "10000" |
-
+      
   @CP02472M
   Scenario Outline: CP02472M_SYS_Validar proceso de pasar plata a cuenta ahorros desde el home seleccionando cuentas mas usadas
     Given obtener numero celular actual en redeban bolsillos <usuario>

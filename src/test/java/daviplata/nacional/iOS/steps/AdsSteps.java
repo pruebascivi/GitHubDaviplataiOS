@@ -272,9 +272,9 @@ public class AdsSteps {
     
     @Step
     public void llenarFormularioInformacionFinancieraDos(String montoSumaLoQueDebe) {
-        Utilidades.esperaMiliseg(8000);   
+        Utilidades.esperaMiliseg(6000);   
         utilidadesTCS.clicElement("xpath", AdsPageObjects.TXT_ADELANTO_SALDO);  	
-		for(int i = 0 ; i<3; i++) {
+		for(int i = 0 ; i<2; i++) {
 	        utilidadesTCS.clicElement("xpath", AdsPageObjects.SUMA_LO_QUE_DEBE);  
 		}
         utilidadesTCS.writeElement("xpath", AdsPageObjects.SUMA_LO_QUE_DEBE, montoSumaLoQueDebe);  
@@ -385,17 +385,18 @@ public class AdsSteps {
         utilidadesTCS.clicElementAction("xpath", AdsPageObjects.CHECKOUT_PERSONA_EXPUESTA);
         Utilidades.esperaMiliseg(1000);    
         utilidadesTCS.clicElementAction("xpath", AdsPageObjects.CHECKOUT_CARGO_POLITICO);
-        utilidadesTCS.clicElementAction("xpath", AdsPageObjects.CHECKOUT_JUNTA_DIRECTIVA);
-        Utilidades.scrollDownSwipe(1);
-        utilidadesTCS.clicElementAction("xpath", AdsPageObjects.CHECKOUT_PERSONA_POLITICAMENTE_EXPUESTA);
-        utilidadesTCS.clicElementAction("xpath", AdsPageObjects.CHECKOUT_FAMILIAR);
-        utilidadesTCS.clicElement("xpath",AdsPageObjects.BTN_DONE);
+//        utilidadesTCS.clicElementAction("xpath", AdsPageObjects.CHECKOUT_JUNTA_DIRECTIVA);
         Utilidades.scrollDownSwipe(1);
         utilidadesTCS.clicElement("xpath", AdsPageObjects.CAMPO_QUE_CARGO_TIENE);
         utilidadesTCS.escribirPorTecladoIos("Alcalde");
-        Utilidades.esperaMiliseg(500);    
         utilidadesTCS.clicElement("xpath", AdsPageObjects.OPCION_CAMPO_QUE_CARGO_TIENE);
+//        utilidadesTCS.clicElementAction("xpath", AdsPageObjects.CHECKOUT_PERSONA_POLITICAMENTE_EXPUESTA);
+        Utilidades.esperaMiliseg(500);    
+        utilidadesTCS.clicElement("xpath", AdsPageObjects.FECHA_VINCULACION);
         utilidadesTCS.clicElement("xpath",AdsPageObjects.BTN_DONE);
+        Utilidades.esperaMiliseg(500);    
+        utilidadesTCS.clicElementAction("xpath", AdsPageObjects.CHECKOUT_FAMILIAR);
+        Utilidades.scrollDownSwipe(1);
         Utilidades.tomaEvidencia("Llenar formulario de persona politicamente expuesta");
     }
     
@@ -434,10 +435,11 @@ public class AdsSteps {
     
     @Step
     public void validarQueSeHayanGuardadoLosDatosDelFormularioEnLaPantallaInformacionTributariaUnoFacta() {
+        Utilidades.esperaMiliseg(8000);    
         utilidadesTCS.esperarElementVisibility("xpath", AdsPageObjects.FORMULARIO_DECLARACIONES);
         Utilidades.tomaEvidencia("Valido pantalla de declaraciones");
         utilidadesTCS.clicElement("xpath", AdsPageObjects.BOTON_ATRAS_ADS);
-        utilidadesTCS.esperarElementVisibility("xpath",AdsPageObjects.CHECKOUT_PAIS_RECIDENCIA);
+        utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.CONTINUAR_POP_UP_CAMBIAR_DISPOSITIVO);
         Utilidades.tomaEvidencia("Validar que el sistema deje al usuario en el punto maximo donde dejo diligenciado es decir debe tener toda la informacion de la pantalla informacion tributaria facta");
     }
     
@@ -452,13 +454,14 @@ public class AdsSteps {
         utilidadesTCS.clicElement("xpath", AdsPageObjects.CAMPO_DIRECCION_FACTA);
         utilidadesTCS.cleanInputElement("xpath", AdsPageObjects.CAMPO_DIRECCION_FACTA);
         utilidadesTCS.writeElement("xpath", AdsPageObjects.CAMPO_DIRECCION_FACTA, direccionResidenciaFacta);
+        utilidadesTCS.escribirPorTecladoIos(direccionResidenciaFacta);
         utilidadesTCS.clicElement("xpath", AdsPageObjects.CAMPO_CIUDAD);
         utilidadesTCS.escribirPorTecladoIos(ciudad);
         //Utilidades.scrollDownSwipe(1);
-        utilidadesTCS.clicElement("xpath", AdsPageObjects.CAMPO_CIUDAD);
-        utilidadesTCS.escribirPorTecladoIos(numeroPostal);
+        utilidadesTCS.clicElement("xpath", AdsPageObjects.CAMPO_CODIGO_POSTAL);
+        utilidadesTCS.writeElement("xpath", AdsPageObjects.CAMPO_CODIGO_POSTAL, numeroPostal);
         utilidadesTCS.clicElement("xpath", AdsPageObjects.CAMPO_NUMERO_SEGURO_SOCIAL);
-        utilidadesTCS.escribirPorTecladoIos(numeroSeguroSocial);
+        utilidadesTCS.writeElement("xpath", AdsPageObjects.CAMPO_NUMERO_SEGURO_SOCIAL, numeroSeguroSocial);
         Utilidades.scrollDownSwipe(1);
         Utilidades.tomaEvidencia("Llenar formulario declaración tributaria");
     }
@@ -468,7 +471,7 @@ public class AdsSteps {
         utilidadesTCS.esperarElementVisibility("xpath", AdsPageObjects.FORMULARIO_DECLARACIONES);
         Utilidades.tomaEvidencia("Valido pantalla de declaraciones");
         utilidadesTCS.clicElement("xpath", AdsPageObjects.BOTON_ATRAS_ADS);
-        utilidadesTCS.esperarElementVisibility("xpath",AdsPageObjects.NOMBRE_DECLARACION_IMPUESTOS);
+        utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.CONTINUAR_POP_UP_CAMBIAR_DISPOSITIVO);
         Utilidades.tomaEvidencia("Validar que el sistema deje al usuario en el punto maximo donde dejo diligenciado es decir debe tener toda la informacion de la pantalla declaracion tributaria facta");
     }
     
@@ -503,4 +506,3 @@ public class AdsSteps {
         Utilidades.tomaEvidencia("Validar que el sistema deje al usuario en el punto maximo donde dejo diligenciado");
     }
 }
-
