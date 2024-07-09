@@ -3,12 +3,10 @@ package daviplata.nacional.iOS.definitions;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import daviplata.nacional.iOS.steps.PagarSteps;
-import daviplata.nacional.iOS.steps.RecargaSteps;
 import net.thucydides.core.annotations.Steps;
 
 public class PagarDefinitions {
 
-	
 	@Steps
 	PagarSteps stepsPagar;
 
@@ -42,7 +40,6 @@ public class PagarDefinitions {
 		stepsPagar.diligencioDatosDeUnaReferencia(empresaServicio, referencia);
 		stepsPagar.ingresarValorYPagar(valorTransaccion);
 	}
-	
 
 	@Then("^verifico transaccion exitosa una ref \"([^\"]*)\" \"([^\"]*)\"$")
 	public void verificoTransaccionExitosaUnaRef(String empresaServicio, String referencia) {
@@ -82,8 +79,4 @@ public class PagarDefinitions {
 	public void diligencioDatosDeDosReferenciasErrada(String empresaServicio, String referencia, String referencia2) {
 		stepsPagar.diligencioDatosDeDosReferencias(empresaServicio, referencia, referencia2);
 	}
-
-
-
-
 }

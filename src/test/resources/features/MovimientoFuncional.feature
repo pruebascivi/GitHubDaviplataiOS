@@ -27,7 +27,7 @@ Feature: Movimientos Funcionales
 
     Examples: 
       | tipoId | usuario    | contrasena | montoATransar |
-      | "CC"   | "10050064" | "2589"     | "20000"       |
+      | "CC"   | "10333040" | "1234"     | "20000"       |
       
   @CP031101M @Passed
   Scenario Outline: CP031101M_SYS_Validaciones movimientos en pasar plata
@@ -40,7 +40,7 @@ Feature: Movimientos Funcionales
 
     Examples: 
       | tipoId | usuario    | contrasena  | cuentaNum    |
-      | "CC"   | "10088833" | "2589"      | "3227680742" |
+      | "CC"   | "10333040" | "1234"     | "3227680742" |
       
   @CP031102M @Passed
   Scenario Outline: CP031102M_SYS_Validaciones cantidad movimientos

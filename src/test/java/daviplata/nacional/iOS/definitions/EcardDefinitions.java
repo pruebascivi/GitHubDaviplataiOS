@@ -4,13 +4,10 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import daviplata.nacional.iOS.steps.WebRedebanSteps;
-import daviplata.nacional.iOS.utilidades.BaseUtil;
 import daviplata.nacional.iOS.steps.EcardSteps;
-import daviplata.nacional.iOS.steps.PagarSteps;
 import net.thucydides.core.annotations.Steps;
 
 public class EcardDefinitions {
-
 
 	@Steps
 	EcardSteps stepsEcard;

@@ -10,10 +10,10 @@ import daviplata.nacional.iOS.utilidades.DataToFeature;
 
 @RunWith(RunnerPersonalizado.class) 
 @CucumberOptions(
-		
+        
 features = "src/test/resources/features" 
 ,glue = "daviplata.nacional.iOS.definitions"
-,tags = "@CP090011M",
+,tags = "@LookAndFeel",
 monochrome = true
 ,snippets = SnippetType.CAMELCASE    
 )

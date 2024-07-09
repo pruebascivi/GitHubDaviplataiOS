@@ -17,7 +17,6 @@ import daviplata.nacional.iOS.pageObjects.BolsilloPageObjects;
 import daviplata.nacional.iOS.pageObjects.PasarPlataPageObjects;
 import daviplata.nacional.iOS.pageObjects.RegistroMayoresPageObjects;
 import daviplata.nacional.iOS.utilidades.BaseUtil;
-import daviplata.nacional.iOS.utilidades.Evidencias;
 import daviplata.nacional.iOS.utilidades.Utilidades;
 import daviplata.nacional.iOS.utilidades.UtilidadesTCS;
 import net.thucydides.core.annotations.Step;
@@ -134,7 +133,6 @@ public class LoginSteps {
 			
 		}else {
 			Utilidades.esperaMiliseg(1000);
-			//Utilidades.tomaEvidencia("Ingreso a Daviplata");
 			pageLogin.ingresarContrasena(contrasena);
 			Utilidades.tomaEvidencia("Diligencio contraseña " + contrasena);
 			pageLogin.darClicBotonIngresar();

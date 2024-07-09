@@ -10,7 +10,7 @@ Feature: Agrupacion de casos de ecard
 
     Examples: 
       | tipoId | usuario    | contrasena |
-      | "CC"   | "10050080" | "2589"     |
+      | "CC"   | "19758461" | "1234"     |
 
   @CP0842M @PASSED
   Scenario Outline: CP0842M_SYS_Validar el proceso de recargar la tarjeta Virtual
@@ -21,7 +21,7 @@ Feature: Agrupacion de casos de ecard
 
     Examples: 
       | tipoId | usuario    | contrasena | monto   |
-      | "CC"   | "10050033" | "2589"     | "10000" |
+      | "CC"   | "19758461" | "1234"     | "10000" |
 
   @CP1062M
   Scenario Outline: CP1062M_SYS_Validar el proceso de bloqueo de la tarjeta Virtual
@@ -79,7 +79,7 @@ Feature: Agrupacion de casos de ecard
 
     Examples: 
       | tipoId | usuario    | contrasena | monto |
-      | "CC"   | "19758463" | "1234"     | "10000" |
+      | "CC"   | "19758461" | "1234"     | "10000" |
       
   # No permite la consulta de la web notificaciones por falta de permisos de la rede banco en la macbook
   @CP0870M
@@ -91,7 +91,7 @@ Feature: Agrupacion de casos de ecard
 
     Examples: 
       | tipoId | usuario    | contrasena | numCel       |
-      | "CC"   | "19758462" | "1234"     | "3124851065" |
+      | "CC"   | "19758461" | "1234"     | "3124851065" |
 
   @CP0880M
   Scenario Outline: CP0880M_SYS_Validar que se pueda consultar los datos de la eCard, dando clic al botón de ver datos
@@ -102,7 +102,7 @@ Feature: Agrupacion de casos de ecard
 
     Examples: 
       | tipoId | usuario    | contrasena |
-      | "CC"   | "19758462" | "1234"     |
+      | "CC"   | "19758461" | "1234"     |
       
   # No permite la consulta de la web notificaciones por falta de permisos de la rede banco en la macbook
   @CP0890M
@@ -114,7 +114,7 @@ Feature: Agrupacion de casos de ecard
 
     Examples: 
       | tipoId | usuario    | contrasena | numCel       |
-      | "CC"   | "10333038" | "1234"     | "3003633335" |
+      | "CC"   | "19758461" | "1234"     | "3003633335" |
 
   @CP0920M
   Scenario Outline: CP0920M_SYS_Validar que no permita realizar la recarga cuando la tarjeta esta restringida
@@ -125,7 +125,7 @@ Feature: Agrupacion de casos de ecard
 
     Examples: 
       | tipoId | usuario    | contrasena | monto   |
-      | "CC"   | "10050078" | "2589"     | "10000" |
+      | "CC"   | "19758461" | "1234"     | "10000" |
 
   @CP0930M
   Scenario Outline: CP0930M_SYS_Validar que no permita realizar la recarga cuando supero cupo de la eCard
@@ -136,7 +136,7 @@ Feature: Agrupacion de casos de ecard
 
     Examples: 
       | tipoId | usuario    | contrasena | monto |
-      | "CC"   | "19758463" | "1234"     | "10000" |
+      | "CC"   | "19758461" | "1234"     | "10000" |
 
   @CP1071M
   Scenario Outline: CP1071M_SYS_Validar que no permita realizar la recarga cuando supero cupo del DaviPlata
@@ -147,7 +147,7 @@ Feature: Agrupacion de casos de ecard
 
     Examples: 
       | tipoId | usuario    | contrasena | monto   |
-      | "CC"   | "10333041" | "2580"     | "10000" |
+      | "CC"   | "19758461" | "1234"     | "10000" |
 
   @CP0860M
   Scenario Outline: CP0860M_SYS_Validar que se pueda consultar los datos de la eCard, dando clic al logo de la tarjeta
@@ -158,7 +158,7 @@ Feature: Agrupacion de casos de ecard
 
     Examples: 
       | tipoId | usuario    | contrasena |
-      | "CC"   | "19758463" | "1234"     |
+      | "CC"   | "19758461" | "1234"     |
 
   @CP0950M
   Scenario Outline: CP0950M_SYS_Validar que se visualicen los movimientos de la eCard

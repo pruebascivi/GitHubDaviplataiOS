@@ -23,8 +23,7 @@ Feature: Pruebas del modulo look and feel
 
     Examples: 
       | tipoId | usuario    | contrasena |
-      ##@externaldata@D:/ArchivosRobotMovil/LookAndFeel/LookAndFeel.xlsx@CP02570M
-      | "CC"   | "10333041" | "2580"     |
+      | "CC"   | "10050033" | "2589"     |
 
   @CP02580M @LookAndFeel10
   Scenario Outline: CP02580M_SYS_Validar look and feel del home de perfil negocio (botón pasar plata).
@@ -35,8 +34,7 @@ Feature: Pruebas del modulo look and feel
 
     Examples: 
       | tipoId | usuario    | contrasena |
-      ##@externaldata@D:/ArchivosRobotMovil/LookAndFeel/LookAndFeel.xlsx@CP02580M
-      | "CC"   | "10333041" | "2580"     |
+      | "CC"   | "10050033" | "2589"     |
 
   @CP02590M @LookAndFeel10
   Scenario Outline: CP02590M_SYS_Validar look and feel del home de perfil negocio (botón sacar plata).
@@ -47,7 +45,7 @@ Feature: Pruebas del modulo look and feel
 
     Examples: 
       | tipoId | usuario    | contrasena |
-      | "CC"   | "10333041" | "2580"     |
+      | "CC"   | "10050033" | "2589"     |
 
   @CP02600M @LookAndFeel10
   Scenario Outline: CP02600M_SYS_Validar look and feel del home de perfil negocio (nombre del negocio).
@@ -57,8 +55,7 @@ Feature: Pruebas del modulo look and feel
 
     Examples: 
       | tipoId | usuario    | contrasena |
-      ##@externaldata@D:/ArchivosRobotMovil/LookAndFeel/LookAndFeel.xlsx@CP02600M
-      | "CC"   | "10333041" | "2580"     |
+      | "CC"   | "10050033" | "2589"     |
 
   @CP02610M @LookAndFeel10
   Scenario Outline: CP02610M_SYS_Validar look and feel del home de perfil negocio (visualización campana de notificaciones).
@@ -68,8 +65,7 @@ Feature: Pruebas del modulo look and feel
 
     Examples: 
       | tipoId | usuario    | contrasena |
-      ##@externaldata@D:/ArchivosRobotMovil/LookAndFeel/LookAndFeel.xlsx@CP02610M
-      | "CC"   | "10333041" | "2580"     |
+      | "CC"   | "10050033" | "2589"     |
 
   @CP02620M @LookAndFeel10
   Scenario Outline: CP02620M_SYS_Validar look and feel del home de perfil negocio (visualización opción cerrar).
@@ -79,8 +75,7 @@ Feature: Pruebas del modulo look and feel
 
     Examples: 
       | tipoId | usuario    | contrasena |
-      ##@externaldata@D:/ArchivosRobotMovil/LookAndFeel/LookAndFeel.xlsx@CP02620M
-      | "CC"   | "10333041" | "2580"     |
+      | "CC"   | "10050033" | "2589"     |
 
   @CP02630M @LookAndFeel21
   Scenario Outline: CP02630M_SYS_Validar look and feel del home de perfil negocio (visualización menú hamburguesa).
@@ -91,8 +86,7 @@ Feature: Pruebas del modulo look and feel
 
     Examples: 
       | tipoId | usuario    | contrasena |
-      ##@externaldata@D:/ArchivosRobotMovil/LookAndFeel/LookAndFeel.xlsx@CP02630M
-      | "CC"   | "10333041" | "2580"     |
+      | "CC"   | "10050033" | "2589"     |
 
   @CP02640M @LookAndFeel21 @PASSED
   Scenario Outline: CP02640M_SYS_Validar opción cambio foto del Perfil en perfil persona.
@@ -104,8 +98,7 @@ Feature: Pruebas del modulo look and feel
 
     Examples: 
       | tipoId | usuario    | contrasena |
-      ##@externaldata@D:/ArchivosRobotMovil/LookAndFeel/LookAndFeel.xlsx@CP02640M
-      | "CC"   | "10050099" | "2589"     |
+      | "CC"   | "10050033" | "2589"     |
 
   @CP02650M @LookAndFeel21
   Scenario Outline: CP02650M_SYS_Validar opción cambio foto del Perfil en perfil negocio.
@@ -117,7 +110,7 @@ Feature: Pruebas del modulo look and feel
 
     Examples: 
       | tipoId | usuario    | contrasena |
-      | "CC"   | "10333041" | "2580"     |
+      | "CC"   | "10050033" | "2589"     |
 
   @CP02660M @LookAndFeel21
   Scenario Outline: CP02660M_SYS_Validar visualización botón menú hamburguesa desde perfil negocio.
@@ -127,8 +120,7 @@ Feature: Pruebas del modulo look and feel
 
     Examples: 
       | tipoId | usuario    | contrasena |
-      ##@externaldata@D:/ArchivosRobotMovil/LookAndFeel/LookAndFeel.xlsx@CP02660M
-      | "CC"   | "10333041" | "2580"     |
+      | "CC"   | "10050033" | "2589"     |
 
   @CP02670M @LookAndFeel21
   Scenario Outline: CP02670M_SYS_Validar botón menú hamburguesa desde perfil negocio (usar plata)
@@ -138,5 +130,4 @@ Feature: Pruebas del modulo look and feel
 
     Examples: 
       | tipoId | usuario    | contrasena |
-      ##@externaldata@D:/ArchivosRobotMovil/LookAndFeel/LookAndFeel.xlsx@CP02670M
-      | "CC"   | "10333041" | "2580"     |
+      | "CC"   | "10050033" | "2589"     |

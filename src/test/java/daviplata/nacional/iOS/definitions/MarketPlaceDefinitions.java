@@ -1,16 +1,13 @@
 package daviplata.nacional.iOS.definitions;
 
 import static org.junit.Assert.assertNotNull;
-
 import java.util.ArrayList;
-
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import daviplata.nacional.iOS.modelo.ConsultaCupoTarjeta;
 import daviplata.nacional.iOS.steps.MarketPlaceSteps;
-import daviplata.nacional.iOS.steps.PasarPlataSteps;
 import daviplata.nacional.iOS.steps.WebRedebanSteps;
 import daviplata.nacional.iOS.utilidades.BaseUtil;
 import net.serenitybdd.core.Serenity;
@@ -26,7 +23,6 @@ public class MarketPlaceDefinitions {
 	ArrayList<Float> saldos = new ArrayList<Float>();
 	String numCelular = "";
 
-
 	@When("^ingreso a tienda virtual$")
 	public void ingresoATiendaVirtual() throws Exception {
 		stepsMarket.btnMarketPlace();
@@ -36,7 +32,6 @@ public class MarketPlaceDefinitions {
 	public void ingresoAlBotonMovilidad() throws Exception {
 		stepsMarket.validarBtnMovilidad();
 	}
-	
 	
 	@When("^validar saldos por recarga$")
 	public void validarSaldosPorRecarga() throws Exception {
@@ -52,7 +47,6 @@ public class MarketPlaceDefinitions {
 	public void validarBtnInhabilitado() throws Exception {
 		stepsMarket.validarBtnInhabilitado();
 	}
-	
 	
 	@When("^diligenciar formulario claro \"([^\"]*)\" \"([^\"]*)\"$")
 	public void completarFlujoDiligenciarClaro(String monto, String numero) throws Exception {
@@ -78,7 +72,6 @@ public class MarketPlaceDefinitions {
 	public void completarFlujoDiligenciarPaquetesMovistarFondosInsuficientes(String numero) throws Exception {
 		stepsMarket.diligenciarDatosRecargaPaquetesFondosInsuficientes(numero);
 	}
-
 
 	@When("^completar flujo comprar seguro \"([^\"]*)\" \"([^\"]*)\"$")
 	public void completarFlujoComprarSeguro(String opcion, String genero) throws Exception {
@@ -118,7 +111,6 @@ public class MarketPlaceDefinitions {
 	public void volverCapturarSaldoFinal() throws Exception {
 		stepsMarket.flujoVolvercapturarSaldo();
 	}
-
 	
 	@Then("^Completo flujo comprar seguro con fecha menor \"([^\"]*)\" \"([^\"]*)\"$")
 	public void completoFlujoComprarSeguroConFechaMenor(String opcion, String genero) throws Exception {
@@ -139,9 +131,7 @@ public class MarketPlaceDefinitions {
 		} else {
 			stepsMarket.ingresarMinutos();
 			stepsMarket.ingresarGasFlujo(referencia, opcion);
-
 		}
-
 	}
 
 	@Then("^Valido transaccion$")
@@ -172,7 +162,6 @@ public class MarketPlaceDefinitions {
 	@Then("^Complejo flujo de otros servicios referencia errada \"([^\"]*)\" \"([^\"]*)\"$")
 	public void complejoFlujoDeOtrosServiciosReferenciaErrada(String opcion, String referencia) throws Exception {
 		stepsMarket.ingresarOtrosServiciosReferenciaErrada(referencia, opcion);
-		;
 	}
 
 	@Then("^Valido transaccion rechazada$")
@@ -289,42 +278,34 @@ public class MarketPlaceDefinitions {
 	public void validarEnRedebanSeguros(String cuenta) throws Exception {
 		// base.idTransaccion = base.Autorizador;
 		// base.ValorPoliza
-		System.out.println("Base monto: "+  base.ValorPoliza);
-		base.montoTrasadoRedeban = stepsWebRedeban.consultaDiaria3(cuenta,  base.ValorPoliza);
+		System.out.println("Base monto: "+  BaseUtil.ValorPoliza);
+		BaseUtil.montoTrasadoRedeban = stepsWebRedeban.consultaDiaria3(cuenta,  BaseUtil.ValorPoliza);
 	}
 	
 	@Given("^Validar en redeban subtipo \"([^\"]*)\"\"([^\"]*)\"$")
 	public void validarEnRedebanSubtipo(String cuenta,String subtipo) throws Exception {
 	    // Write code here that turns the phrase above into concrete actions
-	
-		base.montoTrasadoRedeban = stepsWebRedeban.consultasubtipo(cuenta, subtipo);
+		BaseUtil.montoTrasadoRedeban = stepsWebRedeban.consultasubtipo(cuenta, subtipo);
 	}
-	
 
 	//--------- Validar saldo en perfil negocio -----------//
 	
 	@When("^ingreso al perfil negocio$")
 	public void ingresoAlPerfilNegocio() throws Exception {
 		stepsMarket.ingresarPerfilNegocio();
-	    
 	}
 	
 	@Then("^validar saldo negocio$")
 	public void validarSaldoNegocio() throws Exception {
 		stepsMarket.validarSaldoPerfilNegocio();
-	    
 	}
 	
-	
-	
-	
 	//------------------------------------------------------------------------------------------------------------------------------------------------------
-	
 	
 	@Then("^Valido scroll horizontal categorias$")
 	public void validoScrollHorizontalCategorias() throws Exception {
 		stepsMarket.validoScrollHorizontalCategorias();	
-		}
+	}
 	
 	@Then("^dar click btn \"([^\"]*)\"$")
 	public void darClickBtn(String categoria) throws Exception {
@@ -364,7 +345,6 @@ public class MarketPlaceDefinitions {
 	
 	@Then("^validar igualdad saldos tarjetas marketplace$")
 	public void validarIgualdadSaldosTarjetasMarketplace() throws Exception {
-		boolean flag = false;
 		int valorBono = Serenity.sessionVariableCalled("valorBono");
 		int cantidadSaldos = saldos.size();
 		if (cantidadSaldos == 4) {
@@ -373,16 +353,15 @@ public class MarketPlaceDefinitions {
 			
 			if(sumaPrimeraTarjeta == sumaSegundaTarjeta) {
 				System.out.println("La transaccion no afectó redeban");
-			}else if((sumaSegundaTarjeta) == (sumaPrimeraTarjeta - valorBono)) {
+			} else if((sumaSegundaTarjeta) == (sumaPrimeraTarjeta - valorBono)) {
 				System.out.println("La transaccion  afectó redeban correctamente");
-			}else {
+			} else {
 				System.out.println("Hubo un error");
 			}
-		}else {
+		} else {
 			System.out.println("No pude validar saldos");
 		}
-}
-	
+	}
 	
 	@Given("^completo flujo validar btn descarga$")
 	public void completarFlujoValidarBtnDescarga() throws Exception {
@@ -403,7 +382,6 @@ public class MarketPlaceDefinitions {
 	public void llenarAutorizadoresTest() throws Exception {
 		stepsMarket.llenarAutorizadoresTest();
 	}
-	
 	
 	@When("^flujo crear negocio \"([^\"]*)\"\"([^\"]*)\"\"([^\"]*)\"\"([^\"]*)\"\"([^\"]*)\"\"([^\"]*)\"$")
 	public void flujoCrearNegocio(String nombre, String queVende, String monto, String ciudadNegocio, String casa, String correo) throws Exception {
@@ -475,26 +453,19 @@ public class MarketPlaceDefinitions {
 		stepsMarket.validarCategoriasAliadosAlHacerTap();
 	}
 
-
 	@Given("^Validar en redeban subtipo \"([^\"]*)\"\"([^\"]*)\"\"([^\"]*)\"$")
 	public void validarEnRedebanSubtipo(String cuenta,String subtipo, String celular) throws Exception {
 	    // Write code here that turns the phrase above into concrete actions
-	
-		base.montoTrasadoRedeban = stepsWebRedeban.consultasubtipo(cuenta, subtipo, celular);
+		BaseUtil.montoTrasadoRedeban = stepsWebRedeban.consultasubtipo(cuenta, subtipo, celular);
 	}
 	
 	@Then("^Realizo compra de bono para compartir y descargar la compra$")
 	public void realizoCompraDeBonoParaCompartirDescargarLaCompra() throws Exception {
 		stepsMarket.flujoCompraBono();
-
 	}
 	
 	@Then("^Validar opciones de compartir y descargar bono$")
 	public void validarOpcionesDeCompartirDescargarBono() throws Exception {
 		stepsMarket.validarOpcionesCompartirDescargarBono();
-
 	}
-
-
-
 }

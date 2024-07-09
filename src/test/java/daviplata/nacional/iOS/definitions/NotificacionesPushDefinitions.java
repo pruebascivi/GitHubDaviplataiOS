@@ -3,11 +3,7 @@ package daviplata.nacional.iOS.definitions;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import daviplata.nacional.iOS.steps.LoginSteps;
 import daviplata.nacional.iOS.steps.NotificacionesPushSteps;
-import daviplata.nacional.iOS.steps.OnHoldSteps;
-import daviplata.nacional.iOS.steps.WebRedebanSteps;
-import daviplata.nacional.iOS.utilidades.BaseUtil;
 import net.thucydides.core.annotations.Steps;
 
 public class NotificacionesPushDefinitions {

@@ -8,8 +8,8 @@ Feature: Pruebas en la funcionalidad de Certificaciones de la app Daviplata.
     Then validar que se muestren los movimientos
 
     Examples: 
-      | tipoId | usuario      | contrasena |
-      | "CC"   | "1020770002" | "1234"     |
+      | tipoId | usuario    | contrasena |
+      | "CC"   | "10050066" | "2589"     |
 
   @CP70001M @Passed
   Scenario Outline: CP70001M_SYS_Validar que si es cliente que no tiene cetificacion tributaria muestre el mensaje
@@ -19,8 +19,8 @@ Feature: Pruebas en la funcionalidad de Certificaciones de la app Daviplata.
     Then Validar mensaje de certificacion tributaria
 
     Examples: 
-      | tipoId | usuario   | contrasena |
-      | "CC"   | "1069773" | "1234"     |
+      | tipoId | usuario      | contrasena |
+      | "CC"   | "1020770002" | "1234"     |
 
   @CP70002M @DiseñadoSinDataCostos
   Scenario Outline: CP70002M_SYS_Validar que si es cliente que no tiene cetificacion de costos muestre el mensaje
@@ -30,8 +30,8 @@ Feature: Pruebas en la funcionalidad de Certificaciones de la app Daviplata.
     Then Valido mensaje de certificacion de costos
 
     Examples: 
-      | tipoId | usuario   | contrasena |
-      | "CC"   | "1069773" | "1234"     |
+      | tipoId | usuario    | contrasena |
+      | "CC"   | "10050066" | "2589"     |
 
   @CP70003M @DiseñadoConDefecto
   Scenario Outline: CP70003M_SYS_Validar proceso de generacion de certificación tributaria por año
@@ -43,8 +43,8 @@ Feature: Pruebas en la funcionalidad de Certificaciones de la app Daviplata.
     Then Valido generacion de certificacion tributaria
 
     Examples: 
-      | tipoId | usuario   | contrasena |
-      | "CC"   | "1069773" | "1234"     |
+      | tipoId | usuario      | contrasena |
+      | "CC"   | "1020770002" | "1234"     |
 
   @CP70004M @DiseñadoConDefecto
   Scenario Outline: CP70004M_SYS_Validar proceso de generacion de certificación tributaria que se deje descargar en pdf
@@ -56,5 +56,6 @@ Feature: Pruebas en la funcionalidad de Certificaciones de la app Daviplata.
     Then Valido generacion de certificacion tributaria
 
     Examples: 
-      | tipoId | usuario   | contrasena |
-      | "CC"   | "1069773" | "1234"     |
+      | tipoId | usuario      | contrasena |
+      | "CC"   | "10050066" | "2589"     |
+      

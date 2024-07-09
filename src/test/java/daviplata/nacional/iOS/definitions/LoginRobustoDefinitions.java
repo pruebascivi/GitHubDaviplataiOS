@@ -1,19 +1,14 @@
 package daviplata.nacional.iOS.definitions;
 
-import cucumber.api.Scenario;
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import daviplata.nacional.iOS.definitions.Hooks;
-import daviplata.nacional.iOS.steps.WebRedebanSteps;
 import daviplata.nacional.iOS.utilidades.BaseUtil;
 import daviplata.nacional.iOS.utilidades.Cronometro;
 import daviplata.nacional.iOS.utilidades.Evidencias;
 import daviplata.nacional.iOS.steps.EcardSteps;
 import daviplata.nacional.iOS.steps.HomeRobustoSteps;
 import daviplata.nacional.iOS.steps.LoginRobustoSteps;
-import daviplata.nacional.iOS.steps.LoginSteps;
 import daviplata.nacional.iOS.steps.MicroSegurosSteps;
 import net.thucydides.core.annotations.Steps;
 
@@ -34,7 +29,6 @@ public class LoginRobustoDefinitions {
 	@Steps
 	MicroSegurosSteps microSegurosSteps;
 
-	
 	@Given("^ingreso al aplicativo$")
 	public void ingresoAlAplicativo() {
 	    loginRobustoSteps.ingresoAlAplicativo();

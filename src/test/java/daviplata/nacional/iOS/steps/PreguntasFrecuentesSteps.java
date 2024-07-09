@@ -13,6 +13,7 @@ public class PreguntasFrecuentesSteps {
 	
 	@Step
 	public void ingresarAlBotonNecesitoAyuda() {
+		Utilidades.esperaMiliseg(4000);
         Utilidades.tomaEvidencia("Hacer clic en el boton necesito ayuda desde zona publica");
         utilidadesTcs.clicElement("xpath", PreguntasFrecuentesPageObjects.BOTON_NECESITO_AYUDA);
 		utilidadesTcs.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);

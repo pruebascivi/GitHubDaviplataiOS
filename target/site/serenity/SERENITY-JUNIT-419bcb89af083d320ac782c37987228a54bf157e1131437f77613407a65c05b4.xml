@@ -1,1 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="casos cambio de dispositivo" skipped="0" tests="1" time="67.03" timestamp="2024-02-28 04:16:48"><testcase name="CP03210M_SYS_validar proceso de cambio de dispositivo con contrasena no valida"/></testsuite>
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="casos cambio de dispositivo" skipped="0" tests="3" time="208.95" timestamp="2024-07-05 11:31:39"><testcase name="CP03210M_SYS_validar proceso de cambio de dispositivo con contrasena no valida"/><testcase name="CP03220M_SYS_validar proceso de cambio de dispositivo con otp invalida"><failure message="No se pudo interactuar con el elemento: //XCUIElementTypeTextView[contains(@value,'Para ingresar a su DaviPlata')]" type="java.lang.AssertionError">No se pudo interactuar con el elemento: //XCUIElementTypeTextView[contains(@value,'Para ingresar a su DaviPlata')]</failure><system-err>No se pudo interactuar con el elemento: //XCUIElementTypeTextView[contains(@value,'Para ingresar a su DaviPlata')]
+daviplata.nacional.iOS.utilidades.UtilidadesTCS.validateElementVisibility(UtilidadesTCS.java:305)
+daviplata.nacional.iOS.steps.CambioDispositivoSteps.realizarCambioDispositivoClaveIncorrecta(CambioDispositivoSteps.java:112)
+daviplata.nacional.iOS.definitions.CambioDispositivoDefinitions.relizoCambioDeDispositivoConClaveIncorrecta(CambioDispositivoDefinitions.java:26)
+cucumber.runner.Runner.runPickle(Runner.java:80)
+daviplata.nacional.iOS.runners.RunnerPersonalizado.run(RunnerPersonalizado.java:63)
+org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:93)
+org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:40)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:529)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:756)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:452)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:210)
+</system-err></testcase><testcase name="CP03221M_SYS_Validar proceso de cambio de dispositivo con otp valida"/></testsuite>

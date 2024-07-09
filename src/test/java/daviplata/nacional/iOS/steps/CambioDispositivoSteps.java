@@ -1,28 +1,30 @@
 package daviplata.nacional.iOS.steps;
 import static org.junit.Assert.fail;
 
+import daviplata.nacional.iOS.pageObjects.AcercaDeDaviplataPage;
 import daviplata.nacional.iOS.pageObjects.AcercaDePageObjects;
 import daviplata.nacional.iOS.pageObjects.CambioDispositivoPageObjects;
-import daviplata.nacional.iOS.pageObjects.WebLatiniaPageObject;
-import daviplata.nacional.iOS.pageObjects.LoginPageObjects;
 import daviplata.nacional.iOS.pageObjects.LoginRobustoPage;
-import daviplata.nacional.iOS.utilidades.Credenciales;
 import daviplata.nacional.iOS.utilidades.Utilidades;
 import daviplata.nacional.iOS.utilidades.UtilidadesTCS;
 import net.thucydides.core.annotations.Step;
+import net.thucydides.core.annotations.Steps;
 
 public class CambioDispositivoSteps {
 	
+	@Steps
 	Utilidades utilidad;
+	@Steps
 	UtilidadesTCS utilidadesTCS;
+	@Steps
 	AcercaDePageObjects pageAcercaDe;
+	@Steps
 	LoginSteps loginSteps;
 	
 	@Step
 	public void ingresarUsuario(String tipoDocumento, String usuario) {
 		System.out.println("Ingresando a la app");
-		utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.BOTON_NOTIFICACIONES);
-		loginSteps.verificarVersion();// Version
+		verificarVersion();
 		utilidadesTCS.seleccionarTipoDocumentoInputHomeDaviplata("xpath",tipoDocumento);
 		utilidadesTCS.writeElement("xpath", LoginRobustoPage.CAMPO_INGRESO_USUARIO, usuario);
 		Utilidades.esperaMiliseg(800);
@@ -140,12 +142,13 @@ public class CambioDispositivoSteps {
     			boolean visibilidadTeclado = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.BOTON_ACEPTAR_TECLADO_IOS);
     			if(visibilidadTeclado == true) {
     				utilidadesTCS.escribirPorTecladoIos(otp);
+    				System.out.println("Escribo otp: " + otp);
         			Utilidades.tomaEvidencia("Ingresar Otp de cambio de dispositivo");
     				utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_ACEPTAR_TECLADO_IOS);
     			}else {
     				utilidadesTCS.clickCoordinates(194,385);
     				utilidadesTCS.validateElementVisibility("xpath", LoginRobustoPage.BOTON_ACEPTAR_TECLADO_IOS);
-    				utilidadesTCS.escribirPorTecladoIos("230116");
+    				utilidadesTCS.escribirPorTecladoIos(otp);
     				Utilidades.tomaEvidencia("Ingresar otp de cambio de dispositivo");
     				utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_ACEPTAR_TECLADO_IOS);
     			}
@@ -175,5 +178,39 @@ public class CambioDispositivoSteps {
 		utilidadesTCS.validateTextContainsStringIgnoreUppercaseLowercase(texto, "Otp inválido");
 		Utilidades.tomaEvidencia("Validar mensaje de otp incorrecta de cambio de dispositivo");
 		
+	}
+	
+	@Step
+	public void verificarVersion() {
+		try {
+			Utilidades.esperaMiliseg(1500);
+			utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.MENU_TRES_PUNTOS);
+			utilidadesTCS.clicElement("xpath", LoginRobustoPage.MENU_TRES_PUNTOS);
+			Utilidades.tomaEvidencia("Menu tres puntos");
+		} catch(Exception e) {
+			assert utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.MENU_TRES_PUNTOS) : "No se pudo interactuar con el elemento." + LoginRobustoPage.MENU_TRES_PUNTOS;
+		}
+		try {
+			Utilidades.esperaMiliseg(2000);
+			utilidadesTCS.clicElement("xpath", LoginRobustoPage.ACERCA_DE_DAVIPLATA);
+			Utilidades.esperaMiliseg(1500);
+			Utilidades.tomaEvidencia("Entro a menu hamburguesa perfil negocio");
+			String version = utilidadesTCS.obtenerTexto("xpath", AcercaDeDaviplataPage.VERSION);
+			Utilidades.tomaEvidencia("Ingreso al módulo 'Acerca de Daviplata' y capturo la versión: " + version );
+			System.out.println("La versión es: " + version);
+			
+		} catch(Exception e) {
+			System.out.println("No se pudo interactuar con el elemento debido a: " + e.getMessage().toString());
+			assert utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.ACERCA_DE_DAVIPLATA) : "No se pudo interactuar con el elemento." + LoginRobustoPage.ACERCA_DE_DAVIPLATA;
+		}
+		try {
+			
+			utilidadesTCS.clicElement("xpath", LoginRobustoPage.REGRESAR);
+			utilidadesTCS.validateElementVisibility("name","Ingrese a su Daviplata");
+			
+		} catch(Exception e) {
+			System.out.println("No se pudo interactuar con el elemento debido a: " + e.getMessage().toString());
+			assert utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.REGRESAR) : "No se pudo interactuar con el elemento." + LoginRobustoPage.REGRESAR;
+		}	
 	}
 }

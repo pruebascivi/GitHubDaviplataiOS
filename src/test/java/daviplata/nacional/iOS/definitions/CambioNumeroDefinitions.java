@@ -3,13 +3,8 @@ package daviplata.nacional.iOS.definitions;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
-import org.hamcrest.core.IsNull;
-import static org.hamcrest.CoreMatchers.*;
-
 import java.util.ArrayList;
-
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -17,7 +12,6 @@ import daviplata.nacional.iOS.modelo.ConsultaCupoTarjeta;
 import daviplata.nacional.iOS.steps.CambioNumeroSteps;
 import daviplata.nacional.iOS.steps.LoginSteps;
 import daviplata.nacional.iOS.steps.WebRedebanSteps;
-import daviplata.nacional.iOS.utilidades.Utilidades;
 import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Steps;
 
@@ -32,21 +26,15 @@ public class CambioNumeroDefinitions {
 	ArrayList<Float> saldos = new ArrayList<Float>();
 	String numCelular = "";
 
-	
-	
-	
-	
 	@Then("^logout redeban al finalizar consulta numero celular$")
 	public void logoutRedeban() throws Exception {
 		stepsWebRedeban.logOut("//*[@id=\"AS_RespSpander\"]/table/tbody/tr/td/table/tbody/tr[2]/td/img");
 	}
 	
-
 	@Given("^ingresar a opcion cambiar numero zona publica$")
 	public void ingresarAOpcionCambiarNumeroZonaPublica() throws Exception {
 		stepsLogin.ingresarAOpcionCambiarNumeroZonaPublica();
 	}
-	
 	
 	@Given("^ingresar a opcion Cambiar Numero privado$")
 	public void ingresarAOpcionCambiarNumeroPrivado() throws Exception {
@@ -68,8 +56,6 @@ public class CambioNumeroDefinitions {
 		stepsCambioNumero.validarYDarTapEnBotonAceptar();
 	}
 	
-	
-	
 	@Given("^ingresar a opcion Olvido Su Clave$")
 	public void ingresarAOpcionOlvidoSuClave() throws Exception {
 		stepsCambioNumero.pulsarOlvidoSuClave();
@@ -81,8 +67,6 @@ public class CambioNumeroDefinitions {
 		assertNotNull(numCelular);
 	}
 	
-	
-
 	@Given("^consultar saldo tarjeta en redeban cambio numero$")
 	public void consultarSaldoTarjetaEnRedeban() throws Exception {
 		String numTarjeta = stepsWebRedeban.returnNumeroTarjeta();

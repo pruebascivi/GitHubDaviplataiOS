@@ -42,12 +42,8 @@ public class LoginPageObjects extends PageObject{
 	Utilidades Utilidades;
 	negocioPageObjects negocioPO;
 	UtilidadesTCS utilidadesTCS;
-
-	private WebRedebanSteps stepsWebRedeban;
 	private static WebLatiniaPageObject pageLatinia;
 	private static NewLPageObjects pageNLatinia;
-	// private NewLPageObjects pageNLatinia;
-	private Faker objFaker;
 	ArrayList<Float> saldos = new ArrayList<Float>();
 
 	// Xpath nuevo login
@@ -693,9 +689,9 @@ public class LoginPageObjects extends PageObject{
 	}
 
 	public void ingresarContrasena(String contrasena) {
-		utilidad.esperaMiliseg(4000);
-		TouchAction touchAction = new TouchAction(base.driver);
-		touchAction.tap(new PointOption().withCoordinates(100, 368)).perform();
+//		utilidad.esperaMiliseg(4000);
+//		TouchAction touchAction = new TouchAction(base.driver);
+//		touchAction.tap(new PointOption().withCoordinates(100, 368)).perform();
 		utilidad.esperaMiliseg(1000);
 		int j = 1;
 		int k = 0;

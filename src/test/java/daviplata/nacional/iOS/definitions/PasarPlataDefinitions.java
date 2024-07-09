@@ -137,7 +137,6 @@ public class PasarPlataDefinitions {
 	    stepsPasarPlata.clicPasarPlataCuenta();
 	    //marketObj.cerrarPopup();
 	    stepsPasarPlata.clicPasarPlataCuenta();
-
 	}
 
 	@When("^Digitar numero de cuenta \"([^\"]*)\"$")
@@ -164,7 +163,6 @@ public class PasarPlataDefinitions {
 	public void llenarFormularioDeDatosYFavorito(String numeroCuenta, String tipoId, String numId, String valorAPasar, String banco) throws Exception {
 		stepsPasarPlata.llenarFormularioPasarPlataYFavorito(numeroCuenta, tipoId, numId, valorAPasar, banco );
 	}
-	 
 	
 	@When("^Llenar el formulario de datos fondos insuficientes \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\"$")
 	public void llenarElFormularioDeDatosFondosInsuficientes(String numeroCuenta, String tipoId, String numId, String banco) {
@@ -176,12 +174,10 @@ public class PasarPlataDefinitions {
 		stepsPasarPlata.llenarFormularioPasarPlataMenorDiezMil(numeroCuenta, tipoId, numId, valorAPasar, banco );
 	}
 	
-	
 	@When("^Llenar monto de cuenta inscrita(.*)$")
 	public void llenarMontoDeCuentaInscrita(String valorAPasar) throws Exception {
 		stepsPasarPlata.llenarMonto(valorAPasar);
 	}
-	
 	
 	@When("^Llenar formulario ACH (.*) \"([^\"]*)\" (.*) (.*) \"([^\"]*)\"$")
 	public void llenarFormularioDeDatosAch(String numeroCuenta, String tipoId, String numId, String valorAPasar, String banco) throws Exception {
@@ -388,7 +384,6 @@ public class PasarPlataDefinitions {
 	
 	//****************************VALIDACION REDEBAN*******************************************************************************
 	
-	
 	@Given("^obtener numero celular actual en redeban pasar plata \"([^\"]*)\"$")
 	public void obtenerNumeroCelularActualEnRedeban(String usuario) throws Exception {
 		numCelular = stepsWebRedeban.consultaNumeroCelular(usuario);
@@ -411,7 +406,6 @@ public class PasarPlataDefinitions {
 	
 	@Then("^validar igualdad saldos tarjetas pasar plata \"([^\"]*)\"$")
 	public void validarIgualdadSaldosTarjetasPasarPlata(String valorAPasar) throws Exception {
-		boolean flag = false;
 		int valorTransaccion = Integer.parseInt(valorAPasar);
 		int cantidadSaldos = saldos.size();
 		if (cantidadSaldos == 4) {
@@ -453,7 +447,9 @@ public class PasarPlataDefinitions {
 		System.out.println("Acumulado mensual credito " + numTarjeta + ": " + cupoTarjeta.getAcumuladoMensualCredito());
 		System.out.println("Acumulado mensual debito " + numTarjeta + ": " + cupoTarjeta.getAcumuladoMensualDebito());
 		String acumuladoMensualDebitoRedeban = cupoTarjeta.getAcumuladoMensualDebito(); 
+		System.out.println("acumuladoMensualDebitoRedeban: " + acumuladoMensualDebitoRedeban);
 		String acumuladoMensualCreditoRedeban = cupoTarjeta.getAcumuladoMensualCredito(); 
+		System.out.println("acumuladoMensualCreditoRedeban: " + acumuladoMensualCreditoRedeban );
 	}
 	
 	//***********************************TRANSFIYA*********************************************************************
@@ -550,7 +546,6 @@ public class PasarPlataDefinitions {
 			double sumaPrimeraTarjeta = 0;
 			double sumaSegundaTarjeta = 0;
 			double montoTx = Integer.parseInt(monto);
-			boolean flag = false;
 			int cantidadSaldos = saldos.size();
 			if (cantidadSaldos == 8) {
 				 sumaPrimeraTarjeta = saldos.get(0) + saldos.get(1);
@@ -558,15 +553,14 @@ public class PasarPlataDefinitions {
 			}
 				assertThat(sumaSegundaTarjeta, equalTo(sumaPrimeraTarjeta -montoTx));
 				System.out.println("La transacción afecto correctamente el saldo en redeban");
-		}catch(Exception e) {
+		} catch(Exception e) {
 			if(!(contador==10)) {
 				Utilidades.esperaMiliseg(2000);
 				validoAfectacionDebitoCuentaEnRedeban(monto);
-			}else {
+			} else {
 				fail("No se pudo validar saldos debido a: " + e.getMessage());
 			}
-		}finally {contador=0;}}
-	
+		} finally {contador=0;}}
 	
 	@When("^valido afectacion credito cuenta en redeban \"([^\"]*)\"$")
 	public void validoAfectacionCreditoCuentaEnRedeban(String monto) throws Exception {
@@ -575,7 +569,6 @@ public class PasarPlataDefinitions {
 			double sumaPrimeraTarjeta = 0;
 			double sumaSegundaTarjeta = 0;
 			double montoTx = Integer.parseInt(monto);
-			boolean flag = false;
 			int cantidadSaldos = saldos.size();
 			if (cantidadSaldos == 8) {
 				 sumaPrimeraTarjeta = saldos.get(0) + saldos.get(1);
@@ -583,14 +576,14 @@ public class PasarPlataDefinitions {
 			}
 				assertThat(sumaSegundaTarjeta, equalTo(sumaPrimeraTarjeta + montoTx));
 				System.out.println("La transacción afecto correctamente el saldo en redeban");
-		}catch(Exception e) {
+		} catch(Exception e) {
 			if(!(contador==10)) {
 				Utilidades.esperaMiliseg(2000);
 				validoAfectacionCreditoCuentaEnRedeban(monto);
-			}else {
+			} else {
 				fail("No se pudo validar saldos debido a: " + e.getMessage());
 			}
-		}finally {contador=0;}}
+		} finally {contador=0;}}
 	
 	@When("^valido afectacion cuenta en redeban GMF \"([^\"]*)\"$")
 	public void validoAfectacionCuentaEnRedebanGMF(String monto) throws Exception {
@@ -600,7 +593,6 @@ public class PasarPlataDefinitions {
 			double sumaSegundaTarjeta = 0;
 			double montoTx = Integer.parseInt(monto);
 			montoTx = montoTx + (montoTx * 0.004);
-			boolean flag = false;
 			int cantidadSaldos = saldos.size();
 			if (cantidadSaldos == 8) {
 				 sumaPrimeraTarjeta = saldos.get(0) + saldos.get(1);
@@ -617,14 +609,12 @@ public class PasarPlataDefinitions {
 			}
 		}finally {contador=0;}}
 	
-	
 	@When("^valido igualdad saldos en redeban$")
 	public void validoIgualdadSaldosEnRedeban() throws Exception {
 		try {
 			contador++;
 			double sumaPrimeraTarjeta = 0;
 			double sumaSegundaTarjeta = 0;
-			boolean flag = false;
 			int cantidadSaldos = saldos.size();
 			if (cantidadSaldos == 8) {
 				 sumaPrimeraTarjeta = saldos.get(0) + saldos.get(1);
@@ -632,14 +622,14 @@ public class PasarPlataDefinitions {
 			}
 				assertThat(sumaSegundaTarjeta, equalTo(sumaPrimeraTarjeta));
 				System.out.println("La transacción no afectó redeban, los saldos son iguales");
-		}catch(Exception e) {
+		} catch(Exception e) {
 			if(!(contador==10)) {
 				Utilidades.esperaMiliseg(2000);
 				validoIgualdadSaldosEnRedeban();
-			}else {
+			} else {
 				fail("No se pudo validar saldos debido a: " + e.getMessage());
 			}
-		}finally {contador=0;}
+		} finally {contador=0;}
 	}
 		
 	@Given("aceptar solicitud pendiente \"([^\"]*)\"$")
@@ -692,7 +682,6 @@ public class PasarPlataDefinitions {
 	public void consultarSaldoTarjetaEnRedebanBolsillos() throws Exception {
 		String numTarjeta = stepsWebRedeban.returnNumeroTarjeta();
 		ConsultaCupoTarjeta cupoTarjeta = stepsWebRedeban.consultaSaldoRealDaviplata(numTarjeta);
-		
 		BigDecimal realDisponibleParaComparar = new BigDecimal(cupoTarjeta.getRealDisponible().replace(".", "").replace(",", "."));
 		String realString = String.valueOf(realDisponibleParaComparar);
         int longitud = realString.length();
@@ -700,38 +689,30 @@ public class PasarPlataDefinitions {
         realString = realString.substring(0, numero); 
 		BigDecimal numSaldoRealDisponible = new BigDecimal(realString);
 		Serenity.setSessionVariable("saldoReal").to(numSaldoRealDisponible);
-
 		float disponible = realDisponibleParaComparar.floatValue();
 		saldos.add(disponible);
 		System.out.println("Real disponible tarjeta " + numTarjeta + ": " + cupoTarjeta.getRealDisponible());
 	}
-	
-	
 	
 	@Then("^Validar afectacion de saldos en redeban y daviplata$")
 	public void validarIgualdadSaldosTarjetas() throws Exception {
 		try {
 			System.out.println("base.saldo: " + BaseUtil.saldo);
 			System.out.println("base.saldoFin: " + BaseUtil.saldoFinal);
-			
 			String saldo = String.valueOf(BaseUtil.saldo);
 			int cantidad = saldo.length();
 			int numero = cantidad - 2;
 			saldo = saldo.substring(0, numero);
-			
 			BigDecimal saldoInicial = new BigDecimal(saldo); 
-			
 			double saldoDaviplata1 = BaseUtil.saldo.doubleValue();
+			System.out.println("Saldo DaviPlata1: " + saldoDaviplata1);
 			double saldoDaviplata2 = BaseUtil.saldoFinal.doubleValue();
-			
 			System.out.println("Saldo 1: " + saldoInicial);
 			System.out.println("Saldo 2: " + saldoDaviplata2);
-			
 			assertThat(BaseUtil.saldo, not(equalTo(BaseUtil.saldoFinal)));
 			System.out.println("La transacción si afecto el saldo inicial del daviplata");
 			double saldoRedeban1 = saldos.get(0);
 			double saldoRedeban2 = saldos.get(1);
-
 			assertThat(saldoRedeban1, not(equalTo(saldoRedeban2)));
 			System.out.println("La transacción si afectó saldo inicial en redeban");
 
@@ -745,28 +726,22 @@ public class PasarPlataDefinitions {
 		try {
 			System.out.println("Saldo inicial: " + BaseUtil.saldo);
 			System.out.println("Saldo final: " + BaseUtil.saldoFinal);
-			
 			String saldo = String.valueOf(BaseUtil.saldo);
 			int cantidad = saldo.length();
 			int numero = cantidad - 2;
 			if(cantidad > 2) {
 				saldo = saldo.substring(0, numero);	
 			}
-			
 			BigDecimal saldoInicial = new BigDecimal(saldo); 
-			
 			double saldoDaviplata1 = BaseUtil.saldo.doubleValue();
+			System.out.println("Saldo DaviPlata1: " + saldoDaviplata1);
 			double saldoDaviplata2 = BaseUtil.saldoFinal.doubleValue();
-			
 			System.out.println("Saldo 1: " + saldoInicial);
 			System.out.println("Saldo 2: " + saldoDaviplata2);
-			
 			assertThat(BaseUtil.saldo, is(equalTo(BaseUtil.saldoFinal)));
 			System.out.println("***La transacción no afecto el saldo inicial del daviplata***");
-
 			double saldoRedeban1 = saldos.get(0);
 			double saldoRedeban2 = saldos.get(1);
-
 			assertThat(saldoRedeban1, is(equalTo(saldoRedeban2)));
 			System.out.println("***La transacción no afectó saldo inicial en redeban***");
 
@@ -774,7 +749,6 @@ public class PasarPlataDefinitions {
 			fail("No se pudo validar saldos del Daviplata, debido a: " + e.getMessage());
 		}
 	}
-
 
 	@Given("^Consulté saldo disponible en redeban GMF$")
 	public void consultarSaldoTarjetaEnRedebanGmf() throws Exception {
@@ -794,7 +768,6 @@ public class PasarPlataDefinitions {
 		BigDecimal numSaldoAcumuladoGmf = new BigDecimal(realAcumuladoStringGmf);
 		Serenity.setSessionVariable("saldoRealGmf").to(numSaldoDisponibleGmf);
 		Serenity.setSessionVariable("saldoAcumuladoGmf").to(numSaldoAcumuladoGmf);
-
 		float disponibleGmf = realDisponibleGmf.floatValue();
 		float acumuladosGmf = acumuladoGmf.floatValue();
 		saldos.add(disponibleGmf);
@@ -812,7 +785,6 @@ public class PasarPlataDefinitions {
 		try {
 			double acumuladoGmf1 = saldos.get(1);
 			double acumuladoGmf2 = saldos.get(3);
-
 			assertThat(acumuladoGmf1, not(equalTo(acumuladoGmf2)));
 			double extraerAcumuladoGmf = acumuladoGmf2 - acumuladoGmf1;
 			Utilidades.tomaEvidenciaPantalla("El cobro GMF fue de " + extraerAcumuladoGmf);
@@ -827,13 +799,11 @@ public class PasarPlataDefinitions {
 		try {
 			double saldoDaviplata1 = BaseUtil.saldoInicial.doubleValue();
 			double saldoDaviplata2 = BaseUtil.saldoFinal.doubleValue();
-
 			assertThat(saldoDaviplata1, not(equalTo(saldoDaviplata2)));
 			System.out.println("La transacción si afecto el saldo inicial del daviplata");
 			System.out.println(saldos);
 			double saldoRedeban1 = saldos.get(0);
 			double saldoRedeban2 = saldos.get(2);
-
 			assertThat(saldoRedeban1, not(equalTo(saldoRedeban2)));
 			System.out.println("La transacción si afectó saldo inicial en redeban");
 
@@ -849,7 +819,6 @@ public class PasarPlataDefinitions {
 		BaseUtil.montoTrasadoRedeban = stepsWebRedeban.consultaDiaria3(cuenta, BaseUtil.Autorizador);
 	}
 	
-
 	@Given("^Validé saldos iniciales del daviplata$")
 	public void validarSaldosIniciales() {
 		stepsPasarPlata.verificarSaldoInicialDaviplata();
@@ -904,11 +873,11 @@ public class PasarPlataDefinitions {
 		stepsPasarPlata.ingresarMontoCuentaDaviviendaTopeDebitos();
 	}
 	
-
 	@When("Ingreso a la opcion pasar plata en el home daviplata$")
 	public void ingresoALaOpcionPasarPlataHome() throws Exception {
 		stepsPasarPlata.ingesoALaOpcionPasarPlataHome();
 	}
+	
 	@When("^Pasar plata monto \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\"$")
 	public void pasarPlataMonto(String tipoCuenta, String numCuenta, String monto) throws Exception {
 		stepsPasarPlata.escogerOpcionCuentasDavivienda();
@@ -916,15 +885,16 @@ public class PasarPlataDefinitions {
 		stepsPasarPlata.ingresarNumeroCuentaDavivienda(numCuenta);
 		stepsPasarPlata.ingresarMontoCuentaDaviviendaPasarPlata(monto);
 	}
+	
 	@Then("^Validar boton inhabilitado home$")
 	public void ValidarBotonPasarPlataInhabilitadoHome() throws Exception {
 		stepsPasarPlata.validarBotonInhabilitado();
 	}
+	
 	@When("^Pasar plata cuentas inscritas \"([^\"]*)\"$")
 	public void pasarPlataCuentaInscritas(String monto) throws Exception {
 		stepsPasarPlata.escogerOpcionCuentasDaviviendaInscritas();
 		stepsPasarPlata.ingresarMontoCuentaInscritas(monto);
-
 	}
 	
 	@When("^Pasar plata monto seleccionable a cuentas con valor cero \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\"$")
@@ -973,13 +943,11 @@ public class PasarPlataDefinitions {
 		try {
 			double saldoDaviplata1 = BaseUtil.saldo.doubleValue();
 			double saldoDaviplata2 = BaseUtil.saldoFinal.doubleValue();
-
 			assertThat(saldoDaviplata1, is(equalTo(saldoDaviplata2)));
 			System.out.println("La transacción si afecto el saldo inicial del daviplata");
 			System.out.println(saldos);
 			double saldoRedeban1 = saldos.get(0);
 			double saldoRedeban2 = saldos.get(2);
-
 			assertThat(saldoRedeban1, is(equalTo(saldoRedeban2)));
 			System.out.println("La transacción si afectó saldo inicial en redeban");
 
@@ -997,7 +965,6 @@ public class PasarPlataDefinitions {
 	public void validoEnmascaramientoDelNumeroDeTransaccion() {
 		stepsPasarPlata.validarEnmascaramiento();
 	}
-
 
 	@Then("^Valido transaccion fecha actual y anterior$")
 	public void validoTransaccionFechaActualYAnterior() {
@@ -1034,5 +1001,3 @@ public class PasarPlataDefinitions {
         stepsPasarPlata.validoResultadoTransaccionRechazadaTope();
     }
 }
-			
-

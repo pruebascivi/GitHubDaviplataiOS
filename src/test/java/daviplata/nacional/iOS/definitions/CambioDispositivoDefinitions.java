@@ -1,27 +1,12 @@
 package daviplata.nacional.iOS.definitions;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-import java.util.ArrayList;
-
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import daviplata.nacional.iOS.modelo.ConsultaCupoTarjeta;
 import daviplata.nacional.iOS.steps.CambioDispositivoSteps;
-import daviplata.nacional.iOS.steps.CambioNumeroSteps;
-import daviplata.nacional.iOS.steps.LoginSteps;
-import daviplata.nacional.iOS.steps.WebRedebanSteps;
-import daviplata.nacional.iOS.utilidades.Utilidades;
 import net.thucydides.core.annotations.Steps;
 
-
 public class CambioDispositivoDefinitions {
-	
-	
 	
 	@Steps
 	CambioDispositivoSteps stepsCambioDispositivo;
@@ -50,12 +35,5 @@ public class CambioDispositivoDefinitions {
 	public void validarMensajeDeOtpIncorrecta() {
 		stepsCambioDispositivo.validarMensajeOtpIncorrecta();
 	}
-	
-	
-	
-	
-
-	
-	
 }
 

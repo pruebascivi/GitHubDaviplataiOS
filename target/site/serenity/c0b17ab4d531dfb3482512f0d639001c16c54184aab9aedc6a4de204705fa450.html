@@ -78,7 +78,7 @@
             <a href="576946480b52ad056d6f5bddf874399c83582ecf90963cc074a14c70580e7d9f.html"><i class="fa fa-comments-o"></i> Features</a>
         </li>
     </ul>
-    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 14-05-2024 10:13</span>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 08-07-2024 10:32</span>
     <br style="clear:left"/>
 </div>
     <div class="clr"></div>
@@ -113,6 +113,13 @@
                             <p class="tag">
                                 <span class="badge tag-badge" style="background:default;">
                                     <i class="fa fa-tag"></i>&nbsp;<a class="tagLink" style="background:default;"
+                                                                      href="e1b2b8ef00223b0e4b7e4c7c3cbd4999d0962a6e86a0117e3186fd97f3d4e1cc.html">PASSED
+                                    (tag)</a>
+                                </span>
+                            </p>
+                            <p class="tag">
+                                <span class="badge tag-badge" style="background:default;">
+                                    <i class="fa fa-tag"></i>&nbsp;<a class="tagLink" style="background:default;"
                                                                       href="51404cb2189748e8f858fbf1c4b14561eb17949382b1701ae6a3dbfc5b65a728.html">Ecard
                                     (tag)</a>
                                 </span>
@@ -125,9 +132,9 @@
                 <table class="outcome-header">
                     <tr>
                         <td colspan="2" class="test-title-bar">
-                            <span class="outcome-icon"><i class='fa fa-check-square-o success-icon fa-2x' title='SUCCESS'></i></span>
+                            <span class="outcome-icon"><i class='fa fa-exclamation-triangle error-icon fa-2x' title='ERROR'></i></span>
                             <span class="test-case-title">
-                                    <span class="success-color">
+                                    <span class="error-color">
                                     CP0842M_SYS_Validar el proceso de recargar la tarjeta Virtual
                                         <span class="related-issue-title"></span>
                                 </span>
@@ -173,14 +180,14 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="test-SUCCESS"><a href="#0">1</a></td>
-                            <td class="test-SUCCESS"><a href="#0">"CC"</a>
+                        <td class="test-ERROR"><a href="#0">1</a></td>
+                            <td class="test-ERROR"><a href="#0">"CC"</a>
                             </td>
-                            <td class="test-SUCCESS"><a href="#0">"10050033"</a>
+                            <td class="test-ERROR"><a href="#0">"19758461"</a>
                             </td>
-                            <td class="test-SUCCESS"><a href="#0">"2589"</a>
+                            <td class="test-ERROR"><a href="#0">"1234"</a>
                             </td>
-                            <td class="test-SUCCESS"><a href="#0">"10000"</a>
+                            <td class="test-ERROR"><a href="#0">"10000"</a>
                             </td>
                     </tr>
                 </tbody>
@@ -203,12 +210,12 @@
                 <tr class="step-table-separator">
                     <td colspan="5"></td>
                 </tr>
-                <tr class="test-SUCCESS">
+                <tr class="test-ERROR">
                     <td width="60" class="step-icon">
                         <a name="0"/>
                             <a href="javaScript:void(0)" onClick="toggleDiv('stepSection0')"
                                style="display:block">
-                                <i class="fa fa-plus-square-o imgstepSection0 success-icon"
+                                <i class="fa fa-plus-square-o imgstepSection0 error-icon"
                                    style="margin-left: 20px; float:left;  padding-right:5px"></i>
                             </a>
                     </td>
@@ -217,14 +224,14 @@
                             <a href="javaScript:void(0)" onClick="toggleDiv('stepSection0')"
                                style="display:block;">
                             <span class="top-level-step">
-                                Example #1: {tipoId="CC", usuario="10050033", contrasena="2589", monto="10000"}
+                                Example #1: {tipoId="CC", usuario="19758461", contrasena="1234", monto="10000"}
                             </span>
                             </a>
 
                         </div>
                     </td>
-                    <td width="100"><span class="top-level-step">SUCCESS</span></td>
-                    <td width="100"><span class="top-level-step">119.19s</span></td>
+                    <td width="100"><span class="top-level-step">ERROR</span></td>
+                    <td width="100"><span class="top-level-step">150.13s</span></td>
                 </tr>
                     <tr>
                     <td colspan="5">
@@ -239,31 +246,49 @@
                     <td>
                         <div class="step-description">
                             <span class="nested-step">
-                                Given ingreso usuario y contrasena "CC" "10050033" "2589"
+                                Given ingreso usuario y contrasena "CC" "19758461" "1234"
                             </span>
 
                         </div>
                     </td>
                     <td width="100"><span class="nested-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-step">78.96s</span></td>
+                    <td width="100"><span class="nested-step">108.22s</span></td>
                 </tr>
                 <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
                         
                             <span style="margin-left: 60px; margin-right: 5px;"
+                                  class="nested-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                    </td>
+                    <td>
+                        <div class="step-description">
+                            <span class="nested-step">
+                                Ingresar a app: CC, 19758461, 1234
+                            </span>
+
+                        </div>
+                    </td>
+                    <td width="100"><span class="nested-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-step">108.12s</span></td>
+                </tr>
+                <tr class="test-SUCCESS">
+                    <td width="60" class="step-icon">
+                        
+                            <span style="margin-left: 80px; margin-right: 5px;"
                                   class="nested-group-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
                             <span class="nested-group-step">
-                                Ingresar a app: CC, 10050033, 2589
+                                Verificar version
                             </span>
 
                         </div>
                     </td>
                     <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">77.91s</span></td>
+                    <td width="100"><span class="nested-group-step">11.58s</span></td>
                 </tr>
+
 
                 <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
@@ -280,7 +305,7 @@
                         </div>
                     </td>
                     <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">2.96s</span></td>
+                    <td width="100"><span class="nested-group-step">2.8s</span></td>
                 </tr>
                 <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
@@ -297,33 +322,140 @@
                         </div>
                     </td>
                     <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">10.7s</span></td>
+                    <td width="100"><span class="nested-group-step">11.89s</span></td>
                 </tr>
-                <tr class="test-SUCCESS">
+                <tr class="test-ERROR">
                     <td width="60" class="step-icon">
                         
                             <span style="margin-left: 40px; margin-right: 5px;"
-                                  class="nested-group-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                  class="nested-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
-                            <span class="nested-group-step">
+                            <span class="nested-step">
                                 Then valido recarga exitosa
                             </span>
 
                         </div>
                     </td>
-                    <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">18.38s</span></td>
+                    <td width="100"><span class="nested-step">ERROR</span></td>
+                    <td width="100"><span class="nested-step">20.3s</span></td>
                 </tr>
+                <tr class="test-ERROR">
+                    <td width="60" class="step-icon">
+                        
+                            <span style="margin-left: 60px; margin-right: 5px;"
+                                  class="nested-group-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
+                    </td>
+                    <td>
+                        <div class="step-description">
+                            <span class="nested-group-step">
+                                Valido recarga exitosa
+                            </span>
+
+                        </div>
+                    </td>
+                    <td width="100"><span class="nested-group-step">ERROR</span></td>
+                    <td width="100"><span class="nested-group-step">0.01s</span></td>
+                </tr>
+                    <tr class="test-ERROR">
+                        <td width="40">&nbsp</td>
+                        <td width="%" colspan="4" class="error-message-cell">
+                            <div class="error-message ellipsis"
+                                 title='Timeout exception: Expected condition failed: waiting for element to be clickable: By.xpath: //XCUIElementTypeStaticText[@name=&#39;Recarga exitosa&#39;] (tried for 10 second(s) with 500 milliseconds interval)'>
+                                <pre>Timeout exception: Expected condition failed: waiting for element to be clickable: By.xpath: //XCUIElementTypeStaticText[@name=&#39;Recarga exitosa&#39;] (tried for 10 second(s) with 500 milliseconds interval)</pre>
+                            </div>
+                <div><!-- Stack trace -->
+                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                            data-target="#stacktraceModal-8">
+                        View details
+                    </button>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="stacktraceModal-8" tabindex="-1" role="dialog"
+                     aria-labelledby="stacktraceModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close"><span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="stacktraceModalLabel">
+                                    org.openqa.selenium.TimeoutException
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                    <h5>
+                                        <pre>Expected condition failed: waiting for element to be clickable: By.xpath: //XCUIElementTypeStaticText[@name='Recarga exitosa'] (tried for 10 second(s) with 500 milliseconds interval)</pre>
+                                    </h5>
+                                    daviplata.nacional.iOS.pageObjects.EcardPageObject.verificoTransaccionExitosa(EcardPageObject.java
+                                    :472) <br>
+                                    daviplata.nacional.iOS.steps.EcardSteps.validoRecargaExitosa(EcardSteps.java
+                                    :169) <br>
+                                    daviplata.nacional.iOS.definitions.EcardDefinitions.validoRecargaExitosa(EcardDefinitions.java
+                                    :74) <br>
+                                    cucumber.runner.Runner.runPickle(Runner.java
+                                    :80) <br>
+                                    daviplata.nacional.iOS.runners.RunnerPersonalizado.run(RunnerPersonalizado.java
+                                    :63) <br>
+                                    org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java
+                                    :93) <br>
+                                    org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java
+                                    :40) <br>
+                                    org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java
+                                    :529) <br>
+                                    org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java
+                                    :756) <br>
+                                    org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java
+                                    :452) <br>
+                                    org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java
+                                    :210) <br>
+                            </div>
+
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="Close"><span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h4 class="modal-title" id="stacktraceModalLabel">
+                                        Caused by: org.openqa.selenium.NoSuchElementException
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                        <pre>Cannot locate an element using By.xpath: //XCUIElementTypeStaticText[@name='Recarga exitosa']<br>For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html<br>Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'<br>System info: host: 'JPDONGUT-JW37PV36DC', ip: 'fe80:0:0:0:1c84:cc18:ab0b:35c5%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '14.3.1', java.version: '1.8.0_411'<br>Driver info: driver.version: unknown</pre>
+                                    <pre>
+                                        daviplata.nacional.iOS.pageObjects.EcardPageObject.verificoTransaccionExitosa(EcardPageObject.java :472) <br>
+                                        daviplata.nacional.iOS.steps.EcardSteps.validoRecargaExitosa(EcardSteps.java :169) <br>
+                                        daviplata.nacional.iOS.definitions.EcardDefinitions.validoRecargaExitosa(EcardDefinitions.java :74) <br>
+                                        cucumber.runner.Runner.runPickle(Runner.java :80) <br>
+                                        daviplata.nacional.iOS.runners.RunnerPersonalizado.run(RunnerPersonalizado.java :63) <br>
+                                        org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java :93) <br>
+                                        org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java :40) <br>
+                                        org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java :529) <br>
+                                        org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java :756) <br>
+                                        org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java :452) <br>
+                                        org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java :210) <br>
+                                    </pre>
+                                </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        </td>
+                    </tr>
+
 
                     </table>
                     </td>
                     <tr>
-                <tr class="test-SUCCESS">
+                <tr class="test-ERROR">
                     <td colspan="2"></td>
-                    <td width="100"><span class="top-level-step"><em>SUCCESS</em></span></td>
-                    <td width="100"><span class="top-level-step"><em>119.69s</em></span></td>
+                    <td width="100"><span class="top-level-step"><em>ERROR</em></span></td>
+                    <td width="100"><span class="top-level-step"><em>150.14s</em></span></td>
                 </tr>
 
             </table>

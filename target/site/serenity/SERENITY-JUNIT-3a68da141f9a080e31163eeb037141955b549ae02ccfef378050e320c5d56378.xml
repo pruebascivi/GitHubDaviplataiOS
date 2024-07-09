@@ -1,17 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Modulo Meter plata" skipped="0" tests="1" time="151.9" timestamp="2024-03-22 12:04:50"><testcase name="CP04239M_SYS_Validar proceso de meter plata al daviplata a traves de PSE Subtipo M35"><failure message="&#10;Expected: &lt;1631840&gt;&#10;     but: was &lt;1627194&gt;" type="java.lang.AssertionError">
-Expected: &lt;1631840&gt;
-     but: was &lt;1627194&gt;</failure><system-err>
-Expected: &lt;1631840&gt;
-     but: was &lt;1627194&gt;
-daviplata.nacional.iOS.pageObjects.PasarPlataPageObjects.validarIgualdadSaldosIniciales(PasarPlataPageObjects.java:3035)
-daviplata.nacional.iOS.steps.PasarPlataSteps.verificarSaldoInicialDaviplata(PasarPlataSteps.java:1496)
-daviplata.nacional.iOS.definitions.PasarPlataDefinitions.validarSaldosIniciales(PasarPlataDefinitions.java:824)
-cucumber.runner.Runner.runPickle(Runner.java:80)
-daviplata.nacional.iOS.runners.RunnerPersonalizado.run(RunnerPersonalizado.java:63)
-org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:93)
-org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:40)
-org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:529)
-org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:756)
-org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:452)
-org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:210)
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Modulo Meter plata" skipped="0" tests="1" time="107.46" timestamp="2024-07-08 03:13:33"><testcase name="CP04239M_SYS_Validar proceso de meter plata al daviplata a traves de PSE Subtipo M35"><failure message="Se encuentra la biometria activa para el cambio de dispositivo" type="java.lang.AssertionError">Se encuentra la biometria activa para el cambio de dispositivo</failure><system-err>Se encuentra la biometria activa para el cambio de dispositivo
+daviplata.nacional.iOS.steps.LoginSteps.ingresarAApp(LoginSteps.java:86)
+daviplata.nacional.iOS.definitions.LoginDefinitions.ingresoUsuarioYContrasena(LoginDefinitions.java:40)
+✽.ingreso usuario y contrasena "CC" "10050098" "2589"(src/test/resources/features/MeterPlata.feature:61)
 </system-err></testcase></testsuite>

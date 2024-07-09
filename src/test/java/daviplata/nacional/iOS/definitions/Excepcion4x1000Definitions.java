@@ -1,15 +1,8 @@
 package daviplata.nacional.iOS.definitions;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import org.hamcrest.core.IsNull;
 import static org.hamcrest.CoreMatchers.*;
-
 import java.util.ArrayList;
-
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -42,7 +35,6 @@ public class Excepcion4x1000Definitions {
 		String estado = Serenity.sessionVariableCalled("estadoExcenta");
 		assertThat(estado, equalTo(estadoEsperado));
 	}
-
 	
 	@Then("^logout redeban al finalizar consulta estado excenta$")
 	public void logoutRedeban() throws Exception {
@@ -78,7 +70,4 @@ public class Excepcion4x1000Definitions {
     public void ingresoAlDesplegableSolicitudes() {
 		stepsExcepcion4x1000.hacerClicBotonSolicitudes();
     }
-	
-	
-	
 }

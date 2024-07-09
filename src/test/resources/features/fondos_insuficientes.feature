@@ -2,19 +2,19 @@
 @fondos_insuficientes
 Feature: Casos de fondos insuficientes
 
-  @CP1530M
+	@CP1530M
   Scenario Outline: CP1530M_SYS_Validar el mensaje de fondos insuficientes para la transacción Pasar plata a otro daviplata (Con GMF)
     Given consultar saldos tarjetas en redeban origen y destino <usuario><usuario2>
     And logout redeban iOS
     And ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
-    When paso plata a otro daviplata fondo insuficiente
+    When Paso plata a otro daviplata fondos insuficientes
     And consultar saldos tarjetas en redeban origen y destino <usuario><usuario2>
     And logout redeban iOS
     Then valido igualdad saldos cuenta origen y destino
 
     Examples: 
       | tipoId | usuario    | contrasena | usuario2   |
-      | "CC"   | "10050038" | "2589"     | "10050034" |
+      | "CC"   | "10050078" | "2580"     | "10050096" |
 
   @CP1540M @fondosinsuficientes1
   Scenario Outline: CP1540M_SYS_Validar el mensaje de fondos insuficientes para la transacción Pasar plata a otro daviplata (Sin GMF)

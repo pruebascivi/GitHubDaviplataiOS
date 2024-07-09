@@ -11,18 +11,10 @@ import static org.junit.Assert.fail;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-
-
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 import daviplata.nacional.iOS.modelo.ConsultaCupoTarjeta;
 import daviplata.nacional.iOS.modelo.ConsultaCupoTarjetaDestino;
 import daviplata.nacional.iOS.steps.AumentoDeTopesSteps;
@@ -31,10 +23,7 @@ import net.thucydides.core.annotations.Steps;
 import daviplata.nacional.iOS.steps.WebRedebanSteps;
 import daviplata.nacional.iOS.utilidades.BaseUtil;
 import daviplata.nacional.iOS.utilidades.Utilidades;
-/**
- *
- * @author Contr
- */
+
 public class AumentoDeTopesDefinitions {
 	ArrayList<Float> saldos = new ArrayList<Float>();
 	String numCelular = "";
@@ -180,7 +169,7 @@ public class AumentoDeTopesDefinitions {
 	@Then("^Validar igualdad saldos topes$")
     public void validarIgualdadSaldosTopes() throws Exception {
         try {
-            String saldo = String.valueOf(base.saldo);
+            String saldo = String.valueOf(BaseUtil.saldo);
             int cantidad = saldo.length();
             int numero = cantidad - 2;
             if(cantidad > 2) {
@@ -188,10 +177,12 @@ public class AumentoDeTopesDefinitions {
             }
             
             BigDecimal saldoInicial = new BigDecimal(saldo); 
-            
-            double saldoDaviplata1 = base.saldo.doubleValue();
-            double saldoDaviplata2 = base.saldoFinal.doubleValue();
-            
+            System.out.println("Saldo inicial: " + saldoInicial);
+            double saldoDaviplata1 = BaseUtil.saldo.doubleValue();
+            System.out.println("Saldo DaviPlata 1: " + saldoDaviplata1);
+
+            double saldoDaviplata2 = BaseUtil.saldoFinal.doubleValue();
+            System.out.println("Saldo DaviPlata 2: " + saldoDaviplata2);
             
             assertThat(BaseUtil.saldo, is(equalTo(BaseUtil.saldoFinal)));
             System.out.println("***La transacción no afecto el saldo inicial del daviplata***");
@@ -205,13 +196,16 @@ public class AumentoDeTopesDefinitions {
             fail("No se pudo validar saldos del Daviplata, debido a: " + e.getMessage());
         }
     }
+	
 	@Then("^Validar afectacion de saldos en redeban y daviplata topes$")
     public void validarIgualdadSaldosTarjetasTopes() throws Exception {
         try {
-            double saldoDaviplata1 = base.saldoInicial.doubleValue();
-            double saldoDaviplata2 = base.saldoFinal.doubleValue();
-            
-            assertThat(base.saldo, not(equalTo(base.saldoFinal)));
+            double saldoDaviplata1 = BaseUtil.saldoInicial.doubleValue();
+            System.out.println("Saldo DaviPlata 1: " + saldoDaviplata1);
+            double saldoDaviplata2 = BaseUtil.saldoFinal.doubleValue();
+            System.out.println("Saldo DaviPlata 2: " + saldoDaviplata2);
+
+            assertThat(BaseUtil.saldo, not(equalTo(BaseUtil.saldoFinal)));
             System.out.println("La transacción si afecto el saldo inicial del daviplata");
             System.out.println(saldos);
             double saldoRedeban1 = saldos.get(0);
@@ -223,10 +217,6 @@ public class AumentoDeTopesDefinitions {
             fail("No se pudo validar saldos del Daviplata, debido a: " + e.getMessage());;
         }
     }
-
-
-
-
 }
 
 

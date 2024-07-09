@@ -1,1 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="Pruebas modulo Acerca De" skipped="0" tests="1" time="53.25" timestamp="2024-04-23 05:05:36"><testcase name="CP0050M_SYS_Validar la opción de Para Que Sirve"/></testsuite>
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="1" failures="0" name="Pruebas modulo Acerca De" skipped="0" tests="7" time="324.3" timestamp="2024-07-05 09:45:29"><testcase name="CP0050M_SYS_Validar la opción de Para Que Sirve"><error message="Cannot locate an element using By.xpath: (//*[@type='XCUIElementTypeImage'])[3]&#10;For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html&#10;Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'&#10;System info: host: 'JPDONGUT-JW37PV36DC', ip: 'fe80:0:0:0:1c84:cc18:ab0b:35c5%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '14.3.1', java.version: '1.8.0_411'&#10;Driver info: driver.version: unknown&#10;For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html&#10;Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'&#10;System info: host: 'JPDONGUT-JW37PV36DC', ip: 'fe80:0:0:0:1c84:cc18:ab0b:35c5%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '14.3.1', java.version: '1.8.0_411'&#10;Driver info: driver.version: unknown" type="org.openqa.selenium.NoSuchElementException">Cannot locate an element using By.xpath: (//*[@type='XCUIElementTypeImage'])[3]
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
+System info: host: 'JPDONGUT-JW37PV36DC', ip: 'fe80:0:0:0:1c84:cc18:ab0b:35c5%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '14.3.1', java.version: '1.8.0_411'
+Driver info: driver.version: unknown
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
+System info: host: 'JPDONGUT-JW37PV36DC', ip: 'fe80:0:0:0:1c84:cc18:ab0b:35c5%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '14.3.1', java.version: '1.8.0_411'
+Driver info: driver.version: unknown</error><system-err>Cannot locate an element using By.xpath: (//*[@type='XCUIElementTypeImage'])[3]
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
+System info: host: 'JPDONGUT-JW37PV36DC', ip: 'fe80:0:0:0:1c84:cc18:ab0b:35c5%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '14.3.1', java.version: '1.8.0_411'
+Driver info: driver.version: unknown
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
+System info: host: 'JPDONGUT-JW37PV36DC', ip: 'fe80:0:0:0:1c84:cc18:ab0b:35c5%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '14.3.1', java.version: '1.8.0_411'
+Driver info: driver.version: unknown
+daviplata.nacional.iOS.pageObjects.AcercaDePageObjects.validarOpcionParaQueSirve(AcercaDePageObjects.java:188)
+daviplata.nacional.iOS.steps.AcercaDeSteps.validarOpcionParaQueSirve(AcercaDeSteps.java:61)
+daviplata.nacional.iOS.definitions.AcercaDeDefinitions.validarOpcionParaQueSirve(AcercaDeDefinitions.java:37)
+cucumber.runner.Runner.runPickle(Runner.java:80)
+daviplata.nacional.iOS.runners.RunnerPersonalizado.run(RunnerPersonalizado.java:63)
+org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:93)
+org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:40)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:529)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:756)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:452)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:210)
+</system-err></testcase><testcase name="CP0060M_SYS_Validar la opción de Donde lo Puedo Usar"/><testcase name="CP0070M_SYS_Validar el link de Twitter"/><testcase name="CP0080M_SYS_Validar el link de YouTube"/><testcase name="CP0090M_SYS_Validar el reglamento"/><testcase name="CP0100M_SYS_Validar las condiciones de uso"/><testcase name="CP0110M_SYS_Validar la opción de atención en línea"/></testsuite>

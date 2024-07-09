@@ -2,13 +2,11 @@ package daviplata.nacional.iOS.definitions;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
-
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import daviplata.nacional.iOS.steps.ClaveCorreoSteps;
 import daviplata.nacional.iOS.steps.WebRedebanSteps;
-import daviplata.nacional.iOS.steps.ClaveCorreoSteps;
 import net.thucydides.core.annotations.Steps;
 
 public class ClaveCorreoDefinitions {
@@ -90,6 +88,7 @@ public class ClaveCorreoDefinitions {
 	}
 	
 // CASO DE CASITA ROJA
+	
 	@When("^activar teclado$")
 	public void activarTeclado() {
 		stepsClaveCorreo.activarTeclado();
