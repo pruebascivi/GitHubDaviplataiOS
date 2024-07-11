@@ -1149,11 +1149,9 @@ public class PasarPlataSteps {
 
 	public void crearBolsillo(String valorDisponible) {
 		objBolsillosPageObjects.pulsarAbrirBolsillo();
-		if("iPhone 14".equalsIgnoreCase(BaseUtil.nombreDispositivo)) {
-			utilidadesTCS.clickCoordinates(166, 238);
-		} else {
-			utilidadesTCS.clickCoordinates(166, 231);
-		}
+		Utilidades.esperaMiliseg(2000);
+	    utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BOTON_ABRIR_BOLSILLO);
+		Utilidades.esperaMiliseg(2000);
 		String nombre = this.objFaker.name().firstName();
 		utilidadesTCS.escribirPorTecladoIos(nombre.toLowerCase());
 		if(BaseUtil.nombreDispositivo == "iPhone 14".toLowerCase()) {
@@ -1198,21 +1196,27 @@ public class PasarPlataSteps {
 		for (int i = 0; i < 5; i++) {
 			objBolsillosPageObjects.pulsarAbrirBolsillo();
 			if("iPhone 14".equalsIgnoreCase(BaseUtil.nombreDispositivo)) {
+    			/** CLIC POR COORDENADAS A CAMPO 'NOMBRE DE BOLSILLO' **/
 				utilidadesTCS.clickCoordinates(166, 238);
 			} else {
+    			/** CLIC POR COORDENADAS A CAMPO 'NOMBRE DE BOLSILLO' **/
 				utilidadesTCS.clickCoordinates(166, 231);
 			}
 			String nombre = this.objFaker.name().firstName();
 			utilidadesTCS.escribirPorTecladoIos(nombre.toLowerCase());
 			if(BaseUtil.nombreDispositivo == "iPhone 14".toLowerCase()) {
+    			/** CLIC POR COORDENADAS A CAMPO 'CON CUANTA PLATA ABRIRA EL BOLSILLO' **/
 				utilidadesTCS.clickCoordinates(166, 207);
 			} else {
+    			/** CLIC POR COORDENADAS A CAMPO 'CON CUANTA PLATA ABRIRA EL BOLSILLO' **/
 				utilidadesTCS.clickCoordinates(166, 196);
 			}
 			utilidadesTCS.escribirPorTecladoIos(monto);
 			if(BaseUtil.nombreDispositivo == "iPhone 14".toLowerCase()) {
+    			/** CLIC POR COORDENADAS A CAMPO 'CUANTA PLATA QUIERE AHORRA' **/
 				utilidadesTCS.clickCoordinates(166, 278);
 			} else {
+    			/** CLIC POR COORDENADAS A CAMPO 'CUANTA PLATA QUIERE AHORRA' **/
 				utilidadesTCS.clickCoordinates(166, 270);
 			}
 			utilidadesTCS.escribirPorTecladoIos(monto);
@@ -1235,21 +1239,27 @@ public class PasarPlataSteps {
 	public void crearBolsilloPeriodo(String monto, String periodo) {
 	    objBolsillosPageObjects.pulsarAbrirBolsillo();
 	    if("iPhone 14".equalsIgnoreCase(BaseUtil.nombreDispositivo)) {
+			/** CLIC POR COORDENADAS A CAMPO 'NOMBRE DE BOLSILLO' **/
 			utilidadesTCS.clickCoordinates(166, 238);
 		} else {
+			/** CLIC POR COORDENADAS A CAMPO 'NOMBRE DE BOLSILLO' **/
 			utilidadesTCS.clickCoordinates(166, 231);
 		}
 		String nombre = this.objFaker.name().firstName();
 		utilidadesTCS.escribirPorTecladoIos(nombre.toLowerCase());
 		if("iPhone 14".equalsIgnoreCase(BaseUtil.nombreDispositivo)) {
+			/** CLIC POR COORDENADAS A CAMPO 'CON CUANTA PLATA ABRIRA EL BOLSILLO' **/
 			utilidadesTCS.clickCoordinates(166, 207);
 		} else {
+			/** CLIC POR COORDENADAS A CAMPO 'CON CUANTA PLATA ABRIRA EL BOLSILLO' **/
 			utilidadesTCS.clickCoordinates(166, 196);
 		}
 		utilidadesTCS.escribirPorTecladoIos(monto);
 		if("iPhone 14".equalsIgnoreCase(BaseUtil.nombreDispositivo)) {
+			/** CLIC POR COORDENADAS A CAMPO 'CUANTA PLATA QUIERE AHORRA' **/
 			utilidadesTCS.clickCoordinates(166, 278);
 		} else {
+			/** CLIC POR COORDENADAS A CAMPO 'CUANTA PLATA QUIERE AHORRA' **/
 			utilidadesTCS.clickCoordinates(166, 270);
 		}
 		utilidadesTCS.escribirPorTecladoIos(monto);
@@ -1549,10 +1559,10 @@ public class PasarPlataSteps {
 		Utilidades.esperaMiliseg(2000);
 		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
 		pagePasarPlata.ingresarNumeroPasarPlataLinea(numCelular);
-		utilidadesTCS.clickCoordinates(200, 200);
+		utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BTN_DONE);
 //		pagePasarPlata.ingresarMontoPasarPlataLinea(monto);
 		utilidadesTCS.writeElement("xpath", PasarPlataPageObjects.CAMPO_MONTO, monto);
-		utilidadesTCS.clickCoordinates(200, 200);
+		utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BTN_DONE);
 		Utilidades.tomaEvidencia("Formulario pedir plata diligenciado");
 		utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BTN_CONTINUAR);
 		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
@@ -1568,9 +1578,9 @@ public class PasarPlataSteps {
 		Utilidades.esperaMiliseg(2000);
 		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
 		pagePasarPlata.ingresarNumeroPasarPlataLinea(numCelular);
-		utilidadesTCS.clickCoordinates(200, 200);
+		utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BTN_DONE);
 		utilidadesTCS.writeElement("xpath", PasarPlataPageObjects.CAMPO_MONTO, monto);
-		utilidadesTCS.clickCoordinates(200, 200);
+		utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BTN_DONE);
 		Utilidades.tomaEvidencia("Formulario pedir plata diligenciado");
 		utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BTN_CONTINUAR);
 		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
@@ -2194,14 +2204,14 @@ public class PasarPlataSteps {
         Utilidades.tomaEvidencia("Hacer clic en favoritos");
         utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BOTON_FAVORITOS_PASAR_PLATA);
         utilidadesTCS.writeElement("xpath", PasarPlataPageObjects.INPUT_NOMBRE_DEL_CONTACTO_FAVORITO, nombreContactoFavorito);
-        utilidadesTCS.clickCoordinates(220, 220);
+		utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BTN_DONE);
 		Utilidades.esperaMiliseg(800);
         Utilidades.tomaEvidencia("Hacer clic en el boton guardar");
         utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BOTON_GUARDAR_FAVORITO);
 		Utilidades.esperaMiliseg(1000);
         pagePasarPlata.ingresarMontoAOtroDaviplata(monto);
         Utilidades.tomaEvidencia("Selecciono la cantidad");
-        utilidadesTCS.clickCoordinates(220, 220);
+		utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.BTN_DONE);
 		Utilidades.esperaMiliseg(800);
         pagePasarPlata.darClickEnBtnContinuar();
         System.out.println("Dio click en Boton Continuar");

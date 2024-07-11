@@ -25,6 +25,7 @@ public class AcercaDePageObjects extends PageObject {
 	private String txtReglamento = "TabBarItemTitle";
 	public static final String BOTON_ACERCA_DE = "//XCUIElementTypeStaticText[contains(@name,'Acerca de DaviPlata')] | //XCUIElementTypeStaticText[contains(@name,'Acerca de Daviplata')] | //XCUIElementTypeStaticText[contains(@name,'Acerca de')]";
 	public static final String BOTON_NOTIFICACIONES = "//*[@name='Menu de conocimiento']";
+	public static final String BOTON_CONTINUAR = "//XCUIElementTypeButton[@name='Continuar']";
 	private String btnQueEsDP = "¿Qué es DaviPlata y para qué sirve?";
 	private String btnDondeUsarDP = "¿Dónde usar su DaviPlata?";
 	private String btnTwitter = "Twitter";

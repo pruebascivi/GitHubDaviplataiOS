@@ -18,7 +18,7 @@ Feature: Pruebas modulo Bolsillos
 
     Examples: 
       | tipoId | usuario      | contrasena | valordisponible | status  |
-      | "CC"   | "1020770044" | "1342"     | "0"             | "false" |
+      | "CC"   | "1020770044" | "2589"     | "0"             | "false" |
 
   @CP02040M @Passed
   Scenario Outline: CP02040M_SYS_Validar la creación de bolsillo semanal con valor desde el home daviplata.
@@ -37,7 +37,7 @@ Feature: Pruebas modulo Bolsillos
 
     Examples: 
       | tipoId | usuario      | contrasena | valordisponible | status  | periodo       |
-      | "CC"   | "1020770044" | "1342"     | "2000"          | "false" | "Cada Semana" |
+      | "CC"   | "1020770044" | "2589"     | "2000"          | "false" | "Cada Semana" |
 
   @CP03750M
   Scenario Outline: CP03750M_SYS_Validar la creación de bolsillo quincenal con valor desde el Home daviplata.
@@ -56,7 +56,7 @@ Feature: Pruebas modulo Bolsillos
 
     Examples: 
       | tipoId | usuario      | contrasena | valordisponible | status  | periodo            |
-      | "CC"   | "1020770044" | "1342"     | "2000"          | "false" | "Cada quince días" |
+      | "CC"   | "1020770044" | "2589"     | "2000"          | "false" | "Cada quince días" |
 
   @CP03000M
   Scenario Outline: CP03000M_SYS_Validar la creación de bolsillo mensual con valor desde el Home daviplata
@@ -75,7 +75,7 @@ Feature: Pruebas modulo Bolsillos
 
     Examples: 
       | tipoId | usuario      | contrasena | valordisponible | status  | periodo    |
-      | "CC"   | "1020770044" | "1342"     | "2000"          | "false" | "Cada mes" |
+      | "CC"   | "1020770044" | "2589"     | "2000"          | "false" | "Cada mes" |
 
   @CP03760M @PASSED
   Scenario Outline: CP03760M_SYS_Validar proceso de sacar plata desde los bolsillos al daviplata
@@ -150,7 +150,7 @@ Feature: Pruebas modulo Bolsillos
 
     Examples: 
       | tipoId | usuario      | contrasena | status |
-      | "CC"   | "1020770044" | "1342"     | "true" |
+      | "CC"   | "1020770044" | "2589"     | "true" |
 
   @CP03020M
   Scenario Outline: CP03020M_SYS_Validar que el sistema muestre mensaje de no poder crear más bolsillos desde el menú hamburguesa
@@ -161,4 +161,4 @@ Feature: Pruebas modulo Bolsillos
 
     Examples: 
       | tipoId | usuario      | contrasena | valordisponible | status  |
-      | "CC"   | "1020770044" | "1342"     | "0"             | "false" |
+      | "CC"   | "1020770044" | "2589"     | "0"             | "false" |

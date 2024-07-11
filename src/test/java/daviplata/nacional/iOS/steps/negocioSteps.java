@@ -287,10 +287,9 @@ public class negocioSteps {
 	
 	@Step
 	public void ingresarOpcionSacarPlataPerfilNegocio() {
-//		utilidad.tomaEvidencia("Menú hamburguesa");
-//		negocioPO.clicOpcionUsarPlata();
 		Utilidades.esperaMiliseg(5000);
-		utilidadesTCS.clickCoordinates(87, 477);
+		Utilidades.tomaEvidencia("Menú hamburguesa");
+		negocioPO.clicOpcionUsarPlata();
 		negocioPO.clicOpcionSacarPlataPerfilNegocio();
 		Utilidades.tomaEvidencia("Clic en opcion sacar plata");
 	}
@@ -343,11 +342,10 @@ public class negocioSteps {
 		Utilidades.esperaMiliseg(4000);
 		Utilidades.tomaEvidencia("Confirmación de codigo de retiro");
 		Utilidades.esperaMiliseg(4000);
-		utilidadesTCS.clickCoordinates(214,563);
+		utilidadesTCS.clicElement("xpath", negocioPageObjects.ACEPTAR);
 		System.out.println("Se completo el proceso de 'Sacar Plata'");
-		
 		Utilidades.esperaMiliseg(15000);
-		utilidadesTCS.clickCoordinates(155,148);
+		utilidadesTCS.clicElement("xpath", negocioPageObjects.BTN_MI_DAVIPLATA);
 		Utilidades.esperaMiliseg(2500);
 		System.out.println("Se ingresa a Mi DaviPlata");
 		Utilidades.tomaEvidencia("Se ingresa a Mi DaviPlata");
@@ -580,14 +578,19 @@ public class negocioSteps {
 		negocioPO.ingresarNombreCategoriaPerfilNegocio(nombreCategoria);
 		Utilidades.tomaEvidencia("Llenar formulario de creacion catálogo");
 		
-	/** PASOS COMENTADOS POR FALLA EN AMBIENTE EN LA APP **/
-		//negocioPO.clicCrearProductoCatalogoPerfilNegocio();
-		//utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
-		//Utilidades.esperaMiliseg(1500);
-		//Utilidades.tomaEvidencia("Valido mensaje de creación de catálogo");
-		//utilidadesTCS.clickCoordinates(200, 500);
-		//utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
-		
+		/** PASOS COMENTADOS POR FALLA EN AMBIENTE EN LA APP **/
+		negocioPO.clicCrearProductoCatalogoPerfilNegocio();
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 120);
+		Utilidades.esperaMiliseg(5000);
+		boolean estadoVisible = utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.POPUP_CATALOGO_CREADO_EXITOSAMENTE);
+		if(estadoVisible == true) {
+			Utilidades.tomaEvidencia("Valido mensaje de creación de catálogo");
+			utilidadesTCS.clicElement("xpath", negocioPageObjects.POPUP_CATALOGO_CREADO_EXITOSAMENTE);
+		} else {
+			Utilidades.tomaEvidencia("Valido mensaje de creación de catálogo errónea");
+			fail("Valido mensaje de creación de catálogo errónea");
+		}
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 120);
 		Utilidades.esperaMiliseg(1500);
 		utilidadesTCS.clicElement("xpath", negocioPageObjects.BTN_CREAR_PRIMER_PRODUCTO);
 		Utilidades.esperaMiliseg(2000);

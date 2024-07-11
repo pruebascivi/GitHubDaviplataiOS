@@ -263,6 +263,8 @@ public class PasarPlataPageObjects extends PageObject {
 	public static final String CAMPO_MONTO = "//XCUIElementTypeTextField[contains(@name, 'Ingrese un valor')] | //XCUIElementTypeOther[contains(@name, 'Cuánta plata quiere pedir')]/following-sibling::XCUIElementTypeTextField";
 	public static final String TXT_POR_SU_SEGURIDAD = "//XCUIElementTypeStaticText[contains(@name, 'Por su seguridad se ha cerrado la sesión')]";
 	public static final String BOTON_ATRAS = "//XCUIElementTypeButton[@name='Atrás Botón'] | //XCUIElementTypeButton[contains(@name, 'Regresar')] | //XCUIElementTypeOther[contains(@name, 'left')]";
+	public static final String BOTON_ABRIR_BOLSILLO = "//XCUIElementTypeButton[@name='Abrir Bolsillo']";
+
 	
 	public void btnBolsillos() {
 		MobileElement element = (MobileElement) wait

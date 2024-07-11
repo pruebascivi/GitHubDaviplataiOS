@@ -76,7 +76,7 @@ Feature: Modulo Meter plata
 		
     Examples: 
       | tipoId | usuario    | contrasena |  monto  | subtipo |
-      | "CC"   | "10050098" | "2589"     |  "6000" | "M35"   |
+      | "CC"   | "10050066" | "2589"     |  "6000" | "BMO"   |
 	
   @CP020001M @Passed 
   Scenario Outline: CP020001M_SYS_Validar informacion y funcionalidades de la opcion meter plata en pse

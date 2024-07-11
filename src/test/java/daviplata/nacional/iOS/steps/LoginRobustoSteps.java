@@ -450,10 +450,12 @@ public class LoginRobustoSteps {
 		try {
 			switch (BaseUtil.nombreDispositivo) {
 	        case "iPhone 14":
+    			/** CLIC POR COORDENADAS A CAMPO 'CÓDIGO DE 6 DÍGITOS' **/
 	        	utilidadesTCS.clickCoordinates(221,435);
 				utilidadesTCS.escribirPorTecladoIos("230116");
 	            break;
 	        case "iPhone 12":
+    			/** CLIC POR COORDENADAS A CAMPO 'CÓDIGO DE 6 DÍGITOS' **/
 	        	utilidadesTCS.clickCoordinates(221,455);
 				utilidadesTCS.escribirPorTecladoIos("230116");
 	            break;

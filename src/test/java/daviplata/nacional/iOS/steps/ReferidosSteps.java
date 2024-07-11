@@ -67,6 +67,7 @@ public class ReferidosSteps {
 				utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.POP_UP_OTP);
 				utilidadesTCS.clicElement("xpath", LoginRobustoPage.POP_UP_OTP);
 				Utilidades.esperaMiliseg(2000);
+    			/** CLIC POR COORDENADAS A CAMPO 'CÓDIGO DE 6 DÍGITOS' **/
 				utilidadesTCS.clickCoordinates(221, 435);
 				boolean visibilidadTeclado = utilidadesTCS.validateElementVisibilityCatch("xpath",
 						LoginRobustoPage.BOTON_ACEPTAR_TECLADO_IOS);
@@ -74,12 +75,14 @@ public class ReferidosSteps {
 					utilidadesTCS.escribirPorTecladoIos("230116");
 					utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_ACEPTAR_TECLADO_IOS);
 				} else {
+	    			/** CLIC POR COORDENADAS A CAMPO 'CÓDIGO DE 6 DÍGITOS' **/
 					utilidadesTCS.clickCoordinates(194, 385);
 					utilidadesTCS.escribirPorTecladoIos("230116");
 					utilidadesTCS.validateElementVisibility("xpath", LoginRobustoPage.BOTON_ACEPTAR_TECLADO_IOS);
 					utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_ACEPTAR_TECLADO_IOS);
 				}
 				Utilidades.esperaMiliseg(2000);
+    			/** CLIC POR COORDENADAS A BOTÓN 'CONTINUAR' DESPUES DE INGRESO DEL 'CÓDIGO DE 6 DÍGITOS' **/
 				utilidadesTCS.clickCoordinates(217, 562);
 				boolean estadoVisiblePopUpAmigos = utilidadesTCS.validateElementVisibilityCatch("xpath",
 						LoginRobustoPage.POP_UP_INVITE_AMIGOS);
@@ -95,6 +98,7 @@ public class ReferidosSteps {
 					utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.SLIDE_INFORMATIVO_DAVIPLATA);
 					utilidadesTCS.clicElement("xpath", LoginRobustoPage.CONTINUAR_POP_UP_CAMBIAR_DISPOSITIVO);
 				} else {
+	    			/** CLIC POR COORDENADAS A BOTÓN 'CONTINUAR' DESPUES DE INGRESO DEL 'CÓDIGO DE 6 DÍGITOS' **/
 					utilidadesTCS.clickCoordinates(198, 490);
 					Utilidades.esperaMiliseg(1000);
 					boolean estadoVisible = utilidadesTCS.validateElementVisibilityCatch("xpath",

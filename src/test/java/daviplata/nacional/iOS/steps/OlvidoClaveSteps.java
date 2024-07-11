@@ -52,7 +52,8 @@ public class OlvidoClaveSteps {
 		pageObjectOlvidoClave.seleccionarTipoDocumentoOlvidoClave(tipoDocumento);
 		Utilidades.tomaEvidencia("Selección tipo de documento");
 		pageObjectOlvidoClave.ingresarNumDocumento(numeroDocumento);
-		utilidadesTCS.clickCoordinates(400, 110);
+		Utilidades.esperaMiliseg(1000);
+		utilidadesTCS.clicElement("xpath", AcercaDePageObjects.BOTON_CONTINUAR);
 		Utilidades.esperaMiliseg(800);
 		Utilidades.tomaEvidencia("Ingresar numero y tipo de documento");
 	}

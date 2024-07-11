@@ -48,7 +48,7 @@ public class negocioPageObjects {
 	private String menuHamburguesaPerfilNegocio = "//XCUIElementTypeButton[@name='Ir a perfil persona Botón ']";
 	private String imagenPerfil = "(//XCUIElementTypeOther/XCUIElementTypeButton)[1] | //XCUIElementTypeOther[@name='image-profile']/XCUIElementTypeImage";
 	private String btnMenuHamburguesaPerfilNegocio = "//*[@name='Menú hamburguesa botón']";
-	private String btnUsarPlata = "//*[@name='Usar Plata Botón']";
+	private String btnUsarPlata = "//XCUIElementTypeOther[@name='Sacar Plata botón']";
 	private String btnPasarPlata = "//XCUIElementTypeOther[@name='Pasar plata botón']";
 	private String btnSacarPlata = "(//XCUIElementTypeStaticText)[7]";
 	private String btnCambiarimagenPerfil = "//XCUIElementTypeStaticText[@name='Cambiar imagen']";
@@ -189,7 +189,7 @@ public class negocioPageObjects {
 	public static final String BTN_REGRESAR_MI_NEGOCIO = "//XCUIElementTypeButton[contains(@name, 'Atras Boton')] | //XCUIElementTypeButton[contains(@label, 'Atras Boton')]";
 	public static final String BOTON_TOPES = "//XCUIElementTypeStaticText[@name='Topes']";
 	public static final String BTN_USAR_DAVIPLATA = "//XCUIElementTypeStaticText[@name='Usar Mi DaviPlata']";
-	public static final String BTN_MI_DAVIPLATA = "//XCUIElementTypeOther[@name='main']/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther[2] | //XCUIElementTypeStaticText[@name='Mi DaviPlata'] | //XCUIElementTypeStaticText[@label='Mi DaviPlata']";
+	public static final String BTN_MI_DAVIPLATA = "//XCUIElementTypeStaticText[@name='Mi DaviPlata']/preceding-sibling::XCUIElementTypeOther | //XCUIElementTypeOther[@name='main']/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther[2] | //XCUIElementTypeStaticText[@name='Mi DaviPlata'] | //XCUIElementTypeStaticText[@label='Mi DaviPlata']";
 	public static final String BTN_MENU_DAVIPLATA = "(//XCUIElementTypeOther[contains(@label, 'Menú DaviPlata botón')])[8]";
 	public static final String CAMPO_CORREO = "//XCUIElementTypeTextField[@name='Correo electrónico']";
 	public static final String CAMPO_CONFIRM_CORREO = "//XCUIElementTypeTextField[@name='Confirme Correo electrónico']";
@@ -281,8 +281,7 @@ public class negocioPageObjects {
 	public static final String CAMPO_VALOR = "//XCUIElementTypeTextField[@name='ingrese el valor']";	
 	public static final String BTN_CONTINUAR_PRODUCTO_VENTA = "//XCUIElementTypeStaticText[@name='Continuar Botón']";	
 	public static final String NOMBRE_REFERENCIA_VENTA = "//XCUIElementTypeOther[@name='Su negocio DaviPlata']/XCUIElementTypeOther[13]";	
-	public static final String s = "";	
-
+	public static final String POPUP_CATALOGO_CREADO_EXITOSAMENTE = "//XCUIElementTypeStaticText[contains(@value, 'exitosamente')]";
 	
 	public String SaldoNegocio() {
 		try {

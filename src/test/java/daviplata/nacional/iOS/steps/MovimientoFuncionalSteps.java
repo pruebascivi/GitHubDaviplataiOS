@@ -115,7 +115,7 @@ public class MovimientoFuncionalSteps {
     public void validarMovimientosOpcionServiciosQueHaPagado() {
         desplegarListaFiltroMovimientos();
         //utilidadesTcs.scrollBackground("xpath", MovimientoFuncionalPageObjects.DESLIZABLE, 0, -10);
-        utilidadesTcs.clickCoordinates(400, 150);
+//        utilidadesTcs.clickCoordinates(400, 150);
         Utilidades.tomaEvidencia("Escoger opcion Servicios que ha pagado");
         utilidadesTcs.clicElement("xpath", MovimientoFuncionalPageObjects.OPCION_FILTRO_SERVICIOS_QUE_HA_PAGADO);
 		Utilidades.esperaMiliseg(1500);

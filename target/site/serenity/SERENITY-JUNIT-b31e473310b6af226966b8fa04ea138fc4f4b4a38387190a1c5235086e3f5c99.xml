@@ -1,32 +1,38 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite errors="1" failures="0" name="casos de aumento de topes" skipped="0" tests="1" time="189.19" timestamp="2024-04-05 12:31:34"><testcase name="CP03200M_SYS_validar proceso de aumento de topes desde el home de daviplata"><error message="Cannot locate an element using By.id: com.davivienda.daviplataapp.lab:id/imgAbrirtopes&#10;For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html&#10;Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'&#10;System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:c17:a352:8bbb:b1fe%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'&#10;Driver info: driver.version: unknown&#10;For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html&#10;Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'&#10;System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:c17:a352:8bbb:b1fe%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'&#10;Driver info: driver.version: unknown" type="org.openqa.selenium.NoSuchElementException">Cannot locate an element using By.id: com.davivienda.daviplataapp.lab:id/imgAbrirtopes
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="1" failures="0" name="casos de aumento de topes" skipped="0" tests="1" time="148.89" timestamp="2024-07-10 04:47:00"><testcase name="CP03200M_SYS_validar proceso de aumento de topes desde el home de daviplata"><error message="Unhandled endpoint: /session/DEDDA086-E933-4061-9118-7504442CAE20/wda/touch/perform -- http://127.0.0.1:8100/ with parameters {&#10;    wildcards =     (&#10;        &quot;session/DEDDA086-E933-4061-9118-7504442CAE20/wda/touch/perform&quot;&#10;    );&#10;}&#10;Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'&#10;System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:df:c6bf:1709:799a%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'&#10;Driver info: io.appium.java_client.AppiumDriver&#10;Capabilities {autoAcceptAlerts: true, automationName: XCUITest, browserName: , bundleId: com.daviplatavalid.lab, databaseEnabled: false, deviceName: iPhone 13, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: false, newCommandTimeout: 240, noReset: false, platform: MAC, platformName: MAC, platformVersion: 17.5, showXcodelog: true, skipUnlock: true, takesScreenshot: true, udid: 00008110-00116CC8148A201E, webStorageEnabled: false}&#10;Session ID: 1484623a-6966-4df9-9b71-fa1e364ed622&#10;Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'&#10;System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:df:c6bf:1709:799a%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'&#10;Driver info: driver.version: AppiumDriver" type="org.openqa.selenium.UnsupportedCommandException">Unhandled endpoint: /session/DEDDA086-E933-4061-9118-7504442CAE20/wda/touch/perform -- http://127.0.0.1:8100/ with parameters {
+    wildcards =     (
+        "session/DEDDA086-E933-4061-9118-7504442CAE20/wda/touch/perform"
+    );
+}
 Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
-System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:c17:a352:8bbb:b1fe%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'
-Driver info: driver.version: unknown
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:df:c6bf:1709:799a%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'
+Driver info: io.appium.java_client.AppiumDriver
+Capabilities {autoAcceptAlerts: true, automationName: XCUITest, browserName: , bundleId: com.daviplatavalid.lab, databaseEnabled: false, deviceName: iPhone 13, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: false, newCommandTimeout: 240, noReset: false, platform: MAC, platformName: MAC, platformVersion: 17.5, showXcodelog: true, skipUnlock: true, takesScreenshot: true, udid: 00008110-00116CC8148A201E, webStorageEnabled: false}
+Session ID: 1484623a-6966-4df9-9b71-fa1e364ed622
 Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
-System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:c17:a352:8bbb:b1fe%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'
-Driver info: driver.version: unknown</error><system-err>Cannot locate an element using By.id: com.davivienda.daviplataapp.lab:id/imgAbrirtopes
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:df:c6bf:1709:799a%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'
+Driver info: driver.version: AppiumDriver</error><system-err>Unhandled endpoint: /session/DEDDA086-E933-4061-9118-7504442CAE20/wda/touch/perform -- http://127.0.0.1:8100/ with parameters {
+    wildcards =     (
+        "session/DEDDA086-E933-4061-9118-7504442CAE20/wda/touch/perform"
+    );
+}
 Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
-System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:c17:a352:8bbb:b1fe%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'
-Driver info: driver.version: unknown
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:df:c6bf:1709:799a%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'
+Driver info: io.appium.java_client.AppiumDriver
+Capabilities {autoAcceptAlerts: true, automationName: XCUITest, browserName: , bundleId: com.daviplatavalid.lab, databaseEnabled: false, deviceName: iPhone 13, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: false, newCommandTimeout: 240, noReset: false, platform: MAC, platformName: MAC, platformVersion: 17.5, showXcodelog: true, skipUnlock: true, takesScreenshot: true, udid: 00008110-00116CC8148A201E, webStorageEnabled: false}
+Session ID: 1484623a-6966-4df9-9b71-fa1e364ed622
 Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
-System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:c17:a352:8bbb:b1fe%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'
-Driver info: driver.version: unknown
-daviplata.nacional.iOS.pageObjects.AumentoDeTopesPageObjects.pulsarBotonTopes(AumentoDeTopesPageObjects.java:70)
-daviplata.nacional.iOS.steps.AumentoDeTopesSteps.ingresoALaOpcionTopes(AumentoDeTopesSteps.java:38)
-daviplata.nacional.iOS.definitions.AumentoDeTopesDefinitions.ingresarAOpcionTopes(AumentoDeTopesDefinitions.java:76)
-java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
-java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-cucumber.runner.Runner.runPickle(Runner.java:80)
-daviplata.nacional.iOS.runners.RunnerPersonalizado.run(RunnerPersonalizado.java:63)
-org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:93)
-org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:40)
-org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:529)
-org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:756)
-org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:452)
-org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:210)
+System info: host: 'MacBook-Pro-de-MacBook.local', ip: 'fe80:0:0:0:df:c6bf:1709:799a%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '15.0.2'
+Driver info: driver.version: AppiumDriver
+java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:64)
+java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:231)
+io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
+io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+io.appium.java_client.PerformsTouchActions.performTouchAction(PerformsTouchActions.java:41)
+io.appium.java_client.TouchAction.perform(TouchAction.java:187)
+daviplata.nacional.iOS.utilidades.UtilidadesTCS.clickCoordinates(UtilidadesTCS.java:1119)
+daviplata.nacional.iOS.steps.LoginSteps.ingresarAApp(LoginSteps.java:100)
+daviplata.nacional.iOS.definitions.LoginDefinitions.ingresoUsuarioYContrasena(LoginDefinitions.java:40)
+✽.ingreso usuario y contrasena "CC" "10050112" "2589"(src/test/resources/features/aumentoDeTopes.feature:11)
 </system-err></testcase></testsuite>

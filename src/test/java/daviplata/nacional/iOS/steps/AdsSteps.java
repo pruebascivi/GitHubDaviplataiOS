@@ -289,6 +289,7 @@ public class AdsSteps {
         utilidadesTCS.clicElement("xpath", AdsPageObjects.TXT_ADELANTO_SALDO);  	
         Utilidades.tomaEvidencia("Dar clic equis salir app daviplata");
         //utilidadesTCS.clicElement("xpath", AdsPageObjects.EQUIS_SALIR_APP_ADELANTO_SALDO); // No deja extraer localizador
+		/** CLIC POR COORDENADAS AL BOTON 'X' **/
         utilidadesTCS.clickCoordinates(370, 70);
         Utilidades.tomaEvidencia("Dar clic boton aceptar salir app daviplata");
         utilidadesTCS.clicElement("xpath", MeterPlataPageObjects.BOTON_ACEPTAR_POP_UP_ACEPTAR_DAVIPLATA);
