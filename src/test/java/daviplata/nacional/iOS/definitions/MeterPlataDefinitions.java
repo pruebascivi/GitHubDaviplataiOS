@@ -345,6 +345,7 @@ public class MeterPlataDefinitions {
 
 	@When("^Doy clic en el boton continuar del formulario desde otros bancos$")
 	public void doyClicEnElBotonContinuarDelFormularioDesdeOtrosBancos() throws Exception {
+		meterPlataSteps.aceptarTerminosYCondiciones();
 		meterPlataSteps.clicContinuarFormularioOtrosBancos();
 	}
 	

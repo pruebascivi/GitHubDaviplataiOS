@@ -255,6 +255,7 @@ public class MeterPlataSteps{
 	public void confirmarNumCelEspecial(String confirmarNumCelularEspecial) {
 		Utilidades.esperaMiliseg(1000);
 		utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.CAMPO_CONFIRME_NUMERO_CEL);
+		utilidadesTcs.cleanInputElement("xpath", MeterPlataPageObjects.CAMPO_CONFIRME_NUMERO_CEL);
 		utilidadesTcs.escribirPorTecladoIos(confirmarNumCelularEspecial);
 		Utilidades.tomaEvidencia("Confirmo número de celular especial");
 	}
@@ -300,10 +301,8 @@ public class MeterPlataSteps{
 	public void validarOpcionesMeterPlata() {
 	    String textoCualquierBanco = utilidadesTcs.obtenerTexto("xpath", MeterPlataPageObjects.BTN_METER_PLATA_DESDE_CUALQUIER_BANCO);
 	    String textoEnEfectivo = utilidadesTcs.obtenerTexto("xpath", MeterPlataPageObjects.BTN_METER_PLATA_EN_EFECTIVO);
-
 	    utilidadesTcs.validateTextContainsString(textoCualquierBanco, "Desde cualquier banco");
 	    utilidadesTcs.validateTextContainsString(textoEnEfectivo, "En efectivo");
-
 	    Utilidades.tomaEvidencia("Validar que la pantalla para elegir cómo quiere Meter Plata presente las opciones 'Desde cualquier banco' y 'En efectivo'");
 	}
 	
@@ -370,7 +369,8 @@ public class MeterPlataSteps{
 	
 	@Step
 	public void validarListaDeBancos() {
-       boolean estadoVisible = utilidadesTcs.validateElementVisibility("xpath", MeterPlataPageObjects.LISTA_BANCOS);
+	   Utilidades.esperaMiliseg(1500);
+       boolean estadoVisible = utilidadesTcs.validateElementVisibilityCatch("xpath", MeterPlataPageObjects.LISTA_BANCOS);
        utilidadesTcs.validateStatusElement(estadoVisible);
        Utilidades.tomaEvidencia("Validar que el campo Desde que banco quiere meter plata Despliegue una lista con los bancos");
     }
@@ -385,11 +385,12 @@ public class MeterPlataSteps{
 	
 	@Step
 	public void ingresarCorreoPse(String correo) {
-		Utilidades.esperaMiliseg(1000);
-//      utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.INPUT_CORREO);
+		Utilidades.esperaMiliseg(3000);
+		utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.INPUT_CORREO);
 //		utilidadesTcs.cleanInputElement("xpath", MeterPlataPageObjects.INPUT_CORREO);
 		Utilidades.esperaMiliseg(1500);
-//      utilidadesTcs.writeElement("xpath", MeterPlataPageObjects.INPUT_CORREO, correo);
+		utilidadesTcs.escribirPorTecladoIos(correo);
+        utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.BTN_DONE);
         Utilidades.tomaEvidencia("Ingresar correo con caracteres alfanumericos");
     }
 	
@@ -428,7 +429,10 @@ public class MeterPlataSteps{
 	
 	@Step
 	public void validarCorreoNuevoIngresado() {
+		Utilidades.esperaMiliseg(1500);
 	    String correo = utilidadesTcs.obtenerTexto("xpath", MeterPlataPageObjects.INPUT_CORREO_PSE);
+	    System.out.println(correo);
+	    System.out.println(BaseUtil.correoActual);
 	    utilidadesTcs.validateTextNotEqualTo(BaseUtil.correoActual, correo);
 	    Utilidades.tomaEvidencia("Validar que el correo precargado tenga la opción de editarse y quede guardado el nuevo.");
 	}
@@ -558,6 +562,8 @@ public class MeterPlataSteps{
 		utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.INPUT_PASSWORD);
 		utilidadesTcs.writeElement("xpath", MeterPlataPageObjects.INPUT_PASSWORD, validation);
 		Utilidades.esperaMiliseg(1500);
+        utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.BTN_DONE);
+        utilidadesTcs.scrollBackground("xpath", MeterPlataPageObjects.INPUT_PASSWORD, 100, 0 );
 	    Utilidades.tomaEvidencia("Completo formulario PSE");
 		utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.BOTON_PAY);
 	}
@@ -583,7 +589,6 @@ public class MeterPlataSteps{
 			System.out.println("Comunicación no disponible por favor intente nuevamente");
 			fail("Comunicación no disponible por favor intente nuevamente");
 		}
-		
         utilidadesTcs.esperarElementVisibility("xpath", MeterPlataPageObjects.LOGO_PSE);
         Utilidades.esperaMiliseg(2000);
         utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.INPUT_ACCOUNT_AGENCY);

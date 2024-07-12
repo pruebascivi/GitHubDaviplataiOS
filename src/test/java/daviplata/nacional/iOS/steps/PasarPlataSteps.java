@@ -1886,8 +1886,8 @@ public class PasarPlataSteps {
 	@Step
 	public void verificarSaldoInicialDaviplataGmf() {
 		pagePasarPlata.capturarSaldoInicialDaviplata();
-		pagePasarPlata.validarIgualdadSaldosInicialesGmf();
 		Utilidades.tomaEvidencia("Saldo Inicial Gmf" + BaseUtil.saldoInicial);
+		pagePasarPlata.validarIgualdadSaldosInicialesGmf();
 	}
 
 	@Step

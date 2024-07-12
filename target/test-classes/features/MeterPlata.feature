@@ -1,4 +1,3 @@
-#Author: Juan Pablo Doncel
 
 @MeterPlata
 Feature: Modulo Meter plata
@@ -96,7 +95,7 @@ Feature: Modulo Meter plata
 
     Examples: 
       | tipoId | usuario    | contrasena | correo             | monto  |
-      | "CC"   | "10050066" | "2589"     | "prulab@gmail.com" | "6000" |
+      | "CC"   | "10050066" | "2589"     | "prulab2@gmail.com" | "6000" |
 
   @CP020002M @Passed
   Scenario Outline: CP020002M_SYS_Validar transacciones e informacion suministrada por pse con usuario CC,TI,CE en la opcion banco union colombiano
@@ -104,7 +103,7 @@ Feature: Modulo Meter plata
     And Consulté saldo disponible en redeban
     And logout redeban al finalizar consulta
     And ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
-    And Validé saldos iniciales del daviplata GMF
+    And Validé saldos iniciales del daviplata
     When Ingreso a la opción meter plata desde el home daviplata
     And Ingreso a la opción de meter plata 'Desde cualquier banco'
     And Ingreso Numero celular <numCelular>
@@ -126,8 +125,8 @@ Feature: Modulo Meter plata
     Examples: 
       | tipoId | usuario     | contrasena | monto  | numCelular   | numCelularConfirmacion | correo               | banco               		 |
       | "CC"   | "10050066"  | "2589"     | "6000" | "3221005049" | "3221005049"           | "prueba24@gmail.com" | "BANCO UNION COLOMBIANO" |
-    # | "TI"   | "10010436"  | "1234"     | "6000" | "3000000000" | "3000000000"           | "prueba23@gmail.com" | "BANCO UNION COLOMBIANO" |
-    # | "CE"   | "614567893" | "1234"     | "6000" | "3000000000" | "3000000000"           | "prueba25@gmail.com" | "BANCO UNION COLOMBIANO" |
+    	| "TI"   | "10010436"  | "1234"     | "6000" | "3000000000" | "3000000000"           | "prueba23@gmail.com" | "BANCO UNION COLOMBIANO" |
+    	| "CE"   | "614567893" | "1234"     | "6000" | "3000000000" | "3000000000"           | "prueba25@gmail.com" | "BANCO UNION COLOMBIANO" |
 
   @CP020003M @Passed
   Scenario Outline: CP020003M_SYS_Validar meter plata exitoso desde banco "BANCO UNION COLOMBIANO" con usuario GMF
@@ -164,7 +163,7 @@ Feature: Modulo Meter plata
     And Consulté saldo disponible en redeban
     And logout redeban al finalizar consulta
     And ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
-    #And Validé saldos iniciales del daviplata
+    And Validé saldos iniciales del daviplata
     When Ingreso a la opción meter plata desde el home daviplata
     And Ingreso a la opción de meter plata 'Desde cualquier banco'
     And Ingreso Numero celular <numCelular>
@@ -178,15 +177,15 @@ Feature: Modulo Meter plata
     And Valido información de la transaccion del meter plata
     And Doy clic en boton finalizar
     Then Validar Saldo Final
-    #And Entro al modulo de movimientos
+    And Entro al modulo de movimientos
     And obtener numero celular actual en redeban bolsillos <usuario>
     And Consulté saldo disponible en redeban
     And logout redeban al finalizar consulta
-    #And Validar afectacion de saldos en redeban y daviplata
+    And Validar afectacion de saldos en redeban y daviplata
 
     Examples: 
-      | tipoId | usuario       | contrasena | monto  | numCelular   | numCelularConfirmacion | correo           | banco                     |
-			| "CE"   | "90062810018" | "2580"     |"6000"  | "3221005049" | "3221005049"           |"ytre@gmail.com"  |  "BANCO UNION COLOMBIANO" |
+      | tipoId | usuario    | contrasena | monto  | numCelular   | numCelularConfirmacion | correo           | banco                     |
+			| "CE"   | "65753445" | "1234"     |"6000"  | "3138323720" | "3138323720"           |"ytre@gmail.com"  |  "BANCO UNION COLOMBIANO" |
       
   @CP020006M @Passed
   Scenario Outline: CP020006M_SYS_Validar el crédito con un DaviPlata que tenga el tope máximo y que ésta se rechace.
@@ -247,7 +246,7 @@ Feature: Modulo Meter plata
 
     Examples: 
       | tipoId | usuario    | contrasena | correo                 | monto   | subtipo |
-      | "CC"   | "10050078" | "2580"     | "proplayer3@gmail.com" | "10000" | "BMO"   |
+      | "CC"   | "10050078" | "2589"     | "proplayer3@gmail.com" | "10000" | "BMO"   |
       
 	@CP020010M @Passed
   Scenario Outline: CP020010M_SYS_Validar que al ingresar un Daviplata bloqueado genera el mensaje "Daviplata inválido"
@@ -263,5 +262,5 @@ Feature: Modulo Meter plata
 
     Examples: 
       | tipoId | usuario    | contrasena | correo                 | monto   | subtipo |
-      | "CC"   | "10050078" | "2580"     | "proplayer4@gmail.com" | "10000" | "BMO"   |
+      | "CC"   | "10050078" | "2589"     | "proplayer4@gmail.com" | "10000" | "BMO"   |
    
