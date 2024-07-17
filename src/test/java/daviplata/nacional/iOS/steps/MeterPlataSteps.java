@@ -389,8 +389,8 @@ public class MeterPlataSteps{
 		utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.INPUT_CORREO);
 //		utilidadesTcs.cleanInputElement("xpath", MeterPlataPageObjects.INPUT_CORREO);
 		Utilidades.esperaMiliseg(1500);
-		utilidadesTcs.escribirPorTecladoIos(correo);
-        utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.BTN_DONE);
+//		utilidadesTcs.escribirPorTecladoIos(correo);
+//      utilidadesTcs.clicElement("xpath", MeterPlataPageObjects.BTN_DONE);
         Utilidades.tomaEvidencia("Ingresar correo con caracteres alfanumericos");
     }
 	

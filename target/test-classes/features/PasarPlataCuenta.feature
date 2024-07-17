@@ -1,7 +1,7 @@
 @PasarPlataCuenta
 Feature: Grupo de casos pasar plata a cuenta
 
-  @CP02390M
+  @CP02390M @GoPPC
   Scenario Outline: CP02390M_SYS_Validar proceso de pasar plata a un numero que no es correcto desde el menú home
     Given obtener numero celular actual en redeban bolsillos <usuario>
     And Consulté saldo disponible en redeban
@@ -18,9 +18,9 @@ Feature: Grupo de casos pasar plata a cuenta
 
     Examples: 
       | tipoId | usuario      | contrasena | tipoCuenta | cuentaNum      | monto   |
-      | "CC"   | "1020770043" | "1342"     | "AHORROS"  | "111111994437" | "10000" |
+      | "CC"   | "10050066"   | "2589"     | "AHORROS"  | "111111994437" | "10000" |
 
-  @CP02457M @passed
+  @CP02457M @GoPPC
   Scenario Outline: CP02457M_SYS_Validar proceso de pasar plata cuenta ahorro desde el Home de daviplata
     Given obtener numero celular actual en redeban bolsillos <usuario>
     And Consulté saldo disponible en redeban
@@ -38,9 +38,9 @@ Feature: Grupo de casos pasar plata a cuenta
 
     Examples: 
       | tipoId | usuario      | contrasena | tipoCuenta | cuentaNum     | monto  |
-      | "CC"   | "1020770043" | "1342"     | "Ahorros"  | "98170019255" | "1500" |
+      | "CC"   | "10050066"   | "2589"     | "Ahorros"  | "98170019255" | "1500" |
 
-  @CP02458M
+  @CP02458M @GoPPC
   Scenario Outline: CP02458M_SYS_Validar proceso de pasar plata cuenta ahorro por valor cero desde el Home de daviplata el sistema no deje
     Given obtener numero celular actual en redeban bolsillos <usuario>
     And Consulté saldo disponible en redeban
@@ -57,9 +57,9 @@ Feature: Grupo de casos pasar plata a cuenta
 
     Examples: 
       | tipoId | usuario      | contrasena | tipoCuenta | cuentaNum     | monto |
-      | "CC"   | "1020770043" | "1342"     | "Ahorros"  | "98170019255" | "0"   |
+      | "CC"   | "10050066"   | "2589"     | "Ahorros"  | "98170019255" | "0"   |
 
-  @CP02459M
+  @CP02459M @GoPPC
   Scenario Outline: CP02459M_SYS_Validar proceso de pasar plata cuenta ahorro por valor 1 desde el Home de daviplata el sistema deje
     Given obtener numero celular actual en redeban bolsillos <usuario>
     And Consulté saldo disponible en redeban
@@ -77,7 +77,7 @@ Feature: Grupo de casos pasar plata a cuenta
 
     Examples: 
       | tipoId | usuario      | contrasena | tipoCuenta | cuentaNum     | monto |
-      | "CC"   | "1020770043" | "1342"     | "Ahorros"  | "98170019255" | "1"   |
+      | "CC"   | "10050066"   | "2589"     | "Ahorros"  | "98170019255" | "1"   |
 
   @CP02461M
   Scenario Outline: CP02461M_SYS_Validar proceso de pasar plata cuenta ahorro desde el Home de daviplata cuando el origen tiene tope de debitos
@@ -97,7 +97,7 @@ Feature: Grupo de casos pasar plata a cuenta
 
     Examples: 
       | tipoId | usuario    | contrasena | tipoCuenta | cuentaNum     | topeDebito |
-      | "CC"   | "10050112" | "2589"     | "Ahorros"  | "98170019255" | "1600000"  |
+      | "CC"   | "10050066" | "2589"     | "Ahorros"  | "98170019255" | "1600000"  |
 
   @CP02462M
   Scenario Outline: CP02462M_SYS_Validar proceso de pasar plata cuenta ahorro desde el Home de daviplata cuando el origen tiene tope de creditos
@@ -121,7 +121,7 @@ Feature: Grupo de casos pasar plata a cuenta
       | "CC"   | "10050098" | "2589"     | "Ahorros"  | "98170019255" | "1160000"   | "1000" |
 
   @CP02463M
-  Scenario Outline: CP02463M_SYS_Validar topes de pasar plata de monedero a cuenta ahorro por subtipo BMO con origenten en tope de debitos desde Home de daviplata
+  Scenario Outline: CP02463M_SYS_Validar topes de pasar plata de monedero a cuenta ahorro por subtipo BMO con origen en tope de debitos desde Home de daviplata
     Given obtener numero celular actual en redeban aumento de topes <usuario>
     And consulté saldo tarjeta en redeban aumento de topes
     And Validé tope actual en debitos <topeDebito>
@@ -267,7 +267,7 @@ Feature: Grupo de casos pasar plata a cuenta
       | tipoId | usuario    | contrasena | tipoCuenta | cuentaNum     | topeDebito | subtipo |
       | "CC"   | "52546863" | "1234"     | "Ahorros"  | "98170019255" | "9280000"  | "RAP"   |
 
-	@CP02471M
+	@CP02471M @GoPPC
   Scenario Outline: CP02471M_SYS_Validar proceso de pasar plata a cuenta ahorros desde el home seleccionando cuentas inscritas
     Given obtener numero celular actual en redeban bolsillos <usuario>
     And Consulté saldo disponible en redeban
@@ -287,7 +287,7 @@ Feature: Grupo de casos pasar plata a cuenta
       | tipoId | usuario    | contrasena | monto   |
       | "CC"   | "10050038" | "2589"     | "10000" |
       
-  @CP02472M
+  @CP02472M @GoPPC
   Scenario Outline: CP02472M_SYS_Validar proceso de pasar plata a cuenta ahorros desde el home seleccionando cuentas mas usadas
     Given obtener numero celular actual en redeban bolsillos <usuario>
     And Consulté saldo disponible en redeban
@@ -307,7 +307,7 @@ Feature: Grupo de casos pasar plata a cuenta
       | tipoId | usuario    | contrasena | monto   |
       | "CC"   | "10050038" | "2589"     | "10000" |
 
-  @CP02473M @Passed
+  @CP02473M @GoPPC
   Scenario Outline: CP02473M_SYS_Validar proceso de pasar plata a cuenta de ahorros con cliente CC GMF mostrando que genera el cobro de GMF
     Given obtener numero celular actual en redeban bolsillos <usuario>
     And Consulté saldo disponible en redeban GMF
@@ -325,8 +325,8 @@ Feature: Grupo de casos pasar plata a cuenta
     And Validar afectacion de saldos en redeban y daviplata GMF
 
     Examples: 
-      | tipoId | usuario    | contrasena | tipoCuenta | cuentaNum     | monto   |
-      | "CC"   | "10050066" | "2589"     | "Ahorros"  | "98170019255" | "10000" |
+      | tipoId | usuario     | contrasena | tipoCuenta | cuentaNum     | monto   |
+      | "CC"   | "100111511" | "2580"     | "Ahorros"  | "98170019255" | "10000" |
 
   @CP02474M
   Scenario Outline: CP02474M_SYS_Validar proceso de pasar plata a cuenta de ahorros con cliente CC GMF mostrando mensaje de Fondos insuficientes

@@ -5,6 +5,7 @@ Feature: Modulo Meter plata
   @CP020000M @Passed
   Scenario Outline: CP020000M_SYS_Validar Botones pantallas y funcionalidades de las opciones meter plata desde cualquier banco y en efectivo
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
+    And esto es prueba
     And Valido la opcion meter plata desde home daviplata
     And Ingreso a la opción meter plata desde el home daviplata
     And Valido opciones desde donde se quiere meter la plata
@@ -77,7 +78,7 @@ Feature: Modulo Meter plata
       | tipoId | usuario    | contrasena |  monto  | subtipo |
       | "CC"   | "10050066" | "2589"     |  "6000" | "BMO"   |
 	
-  @CP020001M @Passed 
+  @CP020001M @Passed
   Scenario Outline: CP020001M_SYS_Validar informacion y funcionalidades de la opcion meter plata en pse
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     When Ingreso a la opción meter plata desde el home daviplata

@@ -78,7 +78,7 @@
             <a href="576946480b52ad056d6f5bddf874399c83582ecf90963cc074a14c70580e7d9f.html"><i class="fa fa-comments-o"></i> Features</a>
         </li>
     </ul>
-    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 12-03-2024 12:22</span>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 17-07-2024 10:16</span>
     <br style="clear:left"/>
 </div>
     <div class="clr"></div>
@@ -125,9 +125,9 @@
                 <table class="outcome-header">
                     <tr>
                         <td colspan="2" class="test-title-bar">
-                            <span class="outcome-icon"><i class='fa fa-times-circle failure-icon fa-2x' title='FAILURE'></i></span>
+                            <span class="outcome-icon"><i class='fa fa-exclamation-triangle error-icon fa-2x' title='ERROR'></i></span>
                             <span class="test-case-title">
-                                    <span class="failing-color">
+                                    <span class="error-color">
                                     CP02365M_SYS_Validar proceso de pasar plata a otro daviplata desde el Home de daviplata cuando el origen tiene tope de creditos
                                         <span class="related-issue-title"></span>
                                 </span>
@@ -147,7 +147,7 @@
     <div class="story-title">
         <h3 class="story-header">Scenario Outline</h3>
 
-        <div class="scenario">Given obtener numero celular actual en redeban aumento de topes &lt;usuario&gt;<br>And consulté saldo tarjeta en redeban aumento de topes<br>And Validé tope actual en creditos &lt;topeCredito&gt;<br>And logout redeban al finalizar consulta<br>Given ingreso usuario y contrasena &lt;tipoId&gt; &lt;usuario&gt; &lt;contrasena&gt;<br>And Validé saldos iniciales del daviplata<br>When seleccionar pasar plata Home<br>And Paso plata a otro Daviplata &lt;celular&gt; &lt;montoATransferir&gt;<br>Then validar transaccion exitosa Pasar Plata<br>And obtener numero celular actual en redeban aumento de topes &lt;usuario&gt;<br>And consulté saldo tarjeta en redeban aumento de topes<br>And Validar en redeban la transansaccion&lt;usuario&gt;<br>And logout redeban<br>And Validar afectacion de saldos en redeban y daviplata topes</div>
+        <div class="scenario">Given obtener numero celular actual en redeban aumento de topes &lt;usuario&gt;<br>And consulté saldo tarjeta en redeban aumento de topes<br>And Validé tope actual en creditos &lt;topeCredito&gt;<br>And logout redeban al finalizar consulta<br>Given ingreso usuario y contrasena &lt;tipoId&gt; &lt;usuario&gt; &lt;contrasena&gt;<br>And Validé saldos iniciales del daviplata<br>When seleccionar pasar plata Home<br>And Paso plata a otro Daviplata &lt;celularDestino&gt; &lt;montoATransferir&gt;<br>Then validar transaccion exitosa Pasar Plata<br>And obtener numero celular actual en redeban aumento de topes &lt;usuario&gt;<br>And consulté saldo tarjeta en redeban aumento de topes<br>And Validar en redeban la transansaccion&lt;usuario&gt;<br>And logout redeban<br>And Validar afectacion de saldos en redeban y daviplata topes</div>
 
     </div>
 
@@ -168,25 +168,25 @@
                         <th>Tipoid</th>
                         <th>Usuario</th>
                         <th>Contrasena</th>
-                        <th>Celular</th>
+                        <th>Celulardestino</th>
                         <th>Topecredito</th>
                         <th>Montoatransferir</th>
                 </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="test-FAILURE"><a href="#0">1</a></td>
-                            <td class="test-FAILURE"><a href="#0">"CC"</a>
+                        <td class="test-ERROR"><a href="#0">1</a></td>
+                            <td class="test-ERROR"><a href="#0">"CC"</a>
                             </td>
-                            <td class="test-FAILURE"><a href="#0">"10050099"</a>
+                            <td class="test-ERROR"><a href="#0">"10050098"</a>
                             </td>
-                            <td class="test-FAILURE"><a href="#0">"2589"</a>
+                            <td class="test-ERROR"><a href="#0">"2589"</a>
                             </td>
-                            <td class="test-FAILURE"><a href="#0">"3227680733"</a>
+                            <td class="test-ERROR"><a href="#0">"3227680744"</a>
                             </td>
-                            <td class="test-FAILURE"><a href="#0">"2000000"</a>
+                            <td class="test-ERROR"><a href="#0">"1160000"</a>
                             </td>
-                            <td class="test-FAILURE"><a href="#0">"1200"</a>
+                            <td class="test-ERROR"><a href="#0">"1200"</a>
                             </td>
                     </tr>
                 </tbody>
@@ -209,12 +209,12 @@
                 <tr class="step-table-separator">
                     <td colspan="5"></td>
                 </tr>
-                <tr class="test-FAILURE">
+                <tr class="test-ERROR">
                     <td width="60" class="step-icon">
                         <a name="0"/>
                             <a href="javaScript:void(0)" onClick="toggleDiv('stepSection0')"
                                style="display:block">
-                                <i class="fa fa-plus-square-o imgstepSection0 failure-icon"
+                                <i class="fa fa-plus-square-o imgstepSection0 error-icon"
                                    style="margin-left: 20px; float:left;  padding-right:5px"></i>
                             </a>
                     </td>
@@ -223,14 +223,14 @@
                             <a href="javaScript:void(0)" onClick="toggleDiv('stepSection0')"
                                style="display:block;">
                             <span class="top-level-step">
-                                Example #1: {tipoId="CC", usuario="10050099", contrasena="2589", celular="3227680733", topeCredito="2000000", montoATransferir="1200"}
+                                Example #1: {tipoId="CC", usuario="10050098", contrasena="2589", celularDestino="3227680744", topeCredito="1160000", montoATransferir="1200"}
                             </span>
                             </a>
 
                         </div>
                     </td>
-                    <td width="100"><span class="top-level-step">FAILURE</span></td>
-                    <td width="100"><span class="top-level-step">316.21s</span></td>
+                    <td width="100"><span class="top-level-step">ERROR</span></td>
+                    <td width="100"><span class="top-level-step">248.79s</span></td>
                 </tr>
                     <tr>
                     <td colspan="5">
@@ -245,13 +245,13 @@
                     <td>
                         <div class="step-description">
                             <span class="nested-group-step">
-                                Given obtener numero celular actual en redeban aumento de topes "10050099"
+                                Given obtener numero celular actual en redeban aumento de topes "10050098"
                             </span>
 
                         </div>
                     </td>
                     <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">17.04s</span></td>
+                    <td width="100"><span class="nested-group-step">19.98s</span></td>
                 </tr>
                 <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
@@ -268,7 +268,7 @@
                         </div>
                     </td>
                     <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">44.13s</span></td>
+                    <td width="100"><span class="nested-group-step">44.8s</span></td>
                 </tr>
                 <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
@@ -279,7 +279,7 @@
                     <td>
                         <div class="step-description">
                             <span class="nested-group-step">
-                                And Validé tope actual en creditos "2000000"
+                                And Validé tope actual en creditos "1160000"
                             </span>
 
                         </div>
@@ -302,7 +302,7 @@
                         </div>
                     </td>
                     <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">3.31s</span></td>
+                    <td width="100"><span class="nested-group-step">3.55s</span></td>
                 </tr>
                 <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
@@ -313,13 +313,13 @@
                     <td>
                         <div class="step-description">
                             <span class="nested-step">
-                                Given ingreso usuario y contrasena "CC" "10050099" "2589"
+                                Given ingreso usuario y contrasena "CC" "10050098" "2589"
                             </span>
 
                         </div>
                     </td>
                     <td width="100"><span class="nested-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-step">120.42s</span></td>
+                    <td width="100"><span class="nested-step">137.43s</span></td>
                 </tr>
                 <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
@@ -330,13 +330,13 @@
                     <td>
                         <div class="step-description">
                             <span class="nested-step">
-                                Ingresar a app: CC, 10050099, 2589
+                                Ingresar a app: CC, 10050098, 2589
                             </span>
 
                         </div>
                     </td>
                     <td width="100"><span class="nested-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-step">120.34s</span></td>
+                    <td width="100"><span class="nested-step">137.38s</span></td>
                 </tr>
                 <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
@@ -347,13 +347,13 @@
                     <td>
                         <div class="step-description">
                             <span class="nested-group-step">
-                                Validar version app
+                                Verificar version
                             </span>
 
                         </div>
                     </td>
                     <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">5.81s</span></td>
+                    <td width="100"><span class="nested-group-step">9.77s</span></td>
                 </tr>
 
 
@@ -361,85 +361,156 @@
                     <td width="60" class="step-icon">
                         
                             <span style="margin-left: 40px; margin-right: 5px;"
-                                  class="nested-group-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                  class="nested-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
-                            <span class="nested-group-step">
+                            <span class="nested-step">
                                 And Validé saldos iniciales del daviplata
                             </span>
 
                         </div>
                     </td>
-                    <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">1.18s</span></td>
+                    <td width="100"><span class="nested-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-step">4.01s</span></td>
                 </tr>
                 <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
                         
-                            <span style="margin-left: 40px; margin-right: 5px;"
+                            <span style="margin-left: 60px; margin-right: 5px;"
                                   class="nested-group-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
                             <span class="nested-group-step">
-                                When seleccionar pasar plata Home
+                                Verificar saldo inicial daviplata
                             </span>
 
                         </div>
                     </td>
                     <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">6.52s</span></td>
+                    <td width="100"><span class="nested-group-step">3.98s</span></td>
                 </tr>
-                <tr class="test-FAILURE">
+
+                <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
                         
                             <span style="margin-left: 40px; margin-right: 5px;"
-                                  class="nested-icon"><i class='fa fa-times-circle failure-icon ' title='FAILURE'></i></span>
+                                  class="nested-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
                             <span class="nested-step">
-                                And Paso plata a otro Daviplata "3227680733" "1200"
+                                When seleccionar pasar plata Home
                             </span>
 
                         </div>
                     </td>
-                    <td width="100"><span class="nested-step">FAILURE</span></td>
-                    <td width="100"><span class="nested-step">115.73s</span></td>
+                    <td width="100"><span class="nested-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-step">9.43s</span></td>
                 </tr>
-                <tr class="test-FAILURE">
+                <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
                         
                             <span style="margin-left: 60px; margin-right: 5px;"
-                                  class="nested-group-icon"><i class='fa fa-times-circle failure-icon ' title='FAILURE'></i></span>
+                                  class="nested-group-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
                             <span class="nested-group-step">
-                                Pasar plata a otro daviplata monto: 3227680733, 1200
+                                Seleccionar pasar plata: true
                             </span>
 
                         </div>
                     </td>
-                    <td width="100"><span class="nested-group-step">FAILURE</span></td>
-                    <td width="100"><span class="nested-group-step">0.01s</span></td>
+                    <td width="100"><span class="nested-group-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-group-step">9.42s</span></td>
                 </tr>
-                    <tr class="test-FAILURE">
+
+                <tr class="test-SUCCESS">
+                    <td width="60" class="step-icon">
+                        
+                            <span style="margin-left: 40px; margin-right: 5px;"
+                                  class="nested-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                    </td>
+                    <td>
+                        <div class="step-description">
+                            <span class="nested-step">
+                                And Paso plata a otro Daviplata "3227680744" "1200"
+                            </span>
+
+                        </div>
+                    </td>
+                    <td width="100"><span class="nested-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-step">20.17s</span></td>
+                </tr>
+                <tr class="test-SUCCESS">
+                    <td width="60" class="step-icon">
+                        
+                            <span style="margin-left: 60px; margin-right: 5px;"
+                                  class="nested-group-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                    </td>
+                    <td>
+                        <div class="step-description">
+                            <span class="nested-group-step">
+                                Pasar plata a otro daviplata monto: 3227680744, 1200
+                            </span>
+
+                        </div>
+                    </td>
+                    <td width="100"><span class="nested-group-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-group-step">20.17s</span></td>
+                </tr>
+
+                <tr class="test-ERROR">
+                    <td width="60" class="step-icon">
+                        
+                            <span style="margin-left: 40px; margin-right: 5px;"
+                                  class="nested-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
+                    </td>
+                    <td>
+                        <div class="step-description">
+                            <span class="nested-step">
+                                Then validar transaccion exitosa Pasar Plata
+                            </span>
+
+                        </div>
+                    </td>
+                    <td width="100"><span class="nested-step">ERROR</span></td>
+                    <td width="100"><span class="nested-step">4.72s</span></td>
+                </tr>
+                <tr class="test-ERROR">
+                    <td width="60" class="step-icon">
+                        
+                            <span style="margin-left: 60px; margin-right: 5px;"
+                                  class="nested-group-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
+                    </td>
+                    <td>
+                        <div class="step-description">
+                            <span class="nested-group-step">
+                                Verificar transaccion exitosa pasar plata
+                            </span>
+
+                        </div>
+                    </td>
+                    <td width="100"><span class="nested-group-step">ERROR</span></td>
+                    <td width="100"><span class="nested-group-step">4.72s</span></td>
+                </tr>
+                    <tr class="test-ERROR">
                         <td width="40">&nbsp</td>
                         <td width="%" colspan="4" class="error-message-cell">
                             <div class="error-message ellipsis"
-                                 title='Assertion error: No se encontr&oacute; otp de autorizacion para buscar transacci&oacute;n, debido a: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@name=&#39;N&uacute;mero de aprobaci&oacute;n&#39;]//following-sibling::XCUIElementTypeStaticText (tried for 10 second(s) with 500 milliseconds interval)'>
-                                <pre>Assertion error: No se encontr&oacute; otp de autorizacion para buscar transacci&oacute;n, debido a: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@name=&#39;N&uacute;mero de aprobaci&oacute;n&#39;]//f...</pre>
+                                 title='Null pointer exception'>
+                                <pre>Null pointer exception</pre>
                             </div>
                 <div><!-- Stack trace -->
                     <button type="button" class="btn btn-danger" data-toggle="modal"
-                            data-target="#stacktraceModal-12">
+                            data-target="#stacktraceModal-16">
                         View details
                     </button>
                 </div>
                 <!-- Modal -->
-                <div class="modal fade" id="stacktraceModal-12" tabindex="-1" role="dialog"
+                <div class="modal fade" id="stacktraceModal-16" tabindex="-1" role="dialog"
                      aria-labelledby="stacktraceModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -448,27 +519,14 @@
                                         aria-label="Close"><span aria-hidden="true">&times;</span>
                                 </button>
                                 <h4 class="modal-title" id="stacktraceModalLabel">
-                                    java.lang.AssertionError
+                                    java.lang.NullPointerException
                                 </h4>
                             </div>
                             <div class="modal-body">
-                                    <h5>
-                                        <pre>No se encontró otp de autorizacion para buscar transacción, debido a: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@name='Número de aprobación']//following-sibling::XCUIElementTypeStaticText (tried for 10 second(s) with 500 milliseconds interval)</pre>
-                                    </h5>
-                                    daviplata.nacional.iOS.pageObjects.PasarPlataPageObjects.txtAutorizador(PasarPlataPageObjects.java
-                                    :463) <br>
-                                    daviplata.nacional.iOS.pageObjects.PasarPlataPageObjects.txtAutorizador(PasarPlataPageObjects.java
-                                    :461) <br>
-                                    daviplata.nacional.iOS.pageObjects.PasarPlataPageObjects.txtAutorizador(PasarPlataPageObjects.java
-                                    :461) <br>
-                                    daviplata.nacional.iOS.pageObjects.PasarPlataPageObjects.txtAutorizador(PasarPlataPageObjects.java
-                                    :461) <br>
-                                    daviplata.nacional.iOS.pageObjects.PasarPlataPageObjects.txtAutorizador(PasarPlataPageObjects.java
-                                    :461) <br>
-                                    daviplata.nacional.iOS.steps.PasarPlataSteps.pasarPlataAOtroDaviplataMonto(PasarPlataSteps.java
-                                    :1577) <br>
-                                    daviplata.nacional.iOS.definitions.PasarPlataDefinitions.pasoPlataAOtroDaviplata(PasarPlataDefinitions.java
-                                    :853) <br>
+                                    daviplata.nacional.iOS.steps.PasarPlataSteps.verificarTransaccionExitosaPasarPlata(PasarPlataSteps.java
+                                    :1911) <br>
+                                    daviplata.nacional.iOS.definitions.PasarPlataDefinitions.validarTransaccionExitosaPasarPlata(PasarPlataDefinitions.java
+                                    :839) <br>
                                     cucumber.runner.Runner.runPickle(Runner.java
                                     :80) <br>
                                     daviplata.nacional.iOS.runners.RunnerPersonalizado.run(RunnerPersonalizado.java
@@ -507,24 +565,7 @@
                     <td>
                         <div class="step-description">
                             <span class="nested-group-step">
-                                Then validar transaccion exitosa Pasar Plata
-                            </span>
-
-                        </div>
-                    </td>
-                    <td width="100"><span class="nested-group-step">SKIPPED</span></td>
-                    <td width="100"><span class="nested-group-step">0s</span></td>
-                </tr>
-                <tr class="test-SKIPPED">
-                    <td width="60" class="step-icon">
-                        
-                            <span style="margin-left: 40px; margin-right: 5px;"
-                                  class="nested-group-icon"><i class='fa fa-fast-forward skipped-icon ' title='SKIPPED'></i></span>
-                    </td>
-                    <td>
-                        <div class="step-description">
-                            <span class="nested-group-step">
-                                And obtener numero celular actual en redeban aumento de topes "10050099"
+                                And obtener numero celular actual en redeban aumento de topes "10050098"
                             </span>
 
                         </div>
@@ -558,7 +599,7 @@
                     <td>
                         <div class="step-description">
                             <span class="nested-group-step">
-                                And Validar en redeban la transansaccion"10050099"
+                                And Validar en redeban la transansaccion"10050098"
                             </span>
 
                         </div>
@@ -604,10 +645,10 @@
                     </table>
                     </td>
                     <tr>
-                <tr class="test-FAILURE">
+                <tr class="test-ERROR">
                     <td colspan="2"></td>
-                    <td width="100"><span class="top-level-step"><em>FAILURE</em></span></td>
-                    <td width="100"><span class="top-level-step"><em>316.41s</em></span></td>
+                    <td width="100"><span class="top-level-step"><em>ERROR</em></span></td>
+                    <td width="100"><span class="top-level-step"><em>248.79s</em></span></td>
                 </tr>
 
             </table>

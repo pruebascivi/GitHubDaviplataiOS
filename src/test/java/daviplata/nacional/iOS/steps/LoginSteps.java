@@ -1035,4 +1035,9 @@ public class LoginSteps {
 			fail("No se pudo interactuar con el elemento debido a: " + e.getMessage());
 		}
     }
+	
+	@Step
+	public void cualquierCosa() {
+		
+	}
 }

@@ -30,6 +30,11 @@ public class LoginDefinitions {
 		loginSteps.ingresarAAppSinCredenciales();
 	}
 	
+	@Then("^esto es prueba$")
+	public void estoEsPrueba() {
+		loginSteps.cualquierCosa();
+	}
+	
 	@Given("^ingresar a app cambio dispositivo \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\"$")
 	public void ingresarAAppCambioDispositivo(String tipoDocumento, String usuario, String contrasena) {
 		loginSteps.ingresarAAppCambioDispositivo(tipoDocumento, usuario, contrasena);

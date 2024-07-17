@@ -1,1 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="Grupo de casos pasar plata a cuenta" skipped="0" tests="1" time="286.75" timestamp="2024-03-15 03:07:24"><testcase name="CP02461M_SYS_Validar proceso de pasar plata cuenta ahorro desde el Home de daviplata cuando el origen tiene tope de debitos"/></testsuite>
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Grupo de casos pasar plata a cuenta" skipped="0" tests="1" time="268.63" timestamp="2024-07-15 04:15:29"><testcase name="CP02461M_SYS_Validar proceso de pasar plata cuenta ahorro desde el Home de daviplata cuando el origen tiene tope de debitos"><failure type="java.lang.AssertionError"/><system-err>null
+daviplata.nacional.iOS.pageObjects.PasarPlataPageObjects.validarTransaccionNegada(PasarPlataPageObjects.java:1984)
+daviplata.nacional.iOS.steps.PasarPlataSteps.validarTransaccionNegada(PasarPlataSteps.java:1107)
+daviplata.nacional.iOS.definitions.PasarPlataDefinitions.validarTransaccionNegada(PasarPlataDefinitions.java:346)
+cucumber.runner.Runner.runPickle(Runner.java:80)
+daviplata.nacional.iOS.runners.RunnerPersonalizado.run(RunnerPersonalizado.java:63)
+org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:93)
+org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:40)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:529)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:756)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:452)
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:210)
+</system-err></testcase></testsuite>

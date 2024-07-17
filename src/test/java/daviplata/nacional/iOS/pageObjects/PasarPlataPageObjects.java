@@ -2011,8 +2011,8 @@ public class PasarPlataPageObjects extends PageObject {
 	}
 	
 	public void validarHabilitacionBotonContinuarPasarPlata() {
-		boolean isEnabled = BaseUtil.driver.findElement(By.name(this.btnContinuar)).isEnabled();
-        assertThat(isEnabled, is(equalTo(false)));	    
+		boolean isEnabled = BaseUtil.driver.findElement(By.xpath(this.btnContinuar)).isEnabled();
+        assertThat(isEnabled, is(equalTo(true)));	    
 	}
 	
 	public void volverAtras() {

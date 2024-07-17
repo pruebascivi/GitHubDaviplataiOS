@@ -26,7 +26,7 @@ Feature: Agrupación casos de PasarPlata
 
     Examples: 
       | tipoId | usuario    | contrasena | celular      | monto |
-      | "CC"   | "10050039" | "2589"     | "3227680733" | "0"   |
+      | "CC"   | "10050066" | "2589"     | "3126258200" | "0"   |
 
   @CP0961M
   Scenario Outline: CP0961M_SYS_Validar los topes débito con una transaccion
@@ -46,12 +46,12 @@ Feature: Agrupación casos de PasarPlata
 
     Examples: 
       | tipoId | usuario    | contrasena | celular      | topeDebito |
-      | "CC"   | "10050095" | "2589"     | "3221005095" | "1600000"  |
+      | "CC"   | "10050102" | "2589"     | "3227680744" | "14844200" |
 
   @CP02301M @Passed
   Scenario Outline: CP02301M_SYS_Validar proceso de pasar plata a otro daviplata con cliente CC GMF mostrando descuento
     Given obtener numero celular actual en redeban bolsillos <usuario>
-   	And Consulté saldo disponible en redeban GMF
+    And Consulté saldo disponible en redeban GMF
     And logout redeban al finalizar consulta
     And ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     And Validé saldos iniciales del daviplata GMF
@@ -59,14 +59,14 @@ Feature: Agrupación casos de PasarPlata
     And pasar plata a otro Daviplata <celular>
     And obtener numero celular actual en redeban bolsillos <usuario>
     And Consulté saldo disponible en redeban GMF
-    #And Extraer cobro GMF
+    And Extraer cobro GMF
     And Validar en redeban la transansaccion<usuario>
     And logout redeban
     And Validar afectacion de saldos en redeban y daviplata GMF
 
     Examples: 
-      | tipoId | usuario     | contrasena | celular      |
-      | "CC"   | "10088833"  | "2589"     | "3227680744" |
+      | tipoId | usuario    | contrasena | celular      |
+      | "CC"   | "10050040" | "2580"     | "3227680744" |
 
   @CP02302M
   Scenario Outline: CP02302M_SYS_Validar proceso de pasar plata a otro daviplata  con cliente CC GMF generando Fondos insuficientes
@@ -83,7 +83,7 @@ Feature: Agrupación casos de PasarPlata
 
     Examples: 
       | tipoId | usuario    | contrasena | numCelular   |
-      | "CC"   | "10050018" | "2589"     | "3227680744" |
+      | "CC"   | "10050040" | "2580"     | "3227680744" |
 
   @CP02303M
   Scenario Outline: CP02303M_SYS_Validar proceso de pasar plata a otro daviplata  con cliente CC sin GMF generando Excede cupo
@@ -100,7 +100,7 @@ Feature: Agrupación casos de PasarPlata
 
     Examples: 
       | tipoId | usuario    | contrasena | numCelular   |
-      | "CC"   | "10050038" | "2589"     | "3227680744" |
+      | "CC"   | "10050040" | "2580"     | "3227680744" |
 
   @CP002350M @passed
   Scenario Outline: CP002350M_SYS_Validar proceso de pasar plata a otro daviplata desde el Home de daviplata
@@ -121,7 +121,7 @@ Feature: Agrupación casos de PasarPlata
     Examples: 
       | tipoId | usuario    | contrasena | cuentaNum    |
       | "CC"   | "10050099" | "2589"     | "3227680733" |
-      
+
   @CP02380M @PASSED
   Scenario Outline: CP02380M_SYS_Realizar un pasar plata a otro Daviplata exitoso añadiendo cuenta a favoritos
     Given obtener numero celular actual en redeban bolsillos <usuario>
@@ -142,7 +142,7 @@ Feature: Agrupación casos de PasarPlata
       | tipoId | usuario    | contrasena | cuentaNum    | monto  | nombreContactoFavorito |
       | "CC"   | "10050099" | "2589"     | "3227680733" | "5000" | "Carlos"               |
 
-	@CP0291M
+  @CP0291M
   Scenario Outline: CP0291M_SYS_Realizar un pasar plata a cuentas Davivienda exitoso
     Given obtener numero celular actual en redeban bolsillos <usuario>
     And Consulté saldo disponible en redeban
@@ -159,8 +159,8 @@ Feature: Agrupación casos de PasarPlata
     And Validar afectacion de saldos en redeban y daviplata
 
     Examples: 
-      | tipoId | usuario    | contrasena | tipoCuenta | cuentaNum      | nombreContactoFavorito | monto   |
-      | "CC"   | "10050099" | "2589"     | "Ahorros"  |  "3227680733"  | "Tatiana"              | "15000" |
+      | tipoId | usuario    | contrasena | tipoCuenta | cuentaNum    | nombreContactoFavorito | monto   |
+      | "CC"   | "10050099" | "2589"     | "Ahorros"  | "3227680733" | "Tatiana"              | "15000" |
 
   @CP002352M
   Scenario Outline: CP002352M_SYS_Validar proceso de pasar plata a un numero que empicese diferente de 3 desde el Home de daviplata
@@ -170,8 +170,8 @@ Feature: Agrupación casos de PasarPlata
 
     Examples: 
       | tipoId | usuario    | contrasena | celular      |
-      | "CC"   | "10050038" | "2589"     | "3227680744" |
-      
+      | "CC"   | "10050038" | "2589"     | "4227680744" |
+
   @CP02361M
   Scenario Outline: CP02361M_SYS_Validar proceso de pasar plata a otro daviplata por valor 1 desde el Home de daviplata el sistema deje
     Given obtener numero celular actual en redeban bolsillos <usuario>
@@ -212,7 +212,7 @@ Feature: Agrupación casos de PasarPlata
 
     Examples: 
       | tipoId | usuario    | contrasena | celular      | usuarioDestino | topeCredito |
-      | "CC"   | "10050038" | "2589"     | "3002009173" | "35399173"     | "1160000"   |
+      | "CC"   | "10050038" | "2589"     | "3227680744" | "10050095"     | "3480000"   |
 
   @CP02363M
   Scenario Outline: CP02363M_SYS_Validar proceso de pasar plata a otro daviplata desde el Home de daviplata cuando el origen tiene tope de debitos
@@ -231,8 +231,8 @@ Feature: Agrupación casos de PasarPlata
     And Validar igualdad saldos topes
 
     Examples: 
-      | tipoId | usuario      | contrasena | cuentaNum    | topeDebito |
-      | "CC"   | "1020770033" | "1342"     | "3003085537" | "3840000"  |
+      | tipoId | usuario    | contrasena | cuentaNum    | topeDebito |
+      | "CC"   | "10050095" | "2589"     | "3227680744" | "3480000"  |
 
   @CP02360M
   Scenario Outline: CP02360M_SYS_Validar proceso de pasar plata a otro daviplata desde el Home de daviplata cuando el destino tiene tope de debitos
@@ -245,7 +245,7 @@ Feature: Agrupación casos de PasarPlata
     When ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     And Validé saldos iniciales del daviplata
     When seleccionar pasar plata Home
-    And Paso plata a otro Daviplata <celular> <montoATransferir>
+    And Paso plata a otro Daviplata <celularDestino> <montoATransferir>
     Then validar transaccion exitosa
     And obtener numero celular actual en redeban bolsillos <usuario>
     And Consulté saldo disponible en redeban
@@ -254,8 +254,8 @@ Feature: Agrupación casos de PasarPlata
     And Validar afectacion de saldos en redeban y daviplata
 
     Examples: 
-      | tipoId | usuario    | contrasena | celular      | usuarioDestino | topeDebito | montoATransferir |
-      | "CC"   | "10050038" | "2589"     | "3221005095" | "10050112"     | "1600000"  | "2000"           |
+      | tipoId | usuario    | contrasena | celularDestino | usuarioDestino | topeDebito | montoATransferir |
+      | "CC"   | "10050038" | "2589"     | "3221005085"   | "10050102"     | "14844200" | "2000"           |
 
   @CP02365M
   Scenario Outline: CP02365M_SYS_Validar proceso de pasar plata a otro daviplata desde el Home de daviplata cuando el origen tiene tope de creditos
@@ -266,7 +266,7 @@ Feature: Agrupación casos de PasarPlata
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     And Validé saldos iniciales del daviplata
     When seleccionar pasar plata Home
-    And Paso plata a otro Daviplata <celular> <montoATransferir>
+    And Paso plata a otro Daviplata <celularDestino> <montoATransferir>
     Then validar transaccion exitosa Pasar Plata
     And obtener numero celular actual en redeban aumento de topes <usuario>
     And consulté saldo tarjeta en redeban aumento de topes
@@ -275,8 +275,8 @@ Feature: Agrupación casos de PasarPlata
     And Validar afectacion de saldos en redeban y daviplata topes
 
     Examples: 
-      | tipoId | usuario    | contrasena | celular      | topeCredito | montoATransferir |
-      | "CC"   | "10050099" | "2589"     | "3227680733" | "2000000"   | "1200"           |
+      | tipoId | usuario    | contrasena | celularDestino | topeCredito | montoATransferir |
+      | "CC"   | "10050098" | "2589"     | "3227680744"   | "1160000"   | "1200"           |
 
   @CP02366M
   Scenario Outline: CP02366M_SYS_Validar topes de pasar plata de monedero a monedero por subtipo BMO con origen en tope de debitos desde Home de daviplata
@@ -288,7 +288,7 @@ Feature: Agrupación casos de PasarPlata
     And ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     And Validé saldos iniciales del daviplata
     When seleccionar pasar plata Home
-    And Pasar plata a otro Daviplata tope debitos <cuentaNum>
+    And Pasar plata a otro Daviplata tope debitos <celularDestino>
     Then validar transaccion negada
     And obtener numero celular actual en redeban bolsillos <usuario>
     And consulté saldo tarjeta en redeban aumento de topes
@@ -296,11 +296,11 @@ Feature: Agrupación casos de PasarPlata
     And Validar igualdad saldos topes
 
     Examples: 
-      | tipoId | usuario    | contrasena | cuentaNum    | topeDebito | subtipo |
-      | "CC"   | "80418029" | "1234"     | "3132302919" | "8927726"  | "BMO"   |
+      | tipoId | usuario      | contrasena | celularDestino | topeDebito | subtipo |
+      | "CC"   | "1020770010" | "1234"     | "3227680044"   | "8927726"  | "BMO"   |
 
   @CP02367M
-  Scenario Outline: CP02367M_SYS_Validar topes de pasar plata de monedero a monedero por subtipo RA3 con origenten en tope de debitos desde Home de daviplata
+  Scenario Outline: CP02367M_SYS_Validar topes de pasar plata de monedero a monedero por subtipo RA3 con origen en tope de debitos desde Home de daviplata
     Given obtener numero celular actual en redeban aumento de topes <usuario>
     And consulté saldo tarjeta en redeban aumento de topes
     And Validar en redeban subtipo topes <usuario> <subtipo>
@@ -309,7 +309,7 @@ Feature: Agrupación casos de PasarPlata
     And ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     And Validé saldos iniciales del daviplata
     When seleccionar pasar plata Home
-    And Pasar plata a otro Daviplata tope debitos <cuentaNum>
+    And Pasar plata a otro Daviplata tope debitos <celularDestino>
     Then validar transaccion negada
     And obtener numero celular actual en redeban bolsillos <usuario>
     And consulté saldo tarjeta en redeban aumento de topes
@@ -317,11 +317,11 @@ Feature: Agrupación casos de PasarPlata
     And Validar igualdad saldos topes
 
     Examples: 
-      | tipoId | usuario    | contrasena | cuentaNum    | topeDebito | subtipo |
-      | "CC"   | "52546864" | "1234"     | "3227680733" | "3480000"  | "RA3"   |
+      | tipoId | usuario    | contrasena | celularDestino | topeDebito | subtipo |
+      | "CC"   | "10050095" | "2589"     | "3227680044"   | "3480000"  | "RA3"   |
 
   @CP02368M
-  Scenario Outline: CP02368M_SYS_Validar topes de pasar plata de monedero a monedero por subtipo D11 con origenten en tope de debitos desde Home de daviplata
+  Scenario Outline: CP02368M_SYS_Validar topes de pasar plata de monedero a monedero por subtipo D11 con origen en tope de debitos desde Home de daviplata
     Given obtener numero celular actual en redeban aumento de topes <usuario>
     And consulté saldo tarjeta en redeban aumento de topes
     And Validar en redeban subtipo topes <usuario> <subtipo>
@@ -330,7 +330,7 @@ Feature: Agrupación casos de PasarPlata
     And ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     And Validé saldos iniciales del daviplata
     When seleccionar pasar plata Home
-    And Pasar plata a otro Daviplata tope debitos <cuentaNum>
+    And Pasar plata a otro Daviplata tope debitos <celularDestino>
     Then validar transaccion negada
     And obtener numero celular actual en redeban bolsillos <usuario>
     And consulté saldo tarjeta en redeban aumento de topes
@@ -338,11 +338,11 @@ Feature: Agrupación casos de PasarPlata
     And Validar igualdad saldos topes
 
     Examples: 
-      | tipoId | usuario    | contrasena | cuentaNum    | topeDebito | subtipo |
-      | "CC"   | "10007749" | "1234"     | "3227680733" | "14844200" | "D11"   |
+      | tipoId | usuario    | contrasena | celularDestino | topeDebito | subtipo |
+      | "CC"   | "10050096" | "2589"     | "3227680044"   | "14844200" | "D11"   |
 
   @CP02369M
-  Scenario Outline: CP02369M_SYS_Validar topes de pasar plata de monedero a monedero por subtipo M35 con origenten en tope de debitos desde Home de daviplata
+  Scenario Outline: CP02369M_SYS_Validar topes de pasar plata de monedero a monedero por subtipo M35 con origen en tope de debitos desde Home de daviplata
     Given obtener numero celular actual en redeban aumento de topes <usuario>
     And consulté saldo tarjeta en redeban aumento de topes
     And Validar en redeban subtipo topes <usuario> <subtipo>
@@ -351,7 +351,7 @@ Feature: Agrupación casos de PasarPlata
     And ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     And Validé saldos iniciales del daviplata
     When seleccionar pasar plata Home
-    And Pasar plata a otro Daviplata tope debitos <cuentaNum>
+    And Pasar plata a otro Daviplata tope debitos <celularDestino>
     Then validar transaccion negada
     And obtener numero celular actual en redeban bolsillos <usuario>
     And consulté saldo tarjeta en redeban aumento de topes
@@ -359,11 +359,11 @@ Feature: Agrupación casos de PasarPlata
     And Validar igualdad saldos topes
 
     Examples: 
-      | tipoId | usuario    | contrasena | cuentaNum    | topeDebito | subtipo |
-      | "CC"   | "10050112" | "2589"     | "3227680734" | "1600000"  | "M35"   |
+      | tipoId | usuario    | contrasena | celularDestino | topeDebito | subtipo |
+      | "CC"   | "10050099" | "2589"     | "3227680044"   | "1160000"  | "M35"   |
 
   @CP02370M
-  Scenario Outline: CP02370M_SYS_Validar topes de pasar plata de monedero a monedero por subtipo MET con origenten en tope de debitos desde Home de daviplata
+  Scenario Outline: CP02370M_SYS_Validar topes de pasar plata de monedero a monedero por subtipo MET con origen en tope de debitos desde Home de daviplata
     Given obtener numero celular actual en redeban aumento de topes <usuario>
     And consulté saldo tarjeta en redeban aumento de topes
     And Validar en redeban subtipo topes <usuario> <subtipo>
@@ -372,7 +372,7 @@ Feature: Agrupación casos de PasarPlata
     And ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     And Validé saldos iniciales del daviplata
     When seleccionar pasar plata Home
-    And Pasar plata a otro Daviplata tope debitos <cuentaNum>
+    And Pasar plata a otro Daviplata tope debitos <celularDestino>
     Then validar transaccion negada
     And obtener numero celular actual en redeban bolsillos <usuario>
     And consulté saldo tarjeta en redeban aumento de topes
@@ -380,11 +380,11 @@ Feature: Agrupación casos de PasarPlata
     And Validar igualdad saldos topes
 
     Examples: 
-      | tipoId | usuario    | contrasena | cuentaNum    | topeDebito | subtipo |
-      | "CC"   | "35399173" | "1234"     | "3227680733" | "9280000"  | "MET"   |
+      | tipoId | usuario    | contrasena | celularDestino | topeDebito | subtipo |
+      | "CC"   | "10050100" | "2589"     | "3227680044"   | "9280000"  | "MET"   |
 
   @CP02371M
-  Scenario Outline: CP02371M_SYS_Validar topes de pasar plata de monedero a monedero por subtipo RA1 con origenten en tope de debitos desde Home de daviplata
+  Scenario Outline: CP02371M_SYS_Validar topes de pasar plata de monedero a monedero por subtipo RA1 con origen en tope de debitos desde Home de daviplata
     Given obtener numero celular actual en redeban aumento de topes <usuario>
     And consulté saldo tarjeta en redeban aumento de topes
     And Validar en redeban subtipo topes <usuario> <subtipo>
@@ -393,7 +393,7 @@ Feature: Agrupación casos de PasarPlata
     And ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     And Validé saldos iniciales del daviplata
     When seleccionar pasar plata Home
-    And Pasar plata a otro Daviplata tope debitos <cuentaNum>
+    And Pasar plata a otro Daviplata tope debitos <celularDestino>
     Then validar transaccion negada
     And obtener numero celular actual en redeban bolsillos <usuario>
     And consulté saldo tarjeta en redeban aumento de topes
@@ -401,8 +401,8 @@ Feature: Agrupación casos de PasarPlata
     And Validar igualdad saldos topes
 
     Examples: 
-      | tipoId | usuario    | contrasena | cuentaNum    | topeDebito | subtipo |
-      | "CC"   | "10007760" | "1234"     | "3227680733" | "14844200" | "RA1"   |
+      | tipoId | usuario    | contrasena | celularDestino | topeDebito | subtipo |
+      | "CC"   | "10050102" | "2589"     | "3227680044"   | "14844200" | "RA1"   |
 
   @CP02372M
   Scenario Outline: CP02372M_SYS_Validar topes de pasar plata de monedero a monedero por subtipo RAP con origenten en tope de debitos desde Home de daviplata
@@ -414,7 +414,7 @@ Feature: Agrupación casos de PasarPlata
     And ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     And Validé saldos iniciales del daviplata
     When seleccionar pasar plata Home
-    And Pasar plata a otro Daviplata tope debitos <cuentaNum>
+    And Pasar plata a otro Daviplata tope debitos <celularDestino>
     Then validar transaccion negada
     And obtener numero celular actual en redeban bolsillos <usuario>
     And consulté saldo tarjeta en redeban aumento de topes
@@ -422,8 +422,8 @@ Feature: Agrupación casos de PasarPlata
     And Validar igualdad saldos topes
 
     Examples: 
-      | tipoId | usuario    | contrasena | cuentaNum    | topeDebito | subtipo |
-      | "CC"   | "52546863" | "1234"     | "3227680733" | "9280000"  | "RAP"   |
+      | tipoId | usuario    | contrasena | celularDestino | topeDebito | subtipo |
+      | "CC"   | "10050104" | "2589"     | "3227680044"   | "9280000"  | "RAP"   |
 
   @CP02373M @PasarPLata376
   Scenario Outline: CP02373M_SYS_Validar topes de pasar plata de monedero a monedero por subtipo BMO con destino en tope de creditos desde Home de daviplata
@@ -437,7 +437,7 @@ Feature: Agrupación casos de PasarPlata
     And ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     And Validé saldos iniciales del daviplata
     When seleccionar pasar plata Home
-    And pasar plata a otro Daviplata <celular>
+    And pasar plata a otro Daviplata <celularDestino>
     Then validar transaccion negada
     And obtener numero celular actual en redeban aumento de topes <usuario>
     And Consulté saldo disponible en redeban
@@ -445,8 +445,8 @@ Feature: Agrupación casos de PasarPlata
     And Validar igualdad saldos
 
     Examples: 
-      | tipoId | usuario      | contrasena | celular      | usuarioDestino | subtipo | topeCredito |
-      | "CC"   | "1020770043" | "1342"     | "3142149029" | "80418029"     | "BMO"   | "8927726"   |
+      | tipoId | usuario      | contrasena | celularDestino | usuarioDestino | subtipo | topeCredito |
+      | "CC"   | "1020770010" | "1234"     | "3221005082"   | "10050099"     | "BMO"   | "1160000"   |
 
   @CP02374M @PasarPLata1234567
   Scenario Outline: CP02374M_SYS_Validar topes de pasar plata de monedero a monedero por subtipo RA3 con destino en tope de creditos desde Home de daviplata
@@ -460,7 +460,7 @@ Feature: Agrupación casos de PasarPlata
     And ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     And Validé saldos iniciales del daviplata
     When seleccionar pasar plata Home
-    And pasar plata a otro Daviplata <celular>
+    And pasar plata a otro Daviplata <celularDestino>
     Then validar transaccion negada
     And obtener numero celular actual en redeban aumento de topes <usuario>
     And Consulté saldo disponible en redeban
@@ -468,8 +468,8 @@ Feature: Agrupación casos de PasarPlata
     And Validar igualdad saldos
 
     Examples: 
-      | tipoId | usuario      | contrasena | celular      | usuarioDestino | subtipo | topeCredito |
-      | "CC"   | "1020770043" | "1342"     | "3003085537" | "52546864"     | "RA3"   | "1160000"   |
+      | tipoId | usuario    | contrasena | celularDestino | usuarioDestino | subtipo | topeCredito |
+      | "CC"   | "10050094" | "2589"     | "3221005078"   | "10050095"     | "RA3"   | "3480000"   |
 
   @CP02375M @PasarPLata12
   Scenario Outline: CP02375M_SYS_Validar topes de pasar plata de monedero a monedero por subtipo D11 con destino en tope de creditos desde Home de daviplata
@@ -483,7 +483,7 @@ Feature: Agrupación casos de PasarPlata
     And ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     And Validé saldos iniciales del daviplata
     When seleccionar pasar plata Home
-    And pasar plata a otro Daviplata <celular>
+    And pasar plata a otro Daviplata <celularDestino>
     Then validar transaccion negada
     And obtener numero celular actual en redeban aumento de topes <usuario>
     And Consulté saldo disponible en redeban
@@ -491,8 +491,8 @@ Feature: Agrupación casos de PasarPlata
     And Validar igualdad saldos
 
     Examples: 
-      | tipoId | usuario      | contrasena | celular      | usuarioDestino | subtipo | topeCredito |
-      | "CC"   | "1020770043" | "1342"     | "3002010756" | "10007756"     | "D11"   | "1160000"   |
+      | tipoId | usuario    | contrasena | celularDestino | usuarioDestino | subtipo | topeCredito |
+      | "CC"   | "10050097" | "2589"     | "3221005078"   | "10050095"     | "D11"   | "3480000"   |
 
   @CP02376M
   Scenario Outline: CP02376M_SYS_Validar topes de pasar plata de monedero a monedero por subtipo M35 con destino en tope de creditos desde Home de daviplata
@@ -506,7 +506,7 @@ Feature: Agrupación casos de PasarPlata
     And ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     And Validé saldos iniciales del daviplata
     When seleccionar pasar plata Home
-    And pasar plata a otro Daviplata <celular>
+    And pasar plata a otro Daviplata <celularDestino>
     Then validar transaccion negada
     And obtener numero celular actual en redeban aumento de topes <usuario>
     And Consulté saldo disponible en redeban
@@ -514,8 +514,8 @@ Feature: Agrupación casos de PasarPlata
     And Validar igualdad saldos
 
     Examples: 
-      | tipoId | usuario    | contrasena | celular      | usuarioDestino | subtipo | topeCredito |
-      | "CC"   | "10050098" | "2589"     | "3221005082" | "10050099"     | "M35"   | "2000000"   |
+      | tipoId | usuario    | contrasena | celularDestino | usuarioDestino | subtipo | topeCredito |
+      | "CC"   | "10050098" | "2589"     | "3221005078"   | "10050095"     | "M35"   | "3480000"   |
 
   @CP02377M @PasarPLata12
   Scenario Outline: CP02377M_SYS_Validar topes de pasar plata de monedero a monedero por subtipo MET con destino en tope de creditos desde Home de daviplata
@@ -529,7 +529,7 @@ Feature: Agrupación casos de PasarPlata
     And ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     And Validé saldos iniciales del daviplata
     When seleccionar pasar plata Home
-    And pasar plata a otro Daviplata <celular>
+    And pasar plata a otro Daviplata <celularDestino>
     Then validar transaccion negada
     And obtener numero celular actual en redeban aumento de topes <usuario>
     And Consulté saldo disponible en redeban
@@ -537,8 +537,8 @@ Feature: Agrupación casos de PasarPlata
     And Validar igualdad saldos
 
     Examples: 
-      | tipoId | usuario      | contrasena | celular      | usuarioDestino | subtipo | topeCredito |
-      | "CC"   | "1020770043" | "1342"     | "3002009173" | "35399173"     | "MET"   | "1160000"   |
+      | tipoId | usuario    | contrasena | celularDestino | usuarioDestino | subtipo | topeCredito |
+      | "CC"   | "10050101" | "2589"     | "3221005078"   | "10050095"     | "MET"   | "3480000"   |
 
   @CP02378M @PasarPLata12
   Scenario Outline: CP02378M_SYS_Validar topes de pasar plata de monedero a monedero por subtipo RA1 con destino en tope de creditos desde Home de daviplata
@@ -552,7 +552,7 @@ Feature: Agrupación casos de PasarPlata
     And ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     And Validé saldos iniciales del daviplata
     When seleccionar pasar plata Home
-    And pasar plata a otro Daviplata <celular>
+    And pasar plata a otro Daviplata <celularDestino>
     Then validar transaccion negada
     And obtener numero celular actual en redeban aumento de topes <usuario>
     And Consulté saldo disponible en redeban
@@ -560,8 +560,8 @@ Feature: Agrupación casos de PasarPlata
     And Validar igualdad saldos
 
     Examples: 
-      | tipoId | usuario      | contrasena | celular      | usuarioDestino | subtipo | topeCredito |
-      | "CC"   | "1020770043" | "1342"     | "3002013115" | "10007760"     | "RA1"   | "1160000"   |
+      | tipoId | usuario    | contrasena | celularDestino | usuarioDestino | subtipo | topeCredito |
+      | "CC"   | "10050103" | "2589"     | "3221005078"   | "10050095"     | "RA1"   | "3480000"   |
 
   @CP02379M
   Scenario Outline: CP02379M_SYS_Validar topes de pasar plata de monedero a monedero por subtipo RAP con destino en tope de creditos desde Home de daviplata
@@ -575,7 +575,7 @@ Feature: Agrupación casos de PasarPlata
     And ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     And Validé saldos iniciales del daviplata
     When seleccionar pasar plata Home
-    And pasar plata a otro Daviplata <celular>
+    And pasar plata a otro Daviplata <celularDestino>
     Then validar transaccion negada
     And obtener numero celular actual en redeban aumento de topes <usuario>
     And Consulté saldo disponible en redeban
@@ -583,8 +583,8 @@ Feature: Agrupación casos de PasarPlata
     And Validar igualdad saldos
 
     Examples: 
-      | tipoId | usuario      | contrasena | celular      | usuarioDestino | subtipo | topeCredito |
-      | "CC"   | "1020770043" | "1342"     | "3003085536" | "52546863"     | "RAP"   | "1160000"   |
+      | tipoId | usuario    | contrasena | celularDestino | usuarioDestino | subtipo | topeCredito |
+      | "CC"   | "10050105" | "2589"     | "3221005078"   | "10050095"     | "RAP"   | "3480000"   |
 
   @CP50000M
   Scenario Outline: CP50000M_SYS_Validar el boton volver en el flujo pasar plata a otro Daviplata.
@@ -595,55 +595,3 @@ Feature: Agrupación casos de PasarPlata
     Examples: 
       | tipoId | usuario    | contrasena | cuentaNum    |
       | "CC"   | "10050038" | "2589"     | "3227680744" |
-
-  @CP00228M
-  Scenario Outline: CP00228M_SYS_Validar proceso de pasar plata a otro daviplata no existente y registrarlo
-    Given obtener numero celular actual en redeban bolsillos <usuario>
-    And Consulté saldo disponible en redeban
-    And logout redeban al finalizar consulta
-    And ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
-    And Validé saldos iniciales del daviplata
-    When seleccionar pasar plata Home
-    And pasar plata a otro Daviplata <cuentaNum>
-    And Valido presencia de PopUp invita Amigos
-    And Salir de la app
-    And Realizo registro <tipoId> <nuevoUsuario>
-    And Acepto autorizacion de regitro
-    When completo formulario mis datos <nombre> <dia> <mes> <año> <diaExpedicion> <mesExpedicion> <anioExpedicion> <lugar> <cuentaNum> <correo>
-    And ingreso otp
-    And ingreso contrasena <contrasena>
-    Then validar registro completo
-    And Valido saldo inicial usuario recien registrado
-    Given obtener numero celular actual en redeban bolsillos <usuario>
-    And Consulté saldo disponible en redeban
-    And Validar en redeban la transansaccion<nuevoUsuario>
-    And logout redeban al finalizar consulta
-
-    Examples: 
-      | tipoId | usuario    | contrasena | cuentaNum    | nuevoUsuario | nombre			  	   | dia | mes      | año    | diaExpedicion | mesExpedicion | anioExpedicion | lugar        | correo          | 
-      | "CC"   | "10050112" | "2589"     | "3126258210" | "1035431836" | "Alejandro Ríos"  | "9" | "Agosto" | "1994" | "1"           | "Agosto"      | "2012"         | "Copacabana" | "xxx@gmail.com" |
-      
-  @CP031105M @Passed
-  Scenario Outline: CP031105M_SYS_Validaciones movimientos en pasar plata del dia actual y anterior
-    Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
-    When seleccionar pasar plata Home
-    And pasar plata a otro Daviplata <cuentaNum>
-    And Salir de la app 
-    Given ingreso usuario y contrasena <tipoId> <usuarioDestino> <contrasenaDestino>
-    And Entro al modulo de movimientos
-    And Valido enmascaramiento del numero de transaccion
-   	Then Valido transaccion fecha actual y anterior 
-    Then Valido nombre y numero de la transaccion en los movimientos
-
-    Examples: 
-      | tipoId | usuario    | contrasena  | cuentaNum    | tipoId | usuarioDestino    | contrasenaDestino |  
-      | "CC"   | "10050099" | "2589"      | "3221005049" |  "CC"  | "10050066"        |  "2589"           |
-      
-  @CP031106M
-  Scenario Outline: CP031106M_SYS_Validaciones movimientos cuando no tiene movimientos
-    Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
-    And Validar aun no tiene movimientos home
-   
-    Examples: 
-      | tipoId | usuario    | contrasena |    
-      | "CC"   | "17130494" | "2580"     |	
