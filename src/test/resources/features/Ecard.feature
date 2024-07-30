@@ -12,7 +12,8 @@ Feature: Agrupacion de casos de ecard
       | tipoId | usuario    | contrasena |
       | "CC"   | "19758461" | "1234"     |
 
-  @CP0842M @PASSED
+  #Cantidad de casos adicionales que agrupa el modulo APAGADO_E-CARD_MENORES: 2
+  @CP0842M @APAGADO_E-CARD_MENORES
   Scenario Outline: CP0842M_SYS_Validar el proceso de recargar la tarjeta Virtual
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     When ingreso a tarjeta de credito
@@ -45,7 +46,8 @@ Feature: Agrupacion de casos de ecard
       | tipoId | usuario    | contrasena |
       | "CC"   | "10050066" | "2589"     |
 
-  @CP1164M
+  #Cantidad de casos adicionales que agrupa el modulo APAGADO_E-CARD_MENORES: 1
+  @CP1164M @APAGADO_E-CARD_MENORES
   Scenario Outline: CP1164M_SYS_Validar el proceso de ver datos de tarjeta virtual
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     When ingreso a tarjeta de credito
@@ -78,9 +80,9 @@ Feature: Agrupacion de casos de ecard
     Then Validar mensaje de topes en tarjeta virtual
 
     Examples: 
-      | tipoId | usuario    | contrasena | monto |
+      | tipoId | usuario    | contrasena | monto   |
       | "CC"   | "19758461" | "1234"     | "10000" |
-      
+
   # No permite la consulta de la web notificaciones por falta de permisos de la rede banco en la macbook
   @CP0870M
   Scenario Outline: CP0870M_SYS_Validar que se genere el CVV de la eCard,  dando clic al logo de la tarjeta
@@ -103,7 +105,7 @@ Feature: Agrupacion de casos de ecard
     Examples: 
       | tipoId | usuario    | contrasena |
       | "CC"   | "19758461" | "1234"     |
-      
+
   # No permite la consulta de la web notificaciones por falta de permisos de la rede banco en la macbook
   @CP0890M
   Scenario Outline: CP0890M_SYS_Validar que se genere el CVV de la eCard, dando clic al botón de ver datos
@@ -135,7 +137,7 @@ Feature: Agrupacion de casos de ecard
     Then Validar mensaje de topes en tarjeta virtual
 
     Examples: 
-      | tipoId | usuario    | contrasena | monto |
+      | tipoId | usuario    | contrasena | monto   |
       | "CC"   | "19758461" | "1234"     | "10000" |
 
   @CP1071M

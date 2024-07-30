@@ -2,7 +2,8 @@
 @AumentoDeTopes
 Feature: casos de aumento de topes
 
-  @CP03200M @AumentoDeTopes
+	#Cantidad de casos adicionales que agrupa el modulo BITACORAS_5.37: 2
+ 	@CP03200M @BITACORAS_5.37
   Scenario Outline: CP03200M_SYS_validar proceso de aumento de topes desde el home de daviplata
     Given obtener numero celular actual en redeban aumento de topes <usuario>
     And consulté saldo tarjeta en redeban aumento de topes

@@ -29,7 +29,7 @@ public class ComprobanteQrPageObjects extends PageObject {
 	private String btnComprar = "//*[@name='Comprar']";
 	private String btnVender = "//*[@name='Vender']";
 	private String btnConfirmarComprobante = "//*[@name='Confirmar Comprobante']";
-	public static final String BOTON_QR_PUBLIC_HOME = "//XCUIElementTypeButton[@name='Codigo QR'] | //XCUIElementTypeButton[contains(@label, 'QR')] | //XCUIElementTypeOther[@name='btn-custom-1'] | //XCUIElementTypeOther[@label= 'Leer código QR botón']";
+	public static final String BOTON_QR_PUBLIC_HOME = "//XCUIElementTypeButton[@name='Codigo QR'] | //XCUIElementTypeButton[contains(@label, 'QR')] | //XCUIElementTypeOther[@name='btn-custom-1'] | //XCUIElementTypeOther[@label= 'Leer código QR botón'] | //XCUIElementTypeOther[@label= 'Código qr botón']";
 	public static final String TEXTO_CUANTO_DEBO = "//XCUIElementTypeStaticText[contains(@name, 'Para comprar, ubique el código QR')]";
 			
 	public void validarBotonQr() {

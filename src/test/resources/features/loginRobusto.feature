@@ -29,6 +29,18 @@ Feature: Login Robusto
       | tipoId                           | usuario    | contrasena |
       | "Selección Cédula de Ciudadanía" | "10333041" | "2580"     |
        	
+       	
+  @CP020842M @David
+  Scenario Outline: CP020842M_SYS_Validar Login y version
+    Given ingreso al aplicativo prueba
+    And verifico la version prueba
+    When ingreso las credenciales prueba <tipoId> <usuario> <contrasena>
+    Then valido el ingreso prueba
+
+    Examples: 
+      | tipoId                           | usuario    | contrasena |
+      | "Selección Cédula de Ciudadanía" | "10333041" | "2580"     |
+       	
 	@CP0732M @PASSED
 	Scenario Outline: CP0732M_SYS_Validar productos en home daviplata
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>

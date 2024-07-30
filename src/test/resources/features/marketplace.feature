@@ -171,7 +171,7 @@ Feature: Set PruebasMarketplace
     And logout redeban al finalizar consulta
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     And Validé saldos iniciales del daviplata GMF
-    When ingreso a tienda virtual
+    When ingreso a tienda virtual home
     And dar click btn <categoria>
     Then completo flujo comprar vestuario
     And obtener numero celular actual en redeban bolsillos <usuario>
@@ -190,7 +190,7 @@ Feature: Set PruebasMarketplace
     And consultar saldo tarjeta en redeban marketplace
     And logout redeban al finalizar consulta
     And ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
-    When ingreso a tienda virtual
+    When ingreso a tienda virtual home
     And dar click btn <categoria>
     Then completo flujo comprar cine
     And obtener numero celular actual en redeban marketplace <usuario>

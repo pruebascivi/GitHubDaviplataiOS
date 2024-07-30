@@ -1,7 +1,7 @@
 @PasarPLata
 Feature: Agrupación casos de PasarPlata
 
-  @CP02289M @PASSED
+  @CP02289M
   Scenario Outline: CP02289M_SYS_Validar proceso de pasar plata del bolsillo al monedero por valor mayor al que tiene el bolsillo
     Given obtener numero celular actual en redeban bolsillos <usuario>
     And consultar saldo tarjeta en redeban bolsillos
@@ -48,7 +48,8 @@ Feature: Agrupación casos de PasarPlata
       | tipoId | usuario    | contrasena | celular      | topeDebito |
       | "CC"   | "10050102" | "2589"     | "3227680744" | "14844200" |
 
-  @CP02301M @Passed
+  #Cantidad de casos adicionales que agrupa el modulo Barra_saldo_disponible_(iOS-Android): 2
+  @CP02301M @Barra_saldo_disponible_(iOS-Android)
   Scenario Outline: CP02301M_SYS_Validar proceso de pasar plata a otro daviplata con cliente CC GMF mostrando descuento
     Given obtener numero celular actual en redeban bolsillos <usuario>
     And Consulté saldo disponible en redeban GMF
@@ -102,7 +103,7 @@ Feature: Agrupación casos de PasarPlata
       | tipoId | usuario    | contrasena | numCelular   |
       | "CC"   | "10050040" | "2580"     | "3227680744" |
 
-  @CP002350M @passed
+  @CP002350M 
   Scenario Outline: CP002350M_SYS_Validar proceso de pasar plata a otro daviplata desde el Home de daviplata
     Given obtener numero celular actual en redeban bolsillos <usuario>
     And Consulté saldo disponible en redeban
@@ -122,7 +123,7 @@ Feature: Agrupación casos de PasarPlata
       | tipoId | usuario    | contrasena | cuentaNum    |
       | "CC"   | "10050099" | "2589"     | "3227680733" |
 
-  @CP02380M @PASSED
+  @CP02380M
   Scenario Outline: CP02380M_SYS_Realizar un pasar plata a otro Daviplata exitoso añadiendo cuenta a favoritos
     Given obtener numero celular actual en redeban bolsillos <usuario>
     And Consulté saldo disponible en redeban
@@ -425,7 +426,7 @@ Feature: Agrupación casos de PasarPlata
       | tipoId | usuario    | contrasena | celularDestino | topeDebito | subtipo |
       | "CC"   | "10050104" | "2589"     | "3227680044"   | "9280000"  | "RAP"   |
 
-  @CP02373M @PasarPLata376
+  @CP02373M
   Scenario Outline: CP02373M_SYS_Validar topes de pasar plata de monedero a monedero por subtipo BMO con destino en tope de creditos desde Home de daviplata
     Given obtener numero celular actual en redeban aumento de topes <usuario>
     And Obtener numero celular actual en redeban aumento de topes Destino <usuarioDestino>
@@ -448,7 +449,7 @@ Feature: Agrupación casos de PasarPlata
       | tipoId | usuario      | contrasena | celularDestino | usuarioDestino | subtipo | topeCredito |
       | "CC"   | "1020770010" | "1234"     | "3221005082"   | "10050099"     | "BMO"   | "1160000"   |
 
-  @CP02374M @PasarPLata1234567
+  @CP02374M
   Scenario Outline: CP02374M_SYS_Validar topes de pasar plata de monedero a monedero por subtipo RA3 con destino en tope de creditos desde Home de daviplata
     Given obtener numero celular actual en redeban aumento de topes <usuario>
     And Obtener numero celular actual en redeban aumento de topes Destino <usuarioDestino>
@@ -471,7 +472,7 @@ Feature: Agrupación casos de PasarPlata
       | tipoId | usuario    | contrasena | celularDestino | usuarioDestino | subtipo | topeCredito |
       | "CC"   | "10050094" | "2589"     | "3221005078"   | "10050095"     | "RA3"   | "3480000"   |
 
-  @CP02375M @PasarPLata12
+  @CP02375M
   Scenario Outline: CP02375M_SYS_Validar topes de pasar plata de monedero a monedero por subtipo D11 con destino en tope de creditos desde Home de daviplata
     Given obtener numero celular actual en redeban aumento de topes <usuario>
     And Obtener numero celular actual en redeban aumento de topes Destino <usuarioDestino>
@@ -517,7 +518,7 @@ Feature: Agrupación casos de PasarPlata
       | tipoId | usuario    | contrasena | celularDestino | usuarioDestino | subtipo | topeCredito |
       | "CC"   | "10050098" | "2589"     | "3221005078"   | "10050095"     | "M35"   | "3480000"   |
 
-  @CP02377M @PasarPLata12
+  @CP02377M
   Scenario Outline: CP02377M_SYS_Validar topes de pasar plata de monedero a monedero por subtipo MET con destino en tope de creditos desde Home de daviplata
     Given obtener numero celular actual en redeban aumento de topes <usuario>
     And Obtener numero celular actual en redeban aumento de topes Destino <usuarioDestino>
@@ -540,7 +541,7 @@ Feature: Agrupación casos de PasarPlata
       | tipoId | usuario    | contrasena | celularDestino | usuarioDestino | subtipo | topeCredito |
       | "CC"   | "10050101" | "2589"     | "3221005078"   | "10050095"     | "MET"   | "3480000"   |
 
-  @CP02378M @PasarPLata12
+  @CP02378M
   Scenario Outline: CP02378M_SYS_Validar topes de pasar plata de monedero a monedero por subtipo RA1 con destino en tope de creditos desde Home de daviplata
     Given obtener numero celular actual en redeban aumento de topes <usuario>
     And Obtener numero celular actual en redeban aumento de topes Destino <usuarioDestino>

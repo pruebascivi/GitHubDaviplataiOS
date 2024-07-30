@@ -677,8 +677,8 @@ public class Utilidades {
 			int endX = (int) (dimension.width * 0.5);
 			int endY = (int) (dimension.height * 0.6);
 
-			TouchAction touchAction = new TouchAction(Hooks.getDriver());
-			touchAction.press(PointOption.point(initX, initY)).waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
+			new TouchAction(Hooks.getDriver()).press(PointOption.point(initX, initY))
+					.waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
 					.moveTo(PointOption.point(endX, endY)).release().perform();
         count++;
     	} while (count < repes);

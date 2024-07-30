@@ -28,6 +28,11 @@ public class MarketPlaceDefinitions {
 		stepsMarket.btnMarketPlace();
 	}
 	
+	@When("^ingreso a tienda virtual home$")
+	public void ingresoATiendaVirtualHome() throws Exception {
+		stepsMarket.ingresarATiendaVirtual();
+	}
+	
 	@When("^ingreso al boton movilidad$")
 	public void ingresoAlBotonMovilidad() throws Exception {
 		stepsMarket.validarBtnMovilidad();

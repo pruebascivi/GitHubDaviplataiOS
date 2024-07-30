@@ -78,7 +78,7 @@
             <a href="576946480b52ad056d6f5bddf874399c83582ecf90963cc074a14c70580e7d9f.html"><i class="fa fa-comments-o"></i> Features</a>
         </li>
     </ul>
-    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 29-04-2024 17:07</span>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 26-07-2024 09:16</span>
     <br style="clear:left"/>
 </div>
     <div class="clr"></div>
@@ -125,9 +125,9 @@
                 <table class="outcome-header">
                     <tr>
                         <td colspan="2" class="test-title-bar">
-                            <span class="outcome-icon"><i class='fa fa-check-square-o success-icon fa-2x' title='SUCCESS'></i></span>
+                            <span class="outcome-icon"><i class='fa fa-times-circle failure-icon fa-2x' title='FAILURE'></i></span>
                             <span class="test-case-title">
-                                    <span class="success-color">
+                                    <span class="failing-color">
                                     CP031002M_SYS_Validacion de registro en cedula de extranjeria exitoso y no exitoso
                                         <span class="related-issue-title"></span>
                                 </span>
@@ -175,18 +175,18 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="test-SUCCESS"><a href="#0">1</a></td>
-                            <td class="test-SUCCESS"><a href="#0">"CE"</a>
+                        <td class="test-FAILURE"><a href="#0">1</a></td>
+                            <td class="test-FAILURE"><a href="#0">"CE"</a>
                             </td>
-                            <td class="test-SUCCESS"><a href="#0">"999666336"</a>
+                            <td class="test-FAILURE"><a href="#0">"999466346"</a>
                             </td>
-                            <td class="test-SUCCESS"><a href="#0">"Andrea"</a>
+                            <td class="test-FAILURE"><a href="#0">"Andrea"</a>
                             </td>
-                            <td class="test-SUCCESS"><a href="#0">"3008964780"</a>
+                            <td class="test-FAILURE"><a href="#0">"3008964780"</a>
                             </td>
-                            <td class="test-SUCCESS"><a href="#0">"andri655@gmail.com"</a>
+                            <td class="test-FAILURE"><a href="#0">"andri655@gmail.com"</a>
                             </td>
-                            <td class="test-SUCCESS"><a href="#0">"3574"</a>
+                            <td class="test-FAILURE"><a href="#0">"3574"</a>
                             </td>
                     </tr>
                 </tbody>
@@ -209,12 +209,12 @@
                 <tr class="step-table-separator">
                     <td colspan="5"></td>
                 </tr>
-                <tr class="test-SUCCESS">
+                <tr class="test-FAILURE">
                     <td width="60" class="step-icon">
                         <a name="0"/>
                             <a href="javaScript:void(0)" onClick="toggleDiv('stepSection0')"
                                style="display:block">
-                                <i class="fa fa-plus-square-o imgstepSection0 success-icon"
+                                <i class="fa fa-plus-square-o imgstepSection0 failure-icon"
                                    style="margin-left: 20px; float:left;  padding-right:5px"></i>
                             </a>
                     </td>
@@ -223,14 +223,14 @@
                             <a href="javaScript:void(0)" onClick="toggleDiv('stepSection0')"
                                style="display:block;">
                             <span class="top-level-step">
-                                Example #1: {tipoId="CE", usuario="999666336", nombreUsuario="Andrea", numCelular="3008964780", correo="andri655@gmail.com", claveNueva="3574"}
+                                Example #1: {tipoId="CE", usuario="999466346", nombreUsuario="Andrea", numCelular="3008964780", correo="andri655@gmail.com", claveNueva="3574"}
                             </span>
                             </a>
 
                         </div>
                     </td>
-                    <td width="100"><span class="top-level-step">SUCCESS</span></td>
-                    <td width="100"><span class="top-level-step">153.79s</span></td>
+                    <td width="100"><span class="top-level-step">FAILURE</span></td>
+                    <td width="100"><span class="top-level-step">152.94s</span></td>
                 </tr>
                     <tr>
                     <td colspan="5">
@@ -251,25 +251,43 @@
                         </div>
                     </td>
                     <td width="100"><span class="nested-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-step">14.02s</span></td>
+                    <td width="100"><span class="nested-step">14.66s</span></td>
                 </tr>
                 <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
                         
                             <span style="margin-left: 60px; margin-right: 5px;"
-                                  class="nested-group-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                  class="nested-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
-                            <span class="nested-group-step">
+                            <span class="nested-step">
                                 Ingresar a la app
                             </span>
 
                         </div>
                     </td>
-                    <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">12.85s</span></td>
+                    <td width="100"><span class="nested-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-step">14.11s</span></td>
                 </tr>
+                <tr class="test-SUCCESS">
+                    <td width="60" class="step-icon">
+                        
+                            <span style="margin-left: 80px; margin-right: 5px;"
+                                  class="nested-group-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                    </td>
+                    <td>
+                        <div class="step-description">
+                            <span class="nested-group-step">
+                                Verificar version
+                            </span>
+
+                        </div>
+                    </td>
+                    <td width="100"><span class="nested-group-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-group-step">12.3s</span></td>
+                </tr>
+
 
                 <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
@@ -280,13 +298,13 @@
                     <td>
                         <div class="step-description">
                             <span class="nested-step">
-                                And Ingrese tipo de documento y usuario "CE""999666336"
+                                And Ingrese tipo de documento y usuario "CE""999466346"
                             </span>
 
                         </div>
                     </td>
                     <td width="100"><span class="nested-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-step">13.7s</span></td>
+                    <td width="100"><span class="nested-step">14.41s</span></td>
                 </tr>
                 <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
@@ -297,13 +315,13 @@
                     <td>
                         <div class="step-description">
                             <span class="nested-group-step">
-                                Ingresar tipo documento y usuario: CE, 999666336
+                                Ingresar tipo documento y usuario: CE, 999466346
                             </span>
 
                         </div>
                     </td>
                     <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">13.67s</span></td>
+                    <td width="100"><span class="nested-group-step">14.29s</span></td>
                 </tr>
 
                 <tr class="test-SUCCESS">
@@ -321,7 +339,7 @@
                         </div>
                     </td>
                     <td width="100"><span class="nested-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-step">1.81s</span></td>
+                    <td width="100"><span class="nested-step">2.53s</span></td>
                 </tr>
                 <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
@@ -338,25 +356,25 @@
                         </div>
                     </td>
                     <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">1.79s</span></td>
+                    <td width="100"><span class="nested-group-step">2.43s</span></td>
                 </tr>
 
-                <tr class="test-SUCCESS">
+                <tr class="test-FAILURE">
                     <td width="60" class="step-icon">
                         
                             <span style="margin-left: 40px; margin-right: 5px;"
-                                  class="nested-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                  class="nested-icon"><i class='fa fa-times-circle failure-icon ' title='FAILURE'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
                             <span class="nested-step">
-                                When Realizo proceso de registro "999666336" "Andrea" "3008964780" "andri655@gmail.com" "3574"
+                                When Realizo proceso de registro "999466346" "Andrea" "3008964780" "andri655@gmail.com" "3574"
                             </span>
 
                         </div>
                     </td>
-                    <td width="100"><span class="nested-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-step">103.29s</span></td>
+                    <td width="100"><span class="nested-step">FAILURE</span></td>
+                    <td width="100"><span class="nested-step">112.4s</span></td>
                 </tr>
                 <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
@@ -367,19 +385,19 @@
                     <td>
                         <div class="step-description">
                             <span class="nested-group-step">
-                                Realizar registro cedula extranjeria: 999666336, Andrea, 3008964780, andri655@gmail.com
+                                Realizar registro cedula extranjeria: 999466346, Andrea, 3008964780, andri655@gmail.com
                             </span>
 
                         </div>
                     </td>
                     <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">67.04s</span></td>
+                    <td width="100"><span class="nested-group-step">90.17s</span></td>
                 </tr>
-                <tr class="test-SUCCESS">
+                <tr class="test-FAILURE">
                     <td width="60" class="step-icon">
                         
                             <span style="margin-left: 60px; margin-right: 5px;"
-                                  class="nested-group-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                  class="nested-group-icon"><i class='fa fa-times-circle failure-icon ' title='FAILURE'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
@@ -389,87 +407,99 @@
 
                         </div>
                     </td>
-                    <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">6.85s</span></td>
+                    <td width="100"><span class="nested-group-step">FAILURE</span></td>
+                    <td width="100"><span class="nested-group-step">22.22s</span></td>
                 </tr>
-                <tr class="test-SUCCESS">
-                    <td width="60" class="step-icon">
-                        
-                            <span style="margin-left: 60px; margin-right: 5px;"
-                                  class="nested-group-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
-                    </td>
-                    <td>
-                        <div class="step-description">
-                            <span class="nested-group-step">
-                                Aceptar terminos condiciones registro cedula extranjeria
-                            </span>
+                    <tr class="test-FAILURE">
+                        <td width="40">&nbsp</td>
+                        <td width="%" colspan="4" class="error-message-cell">
+                            <div class="error-message ellipsis"
+                                 title='Assertion error: No pudo interactuar con el elemento: //XCUIElementTypeStaticText[contains(@name, &#39;Le hemos enviado un c&oacute;digo de 6 d&iacute;gitos&#39;)]'>
+                                <pre>Assertion error: No pudo interactuar con el elemento: //XCUIElementTypeStaticText[contains(@name, &#39;Le hemos enviado un c&oacute;digo de 6 d&iacute;gitos&#39;)]</pre>
+                            </div>
+                <div><!-- Stack trace -->
+                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                            data-target="#stacktraceModal-11">
+                        View details
+                    </button>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="stacktraceModal-11" tabindex="-1" role="dialog"
+                     aria-labelledby="stacktraceModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close"><span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="stacktraceModalLabel">
+                                    java.lang.AssertionError
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                    <h5>
+                                        <pre>No pudo interactuar con el elemento: //XCUIElementTypeStaticText[contains(@name, 'Le hemos enviado un código de 6 dígitos')]</pre>
+                                    </h5>
+                                    daviplata.nacional.iOS.utilidades.UtilidadesTCS.clicElement(UtilidadesTCS.java
+                                    :92) <br>
+                                    daviplata.nacional.iOS.steps.RegistroMayoresSteps.ingresoOtp(RegistroMayoresSteps.java
+                                    :308) <br>
+                                    daviplata.nacional.iOS.definitions.RegistroMayoresDefinitions.realizoProcesoDeRegistro(RegistroMayoresDefinitions.java
+                                    :156) <br>
+                                    cucumber.runner.Runner.runPickle(Runner.java
+                                    :80) <br>
+                                    daviplata.nacional.iOS.runners.RunnerPersonalizado.run(RunnerPersonalizado.java
+                                    :63) <br>
+                                    org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java
+                                    :93) <br>
+                                    org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java
+                                    :40) <br>
+                                    org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java
+                                    :529) <br>
+                                    org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java
+                                    :756) <br>
+                                    org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java
+                                    :452) <br>
+                                    org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java
+                                    :210) <br>
+                            </div>
 
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    Close
+                                </button>
+                            </div>
                         </div>
-                    </td>
-                    <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">17.99s</span></td>
-                </tr>
-                <tr class="test-SUCCESS">
-                    <td width="60" class="step-icon">
-                        
-                            <span style="margin-left: 60px; margin-right: 5px;"
-                                  class="nested-group-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
-                    </td>
-                    <td>
-                        <div class="step-description">
-                            <span class="nested-group-step">
-                                Crear clave registro registro cedula extranjeria: 3574
-                            </span>
+                    </div>
+                </div>
+                        </td>
+                    </tr>
 
-                        </div>
-                    </td>
-                    <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">11.4s</span></td>
-                </tr>
-
-                <tr class="test-SUCCESS">
+                <tr class="test-SKIPPED">
                     <td width="60" class="step-icon">
                         
                             <span style="margin-left: 40px; margin-right: 5px;"
-                                  class="nested-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                  class="nested-group-icon"><i class='fa fa-fast-forward skipped-icon ' title='SKIPPED'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
-                            <span class="nested-step">
+                            <span class="nested-group-step">
                                 Then Validar si el registro es exitoso o no
                             </span>
 
                         </div>
                     </td>
-                    <td width="100"><span class="nested-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-step">12.76s</span></td>
+                    <td width="100"><span class="nested-group-step">SKIPPED</span></td>
+                    <td width="100"><span class="nested-group-step">0s</span></td>
                 </tr>
-                <tr class="test-SUCCESS">
-                    <td width="60" class="step-icon">
-                        
-                            <span style="margin-left: 60px; margin-right: 5px;"
-                                  class="nested-group-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
-                    </td>
-                    <td>
-                        <div class="step-description">
-                            <span class="nested-group-step">
-                                Validar registro exitoso no exitoso
-                            </span>
-
-                        </div>
-                    </td>
-                    <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">12.75s</span></td>
-                </tr>
-
 
                     </table>
                     </td>
                     <tr>
-                <tr class="test-SUCCESS">
+                <tr class="test-FAILURE">
                     <td colspan="2"></td>
-                    <td width="100"><span class="top-level-step"><em>SUCCESS</em></span></td>
-                    <td width="100"><span class="top-level-step"><em>154.37s</em></span></td>
+                    <td width="100"><span class="top-level-step"><em>FAILURE</em></span></td>
+                    <td width="100"><span class="top-level-step"><em>153.54s</em></span></td>
                 </tr>
 
             </table>

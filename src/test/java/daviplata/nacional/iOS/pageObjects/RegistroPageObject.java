@@ -148,6 +148,7 @@ public class RegistroPageObject extends PageObject {
 	public static String CHECK_BOX_DATOS_PERSONALES = "(//XCUIElementTypeOther[4]/XCUIElementTypeButton)[1]";
 	public static String CHECK_BOX_REGLAMENTO_CONSULTA = "(//XCUIElementTypeOther[6]/XCUIElementTypeButton)[1]";
 	public static String BTN_ACEPTAR = "//XCUIElementTypeButton[@name='Done' or @name='Aceptar'] | //XCUIElementTypeStaticText[@name='Continuar'] | //XCUIElementTypeButton[@name='Continuar']";
+	public static final String CHECK_BOX_REGLAMENTO = "(//XCUIElementTypeOther[2]/XCUIElementTypeButton)[1] | //XCUIElementTypeButton[@name='ic ui checkbox empty 2@2x']";
 
 	
 	public void btnTomarFoto() {

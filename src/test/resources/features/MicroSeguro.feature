@@ -17,7 +17,7 @@ Feature: Set De Casos Microseguros
 
     Examples: 
       | tipoId | usuario    | contrasena | opcion | genero |
-      | "CC"   | "10050083" | "2589"     | "1"    | "M"    |
+      | "CC"   | "10050066" | "2589"     | "1"    | "M"    |
 
   @CP02131M @ya @passed 
   Scenario Outline: CP02131M_SYS_Validar proceso de compra microseguro de vida opción 2 desde el Home
@@ -34,8 +34,8 @@ Feature: Set De Casos Microseguros
     And Validar afectacion de saldos en redeban y daviplata
 
     Examples: 
-      | tipoId | usuario    | contrasena | opcion | genero |
-      | "CC"   | "10050074" | "2589"     | "2"    | "M"    |
+      | tipoId | usuario      | contrasena | opcion | genero |
+      | "CC"   | "10050066"   | "2589"     | "2"    | "M"    |
 
   @CP02140M @ya @passed
   Scenario Outline: CP02140M_SYS_Validar proceso de compra microseguro de vida opción 1 con usuario GMF desde el Home
@@ -54,8 +54,8 @@ Feature: Set De Casos Microseguros
     And Validar afectacion de saldos en redeban y daviplata GMF
 
     Examples: 
-      | tipoId | usuario    | contrasena | opcion | genero |
-      | "CC"   | "1000807506" | "2589"     | "1"    | "M"    |
+      | tipoId | usuario      | contrasena | opcion | genero |
+      | "CC"   | "10050022"   | "2589"     | "1"    | "M"    |
 
   @CP02141M @ya @passed
   Scenario Outline: CP02141M_SYS_Validar proceso de compra microseguro de vida opción 2 con usuario GMF desde el Home
@@ -92,8 +92,8 @@ Feature: Set De Casos Microseguros
     And Validar afectacion de saldos en redeban y daviplata
 
     Examples: 
-      | tipoId | usuario    | contrasena | opcion | genero |
-      | "CC"   | "10050098" | "2589"     | "1"    | "M"    |
+      | tipoId | usuario      | contrasena | opcion | genero |
+      | "CC"   | "10050022"   | "2589"     | "1"    | "M"    |
 
   @CP02160M @ya @passed
   Scenario Outline: CP02160M_SYS_Validar proceso de compra microseguro de vida ingresando una fecha de nacimiento que sea menor a 18 años desde el Home
@@ -105,7 +105,7 @@ Feature: Set De Casos Microseguros
 
     Examples: 
       | tipoId | usuario      | contrasena | opcion | genero |
-      | "CC"   | "1004473738" | "2580"     | "1"    | "M"    |
+      | "CC"   | "10050022"   | "2589"     | "1"    | "M"    |
 
   @CP02170M @ya @passed
   Scenario Outline: CP02170M_SYS_Validar proceso de compra microseguro de vida opción 1 generando mensaje de fondos insuficientes desde el Home

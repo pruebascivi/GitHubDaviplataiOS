@@ -1,7 +1,8 @@
 @registro
 Feature: Casos de registro
 
-  @CP1480M @registro12 @PASSED
+	#Cantidad de casos adicionales que agrupa el modulo BITACORAS_5.37: 9
+  @CP1480M @BITACORAS_5.37  
   Scenario Outline: CP1480M_SYS_Validar registro completo en la APP DaviPlata
     Given Realizo registro <tipoId> <usuario>
     And Acepte autorizaciones de regitro

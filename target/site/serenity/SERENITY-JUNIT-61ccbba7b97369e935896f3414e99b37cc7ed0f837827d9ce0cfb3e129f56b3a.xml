@@ -1,1 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="Pruebas en la funcionalidad de perfil negocio de la app Daviplata." skipped="0" tests="1" time="161.03" timestamp="2024-05-07 11:27:03"><testcase name="CP02705M_SYS_Validar funcionalidad cambio de perfiles"/></testsuite>
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="1" failures="0" name="Pruebas en la funcionalidad de perfil negocio de la app Daviplata." skipped="0" tests="1" time="166.87" timestamp="2024-07-29 05:24:16"><testcase name="CP02705M_SYS_Validar funcionalidad cambio de perfiles"><error type="java.lang.NullPointerException"/><system-err>null
+daviplata.nacional.iOS.pageObjects.negocioPageObjects.validarInicioSesionPersona(negocioPageObjects.java:1268)
+daviplata.nacional.iOS.steps.negocioSteps.ingresarAPerfilPersona(negocioSteps.java:1083)
+daviplata.nacional.iOS.definitions.negocioDefinitions.ingresoAPerfilPersonaParaValidarFuncionalidadDelBoton(negocioDefinitions.java:429)
+✽.Ingreso a perfil persona para validar funcionalidad del boton(src/test/resources/features/negocio.feature:343)
+</system-err></testcase></testsuite>

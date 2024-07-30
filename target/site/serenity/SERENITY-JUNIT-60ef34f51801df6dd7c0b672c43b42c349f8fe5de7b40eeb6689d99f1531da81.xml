@@ -1,1 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="Modulo Registro De Mayores" skipped="0" tests="1" time="154.37" timestamp="2024-04-29 05:07:19"><testcase name="CP031002M_SYS_Validacion de registro en cedula de extranjeria exitoso y no exitoso"/></testsuite>
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="1" name="Modulo Registro De Mayores" skipped="0" tests="1" time="153.54" timestamp="2024-07-26 09:16:08"><testcase name="CP031002M_SYS_Validacion de registro en cedula de extranjeria exitoso y no exitoso"><failure message="No pudo interactuar con el elemento: //XCUIElementTypeStaticText[contains(@name, 'Le hemos enviado un código de 6 dígitos')]" type="java.lang.AssertionError">No pudo interactuar con el elemento: //XCUIElementTypeStaticText[contains(@name, 'Le hemos enviado un código de 6 dígitos')]</failure><system-err>No pudo interactuar con el elemento: //XCUIElementTypeStaticText[contains(@name, 'Le hemos enviado un código de 6 dígitos')]
+daviplata.nacional.iOS.utilidades.UtilidadesTCS.clicElement(UtilidadesTCS.java:92)
+daviplata.nacional.iOS.steps.RegistroMayoresSteps.ingresoOtp(RegistroMayoresSteps.java:308)
+daviplata.nacional.iOS.definitions.RegistroMayoresDefinitions.realizoProcesoDeRegistro(RegistroMayoresDefinitions.java:156)
+✽.Realizo proceso de registro "999466346" "Andrea" "3008964780" "andri655@gmail.com" "3574"(src/test/resources/features/RegistroMayores.feature:53)
+</system-err></testcase></testsuite>

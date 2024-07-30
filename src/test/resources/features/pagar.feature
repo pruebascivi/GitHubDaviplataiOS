@@ -59,7 +59,7 @@ Feature: Pruebas modulo pagar
     And Validar afectacion de saldos en redeban y daviplata
 
     Examples: 
-      | tipoId | usuario   | contrasena | empresaServicio                | referencia | valorServicio |
+      | tipoId | usuario     | contrasena | empresaServicio                | referencia | valorServicio |
       | "CC"   | "100111518" | "2580"     | "BDI+DNR STRATUS2012 01017052" | "2656635"  | "34508"           |
 
   @CP0373M

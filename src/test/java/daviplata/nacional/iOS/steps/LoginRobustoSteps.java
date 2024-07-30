@@ -44,18 +44,18 @@ public class LoginRobustoSteps {
 	@Step
 	public void verificarVersion() {
 		
-		utilidadesTCS.clicElement("name", LoginRobustoPage.MENU_TRES_PUNTOS);
+		utilidadesTCS.clicElement("xpath", LoginRobustoPage.MENU_TRES_PUNTOS);
 		Utilidades.esperaMiliseg(800);
-		utilidadesTCS.clicElement("name", LoginRobustoPage.MENU_TRES_PUNTOS);
+		utilidadesTCS.clicElement("xpath", LoginRobustoPage.MENU_TRES_PUNTOS);
 
 		try {
 			
-			utilidadesTCS.clicElement("name", LoginRobustoPage.MENU_TRES_PUNTOS);
+			utilidadesTCS.clicElement("xpath", LoginRobustoPage.MENU_TRES_PUNTOS);
 			Utilidades.tomaEvidencia("Menu tres puntos");
 		} catch(Exception e) {
 			
 			System.out.println("No se pudo interactuar con el elemento debido a: " + e.getMessage().toString());
-			assert utilidadesTCS.validateElementVisibilityCatch("name", LoginRobustoPage.MENU_TRES_PUNTOS) : "No se pudo interactuar con el elemento." + LoginRobustoPage.MENU_TRES_PUNTOS;
+			assert utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.MENU_TRES_PUNTOS) : "No se pudo interactuar con el elemento." + LoginRobustoPage.MENU_TRES_PUNTOS;
 		}
 		try {
 			
@@ -84,13 +84,13 @@ public class LoginRobustoSteps {
 	public void validarOpcCambiarNum() {
 		try {
 			
-			utilidadesTCS.esperarElementVisibility("name", LoginRobustoPage.MENU_TRES_PUNTOS);
-			utilidadesTCS.clicElement("name", LoginRobustoPage.MENU_TRES_PUNTOS);
+			utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.MENU_TRES_PUNTOS);
+			utilidadesTCS.clicElement("xpath", LoginRobustoPage.MENU_TRES_PUNTOS);
 			Utilidades.esperaMiliseg(500);
 			
 		} catch(Exception e) {
 			System.out.println("No se pudo interactuar con el elemento debido a: " + e.getMessage().toString());
-			assert utilidadesTCS.validateElementVisibilityCatch("name", LoginRobustoPage.MENU_TRES_PUNTOS) : "No se pudo interactuar con el elemento." + LoginRobustoPage.MENU_TRES_PUNTOS;
+			assert utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.MENU_TRES_PUNTOS) : "No se pudo interactuar con el elemento." + LoginRobustoPage.MENU_TRES_PUNTOS;
 		}	
 		try {
 			
@@ -126,13 +126,13 @@ public class LoginRobustoSteps {
 	public void validarOpcionDesactivarHuellaFaceID() {
 		try {
 			
-			utilidadesTCS.esperarElementVisibility("name", LoginRobustoPage.MENU_TRES_PUNTOS);
-			utilidadesTCS.clicElement("name", LoginRobustoPage.MENU_TRES_PUNTOS);
+			utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.MENU_TRES_PUNTOS);
+			utilidadesTCS.clicElement("xpath", LoginRobustoPage.MENU_TRES_PUNTOS);
 			Utilidades.esperaMiliseg(500);
 			
 		} catch(Exception e) {
 			System.out.println("No se pudo interactuar con el elemento debido a: " + e.getMessage().toString());
-			assert utilidadesTCS.validateElementVisibilityCatch("name", LoginRobustoPage.MENU_TRES_PUNTOS) : "No se pudo interactuar con el elemento." + LoginRobustoPage.MENU_TRES_PUNTOS;
+			assert utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.MENU_TRES_PUNTOS) : "No se pudo interactuar con el elemento." + LoginRobustoPage.MENU_TRES_PUNTOS;
 		}
 		
 		boolean btnDesactivarHuellaFaceID = utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.DESACTIVAR_HUELLA_FACEID_BTN);
@@ -168,13 +168,13 @@ public class LoginRobustoSteps {
 			}
 			try {
 				
-				utilidadesTCS.esperarElementVisibility("name", LoginRobustoPage.MENU_TRES_PUNTOS);
-				utilidadesTCS.clicElement("name", LoginRobustoPage.MENU_TRES_PUNTOS);
+				utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.MENU_TRES_PUNTOS);
+				utilidadesTCS.clicElement("xpath", LoginRobustoPage.MENU_TRES_PUNTOS);
 				Utilidades.esperaMiliseg(500);
 				
 			} catch(Exception e) {
 				System.out.println("No se pudo interactuar con el elemento debido a: " + e.getMessage().toString());
-				assert utilidadesTCS.validateElementVisibilityCatch("name", LoginRobustoPage.MENU_TRES_PUNTOS) : "No se pudo interactuar con el elemento." + LoginRobustoPage.MENU_TRES_PUNTOS;
+				assert utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.MENU_TRES_PUNTOS) : "No se pudo interactuar con el elemento." + LoginRobustoPage.MENU_TRES_PUNTOS;
 			}	
 			try {
 				
@@ -218,7 +218,7 @@ public class LoginRobustoSteps {
 				
 			} catch(Exception e) {
 				System.out.println("No se pudo interactuar con el elemento debido a: " + e.getMessage().toString());
-				assert utilidadesTCS.validateElementVisibilityCatch("name", LoginRobustoPage.MENU_TRES_PUNTOS) : "No se pudo interactuar con el elemento." + LoginRobustoPage.MENU_TRES_PUNTOS;
+				assert utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.MENU_TRES_PUNTOS) : "No se pudo interactuar con el elemento." + LoginRobustoPage.MENU_TRES_PUNTOS;
 			}
 		}
 	}
@@ -227,13 +227,13 @@ public class LoginRobustoSteps {
 	public void verificarOpcDondeUsarDaviPlata() {
 		try {
 			
-			utilidadesTCS.esperarElementVisibility("name", LoginRobustoPage.MENU_TRES_PUNTOS);
-			utilidadesTCS.clicElement("name", LoginRobustoPage.MENU_TRES_PUNTOS);
+			utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.MENU_TRES_PUNTOS);
+			utilidadesTCS.clicElement("xpath", LoginRobustoPage.MENU_TRES_PUNTOS);
 			Utilidades.esperaMiliseg(500);
 			
 		} catch(Exception e) {
 			System.out.println("No se pudo interactuar con el elemento debido a: " + e.getMessage().toString());
-			assert utilidadesTCS.validateElementVisibilityCatch("name", LoginRobustoPage.MENU_TRES_PUNTOS) : "No se pudo interactuar con el elemento." + LoginRobustoPage.MENU_TRES_PUNTOS;
+			assert utilidadesTCS.validateElementVisibilityCatch("xpath", LoginRobustoPage.MENU_TRES_PUNTOS) : "No se pudo interactuar con el elemento." + LoginRobustoPage.MENU_TRES_PUNTOS;
 		}	
 		try {
 			

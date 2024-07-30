@@ -75,8 +75,8 @@ public class negocioPageObjects {
 	private String btnAceptarMonto = "//XCUIElementTypeButton[@name='Aceptar botón']";
 	private String validarTransaccionPerfilNegocio = "(//XCUIElementTypeStaticText[@name='Transacción exitosa'])";
 	private String txtAutorizadorAOtroDaviplata = "(//XCUIElementTypeStaticText)[10]";
-	private String txtAutorizadorSacarPlata = "(//XCUIElementTypeStaticText)[11]";
-	private String btnListaMovimientos = "//XCUIElementTypeTable/XCUIElementTypeCell[1]";
+	private String txtAutorizadorSacarPlata = "//XCUIElementTypeOther[@name='Número de autorización']/following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText";
+	private String btnListaMovimientos = "(//XCUIElementTypeStaticText[contains(@name, '-$')]/parent::XCUIElementTypeOther)[1]/preceding-sibling::XCUIElementTypeOther[1]";
 	private String btnMasServicios = "//XCUIElementTypeOther[@name='Más Servicios botón']";
 	private String btnVerMovimientosPerfilNegocio = "//XCUIElementTypeOther[@name='Ver movimientos de ventas botón']";
 	private String btnActualizarDatosPerfilNegocio = "//XCUIElementTypeOther[@name='Actualizar Datos Botón']";
@@ -85,7 +85,7 @@ public class negocioPageObjects {
 	private String btnGuardarCambiosPerfilNegocio = "(//XCUIElementTypeButton[@name='Guardar Cambios Botón']) | //XCUIElementTypeButton[@name='Guardar Cambios Botón']";
 	private String inputNombreNegocioPerfilNegocio = "(//XCUIElementTypeTextField[@name='Nombre del negocio'])";
 	private String inputDireccionNegocioPerfilNegocio = "(//XCUIElementTypeTextField[@name='Dirección del negocio'])";
-	private String btnDesplegableTipoViaPerfilNegocio = "//XCUIElementTypeOther[@name='Dirección del negocio']";
+	private String btnDesplegableTipoViaPerfilNegocio = "//XCUIElementTypeOther[@name='Dirección del negocio, Dirección del negocio']/following-sibling::XCUIElementTypeTextField | //XCUIElementTypeOther[contains(@name, 'Dirección del negocio')]/following-sibling::XCUIElementTypeTextField";
 	private String btnCalleTipoViaPerfilNegocio = "//XCUIElementTypeButton[@name='Calle']";
 	private String btnCarreraTipoViaPerfilNegocio = "//XCUIElementTypeButton[@name='Carrera']";
 	private String btnAvenidaTipoViaPerfilNegocio = "//XCUIElementTypeButton[@name='Avenida']";
@@ -122,7 +122,7 @@ public class negocioPageObjects {
 	private String inputUnidadesDisponiblesSinReferenciaCatalogoPerfilNegocio = "//XCUIElementTypeOther[@name='Su negocio DaviPlata']/XCUIElementTypeOther[12]";
 	private String inputValorProductoSinReferenciaCatalogoPerfilNegocio = "//XCUIElementTypeOther[@name='Su negocio DaviPlata']/XCUIElementTypeTextField[3]";
 	private String btnCheckEnvioPerfilNegocio = "(//*[@text='Seleccionar campo'])[1]";
-	private String catalogoCreadoPerfilNegocio = "(//XCUIElementTypeOther[@name='main']/XCUIElementTypeOther)[19]";
+	private String catalogoCreadoPerfilNegocio = "//XCUIElementTypeOther[@name='Nuevo catálogo botón']/following-sibling::XCUIElementTypeOther";
 	private String btnOpcionesCatalogoPerfilNegocio = "(//XCUIElementTypeSwitch[@name='Opciones catálogo Botón'])";
 	private String btnOpcionCompartirCatalogoPerfilNegocio = "(//XCUIElementTypeButton[@name='Compartir Catalogo Botón'])";
 	private String btnCompartirCategoria = "(//XCUIElementTypeButton[@name='Compartir'])[2]";
@@ -213,9 +213,9 @@ public class negocioPageObjects {
 	public static final String OPCION_CIUDAD = "(//XCUIElementTypeStaticText)[5]";
 	public static final String LISTA_DESPLEGABLE_NOMBRE_CALLE = "//XCUIElementTypeImage[@name='icono para selecionar']";
 	public static final String OPCION_NOMBRE_AVENIDA = "//XCUIElementTypeStaticText[@name='Avenida']";
-	public static final String CAMPO_PRIMER_NUMERO_DIRECCION = "//XCUIElementTypeOther[@name='main']/XCUIElementTypeTextField[1]";
-	public static final String CAMPO_SEGUNDO_NUMERO_DIRECCION = "//XCUIElementTypeOther[@name='main']/XCUIElementTypeTextField[2]";
-	public static final String CAMPO_TERCER_NUMERO_DIRECCION = "//XCUIElementTypeOther[@name='main']/XCUIElementTypeTextField[3]";
+	public static final String CAMPO_PRIMER_NUMERO_DIRECCION = "//XCUIElementTypeOther[@name='principal']/XCUIElementTypeTextField[1] | //XCUIElementTypeOther[@name='main']/XCUIElementTypeTextField[1]";
+	public static final String CAMPO_SEGUNDO_NUMERO_DIRECCION = "//XCUIElementTypeOther[@name='principal']/XCUIElementTypeTextField[2] | //XCUIElementTypeOther[@name='main']/XCUIElementTypeTextField[2]";
+	public static final String CAMPO_TERCER_NUMERO_DIRECCION = "//XCUIElementTypeOther[@name='principal']/XCUIElementTypeTextField[3] | //XCUIElementTypeOther[@name='main']/XCUIElementTypeTextField[3]";
 	public static final String BOTON_CREAR = "//XCUIElementTypeButton[@name='Crear']";
 	public static final String BOTON_ACEPTAR_POP_FALLA_CREACION_PUNTO_VENTA = "//XCUIElementTypeButton[contains(@name, 'Aceptar')]";
 	public static final String POP_FALLA_CREACION_PUNTO_VENTA = "//XCUIElementTypeButton[contains(@name, 'Falla')] | //XCUIElementTypeButton[contains(@name, 'Error')]";
@@ -223,8 +223,8 @@ public class negocioPageObjects {
 	public static final String INPUT_NOMBRE_VENDEDOR = "//XCUIElementTypeOther[@name='main']/XCUIElementTypeOther[2]/XCUIElementTypeTextField | //XCUIElementTypeTextField[contains(@value, 'Ingrese el nombre')]";
 	public static final String LISTA_DESPLEGABLE_TIPO_DOCUMENTO = "//XCUIElementTypeImage[contains(@name, 'para selecionar')]";
 	public static final String INPUT_NUMERO_DOCUMENTO = "//XCUIElementTypeOther[@name='main']/XCUIElementTypeOther[5]/XCUIElementTypeTextField | (//XCUIElementTypeTextField[contains(@value, 'Ingrese el número')])[1]";
-	public static final String INPUT_NUMERO_CELULAR = "//XCUIElementTypeOther[@name='main']/XCUIElementTypeOther[6]/XCUIElementTypeTextField | (//XCUIElementTypeTextField[contains(@value, 'Ingrese el número')])[2]";
-	public static final String CHECK_TYC = "//XCUIElementTypeOther[@name='main']/XCUIElementTypeOther[7]";
+	public static final String INPUT_NUMERO_CELULAR = "//XCUIElementTypeOther[@name='Número de celular']/following-sibling::XCUIElementTypeTextField";
+	public static final String CHECK_TYC = "//XCUIElementTypeStaticText[contains(@name, 'Declaro que cuento con la autorización')]/following-sibling::XCUIElementTypeOther";
 	public static final String POP_UP_EXITOSO = "";
 	public static final String BOTON_CONTINUAR = "";
 	public static final String PUNTO_VENTA = "//XCUIElementTypeOther[@name='main']/XCUIElementTypeOther[5] | (//XCUIElementTypeImage[@name='Icono ir '])[1]";
@@ -282,6 +282,8 @@ public class negocioPageObjects {
 	public static final String BTN_CONTINUAR_PRODUCTO_VENTA = "//XCUIElementTypeStaticText[@name='Continuar Botón']";	
 	public static final String NOMBRE_REFERENCIA_VENTA = "//XCUIElementTypeOther[@name='Su negocio DaviPlata']/XCUIElementTypeOther[13]";	
 	public static final String POPUP_CATALOGO_CREADO_EXITOSAMENTE = "//XCUIElementTypeStaticText[contains(@value, 'exitosamente')]";
+	public static final String BTN_PASAR_PLATA_MH = "//XCUIElementTypeOther[@name='Pasar Plata botón']";	
+	public static final String TXT_MEMORICE = "//XCUIElementTypeStaticText[contains(@name, 'Memorice')] | //XCUIElementTypeStaticText[contains(@label, 'Memorice')] | //XCUIElementTypeStaticText[contains(@value, 'Memorice')]";
 	
 	public String SaldoNegocio() {
 		try {
@@ -1217,16 +1219,6 @@ public class negocioPageObjects {
 		}
 	}
 	
-	public void validarInicioSesionANegocio() {
-        boolean lblIngresaPresente = utilidadesTCS.validateElementVisibilityCatch("xpath", BTN_MENU_DAVIPLATA);
-        if (lblIngresaPresente == true) {
-            System.out.println("Estoy en perfil persona mi DaviPlata");
-            utilidadesTCS.clicElement("xpath", LoginPageObjects.HOME_PERFIL_NEGOCIO);
-        } else {
-            System.out.println("Estoy en perfil Negocio");
-        }
-    }
-	
 	public boolean validarLblIngresaPresenteNegocio() {
         base.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         boolean aux = false;
@@ -1273,7 +1265,7 @@ public class negocioPageObjects {
         if (lblIngresaPresente) {
             System.out.println("...Estoy en perfil Persona...");
         } else {
-            utilidadesTCS.clicElementAction("xpath", this.BTN_MI_DAVIPLATA);
+            utilidadesTCS.clicElementAction("xpath", BTN_MI_DAVIPLATA);
         }
     }
 

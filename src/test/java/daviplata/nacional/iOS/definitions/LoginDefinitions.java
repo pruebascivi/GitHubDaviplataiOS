@@ -45,6 +45,30 @@ public class LoginDefinitions {
 		loginSteps.ingresarAApp(tipoDocumento, usuario, contrasena);
 	}
 	
+	//--------------------------------------
+	
+	@Given("^ingreso al aplicativo prueba")
+	public void ingresoAplicativoPrueba() {
+		loginSteps.ingresoAplicativoPrueba();
+	}
+	
+	@Given("^verifico la version prueba")
+	public void verificaVersionPrueba() {
+		loginSteps.verificoVersionPrueba();
+	}
+	
+	@When("^ingreso las credenciales prueba \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\"$")
+	public void ingresoCredencialesPrueba(String tipoId, String usuario, String contrasena) {
+		loginSteps.ingresoCredencialesPrueba(tipoId, usuario, contrasena);
+	}
+	
+	@Then("^valido el ingreso prueba")
+	public void validoIngresoPrueba() {
+		loginSteps.validoIngresoPrueba();
+		
+	}
+	//--------------------------------------
+	
 	@Given("^Login ADS \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\"$")
 	public void loginADS(String tipoDocumento, String usuario, String contrasena) {
 		loginSteps.loginAds(tipoDocumento, usuario, contrasena);

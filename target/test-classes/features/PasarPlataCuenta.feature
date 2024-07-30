@@ -20,7 +20,8 @@ Feature: Grupo de casos pasar plata a cuenta
       | tipoId | usuario      | contrasena | tipoCuenta | cuentaNum      | monto   |
       | "CC"   | "10050066"   | "2589"     | "AHORROS"  | "111111994437" | "10000" |
 
-  @CP02457M @GoPPC
+  #Cantidad de casos adicionales que agrupa el modulo Barra_saldo_disponible_(iOS-Android): 1
+  @CP02457M @Barra_saldo_disponible_(iOS-Android)
   Scenario Outline: CP02457M_SYS_Validar proceso de pasar plata cuenta ahorro desde el Home de daviplata
     Given obtener numero celular actual en redeban bolsillos <usuario>
     And Consulté saldo disponible en redeban
@@ -307,7 +308,8 @@ Feature: Grupo de casos pasar plata a cuenta
       | tipoId | usuario    | contrasena | monto   |
       | "CC"   | "10050038" | "2589"     | "10000" |
 
-  @CP02473M @GoPPC
+  #Cantidad de casos adicionales que agrupa el modulo Barra_saldo_disponible_(iOS-Android): 1
+  @CP02473M @Barra_saldo_disponible_(iOS-Android)
   Scenario Outline: CP02473M_SYS_Validar proceso de pasar plata a cuenta de ahorros con cliente CC GMF mostrando que genera el cobro de GMF
     Given obtener numero celular actual en redeban bolsillos <usuario>
     And Consulté saldo disponible en redeban GMF

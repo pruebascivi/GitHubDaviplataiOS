@@ -338,6 +338,7 @@ public class MarketPlacePageObjects extends PageObject {
 	public static final String BTN_CAJA = "//XCUIElementTypeOther[@name='image-product-2'] | (//XCUIElementTypeOther[contains(@name, 'Mis bolsillos')]/XCUIElementTypeOther)[11]";
 	public static final String TXT_EL_CORRAL = "(//*[@name='El Corral'])[2]";
 	public static final String POPUP_SU_COMPRA_NO_PUDO_SER_PROCESADA = "//XCUIElementTypeStaticText[@name='Su compra no pudo ser procesada']";
+	public static final String BTN_TIENDA_VIRTUAL_HOME = "//XCUIElementTypeOther[@name= 'Tienda Virtual Botón']";
 	
 	// TECLADO
 	private String btnDone = "//XCUIElementTypeButton[@name='Done']";

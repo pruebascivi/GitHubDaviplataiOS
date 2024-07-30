@@ -78,7 +78,7 @@
             <a href="576946480b52ad056d6f5bddf874399c83582ecf90963cc074a14c70580e7d9f.html"><i class="fa fa-comments-o"></i> Features</a>
         </li>
     </ul>
-    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 23-05-2024 14:08</span>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 23-07-2024 18:17</span>
     <br style="clear:left"/>
 </div>
     <div class="clr"></div>
@@ -154,7 +154,7 @@
     <div class="story-title">
         <h3 class="story-header">Scenario Outline</h3>
 
-        <div class="scenario">Given obtener numero celular actual en redeban bolsillos &lt;usuario&gt;<br>And Consulté saldo disponible en redeban<br>And logout redeban al finalizar consulta<br>And ingreso usuario y contrasena &lt;tipoId&gt; &lt;usuario&gt; &lt;contrasena&gt;<br>When Ingreso a perfil negocio<br>And Validé saldos iniciales del daviplata en perfil negocio<br>And Ingresar a opcion pasar plata home<br>And Ingresar a otros bancos perfil negocio<br>Then flujo pasar plata y validar la transaccion a otros bancos &lt;numeroProducto&gt;&lt;numId&gt;&lt;montoAPasar&gt;&lt;motivoPasarPlata&gt;<br>And obtener numero celular actual en redeban bolsillos &lt;usuario&gt;<br>And Consulté saldo disponible en redeban<br>And Validar en redeban la transansaccion&lt;usuario&gt;<br>And logout redeban<br>And Validar afectacion de saldos en redeban y daviplata</div>
+        <div class="scenario">Given obtener numero celular actual en redeban bolsillos &lt;usuario&gt;<br>And Consulté saldo disponible en redeban<br>And logout redeban al finalizar consulta<br>Given ingreso usuario y contrasena &lt;tipoId&gt; &lt;usuario&gt; &lt;contrasena&gt;<br>When Ingreso a perfil negocio<br>And Validé saldos iniciales del daviplata en perfil negocio<br>And Ingresar a opcion pasar plata home<br>And Ingresar a otros bancos perfil negocio<br>Then flujo pasar plata y validar la transaccion a otros bancos &lt;numeroProducto&gt;&lt;numId&gt;&lt;montoAPasar&gt;&lt;motivoPasarPlata&gt;<br>And obtener numero celular actual en redeban bolsillos &lt;usuario&gt;<br>And Consulté saldo disponible en redeban<br>And Validar en redeban la transansaccion&lt;usuario&gt;<br>And logout redeban<br>And Validar afectacion de saldos en redeban y daviplata</div>
 
     </div>
 
@@ -186,9 +186,9 @@
                         <td class="test-ERROR"><a href="#0">1</a></td>
                             <td class="test-ERROR"><a href="#0">"CC"</a>
                             </td>
-                            <td class="test-ERROR"><a href="#0">"1020770004"</a>
+                            <td class="test-ERROR"><a href="#0">"1020770002"</a>
                             </td>
-                            <td class="test-ERROR"><a href="#0">"1234"</a>
+                            <td class="test-ERROR"><a href="#0">"2589"</a>
                             </td>
                             <td class="test-ERROR"><a href="#0">"123456789"</a>
                             </td>
@@ -233,51 +233,30 @@
                             <a href="javaScript:void(0)" onClick="toggleDiv('stepSection0')"
                                style="display:block;">
                             <span class="top-level-step">
-                                Example #1: {tipoId="CC", usuario="1020770004", contrasena="1234", numeroProducto="123456789", numId="1007716", montoAPasar="10000", motivoPasarPlata="Test"}
+                                Example #1: {tipoId="CC", usuario="1020770002", contrasena="2589", numeroProducto="123456789", numId="1007716", montoAPasar="10000", motivoPasarPlata="Test"}
                             </span>
                             </a>
 
                         </div>
                     </td>
                     <td width="100"><span class="top-level-step">ERROR</span></td>
-                    <td width="100"><span class="top-level-step">11.93s</span></td>
-                </tr>
-                    <tr>
-                    <td colspan="5">
-                    <table id="stepSection0" style="display:none; width:100%">
-
-                <tr class="test-ERROR">
-                    <td width="60" class="step-icon">
-                        
-                            <span style="margin-left: 40px; margin-right: 5px;"
-                                  class="nested-group-icon"><i class='fa fa-exclamation-triangle error-icon ' title='ERROR'></i></span>
-                    </td>
-                    <td>
-                        <div class="step-description">
-                            <span class="nested-group-step">
-                                Given obtener numero celular actual en redeban bolsillos "1020770004"
-                            </span>
-
-                        </div>
-                    </td>
-                    <td width="100"><span class="nested-group-step">ERROR</span></td>
-                    <td width="100"><span class="nested-group-step">2.4s</span></td>
+                    <td width="100"><span class="top-level-step">52.12s</span></td>
                 </tr>
                     <tr class="test-ERROR">
                         <td width="40">&nbsp</td>
                         <td width="%" colspan="4" class="error-message-cell">
                             <div class="error-message ellipsis"
-                                 title='Stack overflow error'>
-                                <pre>Stack overflow error</pre>
+                                 title='Invocation target exception'>
+                                <pre>Invocation target exception</pre>
                             </div>
                 <div><!-- Stack trace -->
                     <button type="button" class="btn btn-danger" data-toggle="modal"
-                            data-target="#stacktraceModal-2">
+                            data-target="#stacktraceModal-1">
                         View details
                     </button>
                 </div>
                 <!-- Modal -->
-                <div class="modal fade" id="stacktraceModal-2" tabindex="-1" role="dialog"
+                <div class="modal fade" id="stacktraceModal-1" tabindex="-1" role="dialog"
                      aria-labelledby="stacktraceModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -286,21 +265,72 @@
                                         aria-label="Close"><span aria-hidden="true">&times;</span>
                                 </button>
                                 <h4 class="modal-title" id="stacktraceModalLabel">
-                                    java.lang.StackOverflowError
+                                    java.lang.reflect.InvocationTargetException
                                 </h4>
                             </div>
                             <div class="modal-body">
-                                    org.slf4j.impl.SimpleLogger.write(SimpleLogger.java
-                                    :381) <br>
-                                    org.slf4j.impl.SimpleLogger.log(SimpleLogger.java
-                                    :376) <br>
-                                    org.slf4j.impl.SimpleLogger.formatAndLog(SimpleLogger.java
-                                    :415) <br>
-                                    org.slf4j.impl.SimpleLogger.warn(SimpleLogger.java
-                                    :596) <br>
-                                    ✽.obtener numero celular actual en redeban bolsillos "1020770004"(src/test/resources/features/negocio.feature
-                                    :398) <br>
+                                    io.appium.java_client.remote.AppiumCommandExecutor.createSession(AppiumCommandExecutor.java
+                                    :209) <br>
+                                    io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java
+                                    :231) <br>
+                                    io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java
+                                    :42) <br>
+                                    io.appium.java_client.AppiumDriver.execute(AppiumDriver.java
+                                    :1) <br>
+                                    io.appium.java_client.DefaultGenericMobileDriver.<init>(DefaultGenericMobileDriver.java
+                                    :38) <br>
+                                    io.appium.java_client.AppiumDriver.<init>(AppiumDriver.java
+                                    :84) <br>
+                                    io.appium.java_client.AppiumDriver.<init>(AppiumDriver.java
+                                    :94) <br>
+                                    daviplata.nacional.iOS.utilidades.CustomAppiumDriver.iniciarAppiumDriver(CustomAppiumDriver.java
+                                    :40) <br>
+                                    daviplata.nacional.iOS.utilidades.CustomAppiumDriver.<init>(CustomAppiumDriver.java
+                                    :18) <br>
+                                    daviplata.nacional.iOS.definitions.Hooks.iniciarTests(Hooks.java
+                                    :41) <br>
+                                    cucumber.runner.UnskipableStep.executeStep(UnskipableStep.java
+                                    :22) <br>
+                                    cucumber.runner.Runner.runPickle(Runner.java
+                                    :80) <br>
+                                    daviplata.nacional.iOS.runners.RunnerPersonalizado.run(RunnerPersonalizado.java
+                                    :63) <br>
+                                    org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java
+                                    :93) <br>
+                                    org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java
+                                    :40) <br>
+                                    org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java
+                                    :529) <br>
+                                    org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java
+                                    :756) <br>
+                                    org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java
+                                    :452) <br>
+                                    org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java
+                                    :210) <br>
                             </div>
+
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="Close"><span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h4 class="modal-title" id="stacktraceModalLabel">
+                                        Caused by: java.lang.AssertionError
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                        <pre>null</pre>
+                                    <pre>
+                                        cucumber.runner.EventBus.send(EventBus.java :28) <br>
+                                        cucumber.runner.Runner.runPickle(Runner.java :80) <br>
+                                        daviplata.nacional.iOS.runners.RunnerPersonalizado.run(RunnerPersonalizado.java :63) <br>
+                                        org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java :93) <br>
+                                        org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java :40) <br>
+                                        org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java :529) <br>
+                                        org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java :756) <br>
+                                        org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java :452) <br>
+                                        org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java :210) <br>
+                                    </pre>
+                                </div>
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">
@@ -312,11 +342,32 @@
                 </div>
                         </td>
                     </tr>
-                <tr class="test-SKIPPED">
+                    <tr>
+                    <td colspan="5">
+                    <table id="stepSection0" style="display:none; width:100%">
+
+                <tr class="test-IGNORED">
                     <td width="60" class="step-icon">
                         
                             <span style="margin-left: 40px; margin-right: 5px;"
-                                  class="nested-group-icon"><i class='fa fa-fast-forward skipped-icon ' title='SKIPPED'></i></span>
+                                  class="nested-group-icon"><i class='fa fa-ban ignored-icon ' title='IGNORED'></i></span>
+                    </td>
+                    <td>
+                        <div class="step-description">
+                            <span class="nested-group-step">
+                                Given obtener numero celular actual en redeban bolsillos "1020770002"
+                            </span>
+
+                        </div>
+                    </td>
+                    <td width="100"><span class="nested-group-step">IGNORED</span></td>
+                    <td width="100"><span class="nested-group-step">0.02s</span></td>
+                </tr>
+                <tr class="test-IGNORED">
+                    <td width="60" class="step-icon">
+                        
+                            <span style="margin-left: 40px; margin-right: 5px;"
+                                  class="nested-group-icon"><i class='fa fa-ban ignored-icon ' title='IGNORED'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
@@ -326,14 +377,14 @@
 
                         </div>
                     </td>
-                    <td width="100"><span class="nested-group-step">SKIPPED</span></td>
+                    <td width="100"><span class="nested-group-step">IGNORED</span></td>
                     <td width="100"><span class="nested-group-step">0s</span></td>
                 </tr>
-                <tr class="test-SKIPPED">
+                <tr class="test-IGNORED">
                     <td width="60" class="step-icon">
                         
                             <span style="margin-left: 40px; margin-right: 5px;"
-                                  class="nested-group-icon"><i class='fa fa-fast-forward skipped-icon ' title='SKIPPED'></i></span>
+                                  class="nested-group-icon"><i class='fa fa-ban ignored-icon ' title='IGNORED'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
@@ -343,31 +394,31 @@
 
                         </div>
                     </td>
-                    <td width="100"><span class="nested-group-step">SKIPPED</span></td>
+                    <td width="100"><span class="nested-group-step">IGNORED</span></td>
                     <td width="100"><span class="nested-group-step">0s</span></td>
                 </tr>
-                <tr class="test-SKIPPED">
+                <tr class="test-IGNORED">
                     <td width="60" class="step-icon">
                         
                             <span style="margin-left: 40px; margin-right: 5px;"
-                                  class="nested-group-icon"><i class='fa fa-fast-forward skipped-icon ' title='SKIPPED'></i></span>
+                                  class="nested-group-icon"><i class='fa fa-ban ignored-icon ' title='IGNORED'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
                             <span class="nested-group-step">
-                                And ingreso usuario y contrasena "CC" "1020770004" "1234"
+                                Given ingreso usuario y contrasena "CC" "1020770002" "2589"
                             </span>
 
                         </div>
                     </td>
-                    <td width="100"><span class="nested-group-step">SKIPPED</span></td>
+                    <td width="100"><span class="nested-group-step">IGNORED</span></td>
                     <td width="100"><span class="nested-group-step">0s</span></td>
                 </tr>
-                <tr class="test-SKIPPED">
+                <tr class="test-IGNORED">
                     <td width="60" class="step-icon">
                         
                             <span style="margin-left: 40px; margin-right: 5px;"
-                                  class="nested-group-icon"><i class='fa fa-fast-forward skipped-icon ' title='SKIPPED'></i></span>
+                                  class="nested-group-icon"><i class='fa fa-ban ignored-icon ' title='IGNORED'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
@@ -377,14 +428,14 @@
 
                         </div>
                     </td>
-                    <td width="100"><span class="nested-group-step">SKIPPED</span></td>
+                    <td width="100"><span class="nested-group-step">IGNORED</span></td>
                     <td width="100"><span class="nested-group-step">0s</span></td>
                 </tr>
-                <tr class="test-SKIPPED">
+                <tr class="test-IGNORED">
                     <td width="60" class="step-icon">
                         
                             <span style="margin-left: 40px; margin-right: 5px;"
-                                  class="nested-group-icon"><i class='fa fa-fast-forward skipped-icon ' title='SKIPPED'></i></span>
+                                  class="nested-group-icon"><i class='fa fa-ban ignored-icon ' title='IGNORED'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
@@ -394,14 +445,14 @@
 
                         </div>
                     </td>
-                    <td width="100"><span class="nested-group-step">SKIPPED</span></td>
+                    <td width="100"><span class="nested-group-step">IGNORED</span></td>
                     <td width="100"><span class="nested-group-step">0s</span></td>
                 </tr>
-                <tr class="test-SKIPPED">
+                <tr class="test-IGNORED">
                     <td width="60" class="step-icon">
                         
                             <span style="margin-left: 40px; margin-right: 5px;"
-                                  class="nested-group-icon"><i class='fa fa-fast-forward skipped-icon ' title='SKIPPED'></i></span>
+                                  class="nested-group-icon"><i class='fa fa-ban ignored-icon ' title='IGNORED'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
@@ -411,14 +462,14 @@
 
                         </div>
                     </td>
-                    <td width="100"><span class="nested-group-step">SKIPPED</span></td>
+                    <td width="100"><span class="nested-group-step">IGNORED</span></td>
                     <td width="100"><span class="nested-group-step">0s</span></td>
                 </tr>
-                <tr class="test-SKIPPED">
+                <tr class="test-IGNORED">
                     <td width="60" class="step-icon">
                         
                             <span style="margin-left: 40px; margin-right: 5px;"
-                                  class="nested-group-icon"><i class='fa fa-fast-forward skipped-icon ' title='SKIPPED'></i></span>
+                                  class="nested-group-icon"><i class='fa fa-ban ignored-icon ' title='IGNORED'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
@@ -428,14 +479,14 @@
 
                         </div>
                     </td>
-                    <td width="100"><span class="nested-group-step">SKIPPED</span></td>
+                    <td width="100"><span class="nested-group-step">IGNORED</span></td>
                     <td width="100"><span class="nested-group-step">0s</span></td>
                 </tr>
-                <tr class="test-SKIPPED">
+                <tr class="test-IGNORED">
                     <td width="60" class="step-icon">
                         
                             <span style="margin-left: 40px; margin-right: 5px;"
-                                  class="nested-group-icon"><i class='fa fa-fast-forward skipped-icon ' title='SKIPPED'></i></span>
+                                  class="nested-group-icon"><i class='fa fa-ban ignored-icon ' title='IGNORED'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
@@ -445,31 +496,31 @@
 
                         </div>
                     </td>
-                    <td width="100"><span class="nested-group-step">SKIPPED</span></td>
+                    <td width="100"><span class="nested-group-step">IGNORED</span></td>
                     <td width="100"><span class="nested-group-step">0s</span></td>
                 </tr>
-                <tr class="test-SKIPPED">
+                <tr class="test-IGNORED">
                     <td width="60" class="step-icon">
                         
                             <span style="margin-left: 40px; margin-right: 5px;"
-                                  class="nested-group-icon"><i class='fa fa-fast-forward skipped-icon ' title='SKIPPED'></i></span>
+                                  class="nested-group-icon"><i class='fa fa-ban ignored-icon ' title='IGNORED'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
                             <span class="nested-group-step">
-                                And obtener numero celular actual en redeban bolsillos "1020770004"
+                                And obtener numero celular actual en redeban bolsillos "1020770002"
                             </span>
 
                         </div>
                     </td>
-                    <td width="100"><span class="nested-group-step">SKIPPED</span></td>
+                    <td width="100"><span class="nested-group-step">IGNORED</span></td>
                     <td width="100"><span class="nested-group-step">0s</span></td>
                 </tr>
-                <tr class="test-SKIPPED">
+                <tr class="test-IGNORED">
                     <td width="60" class="step-icon">
                         
                             <span style="margin-left: 40px; margin-right: 5px;"
-                                  class="nested-group-icon"><i class='fa fa-fast-forward skipped-icon ' title='SKIPPED'></i></span>
+                                  class="nested-group-icon"><i class='fa fa-ban ignored-icon ' title='IGNORED'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
@@ -479,31 +530,31 @@
 
                         </div>
                     </td>
-                    <td width="100"><span class="nested-group-step">SKIPPED</span></td>
+                    <td width="100"><span class="nested-group-step">IGNORED</span></td>
                     <td width="100"><span class="nested-group-step">0s</span></td>
                 </tr>
-                <tr class="test-SKIPPED">
+                <tr class="test-IGNORED">
                     <td width="60" class="step-icon">
                         
                             <span style="margin-left: 40px; margin-right: 5px;"
-                                  class="nested-group-icon"><i class='fa fa-fast-forward skipped-icon ' title='SKIPPED'></i></span>
+                                  class="nested-group-icon"><i class='fa fa-ban ignored-icon ' title='IGNORED'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
                             <span class="nested-group-step">
-                                And Validar en redeban la transansaccion"1020770004"
+                                And Validar en redeban la transansaccion"1020770002"
                             </span>
 
                         </div>
                     </td>
-                    <td width="100"><span class="nested-group-step">SKIPPED</span></td>
+                    <td width="100"><span class="nested-group-step">IGNORED</span></td>
                     <td width="100"><span class="nested-group-step">0s</span></td>
                 </tr>
-                <tr class="test-SKIPPED">
+                <tr class="test-IGNORED">
                     <td width="60" class="step-icon">
                         
                             <span style="margin-left: 40px; margin-right: 5px;"
-                                  class="nested-group-icon"><i class='fa fa-fast-forward skipped-icon ' title='SKIPPED'></i></span>
+                                  class="nested-group-icon"><i class='fa fa-ban ignored-icon ' title='IGNORED'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
@@ -513,14 +564,14 @@
 
                         </div>
                     </td>
-                    <td width="100"><span class="nested-group-step">SKIPPED</span></td>
+                    <td width="100"><span class="nested-group-step">IGNORED</span></td>
                     <td width="100"><span class="nested-group-step">0s</span></td>
                 </tr>
-                <tr class="test-SKIPPED">
+                <tr class="test-IGNORED">
                     <td width="60" class="step-icon">
                         
                             <span style="margin-left: 40px; margin-right: 5px;"
-                                  class="nested-group-icon"><i class='fa fa-fast-forward skipped-icon ' title='SKIPPED'></i></span>
+                                  class="nested-group-icon"><i class='fa fa-ban ignored-icon ' title='IGNORED'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
@@ -530,7 +581,7 @@
 
                         </div>
                     </td>
-                    <td width="100"><span class="nested-group-step">SKIPPED</span></td>
+                    <td width="100"><span class="nested-group-step">IGNORED</span></td>
                     <td width="100"><span class="nested-group-step">0s</span></td>
                 </tr>
 
@@ -540,7 +591,7 @@
                 <tr class="test-ERROR">
                     <td colspan="2"></td>
                     <td width="100"><span class="top-level-step"><em>ERROR</em></span></td>
-                    <td width="100"><span class="top-level-step"><em>12.52s</em></span></td>
+                    <td width="100"><span class="top-level-step"><em>52.13s</em></span></td>
                 </tr>
 
             </table>

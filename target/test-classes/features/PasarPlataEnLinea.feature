@@ -45,7 +45,8 @@ Feature: Set de pasar plata en linea
       | tipoId | usuario    | contrasena | numCelular   | monto  | tipoId2 | usuario2   | contrasena2 |
       | "CC"   | "10333040" | "1234"     | "3221005049" | "5000" | "CC"    | "10050066" | "2589"      |
 
-  @CP03620M
+  #Cantidad de casos adicionales que agrupa el modulo Barra_saldo_disponible_(iOS-Android): 2
+  @CP03620M @Barra_saldo_disponible_(iOS-Android)
   Scenario Outline: CP03620M_SYS_Validar proceso por la opción a otro banco en línea a un daviplata con daviplata origen GMF
     Given obtener numero celular actual en redeban <usuario>
     And consultar saldo tarjeta en redeban pasar plata cuenta

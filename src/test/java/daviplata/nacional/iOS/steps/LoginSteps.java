@@ -42,6 +42,71 @@ public class LoginSteps {
 	Random rand = new Random();
 	
 	@Step
+	public void ingresoAplicativoPrueba() {
+		try {
+			utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+			System.out.println("Ingresé a la aplicación");
+		} catch (Exception e) {
+			fail("No se pudo realizar ingreso debido a: " + e.getMessage());
+		}
+	}
+	
+	@Step
+	public void verificoVersionPrueba() {
+		try {
+			utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.MENU_TRES_PUNTOS);
+			utilidadesTCS.clicElement("xpath", LoginRobustoPage.MENU_TRES_PUNTOS);
+			utilidadesTCS.esperarElementVisibility("xpath", AcercaDePageObjects.BOTON_ACERCA_DE);
+			utilidadesTCS.clicElement("xpath", AcercaDePageObjects.BOTON_ACERCA_DE);
+			//utilidadesTCS.esperarElementVisibility("xpath", AcercaDePageObjects.LABEL_VERSION);
+			String versionDaviplata = utilidadesTCS.obtenerTexto("xpath", AcercaDePageObjects.LABEL_VERSION);
+			System.out.println("Version Daviplata: " + versionDaviplata);
+			Utilidades.tomaEvidencia("Versión app" + versionDaviplata);
+			BaseUtil.versionApp = versionDaviplata;
+			utilidadesTCS.clicElement("xpath", LoginRobustoPage.REGRESAR);
+		} catch (Exception e) {
+			fail("No se pudo realizar verificar versión debido a: " + e.getMessage());
+		}
+    	
+	}
+	
+	@Step
+	public void ingresoCredencialesPrueba(String tipoId, String usuario, String contrasena) {
+		try {
+			utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.TIPO_DOCUMENTO);
+			utilidadesTCS.clicElement("xpath", LoginRobustoPage.TIPO_DOCUMENTO);
+			if(tipoId.contains("Cédula")) {
+				utilidadesTCS.clicElement("xpath", LoginRobustoPage.ELEMENT_CC_TYPE_ID);
+			}
+			utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.CAMPO_NUMERO_DOCUMENTO);
+			utilidadesTCS.clicElement("xpath", LoginRobustoPage.CAMPO_NUMERO_DOCUMENTO);
+			utilidadesTCS.writeElement("xpath", LoginRobustoPage.CAMPO_NUMERO_DOCUMENTO, usuario);
+			utilidadesTCS.clicElement("xpath", LoginRobustoPage.BTN_INGRESAR);
+			utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.INPUT_PASS);
+			pageLogin.ingresarContrasena(contrasena);
+			pageLogin.darClicBotonIngresar();
+			utilidadesTCS.esperarElementVisibility("xpath", LoginRobustoPage.BOTON_CONTINUAR);
+			utilidadesTCS.clicElement("xpath", LoginRobustoPage.BOTON_CONTINUAR);
+			
+		} catch (Exception e) {
+			fail("No se pudo realizar ingreso debido a: " + e.getMessage());
+		}
+    	
+	}
+	
+	@Step
+	public void validoIngresoPrueba() {
+		try {
+	    	Utilidades.esperaMiliseg(2000);
+			Utilidades.tomaEvidencia("Ingresé a la app");
+			
+
+		} catch (Exception e) {
+			fail("No se pudo realizar ingreso debido a: " + e.getMessage());
+		}
+	}
+	
+	@Step
 	public void validarVersionApp() {
     	Utilidades.esperaMiliseg(1500);
 		utilidadesTCS.clicElement("xpath", AcercaDePageObjects.BOTON_NOTIFICACIONES);
@@ -60,7 +125,7 @@ public class LoginSteps {
 	public void ingresarAApp(String tipoDocumento, String usuario, String contrasena) {
 		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
 		System.out.println("Ingresando a la app");
-		Utilidades.esperaMiliseg(5000);
+		Utilidades.esperaMiliseg(8000);
 		utilidadesTCS.validateElementVisibility("xpath", LoginRobustoPage.BOTON_NOTIFICACIONES);
 		verificarVersion();
 		utilidadesTCS.seleccionarTipoDocumentoInputHomeDaviplata("xpath",tipoDocumento);

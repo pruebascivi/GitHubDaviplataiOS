@@ -137,6 +137,11 @@ public class negocioDefinitions {
 		negocioStep.ingresarOpcionPasarPlataPerfilNegocio();
 	}
 	
+	@Then("^ingresar a opcion pasar plata MH$")
+	public void ingresarAOpcionPasarPlataMH() throws Exception {
+		negocioStep.ingresarOpcionPasarPlataPerfilNegocioMH();
+	}
+	
 	@Then("^ingresar a opcion sacar plata$")
 	public void ingresarAOpcionSacarPlata() throws Exception {
 		negocioStep.ingresarOpcionSacarPlataPerfilNegocio();

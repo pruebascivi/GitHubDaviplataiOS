@@ -78,7 +78,7 @@
             <a href="576946480b52ad056d6f5bddf874399c83582ecf90963cc074a14c70580e7d9f.html"><i class="fa fa-comments-o"></i> Features</a>
         </li>
     </ul>
-    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 21-03-2024 19:55</span>
+    <span class="date-and-time"><a href="build-info.html"><i class="fa fa-info-circle"></i></a> Report generated 29-07-2024 09:28</span>
     <br style="clear:left"/>
 </div>
     <div class="clr"></div>
@@ -113,6 +113,13 @@
                             <p class="tag">
                                 <span class="badge tag-badge" style="background:default;">
                                     <i class="fa fa-tag"></i>&nbsp;<a class="tagLink" style="background:default;"
+                                                                      href="e1b2b8ef00223b0e4b7e4c7c3cbd4999d0962a6e86a0117e3186fd97f3d4e1cc.html">Passed
+                                    (tag)</a>
+                                </span>
+                            </p>
+                            <p class="tag">
+                                <span class="badge tag-badge" style="background:default;">
+                                    <i class="fa fa-tag"></i>&nbsp;<a class="tagLink" style="background:default;"
                                                                       href="fef0e189495387cbcac14c36cbd9a2b2681762574c41010817d047736863c7d5.html">CP02699M
                                     (tag)</a>
                                 </span>
@@ -125,9 +132,9 @@
                 <table class="outcome-header">
                     <tr>
                         <td colspan="2" class="test-title-bar">
-                            <span class="outcome-icon"><i class='fa fa-exclamation-triangle error-icon fa-2x' title='ERROR'></i></span>
+                            <span class="outcome-icon"><i class='fa fa-check-square-o success-icon fa-2x' title='SUCCESS'></i></span>
                             <span class="test-case-title">
-                                    <span class="error-color">
+                                    <span class="success-color">
                                     CP02699M_SYS_Validar funcionalidad de pasar plata (a otro DaviPlata), desde bot&oacute;n de home desde perfil negocio.
                                         <span class="related-issue-title"></span>
                                 </span>
@@ -173,14 +180,14 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="test-ERROR"><a href="#0">1</a></td>
-                            <td class="test-ERROR"><a href="#0">"CC"</a>
+                        <td class="test-SUCCESS"><a href="#0">1</a></td>
+                            <td class="test-SUCCESS"><a href="#0">"CC"</a>
                             </td>
-                            <td class="test-ERROR"><a href="#0">"1020770002"</a>
+                            <td class="test-SUCCESS"><a href="#0">"1020770002"</a>
                             </td>
-                            <td class="test-ERROR"><a href="#0">"1234"</a>
+                            <td class="test-SUCCESS"><a href="#0">"2589"</a>
                             </td>
-                            <td class="test-ERROR"><a href="#0">"3054250150"</a>
+                            <td class="test-SUCCESS"><a href="#0">"3054250150"</a>
                             </td>
                     </tr>
                 </tbody>
@@ -203,12 +210,12 @@
                 <tr class="step-table-separator">
                     <td colspan="5"></td>
                 </tr>
-                <tr class="test-ERROR">
+                <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
                         <a name="0"/>
                             <a href="javaScript:void(0)" onClick="toggleDiv('stepSection0')"
                                style="display:block">
-                                <i class="fa fa-plus-square-o imgstepSection0 error-icon"
+                                <i class="fa fa-plus-square-o imgstepSection0 success-icon"
                                    style="margin-left: 20px; float:left;  padding-right:5px"></i>
                             </a>
                     </td>
@@ -217,85 +224,15 @@
                             <a href="javaScript:void(0)" onClick="toggleDiv('stepSection0')"
                                style="display:block;">
                             <span class="top-level-step">
-                                Example #1: {tipoId="CC", usuario="1020770002", contrasena="1234", numCuenta="3054250150"}
+                                Example #1: {tipoId="CC", usuario="1020770002", contrasena="2589", numCuenta="3054250150"}
                             </span>
                             </a>
 
                         </div>
                     </td>
-                    <td width="100"><span class="top-level-step">ERROR</span></td>
-                    <td width="100"><span class="top-level-step">397.63s</span></td>
+                    <td width="100"><span class="top-level-step">SUCCESS</span></td>
+                    <td width="100"><span class="top-level-step">361.25s</span></td>
                 </tr>
-                    <tr class="test-ERROR">
-                        <td width="40">&nbsp</td>
-                        <td width="%" colspan="4" class="error-message-cell">
-                            <div class="error-message ellipsis"
-                                 title='No such session exception: A session is either terminated or not started'>
-                                <pre>No such session exception: A session is either terminated or not started</pre>
-                            </div>
-                <div><!-- Stack trace -->
-                    <button type="button" class="btn btn-danger" data-toggle="modal"
-                            data-target="#stacktraceModal-1">
-                        View details
-                    </button>
-                </div>
-                <!-- Modal -->
-                <div class="modal fade" id="stacktraceModal-1" tabindex="-1" role="dialog"
-                     aria-labelledby="stacktraceModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal"
-                                        aria-label="Close"><span aria-hidden="true">&times;</span>
-                                </button>
-                                <h4 class="modal-title" id="stacktraceModalLabel">
-                                    org.openqa.selenium.NoSuchSessionException
-                                </h4>
-                            </div>
-                            <div class="modal-body">
-                                    <h5>
-                                        <pre>A session is either terminated or not started<br>Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'<br>System info: host: 'MacBook-Pro-de-User-3.local', ip: 'fe80:0:0:0:49:cda1:4b77:93b7%en0', os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '13.1', java.version: '1.8.0_401'<br>Driver info: io.appium.java_client.AppiumDriver<br>Capabilities {autoAcceptAlerts: true, automationName: XCUITest, browserName: , bundleId: com.daviplatavalid.lab, databaseEnabled: false, deviceName: iPhone 14, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: false, newCommandTimeout: 240, noReset: false, platform: MAC, platformName: MAC, platformVersion: 16.4, showXcodelog: true, skipUnlock: true, takesScreenshot: true, udid: 00008120-001A09993E60201E, webStorageEnabled: false}<br>Session ID: 48f5ed24-19d8-410e-bee9-751e1ce0e193<br>Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'<br>System info: host: 'MacBook-Pro-de-User-3.local', ip: 'fe80:0:0:0:49:cda1:4b77:93b7%en0', os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '13.1', java.version: '1.8.0_401'<br>Driver info: driver.version: AppiumDriver</pre>
-                                    </h5>
-                                    io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java
-                                    :231) <br>
-                                    io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java
-                                    :46) <br>
-                                    io.appium.java_client.AppiumDriver.execute(AppiumDriver.java
-                                    :1) <br>
-                                    io.appium.java_client.InteractsWithApps.closeApp(InteractsWithApps.java
-                                    :139) <br>
-                                    daviplata.nacional.iOS.definitions.Hooks.FinalizarTests(Hooks.java
-                                    :92) <br>
-                                    cucumber.runner.UnskipableStep.executeStep(UnskipableStep.java
-                                    :22) <br>
-                                    cucumber.runner.Runner.runPickle(Runner.java
-                                    :80) <br>
-                                    daviplata.nacional.iOS.runners.RunnerPersonalizado.run(RunnerPersonalizado.java
-                                    :63) <br>
-                                    org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java
-                                    :93) <br>
-                                    org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java
-                                    :40) <br>
-                                    org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java
-                                    :529) <br>
-                                    org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java
-                                    :756) <br>
-                                    org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java
-                                    :452) <br>
-                                    org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java
-                                    :210) <br>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">
-                                    Close
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                        </td>
-                    </tr>
                     <tr>
                     <td colspan="5">
                     <table id="stepSection0" style="display:none; width:100%">
@@ -309,13 +246,13 @@
                     <td>
                         <div class="step-description">
                             <span class="nested-step">
-                                Given ingreso usuario y contrasena "CC" "1020770002" "1234"
+                                Given ingreso usuario y contrasena "CC" "1020770002" "2589"
                             </span>
 
                         </div>
                     </td>
                     <td width="100"><span class="nested-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-step">90.77s</span></td>
+                    <td width="100"><span class="nested-step">119.68s</span></td>
                 </tr>
                 <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
@@ -326,13 +263,13 @@
                     <td>
                         <div class="step-description">
                             <span class="nested-step">
-                                Ingresar a app: CC, 1020770002, 1234
+                                Ingresar a app: CC, 1020770002, 2589
                             </span>
 
                         </div>
                     </td>
                     <td width="100"><span class="nested-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-step">90.44s</span></td>
+                    <td width="100"><span class="nested-step">119.12s</span></td>
                 </tr>
                 <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
@@ -343,13 +280,13 @@
                     <td>
                         <div class="step-description">
                             <span class="nested-group-step">
-                                Validar version app
+                                Verificar version
                             </span>
 
                         </div>
                     </td>
                     <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">6.4s</span></td>
+                    <td width="100"><span class="nested-group-step">12.3s</span></td>
                 </tr>
 
 
@@ -368,7 +305,7 @@
                         </div>
                     </td>
                     <td width="100"><span class="nested-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-step">27.04s</span></td>
+                    <td width="100"><span class="nested-step">51.6s</span></td>
                 </tr>
                 <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
@@ -385,60 +322,114 @@
                         </div>
                     </td>
                     <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">26.98s</span></td>
+                    <td width="100"><span class="nested-group-step">51.39s</span></td>
                 </tr>
 
                 <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
                         
                             <span style="margin-left: 40px; margin-right: 5px;"
-                                  class="nested-group-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                                  class="nested-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
-                            <span class="nested-group-step">
+                            <span class="nested-step">
                                 And Ingresar a opcion pasar plata home
                             </span>
 
                         </div>
                     </td>
-                    <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">5.26s</span></td>
+                    <td width="100"><span class="nested-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-step">3.28s</span></td>
                 </tr>
                 <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
                         
-                            <span style="margin-left: 40px; margin-right: 5px;"
+                            <span style="margin-left: 60px; margin-right: 5px;"
                                   class="nested-group-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
                             <span class="nested-group-step">
+                                Ingresar opcion pasar plata home perfil negocio
+                            </span>
+
+                        </div>
+                    </td>
+                    <td width="100"><span class="nested-group-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-group-step">3.26s</span></td>
+                </tr>
+
+                <tr class="test-SUCCESS">
+                    <td width="60" class="step-icon">
+                        
+                            <span style="margin-left: 40px; margin-right: 5px;"
+                                  class="nested-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                    </td>
+                    <td>
+                        <div class="step-description">
+                            <span class="nested-step">
                                 And ingresar a otro daviplata perfil negocio
                             </span>
 
                         </div>
                     </td>
-                    <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">5.15s</span></td>
+                    <td width="100"><span class="nested-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-step">5.81s</span></td>
                 </tr>
                 <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
                         
-                            <span style="margin-left: 40px; margin-right: 5px;"
+                            <span style="margin-left: 60px; margin-right: 5px;"
                                   class="nested-group-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
                     </td>
                     <td>
                         <div class="step-description">
                             <span class="nested-group-step">
-                                Then flujo pasar plata y validacion de la transaccion "3054250150"
+                                Ingresar opcion a otro daviplata perfil negocio
                             </span>
 
                         </div>
                     </td>
                     <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">20.82s</span></td>
+                    <td width="100"><span class="nested-group-step">5.79s</span></td>
                 </tr>
+
+                <tr class="test-SUCCESS">
+                    <td width="60" class="step-icon">
+                        
+                            <span style="margin-left: 40px; margin-right: 5px;"
+                                  class="nested-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                    </td>
+                    <td>
+                        <div class="step-description">
+                            <span class="nested-step">
+                                Then flujo pasar plata y validacion de la transaccion "3054250150"
+                            </span>
+
+                        </div>
+                    </td>
+                    <td width="100"><span class="nested-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-step">25.14s</span></td>
+                </tr>
+                <tr class="test-SUCCESS">
+                    <td width="60" class="step-icon">
+                        
+                            <span style="margin-left: 60px; margin-right: 5px;"
+                                  class="nested-group-icon"><i class='fa fa-check-square-o success-icon ' title='SUCCESS'></i></span>
+                    </td>
+                    <td>
+                        <div class="step-description">
+                            <span class="nested-group-step">
+                                Flujo pasar plata a otro daviplata perfil negocio: "3054250150"
+                            </span>
+
+                        </div>
+                    </td>
+                    <td width="100"><span class="nested-group-step">SUCCESS</span></td>
+                    <td width="100"><span class="nested-group-step">25.13s</span></td>
+                </tr>
+
                 <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
                         
@@ -454,7 +445,7 @@
                         </div>
                     </td>
                     <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">16.7s</span></td>
+                    <td width="100"><span class="nested-group-step">18.08s</span></td>
                 </tr>
                 <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
@@ -471,7 +462,7 @@
                         </div>
                     </td>
                     <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">19.07s</span></td>
+                    <td width="100"><span class="nested-group-step">20.21s</span></td>
                 </tr>
                 <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
@@ -488,7 +479,7 @@
                         </div>
                     </td>
                     <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">204.75s</span></td>
+                    <td width="100"><span class="nested-group-step">106.39s</span></td>
                 </tr>
                 <tr class="test-SUCCESS">
                     <td width="60" class="step-icon">
@@ -505,16 +496,16 @@
                         </div>
                     </td>
                     <td width="100"><span class="nested-group-step">SUCCESS</span></td>
-                    <td width="100"><span class="nested-group-step">3.14s</span></td>
+                    <td width="100"><span class="nested-group-step">3.31s</span></td>
                 </tr>
 
                     </table>
                     </td>
                     <tr>
-                <tr class="test-ERROR">
+                <tr class="test-SUCCESS">
                     <td colspan="2"></td>
-                    <td width="100"><span class="top-level-step"><em>ERROR</em></span></td>
-                    <td width="100"><span class="top-level-step"><em>397.89s</em></span></td>
+                    <td width="100"><span class="top-level-step"><em>SUCCESS</em></span></td>
+                    <td width="100"><span class="top-level-step"><em>361.85s</em></span></td>
                 </tr>
 
             </table>

@@ -25,7 +25,7 @@ Feature: Pruebas en la funcionalidad de generación de extractos de la app Davip
 
     Examples: 
       | tipoId | usuario    | contrasena | numero       | monto  | tipoId2 | usuario2     | contrasena2 | nombre         | dia | mes     | anio   | diaExpedicion | mesExpedicion | anioExpedicion | lugar          | cel          | correo          | estadoRedeban |
-      | "CC"   | "10088877" | "2589"     | "3112747423" | "4000" | "CC"    | "1019727928" | "2589"      | "uren alckmun" | "1" | "Enero" | "2000" | "2"           | "Febrero"     | "2018"         | "BOGOTÁ, D.C." | "3129719493" | "xxx@gmail.com" | "apt"         |
+      | "CC"   | "10088877" | "2589"     | "3112747423" | "4000" | "CC"    | "1019827924" | "2589"      | "uren alckmun" | "1" | "Enero" | "2000" | "2"           | "Febrero"     | "2018"         | "BOGOTÁ, D.C." | "3129719403" | "xxx@gmail.com" | "apt"         |
       
   @CP00228M
   Scenario Outline: CP00228M_SYS_Validar proceso de pasar plata a otro daviplata no existente y registrarlo

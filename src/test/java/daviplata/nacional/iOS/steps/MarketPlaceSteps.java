@@ -68,6 +68,12 @@ public class MarketPlaceSteps {
 		Utilidades.tomaEvidencia("Ingreso a MarketPlace");
 	}
 	
+	@Step
+	public void ingresarATiendaVirtual() {
+		utilidadesTCS.esperarElementVisibility("xpath", MarketPlacePageObjects.BTN_TIENDA_VIRTUAL_HOME);
+		utilidadesTCS.clicElement("xpath", MarketPlacePageObjects.BTN_TIENDA_VIRTUAL_HOME);
+	}
+	
 	@Step("Validar btn inhabilitado")
 	public void validarBtnInhabilitado() {
 		marketObj.validarBtnInhabilitado();

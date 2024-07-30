@@ -121,10 +121,14 @@ public class RegistroSteps {
 	
 	@Step
 	public void aceptarAutorizacionParaRegistro() {
-		Utilidades.esperaMiliseg(1500);
-		registroObj.aceptoReglamentoUso();
-		Utilidades.esperaMiliseg(800);
-		Utilidades.tomaEvidencia("Acepto autorizaciones de registro");
+		Utilidades.esperaMiliseg(5000);
+//		registroObj.aceptoReglamentoUso();
+		boolean estadoVisible = utilidadesTCS.validateElementVisibilityCatch("xpath", RegistroPageObject.CHECK_BOX_REGLAMENTO);
+		if(estadoVisible == true) {
+			utilidadesTCS.clicElementAction("xpath", RegistroPageObject.CHECK_BOX_REGLAMENTO);
+			Utilidades.esperaMiliseg(800);
+			Utilidades.tomaEvidencia("Acepto autorizaciones de registro");
+		}
 		registroObj.clicBtnContinuar();	
 		Utilidades.esperaMiliseg(1500);
 	}

@@ -282,7 +282,14 @@ public class negocioSteps {
 //		utilidad.tomaEvidencia("Clic en opcion usar plata");
 //		negocioPO.clicOpcionUsarPlata();
 		Utilidades.tomaEvidencia("Clic en opcion pasar plata");
+		utilidadesTCS.clicElement("xpath", negocioPageObjects.BTN_PASAR_PLATA_MH);
 		negocioPO.clicOpcionPasarPlataPerfilNegocio();
+	}
+
+	@Step
+	public void ingresarOpcionPasarPlataPerfilNegocioMH() {
+		Utilidades.tomaEvidencia("Clic en opcion pasar plata desde menu hamburguesa perfil negocio");
+		utilidadesTCS.clicElement("xpath", negocioPageObjects.BTN_PASAR_PLATA_MH);
 	}
 	
 	@Step
@@ -341,8 +348,13 @@ public class negocioSteps {
 		negocioPO.clicContinuarConfirmacionDatosPerfilNegocio();
 		Utilidades.esperaMiliseg(4000);
 		Utilidades.tomaEvidencia("Confirmación de codigo de retiro");
-		Utilidades.esperaMiliseg(4000);
-		utilidadesTCS.clicElement("xpath", negocioPageObjects.ACEPTAR);
+		Utilidades.esperaMiliseg(5000);
+		boolean estadoVisible = utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.TXT_MEMORICE);
+		if(estadoVisible == true) {
+			utilidadesTCS.clicElementAction("xpath", negocioPageObjects.ACEPTAR);
+		} else {
+			utilidadesTCS.clickCoordinates(194, 518);
+		}
 		System.out.println("Se completo el proceso de 'Sacar Plata'");
 		Utilidades.esperaMiliseg(15000);
 		utilidadesTCS.clicElement("xpath", negocioPageObjects.BTN_MI_DAVIPLATA);
@@ -359,7 +371,10 @@ public class negocioSteps {
 		Utilidades.tomaEvidencia("Numero de autorizacion del movimiento");
 		Utilidades.esperaMiliseg(4000);
 		negocioPO.txtAutorizadorSacarPlataPerfilNegocio();	
-		utilidadesTCS.clicElement("xpath", MenuHamburguesaPageObjects.BOTON_FINALIZAR_MOVIMIENTOS);
+		boolean estadoVisibleFinalizar = utilidadesTCS.validateElementVisibilityCatch("xpath", MenuHamburguesaPageObjects.BOTON_FINALIZAR_MOVIMIENTOS);
+		if(estadoVisibleFinalizar == true) {
+			utilidadesTCS.clicElement("xpath", MenuHamburguesaPageObjects.BOTON_FINALIZAR_MOVIMIENTOS);
+		}
 	}
 	
 	@Step
@@ -494,15 +509,15 @@ public class negocioSteps {
 	}
 	
 	public void actualizarDireccionPerfilNegocio(String tipoVia, String numeroUno, String numeroDos, String numeroTres) {
-		System.out.println("entre a actualizar direccion");
-		negocioPO.clicInputDireccionPerfilNegocio();
-		negocioPO.clicTipoViaDireccionPerfilNegocio();
-		negocioPO.clicTipoViaDiscosDireccionPerfilNegocio(tipoVia);
-		negocioPO.inputNumeroUnoDireccionPerfilNegocio(numeroUno);
-		negocioPO.inputNumeroDosDireccionPerfilNegocio(numeroDos);
-		negocioPO.inputNumeroTresDireccionPerfilNegocio(numeroTres);		
-		Utilidades.tomaEvidencia("Ingresar dirección nueva en el perfil negocio");
-		negocioPO.clicGuardarCambiosPerfilNegocio();
+		System.out.println("Entré a actualizar dirección");
+//		negocioPO.clicInputDireccionPerfilNegocio();
+//		negocioPO.clicTipoViaDireccionPerfilNegocio();
+//		negocioPO.clicTipoViaDiscosDireccionPerfilNegocio(tipoVia);
+//		negocioPO.inputNumeroUnoDireccionPerfilNegocio(numeroUno);
+//		negocioPO.inputNumeroDosDireccionPerfilNegocio(numeroDos);
+//		negocioPO.inputNumeroTresDireccionPerfilNegocio(numeroTres);		
+//		Utilidades.tomaEvidencia("Ingresar dirección nueva en el perfil negocio");
+//		negocioPO.clicGuardarCambiosPerfilNegocio();
 	}
 	
 	
@@ -694,19 +709,15 @@ public class negocioSteps {
 	public void validarCatalogo() {
 		Utilidades.esperaMiliseg(35000);
 		System.out.println("termine de esperar");
-		for(int i = 0; i<3; i++) {
-			Utilidades.scrollDownSwipe(1);	
-		}
+		Utilidades.scrollDownSwipe(1);
 		//negocioPO.scrollCatalogo();
 		negocioPO.validarCatalogoPerfilNegocio();
 		Utilidades.tomaEvidencia("Validación de catálogo existente");
 	}
 	
 	public void ingresarACatalogo() {
-		Utilidades.esperaMiliseg(35000);
-		for(int i = 0; i<3; i++) {
-			Utilidades.scrollDownSwipe(1);	
-		}
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
+		Utilidades.scrollDownSwipe(1);
 		Utilidades.tomaEvidencia("Ingresar a catálogo existente");
 		negocioPO.clicCatalogoPerfilNegocio();
 	}
@@ -835,32 +846,24 @@ public class negocioSteps {
 		Utilidades.esperaMiliseg(8000);
 		negocioPO.validarQRGenerado();
 		Utilidades.tomaEvidencia("validar QR generado sin valor");
-		
-		
 	}
 	
 	public void validarQRCreadoValorAleatorio() {
 		Utilidades.esperaMiliseg(8000);
 		negocioPO.validarQRGenerado();
 		Utilidades.tomaEvidencia("validar QR generado con valor aleatorio");
-		
-		
 	}
 	
 	public void validarQRCreadoValorMinimo() {
 		Utilidades.esperaMiliseg(8000);
 		negocioPO.validarQRGenerado();
 		Utilidades.tomaEvidencia("validar QR generado con valor minimo");
-		
-		
 	}
 	
 	public void validarQRCreadoValorMaximo() {
 		Utilidades.esperaMiliseg(8000);
 		negocioPO.validarQRGenerado();
 		Utilidades.tomaEvidencia("validar QR generado con valor maximo");
-		
-		
 	}
 	
 	public void validarDescargaQR() {
@@ -872,8 +875,6 @@ public class negocioSteps {
 		System.out.println("validando imagen descarga pdf");
 		negocioPO.validarQRDescargado();
 		Utilidades.tomaEvidencia("validar QR descargado sin valor");
-		
-		
 	}
 	
 	public void validarDescargaQRConValor() {
@@ -905,8 +906,6 @@ public class negocioSteps {
 		System.out.println("validar elementos de compartir");
 		negocioPO.validarElementosCompartirQR();
 		Utilidades.tomaEvidencia("validar compartir QR con valor");
-		
-		
 	}
 	
 	public void irACuentaDeAhorros() {
@@ -916,9 +915,6 @@ public class negocioSteps {
 		System.out.println("dando click a btn aceptar");
 		Utilidades.tomaEvidencia("Clic cuenta de ahorros");
 		negocioPO.clicBtnAceptarPerfilNegocio();
-		
-		
-		
 	}
 	
 	public void flujoPasarPlataACuentaAhorrosPerfilNegocio(String numCuenta) {
@@ -1044,7 +1040,17 @@ public class negocioSteps {
 	
 	@Step
     public void validarCambioDePerfilANegocio() {
-        negocioPO.validarInicioSesionANegocio();
+        validarInicioSesionANegocio();
+    }
+	
+	public void validarInicioSesionANegocio() {
+        boolean lblIngresaPresente = utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.BTN_MENU_DAVIPLATA);
+        if (lblIngresaPresente == true) {
+            System.out.println("Estoy en perfil persona mi DaviPlata");
+            utilidadesTCS.clicElement("xpath", LoginPageObjects.HOME_PERFIL_NEGOCIO);
+        } else {
+            System.out.println("Estoy en perfil Negocio");
+        }
     }
 	
 	@Step
@@ -1062,13 +1068,13 @@ public class negocioSteps {
 			}
         } else {
         	Utilidades.esperaMiliseg(1500);
-        	utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.BOTON_TOPES);
+        	utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.BOTON_ENLACE_DE_PAGO);
         	Utilidades.esperaMiliseg(800);
-        	utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_TOPES);
-        	Utilidades.esperaMiliseg(1500);
-        	Utilidades.tomaEvidencia("Valido topes desde perfil negocio");
-        	Utilidades.esperaMiliseg(800);
-            utilidadesTCS.clicElement("xpath", negocioPageObjects.BTN_REGRESAR_MI_NEGOCIO);
+//        	utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_TOPES);
+//        	Utilidades.esperaMiliseg(1500);
+//        	Utilidades.tomaEvidencia("Valido topes desde perfil negocio");
+//        	Utilidades.esperaMiliseg(800);
+//          utilidadesTCS.clicElement("xpath", negocioPageObjects.BTN_REGRESAR_MI_NEGOCIO);
         }
     }
 	
@@ -1137,12 +1143,14 @@ public class negocioSteps {
         	utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_ACEPTAR_POP_FALLA_CREACION_PUNTO_VENTA);
             Utilidades.esperaMiliseg(2000);
             utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_CREAR);
+    		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
         }
 //      utilidadesTCS.esperarElementVisibility("xpath", negocioPageObjects.POP_CREACION_PUNTO_EXITOSO);
 //      String texto = utilidadesTCS.obtenerTexto("xpath", negocioPageObjects.POP_CREACION_PUNTO_EXITOSO);
 //      utilidadesTCS.validateTextContainsString(texto, "Ya creó el punto");
         Utilidades.esperaMiliseg(2000);
         Utilidades.tomaEvidencia("Validar que permita crear punto de venta");
+		utilidadesTCS.esperaCargaElemento(LoginRobustoPage.PROGRESS_BAR, 60);
     }
     
     @Step
@@ -1150,7 +1158,7 @@ public class negocioSteps {
         try {
 //        	utilidadesTCS.clicElement("xpath", negocioPageObjects.BOTON_CREAR_VENDEDOR);
             /** Acciones por coordenadas ya que no se pueden mapear elementos **/
-            utilidadesTCS.clickCoordinates(290, 580);
+            utilidadesTCS.clickCoordinates(268, 544);
         } catch (Exception e) {
             System.out.println("Se presento un error debido a: "+ e.getMessage() );
 //            assert utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.BOTON_CREAR_VENDEDOR) : "No se pudo interactuar con el elemento." + negocioPageObjects.BOTON_CREAR_VENDEDOR;
@@ -1172,14 +1180,19 @@ public class negocioSteps {
         }
         try {
         	utilidadesTCS.writeElement("xpath", negocioPageObjects.INPUT_NUMERO_DOCUMENTO, numeroDocumento);
+            utilidadesTCS.clicElement("xpath", negocioPageObjects.BTN_DONE);
         	Utilidades.esperaMiliseg(3000);
+            utilidadesTCS.clicElementAction("xpath", negocioPageObjects.INPUT_NUMERO_CELULAR);
             utilidadesTCS.writeElement("xpath", negocioPageObjects.INPUT_NUMERO_CELULAR, numeroDeCelular);
         } catch (Exception e) {
             System.out.println("Se presento un error debido a: "+ e.getMessage() );
             assert utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.INPUT_NUMERO_DOCUMENTO) : "No se pudo interactuar con el elemento." + negocioPageObjects.INPUT_NUMERO_DOCUMENTO;
         }
         try {
-        	utilidadesTCS.clicElement("xpath", negocioPageObjects.CHECK_TYC);
+        	Utilidades.esperaMiliseg(1500);
+            utilidadesTCS.clicElement("xpath", negocioPageObjects.BTN_DONE);
+        	Utilidades.esperaMiliseg(1500);
+        	utilidadesTCS.clicElementAction("xpath", negocioPageObjects.CHECK_TYC);
             Utilidades.tomaEvidencia("Finalice el formulario del vendedor");
             System.out.println("Finalizo el formulario");
             Utilidades.esperaMiliseg(2000);
@@ -1207,6 +1220,7 @@ public class negocioSteps {
             /** Acciones por coordenadas ya que no se pueden mapear elementos **/
             utilidadesTCS.clickCoordinates(220, 550);
             utilidadesTCS.clickCoordinates(215, 530);
+            utilidadesTCS.clickCoordinates(190, 439);
         } catch (Exception e) {
             System.out.println("Se presento un error debido a: "+ e.getMessage() );
 //            assert utilidadesTCS.validateElementVisibilityCatch("xpath", negocioPageObjects.BOTON_CONTINUAR) : "No se pudo interactuar con el elemento." + OlvidoClavePageObjects.BOTON_CONTINUAR;

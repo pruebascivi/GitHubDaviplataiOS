@@ -69,6 +69,7 @@ public class OnHoldSteps {
 				Utilidades.tomaEvidencia("Transacción exitosa.");
 				BaseUtil.Autorizador = utilidadesTCS.obtenerTexto("xpath", PasarPlataPageObjects.CODIGO_AUTORIZACION);
 				Utilidades.esperaMiliseg(2000);
+				utilidadesTCS.scrollBackground("xpath", PasarPlataPageObjects.TXT_TRANSACCION_EXITOSA, 0, -100);
 				utilidadesTCS.esperarElementVisibility("xpath", PasarPlataPageObjects.FINALIZAR_TRANSACCION);
 				utilidadesTCS.clicElement("xpath", PasarPlataPageObjects.FINALIZAR_TRANSACCION);
 				Utilidades.esperaMiliseg(4000);

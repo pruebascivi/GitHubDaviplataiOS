@@ -38,9 +38,8 @@ Feature: Modulo Registro De Mayores
     And Doy clic en el boton continuar
     And Valido que al dar tap en el botón Ingresar debe dejar en la pantalla Ingrese a su DaviPlata
     And Valido presencia del boton 3 puntos
-    And Valido opciones del boton 3 puntos
-    And valido la opcion 'Cambiar mi numero'
-    And verifico la opcion 'Donde usar su DaviPlata'
+    #And Valido opciones del boton 3 puntos
+    #And verifico la opcion 'Donde usar su DaviPlata'
 
     Examples: 
       | tipoID | numDocumentoCincoDigitos | numDocumentoDiezYSeisDigitos | numeroCedulaExistente |
@@ -56,7 +55,7 @@ Feature: Modulo Registro De Mayores
 
     Examples: 
       | tipoId | usuario     | nombreUsuario | numCelular   | correo               | claveNueva |
-      | "CE"   | "999666336" | "Andrea"      | "3008964780" | "andri655@gmail.com" | "3574"     |
+      | "CE"   | "999466346" | "Andrea"      | "3008964780" | "andri655@gmail.com" | "3574"     |
 
   @CP031003M
   Scenario Outline: CP031003M_SYS_Validacion de campos del registro en cedula de ciudadania

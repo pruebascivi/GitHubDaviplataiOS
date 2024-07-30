@@ -428,7 +428,6 @@ public class MovimientoFuncionalSteps {
         boolean estado = utilidadesTcs.validateElementEnabled("xpath", MovimientoFuncionalPageObjects.BOTON_DESCARGAS);
         utilidadesTcs.validateStatusElement(estado);
         Utilidades.tomaEvidencia("Validar que en el momento en el que el cliente seleccione un mes, se le debe habilitar el boton 'Descargar'");
-        
     }
     
     @Step

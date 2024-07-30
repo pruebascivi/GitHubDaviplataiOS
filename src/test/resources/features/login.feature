@@ -1,6 +1,7 @@
 @Login
 Feature: Set De Pruebas de Login
 
+	
   @CP0009M 
   Scenario: CP0009M_SYS_Validar lista desplegable de tipo documental
     Given Ingreso a la app
@@ -78,7 +79,8 @@ Feature: Set De Pruebas de Login
       | tipoId | usuario   |
       | "CE"   | "1975jhp" |
 
-  @CP0016M 
+  #Cantidad de casos adicionales que agrupa el modulo APAGADO_E-CARD_MENORES: 1
+  @CP0016M @APAGADO_E-CARD_MENORES
   Scenario Outline: CP0016M_SYS_Validar proceso de logueo por tipo documental TI
     Given ingreso usuario y contrasena <tipoId> <usuario> <contrasena>
     Then valido ingreso al app
